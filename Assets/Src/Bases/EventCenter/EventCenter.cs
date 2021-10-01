@@ -47,7 +47,7 @@ public partial class EventCenter
 
     List<Action<object>> GetSubribers(string eventId)
     {
-        if (_eventMap.ContainsKey(eventId))
+        if (!_eventMap.ContainsKey(eventId))
         {
             _eventMap.Add(
                 eventId,
