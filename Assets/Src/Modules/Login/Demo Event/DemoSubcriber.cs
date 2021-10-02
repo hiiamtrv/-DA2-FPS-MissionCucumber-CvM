@@ -21,6 +21,6 @@ public class DemoSubcriber : MonoBehaviour
 
     void NotifyMouseClick(object data)
     {
-        Debug.Log("MOUSE CLICK" + ((Vector3)data).ToString());
+        Debug.Log("CATCH EVENT MOUSE CLICK:" + ((Vector3)data).ToString());
     }
 }
