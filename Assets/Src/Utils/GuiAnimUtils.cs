@@ -7,7 +7,7 @@ public static class GuiAnimUtils
 {
     public static void FadeIn(GameObject gameObject, float time = 1, float delay = 0)
     {
-        gameObject.LeanAlpha(0, 1);
+        // LeanTween.alphaCanvas(gameObject, 0, 0);
         LeanTween.alpha(gameObject, 255, time)
             .setDelay(delay);
     }
