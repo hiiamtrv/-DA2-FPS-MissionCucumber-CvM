@@ -1,0 +1,67 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class CanvasSetting : MonoBehaviour
+{
+    const string BTN_GENERAL = "BtnGeneral";
+    const string BTN_TERM = "BtnTerm";
+    const string BTN_CLOSE = "BtnClose";
+    const string PNL_GENERAL = "PnlGeneral";
+    const string PNL_TERM = "PnlTerm";
+    const string SLIDER_MASTER = "SliderMaster";
+    const string SLIDER_MUSIC = "SliderMusic";
+    const string SLIDER_SFX = "SliderSfx";
+
+    Button _btnGeneral = null;
+    Button _btnTerm = null;
+    Button _btnClose = null;
+    RectTransform _pnlGeneral = null;
+    RectTransform _pnlTerm = null;
+    Slider _sliderMaster = null;
+    Slider _sliderMusic = null;
+    Slider _sliderSfx = null;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        this._btnGeneral = GameObject.Find(BTN_GENERAL).GetComponent<Button>();
+        this._btnTerm = GameObject.Find(BTN_TERM).GetComponent<Button>();
+        this._btnClose = GameObject.Find(BTN_CLOSE).GetComponent<Button>();
+        this._pnlGeneral = GameObject.Find(PNL_GENERAL).GetComponent<RectTransform>();
+        this._pnlTerm = GameObject.Find(PNL_TERM).GetComponent<RectTransform>();
+        this._sliderMaster = GameObject.Find(SLIDER_MASTER).GetComponent<Slider>();
+        this._sliderMusic = GameObject.Find(SLIDER_MUSIC).GetComponent<Slider>();
+        this._sliderSfx = GameObject.Find(SLIDER_SFX).GetComponent<Slider>();
+
+        this._btnGeneral.onClick.AddListener(this.OpenPnlGeneral);
+        this._btnTerm.onClick.AddListener(this.OpenPnlTerm);
+        this._btnClose.onClick.AddListener(this.OnClose);
+
+        OpenPnlGeneral();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    void OpenPnlGeneral()
+    {
+        this._pnlTerm.gameObject.SetActive(false);
+        this._pnlGeneral.gameObject.SetActive(true);
+    }
+
+    void OpenPnlTerm()
+    {
+        this._pnlTerm.gameObject.SetActive(true);
+        this._pnlGeneral.gameObject.SetActive(false);
+    }
+
+    void OnClose()
+    {
+        this.gameObject.SetActive(false);
+    }
+}
