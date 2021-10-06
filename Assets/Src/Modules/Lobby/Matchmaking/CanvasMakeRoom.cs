@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,34 +12,48 @@ public class CanvasMakeRoom : MonoBehaviour
     const string TOOGLE_PUBLIC = "TogglePublic";
     const string TOOGLE_PRIVATE = "TogglePrivate";
     const string TXT_ROOM_CODE = "TxtRoomCode";
+    const string BTN_CONFIRM = "BtnConfirm";
 
-    Button btnCreate = null;
-    Button btnJoin = null;
-    Button btnSolo = null;
-    Toggle tooglePublic = null;
-    Toggle tooglePrivate = null;
-    InputField txtRoomCode = null;
+    Button _btnCreate = null;
+    Button _btnJoin = null;
+    Button _btnSolo = null;
+    Toggle _tooglePublic = null;
+    Toggle _tooglePrivate = null;
+    InputField _txtRoomCode = null;
+    Button _btnConfirm = null;
 
-    RoomMode? currentRoomMode = null;
+    RoomMode? _currentRoomMode = null;
+
+    enum Selection
+    {
+        NULL,
+        CREATE,
+        JOIN,
+        SOLO
+    }
+    Selection curSelection;
 
     // Start is called before the first frame update
     void Start()
     {
-        this.btnCreate = GameObject.Find(BTN_CREATE).GetComponent<Button>();
-        this.btnJoin = GameObject.Find(BTN_JOIN).GetComponent<Button>();
-        this.btnSolo = GameObject.Find(BTN_SOLO).GetComponent<Button>();
-        this.tooglePublic = GameObject.Find(TOOGLE_PUBLIC).GetComponent<Toggle>();
-        this.tooglePrivate = GameObject.Find(TOOGLE_PRIVATE).GetComponent<Toggle>();
-        this.txtRoomCode = GameObject.Find(TXT_ROOM_CODE).GetComponent<InputField>();
+        this._btnCreate = GameObject.Find(BTN_CREATE).GetComponent<Button>();
+        this._btnJoin = GameObject.Find(BTN_JOIN).GetComponent<Button>();
+        this._btnSolo = GameObject.Find(BTN_SOLO).GetComponent<Button>();
+        this._tooglePublic = GameObject.Find(TOOGLE_PUBLIC).GetComponent<Toggle>();
+        this._tooglePrivate = GameObject.Find(TOOGLE_PRIVATE).GetComponent<Toggle>();
+        this._txtRoomCode = GameObject.Find(TXT_ROOM_CODE).GetComponent<InputField>();
+        this._btnConfirm = GameObject.Find(BTN_CONFIRM).GetComponent<Button>();
 
-        this.btnCreate.onClick.AddListener(this.OnCreateRoom);
-        this.btnJoin.onClick.AddListener(this.OnJoinRoom);
-        this.btnSolo.onClick.AddListener(this.OnSolo);
+        this._btnCreate.onClick.AddListener(delegate { this.SetSelection(Selection.CREATE); });
+        this._btnJoin.onClick.AddListener(delegate { this.SetSelection(Selection.JOIN); });
+        this._btnSolo.onClick.AddListener(delegate { this.SetSelection(Selection.SOLO); });
+        this._btnConfirm.onClick.AddListener(this.Confirm);
 
         this.SetRoomMode(RoomMode.PUBLIC);
+        this.SetSelection(Selection.NULL);
 
-        this.tooglePublic.onValueChanged.AddListener(delegate { this.SetRoomMode(RoomMode.PUBLIC); });
-        this.tooglePrivate.onValueChanged.AddListener(delegate { this.SetRoomMode(RoomMode.PRIVATE); });
+        this._tooglePublic.onValueChanged.AddListener(delegate { this.SetRoomMode(RoomMode.PUBLIC); });
+        this._tooglePrivate.onValueChanged.AddListener(delegate { this.SetRoomMode(RoomMode.PRIVATE); });
     }
 
     // Update is called once per frame
@@ -47,31 +62,90 @@ public class CanvasMakeRoom : MonoBehaviour
 
     }
 
-    void OnCreateRoom()
+    void SetSelection(Selection selection)
     {
-        Debug.Log("Request create room " + this.currentRoomMode);
+        this.curSelection = selection;
+        this.SetStateSelected(this._btnCreate, false);
+        this.SetStateSelected(this._btnJoin, false);
+        this.SetStateSelected(this._btnSolo, false);
+
+        switch (selection)
+        {
+            case Selection.CREATE:
+                {
+                    this.SetStateSelected(this._btnCreate, true);
+                    break;
+                }
+            case Selection.JOIN:
+                {
+                    this.SetStateSelected(this._btnJoin, true);
+                    break;
+                }
+            case Selection.SOLO:
+                {
+                    this.SetStateSelected(this._btnSolo, true);
+                    break;
+                }
+        }
     }
 
-    void OnJoinRoom()
+    void CreateRoom()
     {
-        string roomCode = this.txtRoomCode.text;
+        Debug.Log("Request create room " + this._currentRoomMode);
+
+    }
+
+    void JoinRoom()
+    {
+        string roomCode = this._txtRoomCode.text;
         if (true)
         {
             Debug.Log("Request join room: " + roomCode);
         }
     }
 
-    void OnSolo()
+    void Solo()
     {
         Debug.Log("Request solo");
     }
 
     void SetRoomMode(RoomMode roomMode)
     {
-        this.currentRoomMode = roomMode;
+        this._currentRoomMode = roomMode;
         Debug.Log("Set room mode: " + roomMode);
-        this.tooglePublic.SetIsOnWithoutNotify(roomMode == RoomMode.PUBLIC ? true : false);
-        this.tooglePrivate.SetIsOnWithoutNotify(roomMode == RoomMode.PRIVATE ? true : false);
+        this._tooglePublic.SetIsOnWithoutNotify(roomMode == RoomMode.PUBLIC ? true : false);
+        this._tooglePrivate.SetIsOnWithoutNotify(roomMode == RoomMode.PRIVATE ? true : false);
+    }
+
+    void Confirm()
+    {
+        switch (this.curSelection)
+        {
+            case Selection.CREATE:
+                {
+                    this.CreateRoom();
+                    break;
+                }
+            case Selection.JOIN:
+                {
+                    this.JoinRoom();
+                    break;
+                }
+            case Selection.SOLO:
+                {
+                    this.Solo();
+                    break;
+                }
+        }
+        this.SetSelection(Selection.NULL);
+    }
+
+    void SetStateSelected(Button button, bool isSelected)
+    {
+        string PNL_SELECTED = "PnlSelected";
+        Transform pnlSelected = button.gameObject.transform.Find(PNL_SELECTED);
+
+        pnlSelected.gameObject.SetActive(isSelected);
     }
 }
 
