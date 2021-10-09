@@ -31,10 +31,12 @@ public class CanvasMainMenu : MonoBehaviour
     void OnOpenSetting()
     {
         Debug.Log("[CanvasMainMenu] open setting");
+        EventCenter.Publish(EventId.CHANGE_GUI, Gui.SETTING);
     }
 
     void OnPlay()
     {
         Debug.Log("[CanvasMainMenu] open make room");
+        EventCenter.Publish(EventId.CHANGE_GUI, Gui.MAKE_ROOM);
     }
 }

@@ -876,7 +876,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LOBBY
+  m_Text: MAIN MENU
 --- !u!1 &2102343381882722300
 GameObject:
   m_ObjectHideFlags: 0
