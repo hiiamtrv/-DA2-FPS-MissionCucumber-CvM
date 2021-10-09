@@ -36,19 +36,20 @@ public class CanvasStat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this._imgAvatar = GameObject.Find(IMG_AVATAR).GetComponent<Image>();
-        this._lbUsername = GameObject.Find(LB_USERNAME).GetComponent<Text>();
-        this._lbDescription = GameObject.Find(LB_DESCRIPTION).GetComponent<Text>();
-        this._btnEdit = GameObject.Find(BTN_EDIT).GetComponent<Button>();
-        this._txtUsername = GameObject.Find(TXT_USERNAME).GetComponent<InputField>();
-        this._txtDescription = GameObject.Find(TXT_DESCRIPTION).GetComponent<InputField>();
-        this._btnConfirm = GameObject.Find(BTN_CONFIRM).GetComponent<Button>();
-        this._imgRank = GameObject.Find(IMG_RANK).GetComponent<Image>();
-        this._lbRankName = GameObject.Find(LB_RANK_NAME).GetComponent<Text>();
-        this._lbKda = GameObject.Find(LB_KDA).GetComponent<Text>();
-        this._lbHighestRank = GameObject.Find(LB_HIGHEST_RANK).GetComponent<Text>();
-        this._lbNumSkin = GameObject.Find(LB_NUM_SKIN).GetComponent<Text>();
-        this._lbNumFiend = GameObject.Find(LB_NUM_FRIEND).GetComponent<Text>();
+        UiHelper uiHelper = new UiHelper(this.gameObject);
+        this._imgAvatar = uiHelper.ui[IMG_AVATAR].GetComponent<Image>();
+        this._lbUsername = uiHelper.ui[LB_USERNAME].GetComponent<Text>();
+        this._lbDescription = uiHelper.ui[LB_DESCRIPTION].GetComponent<Text>();
+        this._btnEdit = uiHelper.ui[BTN_EDIT].GetComponent<Button>();
+        this._txtUsername = uiHelper.ui[TXT_USERNAME].GetComponent<InputField>();
+        this._txtDescription = uiHelper.ui[TXT_DESCRIPTION].GetComponent<InputField>();
+        this._btnConfirm = uiHelper.ui[BTN_CONFIRM].GetComponent<Button>();
+        this._imgRank = uiHelper.ui[IMG_RANK].GetComponent<Image>();
+        this._lbRankName = uiHelper.ui[LB_RANK_NAME].GetComponent<Text>();
+        this._lbKda = uiHelper.ui[LB_KDA].GetComponent<Text>();
+        this._lbHighestRank = uiHelper.ui[LB_HIGHEST_RANK].GetComponent<Text>();
+        this._lbNumSkin = uiHelper.ui[LB_NUM_SKIN].GetComponent<Text>();
+        this._lbNumFiend = uiHelper.ui[LB_NUM_FRIEND].GetComponent<Text>();
 
         this._btnEdit.onClick.AddListener(this.SetEditMode);
         this._btnConfirm.onClick.AddListener(this.SetViewMode);

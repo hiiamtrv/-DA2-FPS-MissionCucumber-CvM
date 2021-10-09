@@ -36,13 +36,14 @@ public class CanvasMakeRoom : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this._btnCreate = GameObject.Find(BTN_CREATE).GetComponent<Button>();
-        this._btnJoin = GameObject.Find(BTN_JOIN).GetComponent<Button>();
-        this._btnSolo = GameObject.Find(BTN_SOLO).GetComponent<Button>();
-        this._tooglePublic = GameObject.Find(TOOGLE_PUBLIC).GetComponent<Toggle>();
-        this._tooglePrivate = GameObject.Find(TOOGLE_PRIVATE).GetComponent<Toggle>();
-        this._txtRoomCode = GameObject.Find(TXT_ROOM_CODE).GetComponent<InputField>();
-        this._btnConfirm = GameObject.Find(BTN_CONFIRM).GetComponent<Button>();
+        UiHelper uiHelper = new UiHelper(this.gameObject);
+        this._btnCreate = uiHelper.ui[BTN_CREATE].GetComponent<Button>();
+        this._btnJoin = uiHelper.ui[BTN_JOIN].GetComponent<Button>();
+        this._btnSolo = uiHelper.ui[BTN_SOLO].GetComponent<Button>();
+        this._tooglePublic = uiHelper.ui[TOOGLE_PUBLIC].GetComponent<Toggle>();
+        this._tooglePrivate = uiHelper.ui[TOOGLE_PRIVATE].GetComponent<Toggle>();
+        this._txtRoomCode = uiHelper.ui[TXT_ROOM_CODE].GetComponent<InputField>();
+        this._btnConfirm = uiHelper.ui[BTN_CONFIRM].GetComponent<Button>();
 
         this._btnCreate.onClick.AddListener(delegate { this.SetSelection(Selection.CREATE); });
         this._btnJoin.onClick.AddListener(delegate { this.SetSelection(Selection.JOIN); });

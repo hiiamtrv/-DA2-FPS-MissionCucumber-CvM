@@ -26,14 +26,15 @@ public class CanvasSetting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this._btnGeneral = GameObject.Find(BTN_GENERAL).GetComponent<Button>();
-        this._btnTerm = GameObject.Find(BTN_TERM).GetComponent<Button>();
-        this._btnClose = GameObject.Find(BTN_CLOSE).GetComponent<Button>();
-        this._pnlGeneral = GameObject.Find(PNL_GENERAL).GetComponent<RectTransform>();
-        this._pnlTerm = GameObject.Find(PNL_TERM).GetComponent<RectTransform>();
-        this._sliderMaster = GameObject.Find(SLIDER_MASTER).GetComponent<Slider>();
-        this._sliderMusic = GameObject.Find(SLIDER_MUSIC).GetComponent<Slider>();
-        this._sliderSfx = GameObject.Find(SLIDER_SFX).GetComponent<Slider>();
+        UiHelper uiHelper = new UiHelper(this.gameObject);
+        this._btnGeneral = uiHelper.ui[BTN_GENERAL].GetComponent<Button>();
+        this._btnTerm = uiHelper.ui[BTN_TERM].GetComponent<Button>();
+        this._btnClose = uiHelper.ui[BTN_CLOSE].GetComponent<Button>();
+        this._pnlGeneral = uiHelper.ui[PNL_GENERAL].GetComponent<RectTransform>();
+        this._pnlTerm = uiHelper.ui[PNL_TERM].GetComponent<RectTransform>();
+        this._sliderMaster = uiHelper.ui[SLIDER_MASTER].GetComponent<Slider>();
+        this._sliderMusic = uiHelper.ui[SLIDER_MUSIC].GetComponent<Slider>();
+        this._sliderSfx = uiHelper.ui[SLIDER_SFX].GetComponent<Slider>();
 
         this._btnGeneral.onClick.AddListener(this.OpenPnlGeneral);
         this._btnTerm.onClick.AddListener(this.OpenPnlTerm);
