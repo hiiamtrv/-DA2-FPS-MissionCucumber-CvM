@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CanvasLogin : MonoBehaviour
@@ -11,6 +12,7 @@ public class CanvasLogin : MonoBehaviour
     const string BTN_EXIT = "BtnExit";
     const string TXT_USERNAME = "TxtUsername";
     const string TXT_PASSWORD = "TxtPassword";
+    const string BTN_CLEAR_LOCAL_DATA = "BtnClearLocalData";
 
     Image _imgBackground = null;
     RectTransform _pnlLogin = null;
@@ -18,6 +20,7 @@ public class CanvasLogin : MonoBehaviour
     Button _btnExit = null;
     InputField _txtUsername = null;
     InputField _txtPassword = null;
+    Button _btnClearLocalData = null;
 
 
     // Start is called before the first frame update
@@ -30,6 +33,7 @@ public class CanvasLogin : MonoBehaviour
         this._btnExit = uiHelper.ui[BTN_EXIT].GetComponent<Button>();
         this._txtUsername = uiHelper.ui[TXT_USERNAME].GetComponent<InputField>();
         this._txtPassword = uiHelper.ui[TXT_PASSWORD].GetComponent<InputField>();
+        this._btnClearLocalData = uiHelper.ui[BTN_CLEAR_LOCAL_DATA].GetComponent<Button>();
 
         // GuiAnimUtils.FadeIn(this.imgBackground.gameObject);
         GuiAnimUtils.MoveY(this._pnlLogin.gameObject, 500, 1.5f, 0);
@@ -39,6 +43,14 @@ public class CanvasLogin : MonoBehaviour
 
         this._btnLogin.onClick.AddListener(this.OnLogin);
         this._btnExit.onClick.AddListener(this.OnExit);
+        this._btnClearLocalData.onClick.AddListener(this.OnClearLocalData);
+
+        this.Init();
+    }
+
+    void Init()
+    {
+        this._txtUsername.text = Gm.PlayerProfile.GetUsername();
     }
 
     // Update is called once per frame
@@ -50,10 +62,19 @@ public class CanvasLogin : MonoBehaviour
     void OnLogin()
     {
         Debug.Log("ALO LOGIN !!!");
+        if (this._txtUsername.text.Length == 0) return;
+
+        Gm.PlayerProfile.SetUsername(this._txtUsername.text);
+        SceneManager.LoadScene(SceneId.LOBBY);
     }
 
     void OnExit()
     {
         Application.Quit();
+    }
+
+    void OnClearLocalData() {
+        PlayerPrefs.DeleteAll();
+        Debug.Log("[CanvasLogin] Local data has been cleared");
     }
 }

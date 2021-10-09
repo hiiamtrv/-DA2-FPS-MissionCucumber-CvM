@@ -11,7 +11,11 @@ public class SceneMgr : MonoBehaviour
     [SerializeField] GameObject startGui;
 
     Dictionary<string, GameObject> mapGui = new Dictionary<string, GameObject>();
+
     string curGuiName = "";
+    
+    //Implement when screen have "Goback"
+    // List<string> guiStack = new List<string>();
 
     // Start is called before the first frame update
     void Start()

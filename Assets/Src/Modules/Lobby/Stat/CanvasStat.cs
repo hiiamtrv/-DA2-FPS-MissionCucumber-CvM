@@ -52,9 +52,11 @@ public class CanvasStat : MonoBehaviour
         this._lbNumFiend = uiHelper.ui[LB_NUM_FRIEND].GetComponent<Text>();
 
         this._btnEdit.onClick.AddListener(this.SetEditMode);
-        this._btnConfirm.onClick.AddListener(this.SetViewMode);
+        this._btnConfirm.onClick.AddListener(delegate () { this.SetViewMode(true); });
 
-        SetViewMode();
+        this.Refresh();
+        this.SetViewMode(false);
+        this.SubEvents();
     }
 
     // Update is called once per frame
@@ -63,8 +65,23 @@ public class CanvasStat : MonoBehaviour
 
     }
 
-    void SetViewMode()
+    void Refresh()
     {
+        this._lbUsername.text = Gm.PlayerProfile.GetUsername();
+        this._lbDescription.text = Gm.PlayerProfile.GetDescription();
+    }
+
+    void SetViewMode(bool saveChange)
+    {
+        if (saveChange)
+        {
+            string newUsername = this._txtUsername.text.Trim();
+            string newDescription = this._txtDescription.text.Trim();
+
+            if (newUsername.Length > 0) Gm.PlayerProfile.SetUsername(newUsername);
+            if (newDescription.Length > 0) Gm.PlayerProfile.SetDescription(newDescription);
+        }
+
         this._txtUsername.gameObject.SetActive(false);
         this._txtDescription.gameObject.SetActive(false);
         this._btnConfirm.gameObject.SetActive(false);
@@ -76,6 +93,12 @@ public class CanvasStat : MonoBehaviour
 
     void SetEditMode()
     {
+        string curUsername = Gm.PlayerProfile.GetUsername();
+        string curDescription = Gm.PlayerProfile.GetDescription();
+
+        this._txtUsername.text = curUsername;
+        this._txtDescription.text = curDescription;
+
         this._txtUsername.gameObject.SetActive(true);
         this._txtDescription.gameObject.SetActive(true);
         this._btnConfirm.gameObject.SetActive(true);
@@ -83,5 +106,10 @@ public class CanvasStat : MonoBehaviour
         this._lbUsername.gameObject.SetActive(false);
         this._lbDescription.gameObject.SetActive(false);
         this._btnEdit.gameObject.SetActive(false);
+    }
+
+    void SubEvents()
+    {
+        EventCenter.Subcribe(EventId.PLAYER_PROFILE_CHANGE, delegate (object obj) { this.Refresh(); });
     }
 }
