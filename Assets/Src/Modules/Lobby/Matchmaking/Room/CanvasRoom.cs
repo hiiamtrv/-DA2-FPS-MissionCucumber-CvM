@@ -24,7 +24,7 @@ public class CanvasRoom : MonoBehaviour
             PnlPlayerSlot newSlot = uiHelper.ui[uiName].GetComponent<PnlPlayerSlot>();
             this._playerSlots.Add(newSlot);
         }
-        // this._curNumPlayer = 0;
+        this._btnLeave.onClick.AddListener(this.OnLeave);
     }
 
     // Update is called once per frame
@@ -35,11 +35,16 @@ public class CanvasRoom : MonoBehaviour
 
     public void AddNewPlayer(string playerName)
     {
-       
+
     }
 
     public void RemovePlayer(string playerName)
     {
-        
+
+    }
+
+    void OnLeave()
+    {
+        EventCenter.Publish(EventId.CHANGE_GUI, Gui.MAKE_ROOM);
     }
 }

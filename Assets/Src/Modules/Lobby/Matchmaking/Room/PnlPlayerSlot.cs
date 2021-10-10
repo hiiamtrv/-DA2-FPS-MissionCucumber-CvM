@@ -6,17 +6,21 @@ using UnityEngine.UI;
 public class PnlPlayerSlot : MonoBehaviour
 {
     const string LB_PLAYER_NAME = "LbPlayerName";
+    const string BTN_KICK = "BtnKick";
     const string DEFAULT_NAME = "#DefaultName";
 
     RectTransform _pnlPlayerSlot = null;
     Text _lbPlayerName = null;
+    Button _btnKick = null;
     SlotState _curSlotState;
 
     // Start is called before the first frame update
     void Start()
     {
+        UiHelper uiHelper = new UiHelper(this.gameObject);
         this._pnlPlayerSlot = this.GetComponent<RectTransform>();
-        this._lbPlayerName = this.transform.Find(LB_PLAYER_NAME).GetComponent<Text>();
+        this._lbPlayerName = uiHelper.ui[LB_PLAYER_NAME].GetComponent<Text>();
+        this._btnKick = uiHelper.ui[BTN_KICK].GetComponent<Button>();
 
         this.SetName(DEFAULT_NAME);
         this.SetSlotState(SlotState.EMPTY);
@@ -33,7 +37,7 @@ public class PnlPlayerSlot : MonoBehaviour
         return this._lbPlayerName.text;
     }
 
-    public void SetName(string name)
+    void SetName(string name)
     {
         this._lbPlayerName.text = name;
     }
@@ -43,7 +47,7 @@ public class PnlPlayerSlot : MonoBehaviour
         return this._curSlotState;
     }
 
-    public void SetSlotState(SlotState newState)
+    void SetSlotState(SlotState newState)
     {
         this._curSlotState = newState;
         switch (newState)
@@ -59,6 +63,16 @@ public class PnlPlayerSlot : MonoBehaviour
                     break;
                 }
         }
+    }
+
+    public void EmptySlot() { 
+        this.SetName("");
+        this.SetSlotState(SlotState.EMPTY);
+    }
+
+    public void OccupySlot(string username) { 
+        this.SetName(username);
+        this.SetSlotState(SlotState.OCCUPIED);
     }
 }
 
