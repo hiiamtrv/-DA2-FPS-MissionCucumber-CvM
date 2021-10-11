@@ -5,11 +5,15 @@ using UnityEngine.UI;
 
 public class PnlPlayerSlot : MonoBehaviour
 {
+    const string PNL_EMPTY = "PnlEmpty";
+    const string PNL_OCCUPIED = "PnlOccupied";
     const string LB_PLAYER_NAME = "LbPlayerName";
     const string BTN_KICK = "BtnKick";
+
     const string DEFAULT_NAME = "#DefaultName";
 
-    RectTransform _pnlPlayerSlot = null;
+    RectTransform _pnlEmpty = null;
+    RectTransform _pnlOccupied = null;
     Text _lbPlayerName = null;
     Button _btnKick = null;
     SlotState _curSlotState;
@@ -18,7 +22,12 @@ public class PnlPlayerSlot : MonoBehaviour
     void Start()
     {
         UiHelper uiHelper = new UiHelper(this.gameObject);
-        this._pnlPlayerSlot = this.GetComponent<RectTransform>();
+        
+        //at 2 lines below, they both worked but still threw exceptions when hide
+        this._pnlEmpty = uiHelper.ui[PNL_EMPTY].GetComponent<RectTransform>();
+        this._pnlOccupied = uiHelper.ui[PNL_OCCUPIED].GetComponent<RectTransform>();
+        //gonna research this later
+
         this._lbPlayerName = uiHelper.ui[LB_PLAYER_NAME].GetComponent<Text>();
         this._btnKick = uiHelper.ui[BTN_KICK].GetComponent<Button>();
 
@@ -54,23 +63,27 @@ public class PnlPlayerSlot : MonoBehaviour
         {
             case SlotState.EMPTY:
                 {
-                    this._pnlPlayerSlot.gameObject.SetActive(false);
+                    this._pnlEmpty.gameObject.SetActive(true);
+                    this._pnlOccupied.gameObject.SetActive(false);
                     break;
                 }
             case SlotState.OCCUPIED:
                 {
-                    this._pnlPlayerSlot.gameObject.SetActive(true);
+                    this._pnlOccupied.gameObject.SetActive(true);
+                    this._pnlEmpty.gameObject.SetActive(false);
                     break;
                 }
         }
     }
 
-    public void EmptySlot() { 
+    public void EmptySlot()
+    {
         this.SetName("");
         this.SetSlotState(SlotState.EMPTY);
     }
 
-    public void OccupySlot(string username) { 
+    public void OccupySlot(string username)
+    {
         this.SetName(username);
         this.SetSlotState(SlotState.OCCUPIED);
     }

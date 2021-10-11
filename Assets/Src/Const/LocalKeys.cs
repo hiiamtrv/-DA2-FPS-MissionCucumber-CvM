@@ -6,4 +6,8 @@ partial class LocalKey {
     public const string PLAYER_PROFILE_NUMASSIST = "PLAYER_PROFILE_NUMASSIST";
     public const string PLAYER_PROFILE_CURRANKPOINT = "PLAYER_PROFILE_CURRANKPOINT";
     public const string PLAYER_PROFILE_HIGHESTRANKPOINT = "PLAYER_PROFILE_HIGHESTRANKPOINT";
+
+    public const string SETTING_SOUND_ALL = "SETTING_SOUND_ALL";
+    public const string SETTING_SOUND_BGM = "SETTING_SOUND_BGM";
+    public const string SETTING_SOUND_SFX = "SETTING_SOUND_SFX";
 }

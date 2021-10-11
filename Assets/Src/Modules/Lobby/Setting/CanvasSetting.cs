@@ -40,6 +40,11 @@ public class CanvasSetting : MonoBehaviour
         this._btnTerm.onClick.AddListener(this.OpenPnlTerm);
         this._btnClose.onClick.AddListener(this.OnClose);
 
+        this._sliderMaster.onValueChanged.AddListener(this.OnChangeSoundMaster);
+        this._sliderMusic.onValueChanged.AddListener(this.OnChangeSoundMusic);
+        this._sliderSfx.onValueChanged.AddListener(this.OnChangeSoundSfx);
+
+        GetInitData();
         OpenPnlGeneral();
     }
 
@@ -47,6 +52,13 @@ public class CanvasSetting : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void GetInitData()
+    {
+        this._sliderMaster.value = Gm.SoundMgr.All;
+        this._sliderMusic.value = Gm.SoundMgr.Bgm;
+        this._sliderSfx.value = Gm.SoundMgr.Sfx;
     }
 
     void OpenPnlGeneral()
@@ -63,6 +75,27 @@ public class CanvasSetting : MonoBehaviour
 
     void OnClose()
     {
-        this.gameObject.SetActive(false);
+        // this.gameObject.SetActive(false);
+        Gm.ChangeGui(Gui.MAIN_MENU);
+    }
+
+    void OnChangeSoundMaster(float value)
+    {
+        Gm.SoundMgr.All = value;
+    }
+
+    void OnChangeSoundMusic(float value)
+    {
+        Gm.SoundMgr.Bgm = value;
+    }
+
+    void OnChangeSoundSfx(float value)
+    {
+        Gm.SoundMgr.Sfx = value;
+    }
+
+    void OnDisable()
+    {
+        Gm.SoundMgr.SavePrefs();
     }
 }

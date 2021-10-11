@@ -7,8 +7,10 @@ public class CanvasRoom : MonoBehaviour
 {
     const string BTN_START = "BtnStart";
     const string PNL_PLAYER = "PnlPlayer";
+    const string BTN_LEAVE = "BtnLeave";
 
     Button _btnStart = null;
+    Button _btnLeave = null;
     List<PnlPlayerSlot> _playerSlots = new List<PnlPlayerSlot>();
     // int _curNumPlayer;
 
@@ -17,6 +19,7 @@ public class CanvasRoom : MonoBehaviour
     {
         UiHelper uiHelper = new UiHelper(this.gameObject);
         this._btnStart = uiHelper.ui[BTN_START].GetComponent<Button>();
+        this._btnLeave = uiHelper.ui[BTN_LEAVE].GetComponent<Button>();
         int maxPlayer = LobbyConst.MAX_PLAYER;
         for (int i = 0; i < maxPlayer; i++)
         {
@@ -45,6 +48,6 @@ public class CanvasRoom : MonoBehaviour
 
     void OnLeave()
     {
-        EventCenter.Publish(EventId.CHANGE_GUI, Gui.MAKE_ROOM);
+        Gm.ChangeGui(Gui.MAIN_MENU);
     }
 }

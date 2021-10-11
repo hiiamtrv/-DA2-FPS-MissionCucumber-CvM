@@ -93,7 +93,7 @@ public class CanvasMakeRoom : MonoBehaviour
     void CreateRoom()
     {
         Debug.Log("Request create room " + this._currentRoomMode);
-        EventCenter.Publish(EventId.CHANGE_GUI, Gui.ROOM);
+        Gm.ChangeGui(Gui.ROOM);
     }
 
     void JoinRoom()

@@ -42,13 +42,13 @@ public class CanvasTopbar : MonoBehaviour
     void OnGoToLobby()
     {
         Debug.Log("[CanvasTopbar] go to Lobby");
-        EventCenter.Publish(EventId.CHANGE_GUI, Gui.MAIN_MENU);
+        Gm.ChangeGui(Gui.MAIN_MENU);
     }
 
     void OnGoToStats()
     {
         Debug.Log("[CanvasTopbar] go to Stats");
-        EventCenter.Publish(EventId.CHANGE_GUI, Gui.STAT);
+        Gm.ChangeGui(Gui.STAT);
     }
 
     void OnGoToShop()
