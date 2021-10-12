@@ -56,9 +56,9 @@ public class CanvasSetting : MonoBehaviour
 
     void GetInitData()
     {
-        this._sliderMaster.value = Gm.SoundMgr.All;
-        this._sliderMusic.value = Gm.SoundMgr.Bgm;
-        this._sliderSfx.value = Gm.SoundMgr.Sfx;
+        this._sliderMaster.value = Gm.SoundMgr.GetAll();
+        this._sliderMusic.value = Gm.SoundMgr.GetBgm();
+        this._sliderSfx.value = Gm.SoundMgr.GetSfx();
     }
 
     void OpenPnlGeneral()
@@ -81,17 +81,17 @@ public class CanvasSetting : MonoBehaviour
 
     void OnChangeSoundMaster(float value)
     {
-        Gm.SoundMgr.All = value;
+        Gm.SoundMgr.SetAll(value);
     }
 
     void OnChangeSoundMusic(float value)
     {
-        Gm.SoundMgr.Bgm = value;
+        Gm.SoundMgr.SetBgm(value);
     }
 
     void OnChangeSoundSfx(float value)
     {
-        Gm.SoundMgr.Sfx = value;
+        Gm.SoundMgr.SetSfx(value);
     }
 
     void OnDisable()

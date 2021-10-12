@@ -9,45 +9,36 @@ public class SoundMgr
     const float DEFAULT_SFX = 50;
 
     float _all;
-    public float All
+    public float GetAll() { return this._all; }
+    public void SetAll(float value)
     {
-        get { return _all; }
-        set
-        {
-            _all = value;
-            EventCenter.Publish(
-                EventId.SETTING_SOUND_CHANGE,
-                new SoundEventParam(SoundChange.ALL, value)
-            );
-        }
+        this._all = value;
+        EventCenter.Publish(
+            EventId.SETTING_SOUND_CHANGE,
+            new SoundEventParam(SoundChange.ALL, value)
+        );
     }
 
     float _bgm;
-    public float Bgm
+    public float GetBgm() { return this._bgm; }
+    public void SetBgm(float value)
     {
-        get { return _bgm; }
-        set
-        {
-            _bgm = value;
-            EventCenter.Publish(
-                EventId.SETTING_SOUND_CHANGE,
-                new SoundEventParam(SoundChange.BGM, value)
-            );
-        }
+        this._bgm = value;
+        EventCenter.Publish(
+            EventId.SETTING_SOUND_CHANGE,
+            new SoundEventParam(SoundChange.BGM, value)
+        );
     }
 
     float _sfx;
-    public float Sfx
+    public float GetSfx() { return this._sfx; }
+    public void SetSfx(float value)
     {
-        get { return _sfx; }
-        set
-        {
-            _sfx = value;
-            EventCenter.Publish(
-                EventId.SETTING_SOUND_CHANGE,
-                new SoundEventParam(SoundChange.SFX, value)
-            );
-        }
+        this._sfx = value;
+        EventCenter.Publish(
+            EventId.SETTING_SOUND_CHANGE,
+            new SoundEventParam(SoundChange.SFX, value)
+        );
     }
 
     public SoundMgr()
