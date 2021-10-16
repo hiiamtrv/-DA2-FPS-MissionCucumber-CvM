@@ -571,6 +571,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3600997764654332032, guid: ff56b0f319eb64b4fa777fc78f15918a, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6977116331633777204, guid: ff56b0f319eb64b4fa777fc78f15918a, type: 3}
       propertyPath: m_Name
       value: CanvasRoom
@@ -1182,6 +1186,10 @@ PrefabInstance:
     - target: {fileID: 4007353081332621111, guid: aca4a166cfb158546bdb78b69c905736, type: 3}
       propertyPath: m_Name
       value: CanvasMakeRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 4007353081629330168, guid: aca4a166cfb158546bdb78b69c905736, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aca4a166cfb158546bdb78b69c905736, type: 3}
