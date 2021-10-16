@@ -42,7 +42,7 @@ public class PlayerProfile
             this._curRankPoint = 0;
             this._highestRankPoint = 0;
         }
-        this.LogPlayerProfile();
+        // this.LogPlayerProfile();
     }
 
     public string GetUsername() { return this._username; }
@@ -104,7 +104,7 @@ public class PlayerProfile
     {
         EventCenter.Publish(EventId.PLAYER_PROFILE_CHANGE);
         if (saveToLocal) this.SaveOnLocalData();
-        this.LogPlayerProfile();
+        // this.LogPlayerProfile();
     }
 
     void LogPlayerProfile()
@@ -129,4 +129,8 @@ public class PlayerProfile
         PlayerPrefs.SetInt(LocalKey.PLAYER_PROFILE_CURRANKPOINT, this._curRankPoint);
         PlayerPrefs.SetInt(LocalKey.PLAYER_PROFILE_HIGHESTRANKPOINT, this._highestRankPoint);
     }
+}
+
+partial class EventId {
+    public const string PLAYER_PROFILE_CHANGE = "PLAYER_PROFILE_CHANGE";
 }

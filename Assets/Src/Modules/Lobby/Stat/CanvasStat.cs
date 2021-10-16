@@ -19,6 +19,7 @@ public class CanvasStat : MonoBehaviour
     const string LB_NUM_SKIN = "LbNumSkin";
     const string LB_NUM_FRIEND = "LbNumFriend";
 
+    UiHelper uiHelper = null;
     Image _imgAvatar = null;
     Text _lbUsername = null;
     Text _lbDescription = null;
@@ -36,7 +37,7 @@ public class CanvasStat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UiHelper uiHelper = new UiHelper(this.gameObject);
+        this.uiHelper = new UiHelper(this.gameObject);
         this._imgAvatar = uiHelper.ui[IMG_AVATAR].GetComponent<Image>();
         this._lbUsername = uiHelper.ui[LB_USERNAME].GetComponent<Text>();
         this._lbDescription = uiHelper.ui[LB_DESCRIPTION].GetComponent<Text>();

@@ -14,6 +14,7 @@ public class CanvasMakeRoom : MonoBehaviour
     const string TXT_ROOM_CODE = "TxtRoomCode";
     const string BTN_CONFIRM = "BtnConfirm";
 
+    UiHelper uiHelper = null;
     Button _btnCreate = null;
     Button _btnJoin = null;
     Button _btnSolo = null;
@@ -36,7 +37,7 @@ public class CanvasMakeRoom : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UiHelper uiHelper = new UiHelper(this.gameObject);
+        this.uiHelper = new UiHelper(this.gameObject);
         this._btnCreate = uiHelper.ui[BTN_CREATE].GetComponent<Button>();
         this._btnJoin = uiHelper.ui[BTN_JOIN].GetComponent<Button>();
         this._btnSolo = uiHelper.ui[BTN_SOLO].GetComponent<Button>();
@@ -92,7 +93,9 @@ public class CanvasMakeRoom : MonoBehaviour
 
     void CreateRoom()
     {
-        Debug.Log("Request create room " + this._currentRoomMode);
+        Debug.Log("Create Room");
+        CanvasRoom room = SceneMgr.GetGui(Gui.ROOM).GetComponent<CanvasRoom>();
+        room.SetViewMode(RoomViewMode.HOST);
         Gm.ChangeGui(Gui.ROOM);
     }
 
@@ -101,7 +104,10 @@ public class CanvasMakeRoom : MonoBehaviour
         string roomCode = this._txtRoomCode.text;
         if (true)
         {
-            Debug.Log("Request join room: " + roomCode);
+            Debug.Log("Join Room" + roomCode);
+            CanvasRoom room = SceneMgr.GetGui(Gui.ROOM).GetComponent<CanvasRoom>();
+            room.SetViewMode(RoomViewMode.GUEST);
+            Gm.ChangeGui(Gui.ROOM);
         }
     }
 

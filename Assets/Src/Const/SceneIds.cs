@@ -1,4 +1,4 @@
-public static class SceneId
+public class SceneId
 {
     public const int LOGIN = 0;
     public const int LOBBY = 1;

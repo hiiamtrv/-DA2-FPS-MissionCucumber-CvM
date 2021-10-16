@@ -12,33 +12,30 @@ public class PnlPlayerSlot : MonoBehaviour
 
     const string DEFAULT_NAME = "#DefaultName";
 
+    UiHelper uiHelper = null;
     RectTransform _pnlEmpty = null;
     RectTransform _pnlOccupied = null;
     Text _lbPlayerName = null;
     Button _btnKick = null;
     SlotState _curSlotState;
 
+    CanvasRoom _controller = null;
+
     // Start is called before the first frame update
     void Start()
     {
-        UiHelper uiHelper = new UiHelper(this.gameObject);
-        
-        //at 2 lines below, they both worked but still threw exceptions when hide
-        this._pnlEmpty = uiHelper.ui[PNL_EMPTY].GetComponent<RectTransform>();
-        this._pnlOccupied = uiHelper.ui[PNL_OCCUPIED].GetComponent<RectTransform>();
-        //gonna research this later
+        this.uiHelper = new UiHelper(this.gameObject);
+
+        this._pnlEmpty = this.uiHelper.ui[PNL_EMPTY].GetComponent<RectTransform>();
+        this._pnlOccupied = this.uiHelper.ui[PNL_OCCUPIED].GetComponent<RectTransform>();
 
         this._lbPlayerName = uiHelper.ui[LB_PLAYER_NAME].GetComponent<Text>();
         this._btnKick = uiHelper.ui[BTN_KICK].GetComponent<Button>();
 
+        this._btnKick.onClick.AddListener(this.KickPlayer);
+
         this.SetName(DEFAULT_NAME);
-        this.SetSlotState(SlotState.EMPTY);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        this.SetSlotState(SlotState.OCCUPIED);
     }
 
     public string GetName()
@@ -46,7 +43,7 @@ public class PnlPlayerSlot : MonoBehaviour
         return this._lbPlayerName.text;
     }
 
-    void SetName(string name)
+    public void SetName(string name)
     {
         this._lbPlayerName.text = name;
     }
@@ -56,24 +53,11 @@ public class PnlPlayerSlot : MonoBehaviour
         return this._curSlotState;
     }
 
-    void SetSlotState(SlotState newState)
+    public void SetSlotState(SlotState newState)
     {
         this._curSlotState = newState;
-        switch (newState)
-        {
-            case SlotState.EMPTY:
-                {
-                    this._pnlEmpty.gameObject.SetActive(true);
-                    this._pnlOccupied.gameObject.SetActive(false);
-                    break;
-                }
-            case SlotState.OCCUPIED:
-                {
-                    this._pnlOccupied.gameObject.SetActive(true);
-                    this._pnlEmpty.gameObject.SetActive(false);
-                    break;
-                }
-        }
+        this.SetEnabledRectTransform(this._pnlEmpty, newState == SlotState.EMPTY);
+        this.SetEnabledRectTransform(this._pnlOccupied, newState == SlotState.OCCUPIED);
     }
 
     public void EmptySlot()
@@ -86,6 +70,27 @@ public class PnlPlayerSlot : MonoBehaviour
     {
         this.SetName(username);
         this.SetSlotState(SlotState.OCCUPIED);
+    }
+
+    void SetEnabledRectTransform(RectTransform panel, bool enabled)
+    {
+        panel.gameObject.SetActive(enabled);
+    }
+
+    void KickPlayer()
+    {
+        string playerName = this.GetName();
+        this._controller.RemovePlayer(playerName);
+    }
+
+    public void SetController(CanvasRoom controller)
+    {
+        this._controller = controller;
+    }
+
+    public void SetVisibleBtnKick(bool enable)
+    {
+        this._btnKick.gameObject.SetActive(enable);
     }
 }
 

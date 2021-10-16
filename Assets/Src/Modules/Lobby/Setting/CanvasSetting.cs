@@ -14,6 +14,7 @@ public class CanvasSetting : MonoBehaviour
     const string SLIDER_MUSIC = "SliderMusic";
     const string SLIDER_SFX = "SliderSfx";
 
+    UiHelper uiHelper = null;
     Button _btnGeneral = null;
     Button _btnTerm = null;
     Button _btnClose = null;
@@ -26,7 +27,7 @@ public class CanvasSetting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UiHelper uiHelper = new UiHelper(this.gameObject);
+        this.uiHelper = new UiHelper(this.gameObject);
         this._btnGeneral = uiHelper.ui[BTN_GENERAL].GetComponent<Button>();
         this._btnTerm = uiHelper.ui[BTN_TERM].GetComponent<Button>();
         this._btnClose = uiHelper.ui[BTN_CLOSE].GetComponent<Button>();

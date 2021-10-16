@@ -5,7 +5,8 @@ partial class EventId
 
     public const string CHANGE_GUI = "CHANGE_GUI";
 
-    public const string PLAYER_PROFILE_CHANGE = "PLAYER_PROFILE_CHANGE";
-
     public const string SETTING_SOUND_CHANGE = "SETTING_SOUND_CHANGE";
+
+    public const string NETWORK_CONNECTED = "NETWORK_CONNECTED";
+    public const string NETWORD_DISCONNECT = "NETWORD_DISCONNECT";
 }

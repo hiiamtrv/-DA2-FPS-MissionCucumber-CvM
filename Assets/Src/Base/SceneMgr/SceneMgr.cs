@@ -13,7 +13,7 @@ public class SceneMgr : MonoBehaviour
     Dictionary<string, GameObject> mapGui = new Dictionary<string, GameObject>();
 
     string curGuiName = "";
-    
+
     //Implement when screen have "Goback"
     // List<string> guiStack = new List<string>();
 
@@ -82,5 +82,11 @@ public class SceneMgr : MonoBehaviour
             {
                 canvas.SetActive(true);
             });
+    }
+    
+    public static GameObject GetGui(string guiName)
+    {
+        SceneMgr mgr = GameObject.Find("SceneMgr").GetComponent<SceneMgr>();
+        return mgr.mapGui[guiName];
     }
 }

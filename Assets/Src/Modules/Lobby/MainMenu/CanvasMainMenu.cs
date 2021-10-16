@@ -8,13 +8,14 @@ public class CanvasMainMenu : MonoBehaviour
     const string BTN_SETTING = "BtnSetting";
     const string BTN_PLAY = "BtnPlay";
 
+    UiHelper uiHelper = null;
     Button btnSetting = null;
     Button btnPlay = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        UiHelper uiHelper = new UiHelper(this.gameObject);
+        this.uiHelper = new UiHelper(this.gameObject);
         this.btnSetting = uiHelper.ui[BTN_SETTING].gameObject.GetComponent<Button>();
         this.btnPlay = uiHelper.ui[BTN_PLAY].gameObject.GetComponent<Button>();
 

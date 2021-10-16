@@ -11,6 +11,7 @@ public class CanvasTopbar : MonoBehaviour
     const string BTN_SHOP = "BtnShop";
     const string BTN_FEEDBACK = "BtnFeedback";
 
+    UiHelper uiHelper = null;
     Image _imgAvatar = null;
     Button _btnLobby = null;
     Button _btnStats = null;
@@ -20,7 +21,7 @@ public class CanvasTopbar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UiHelper uiHelper = new UiHelper(this.gameObject);
+        this.uiHelper = new UiHelper(this.gameObject);
         this._imgAvatar = uiHelper.ui[IMG_AVATAR].GetComponent<Image>();
         this._btnLobby = uiHelper.ui[BTN_LOBBY].GetComponent<Button>();
         this._btnStats = uiHelper.ui[BTN_STATS].GetComponent<Button>();

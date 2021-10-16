@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public static class Gm
 {
-    public static LoginMgr LoginMgr { get; } = new LoginMgr();
     public static SoundMgr SoundMgr { get; } = new SoundMgr();
 
     public static PlayerProfile PlayerProfile { get; } = new PlayerProfile();

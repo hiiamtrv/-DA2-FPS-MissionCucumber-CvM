@@ -14,6 +14,7 @@ public class CanvasLogin : MonoBehaviour
     const string TXT_PASSWORD = "TxtPassword";
     const string BTN_CLEAR_LOCAL_DATA = "BtnClearLocalData";
 
+    UiHelper uiHelper = null;
     Image _imgBackground = null;
     RectTransform _pnlLogin = null;
     Button _btnLogin = null;
@@ -26,7 +27,7 @@ public class CanvasLogin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UiHelper uiHelper = new UiHelper(this.gameObject);
+        this.uiHelper = new UiHelper(this.gameObject);
         this._imgBackground = uiHelper.ui[IMG_BACKGROUND].GetComponent<Image>();
         this._pnlLogin = uiHelper.ui[PNL_LOGIN].GetComponent<RectTransform>();
         this._btnLogin = uiHelper.ui[BTN_LOGIN].GetComponent<Button>();
@@ -66,6 +67,7 @@ public class CanvasLogin : MonoBehaviour
 
         Gm.PlayerProfile.SetUsername(this._txtUsername.text);
         SceneManager.LoadScene(SceneId.LOBBY);
+        EventCenter.Publish(EventId.LOGIN_SUCCESS);
     }
 
     void OnExit()
@@ -73,7 +75,8 @@ public class CanvasLogin : MonoBehaviour
         Application.Quit();
     }
 
-    void OnClearLocalData() {
+    void OnClearLocalData()
+    {
         PlayerPrefs.DeleteAll();
         Debug.Log("[CanvasLogin] Local data has been cleared");
     }
