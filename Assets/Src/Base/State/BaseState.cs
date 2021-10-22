@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class BaseState
 {
-    GameObject _controller;
-    StateMachine _stateMachine;
+    protected GameObject _gameObject;
+    protected StateMachine _stateMachine;
 
     public BaseState(StateMachine stateMachine)
     {
         _stateMachine = stateMachine;
+        _gameObject = stateMachine.gameObject;
     }
 
 
@@ -20,6 +21,10 @@ public class BaseState
 
     public BaseState GetNextState()
     {
+        if (this._nextState == null)
+        {
+            this.CheckNextState();
+        }
         return (this._nextState != null ? this._nextState : this);
     }
     #endregion
@@ -34,23 +39,18 @@ public class BaseState
         //OVERRIDE ME !
     }
 
-    #region HANDLE INPUT
-    protected float zMove = 0;
-    protected float xMove = 0;
-    public virtual void HandleInput()
-    {
-        xMove = Input.GetAxis("horizontal");
-        zMove = Input.GetAxis("vertical");
-    }
-    #endregion
-
     public virtual void LogicUpdate()
     {
-
+        //OVERRIDE ME !
     }
 
     public virtual void PhysicUpdate()
     {
+        //OVERRIDE ME !
+    }
 
+    protected virtual void CheckNextState()
+    {
+        //OVERRIDE ME !
     }
 }

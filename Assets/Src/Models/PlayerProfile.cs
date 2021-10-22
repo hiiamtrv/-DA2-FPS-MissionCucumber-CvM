@@ -45,7 +45,7 @@ public class PlayerProfile
         // this.LogPlayerProfile();
     }
 
-    public string GetUsername() { return this._username; }
+    public string GetUsername() => this._username;
     public void SetUsername(string newUsername, bool saveToLocal = true)
     {
         this._username = newUsername.Trim();
@@ -58,42 +58,42 @@ public class PlayerProfile
         this.UpdatePlayerProfile(saveToLocal);
     }
 
-    public string GetDescription() { return this._description; }
+    public string GetDescription() => this._description;
     public void SetDescription(string newDescription, bool saveToLocal = true)
     {
         this._description = newDescription.Trim();
         this.UpdatePlayerProfile(saveToLocal);
     }
 
-    public int GetNumKill() { return this._numKill; }
+    public int GetNumKill() => this._numKill;
     public void SetNumKill(int newNumKill, bool saveToLocal = true)
     {
         this._numKill = newNumKill;
         this.UpdatePlayerProfile(saveToLocal);
     }
 
-    public int GetNumDeath() { return this._numDeath; }
+    public int GetNumDeath() => this._numDeath;
     public void SetNumDeath(int newNumDeath, bool saveToLocal = true)
     {
         this._numDeath = newNumDeath;
         this.UpdatePlayerProfile(saveToLocal);
     }
 
-    public int GetNumAssist() { return this._numAssist; }
+    public int GetNumAssist() => this._numAssist;
     public void SetNumAssist(int newNumAssist, bool saveToLocal = true)
     {
         this._numAssist = newNumAssist;
         this.UpdatePlayerProfile(saveToLocal);
     }
 
-    public int GetCurrentRankPoint() { return this._curRankPoint; }
+    public int GetCurrentRankPoint() => this._curRankPoint;
     public void SetCurrentRankPoint(int newRankPoint, bool saveToLocal = true)
     {
         this._curRankPoint = newRankPoint;
         this.UpdatePlayerProfile(saveToLocal);
     }
 
-    public int GetHighestRankPoint() { return this._highestRankPoint; }
+    public int GetHighestRankPoint() => this._highestRankPoint;
     public void SetHighestRankPoint(int newHighestRankPoint, bool saveToLocal = true)
     {
         this._highestRankPoint = newHighestRankPoint;
