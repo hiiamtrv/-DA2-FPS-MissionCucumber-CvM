@@ -22,8 +22,7 @@ namespace CharacterMoveState
             get => ((CharacterEngine)this._stateMachine).GetMoveZ();
             set => ((CharacterEngine)this._stateMachine).SetMoveZ(value);
         }
-        bool _addedGravity = false;
-
+        
         public Base(StateMachine stateMachine) : base(stateMachine)
         {
             this._characterControler = _gameObject.GetComponent<CharacterController>();
@@ -38,9 +37,10 @@ namespace CharacterMoveState
         #region ACTIONS
         protected void HandleGravity()
         {
+            float GRAVITY_DECREASE = 0.7f;
             if (!CharacterUtils.IsTouchFoot(this._characterControler))
             {
-                Vector3 vtGravity = Physics.gravity * Time.fixedDeltaTime;
+                Vector3 vtGravity = Physics.gravity * Time.fixedDeltaTime * (this.MoveY > 0 ? GRAVITY_DECREASE : 1) ;
                 this.MoveX += vtGravity.x;
                 this.MoveY += vtGravity.y;
                 this.MoveZ += vtGravity.z;
