@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class CharacterEyeCtrl : MonoBehaviour
 {
-    float _speed = 100.0f;
+    const float MIN_ROT_Y = -90f;
+    const float MAX_ROT_Y = 90f;
+    const float SPEED = 100.0f;
+
+    float _camRotation = 0f;
     Camera _camera;
 
     // Start is called before the first frame update
@@ -17,9 +21,21 @@ public class CharacterEyeCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float rotX = Input.GetAxis("Mouse X");
-        float rotY = -Input.GetAxis("Mouse Y");
-        this.transform.Rotate(new Vector3(0, rotX, 0) * Time.deltaTime * this._speed);
-        this._camera.transform.Rotate(new Vector3(rotY, 0, 0) * Time.deltaTime * this._speed);
+        float mouseMoveX = Input.GetAxis("Mouse X");
+        this.transform.Rotate(new Vector3(0, mouseMoveX, 0) * Time.deltaTime * SPEED);
+
+        float mouseMoveY = -Input.GetAxis("Mouse Y");
+        this._camRotation += mouseMoveY * Time.deltaTime * SPEED;
+        this._camera.transform.Rotate(new Vector3(mouseMoveY, 0, 0) * Time.deltaTime * SPEED);
+
+        this.SnapCameraAngle();
+    }
+
+    //snap vertical look at determined sight
+    void SnapCameraAngle()
+    {
+        float fixCamRotation = Mathf.Clamp(this._camRotation, MIN_ROT_Y, MAX_ROT_Y);
+        this._camera.transform.Rotate(new Vector3(fixCamRotation - this._camRotation, 0, 0));
+        this._camRotation = fixCamRotation;
     }
 }

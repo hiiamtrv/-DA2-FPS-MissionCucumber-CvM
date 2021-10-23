@@ -40,7 +40,7 @@ namespace CharacterMoveState
         {
             if (!CharacterUtils.IsTouchFoot(this._characterControler))
             {
-                Vector3 vtGravity = Physics.gravity * Time.fixedDeltaTime * 0.5f;
+                Vector3 vtGravity = Physics.gravity * Time.fixedDeltaTime;
                 this.MoveX += vtGravity.x;
                 this.MoveY += vtGravity.y;
                 this.MoveZ += vtGravity.z;

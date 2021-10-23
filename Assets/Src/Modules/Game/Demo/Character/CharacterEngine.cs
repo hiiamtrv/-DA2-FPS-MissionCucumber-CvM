@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterEngine : StateMachine
 {
     const float SPEED = 20;
-    const float JUMP_HEIGHT = 1;
+    const float JUMP_HEIGHT = 1.5f;
 
     float _speed;
     float _jumpHeight;
