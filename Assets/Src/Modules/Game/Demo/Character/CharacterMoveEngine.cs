@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterEngine : StateMachine
+public class CharacterMoveEngine : StateMachine
 {
     const float SPEED = 20;
     const float JUMP_HEIGHT = 1f;

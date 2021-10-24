@@ -13,7 +13,11 @@ public class StateMachine : MonoBehaviour
     protected virtual void Start()
     {
         //State machine would start at default state
-        this._currentState = this.GetDefaultState();
+        var defaultState = this.GetDefaultState();
+        if (defaultState != null)
+        {
+            this.Init(defaultState);
+        }
     }
 
     // Update is called once per frame
@@ -64,5 +68,10 @@ public class StateMachine : MonoBehaviour
             this._didLogicUpdate = false;
             this._didPhysicUpdate = false;
         }
+    }
+
+    public void Destroy()
+    {
+        Destroy(this.gameObject);
     }
 }

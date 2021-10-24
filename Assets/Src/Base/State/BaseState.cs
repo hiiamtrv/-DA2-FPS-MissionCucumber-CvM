@@ -53,4 +53,8 @@ public class BaseState
     {
         //OVERRIDE ME !
     }
+
+    protected void DestroyGameObject() {
+        this._stateMachine.Destroy();
+    }
 }

@@ -9,18 +9,18 @@ namespace CharacterMoveState
         protected CharacterController _characterControler;
         protected float MoveX
         {
-            get => ((CharacterEngine)this._stateMachine).GetMoveX();
-            set => ((CharacterEngine)this._stateMachine).SetMoveX(value);
+            get => ((CharacterMoveEngine)this._stateMachine).GetMoveX();
+            set => ((CharacterMoveEngine)this._stateMachine).SetMoveX(value);
         }
         protected float MoveY
         {
-            get => ((CharacterEngine)this._stateMachine).GetMoveY();
-            set => ((CharacterEngine)this._stateMachine).SetMoveY(value);
+            get => ((CharacterMoveEngine)this._stateMachine).GetMoveY();
+            set => ((CharacterMoveEngine)this._stateMachine).SetMoveY(value);
         }
         protected float MoveZ
         {
-            get => ((CharacterEngine)this._stateMachine).GetMoveZ();
-            set => ((CharacterEngine)this._stateMachine).SetMoveZ(value);
+            get => ((CharacterMoveEngine)this._stateMachine).GetMoveZ();
+            set => ((CharacterMoveEngine)this._stateMachine).SetMoveZ(value);
         }
         
         public Base(StateMachine stateMachine) : base(stateMachine)
@@ -59,7 +59,7 @@ namespace CharacterMoveState
 
         protected void Jump(float? height = null)
         {
-            float jumpHeight = (height != null ? (float)height : ((CharacterEngine)this._stateMachine).GetJumpHeight());
+            float jumpHeight = (height != null ? (float)height : ((CharacterMoveEngine)this._stateMachine).GetJumpHeight());
             this.MoveY = jumpHeight;
         }
 
@@ -80,7 +80,7 @@ namespace CharacterMoveState
         protected void ApplyMove()
         {
             this.AdjustXZ();
-            float speed = ((CharacterEngine)this._stateMachine).GetSpeed();
+            float speed = ((CharacterMoveEngine)this._stateMachine).GetSpeed();
             Vector3 vtXZ = new Vector3(this.MoveX, 0, this.MoveZ) * speed * Time.fixedDeltaTime;
             Vector3 vtY = this.MoveY * Vector3.up;
             Vector3 vtMove = this._stateMachine.transform.TransformDirection(vtXZ + vtY);
