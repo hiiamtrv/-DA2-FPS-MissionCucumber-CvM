@@ -11,13 +11,11 @@ public class NetworkLogin : BaseNetwork
     {
         base.Start();
 
-        EventCenter.Subcribe(
-            EventId.LOGIN_SUCCESS,
-            delegate (object data)
-            {
-                string nickName = Gm.PlayerProfile.GetUsername();
-                PhotonNetwork.NickName = nickName;
-                this.LogInfo();
-            });
+        EventCenter.Subcribe(EventId.LOGIN_SUCCESS, data =>
+        {
+            string nickName = Gm.PlayerProfile.GetUsername();
+            PhotonNetwork.NickName = nickName;
+            this.LogInfo();
+        });
     }
 }

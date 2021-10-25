@@ -28,12 +28,7 @@ public class SceneMgr : MonoBehaviour
         this.ResetGuis();
         this.ChangeGui(startGui.name);
 
-        EventCenter.Subcribe(
-            EventId.CHANGE_GUI,
-            delegate (object data)
-            {
-                this.ChangeGui((string)data);
-            });
+        EventCenter.Subcribe(EventId.CHANGE_GUI, data => this.ChangeGui((string)data));
     }
 
     void ResetGuis()
@@ -83,7 +78,7 @@ public class SceneMgr : MonoBehaviour
                 canvas.SetActive(true);
             });
     }
-    
+
     public static GameObject GetGui(string guiName)
     {
         SceneMgr mgr = GameObject.Find("SceneMgr").GetComponent<SceneMgr>();

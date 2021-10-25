@@ -21,14 +21,6 @@ public class CharacterFireEngine : StateMachine
 
     protected override void FixedUpdate()
     {
-        if (InputMgr.DoShoot() && this._canCreateBullet)
-        {
-            this.TurnOffFire(this._fireSpeed);
-            Vector3 aimSpot = this._eye.transform.position;
-            GameObject newBullet = Instantiate(this._bullet, this._eye.transform.position, this._eye.transform.rotation);
-            newBullet.transform.LookAt(aimSpot);
-        }
-
         //ray-firing
         if (InputMgr.DoShoot() && this._canCreateBullet)
         {
@@ -43,6 +35,14 @@ public class CharacterFireEngine : StateMachine
                 Debug.Log(health);
                 if (health != null) health.InflictDamage(999);
             }
+        }
+
+        if (InputMgr.DoShoot() && this._canCreateBullet)
+        {
+            this.TurnOffFire(this._fireSpeed);
+            Vector3 aimSpot = this._eye.transform.position;
+            GameObject newBullet = Instantiate(this._bullet, this._eye.transform.position, this._eye.transform.rotation);
+            newBullet.transform.LookAt(aimSpot);
         }
 
         base.FixedUpdate();

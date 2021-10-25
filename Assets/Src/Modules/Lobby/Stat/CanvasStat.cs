@@ -111,6 +111,6 @@ public class CanvasStat : MonoBehaviour
 
     void SubEvents()
     {
-        EventCenter.Subcribe(EventId.PLAYER_PROFILE_CHANGE, delegate (object obj) { this.Refresh(); });
+        EventCenter.Subcribe(EventId.PLAYER_PROFILE_CHANGE, (obj) => this.Refresh());
     }
 }
