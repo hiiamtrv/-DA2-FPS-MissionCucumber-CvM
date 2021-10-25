@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2853901188081051262}
   - component: {fileID: 2853901188081051257}
   - component: {fileID: -3276646583840717523}
+  - component: {fileID: 442832488909415686}
   m_Layer: 0
   m_Name: DemoPlayer
   m_TagString: Untagged
@@ -141,6 +142,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: {fileID: 3657172221325391066, guid: a6c11f6c5fdc11a40982b29956431872, type: 3}
+--- !u!65 &442832488909415686
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2853901188081051200}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2853901189815429363
 GameObject:
   m_ObjectHideFlags: 0

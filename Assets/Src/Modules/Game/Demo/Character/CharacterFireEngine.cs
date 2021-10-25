@@ -28,6 +28,23 @@ public class CharacterFireEngine : StateMachine
             GameObject newBullet = Instantiate(this._bullet, this._eye.transform.position, this._eye.transform.rotation);
             newBullet.transform.LookAt(aimSpot);
         }
+
+        //ray-firing
+        if (InputMgr.DoShoot() && this._canCreateBullet)
+        {
+            float screenX = Screen.width / 2;
+            float screenY = Screen.height / 2;
+            RaycastHit hit;
+            Ray ray = this._eye.ScreenPointToRay(new Vector3(screenX, screenY));
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                CharacterHealth health = hit.collider.gameObject.GetComponent<CharacterHealth>();
+                Debug.Log(health);
+                if (health != null) health.InflictDamage(999);
+            }
+        }
+
         base.FixedUpdate();
     }
 
