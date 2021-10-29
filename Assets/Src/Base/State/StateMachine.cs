@@ -70,7 +70,7 @@ public class StateMachine : MonoBehaviour
         }
     }
 
-    public void Destroy()
+    public virtual void Destroy()
     {
         Destroy(this.gameObject);
     }

@@ -19,33 +19,11 @@ public class CharacterFireEngine : StateMachine
         base.Start();
     }
 
-    protected override void FixedUpdate()
+    protected override void Update()
     {
-        //ray-firing
-        if (InputMgr.DoShoot() && this._canCreateBullet)
-        {
-            float screenX = Screen.width / 2;
-            float screenY = Screen.height / 2;
-            RaycastHit hit;
-            Ray ray = this._eye.ScreenPointToRay(new Vector3(screenX, screenY));
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                CharacterHealth health = hit.collider.gameObject.GetComponent<CharacterHealth>();
-                Debug.Log(health);
-                if (health != null) health.InflictDamage(999);
-            }
-        }
-
-        if (InputMgr.DoShoot() && this._canCreateBullet)
-        {
-            this.TurnOffFire(this._fireSpeed);
-            Vector3 aimSpot = this._eye.transform.position;
-            GameObject newBullet = Instantiate(this._bullet, this._eye.transform.position, this._eye.transform.rotation);
-            newBullet.transform.LookAt(aimSpot);
-        }
-
-        base.FixedUpdate();
+        this.Look();
+        this.Interact();
+        this.Shoot();
     }
 
     void TurnOffFire(float waitTime)
@@ -55,5 +33,69 @@ public class CharacterFireEngine : StateMachine
         {
             this._canCreateBullet = true;
         });
+    }
+
+    public GameObject GetTarget()
+    {
+        float screenX = Screen.width / 2;
+        float screenY = Screen.height / 2;
+        RaycastHit hit;
+        Ray ray = this._eye.ScreenPointToRay(new Vector3(screenX, screenY));
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            return hit.collider.gameObject;
+        }
+        else return null;
+    }
+
+    void Look()
+    {
+        GameObject target = this.GetTarget();
+        if (target != null)
+        {
+            // Debug.Log("Target:" + target);
+        }
+    }
+
+    void Shoot()
+    {
+        // //create bullet
+        // if (InputMgr.DoShoot() && this._canCreateBullet)
+        // {
+        //     this.TurnOffFire(this._fireSpeed);
+        //     Vector3 aimSpot = this._eye.transform.position;
+        //     GameObject newBullet = Instantiate(this._bullet, this._eye.transform.position, this._eye.transform.rotation);
+        //     newBullet.transform.LookAt(aimSpot);
+        // }
+
+        //ray-firing
+        if (InputMgr.DoShoot() && this._canCreateBullet)
+        {
+            GameObject target = this.GetTarget();
+            if (target != null)
+            {
+                CharacterHealth health = target.GetComponent<CharacterHealth>();
+                Debug.Log(health);
+                if (health != null) health.InflictDamage(999);
+            }
+        }
+    }
+
+    void Interact()
+    {
+        if (InputMgr.DoInteract())
+        {
+            GameObject target = this.GetTarget();
+            Debug.Log(target);
+            if (target != null)
+            {
+                InteractEngine interactEngine = target.GetComponent<InteractEngine>();
+                if (interactEngine != null && interactEngine.IsPlayerInRange(this.gameObject))
+                {
+                    interactEngine.DoInteract(this.gameObject);
+                }
+            }
+        }
     }
 }

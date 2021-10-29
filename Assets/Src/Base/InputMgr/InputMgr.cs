@@ -35,7 +35,7 @@ public class InputMgr : MonoBehaviour
         _xMove = Input.GetAxis("Horizontal");
         _zMove = Input.GetAxis("Vertical");
         _shoot = Input.GetMouseButton(KeyBind.FIRE);
-        _jump = !_jump && Input.GetKey(KeyBind.JUMP);
+        _jump = !_jump && Input.GetKey(KeyBind.JUMP) || (Input.GetAxis("Mouse ScrollWheel") > 0f) ;
         _crouch = Input.GetKey(KeyBind.CROUCH);
         _walk = Input.GetKey(KeyBind.WALK);
         _interact = Input.GetKey(KeyBind.INTERACT);
