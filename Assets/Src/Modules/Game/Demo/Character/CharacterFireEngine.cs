@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class CharacterFireEngine : StateMachine
 {
-    const float FIRE_RATE = 1;
+    const float FIRE_RATE = 3;
+    const int MAX_BULLET = 3;
+    const float RELOAD_TIME = 3;
 
     Camera _eye;
     bool _canCreateBullet = true;
     float _fireSpeed;
+    int _curBullet = 0;
 
     [SerializeField] GameObject _bullet;
 
@@ -16,6 +19,7 @@ public class CharacterFireEngine : StateMachine
     {
         this._eye = this.GetComponentInChildren<Camera>();
         this._fireSpeed = 1 / FIRE_RATE;
+        this._curBullet = MAX_BULLET;
         base.Start();
     }
 
@@ -24,15 +28,6 @@ public class CharacterFireEngine : StateMachine
         this.Look();
         this.Interact();
         this.Shoot();
-    }
-
-    void TurnOffFire(float waitTime)
-    {
-        this._canCreateBullet = false;
-        LeanTween.delayedCall(waitTime, () =>
-        {
-            this._canCreateBullet = true;
-        });
     }
 
     public GameObject GetTarget()
@@ -60,24 +55,28 @@ public class CharacterFireEngine : StateMachine
 
     void Shoot()
     {
-        // //create bullet
-        // if (InputMgr.DoShoot() && this._canCreateBullet)
-        // {
-        //     this.TurnOffFire(this._fireSpeed);
-        //     Vector3 aimSpot = this._eye.transform.position;
-        //     GameObject newBullet = Instantiate(this._bullet, this._eye.transform.position, this._eye.transform.rotation);
-        //     newBullet.transform.LookAt(aimSpot);
-        // }
-
-        //ray-firing
+        //create bullet
         if (InputMgr.DoShoot() && this._canCreateBullet)
         {
-            GameObject target = this.GetTarget();
-            if (target != null)
+            if (this._curBullet == 0)
             {
-                CharacterHealth health = target.GetComponent<CharacterHealth>();
-                Debug.Log(health);
-                if (health != null) health.InflictDamage(999);
+                this.Reload();
+            }
+            else
+            {
+                this.Recoil();
+
+                Vector3 aimSpot = this._eye.transform.position;
+                GameObject newBullet = Instantiate(this._bullet, this._eye.transform.position, this._eye.transform.rotation);
+                newBullet.transform.LookAt(aimSpot);
+
+                GameObject target = this.GetTarget();
+                if (target != null)
+                {
+                    CharacterHealth health = target.GetComponent<CharacterHealth>();
+                    Debug.Log(health);
+                    if (health != null) health.InflictDamage(999);
+                }
             }
         }
     }
@@ -97,5 +96,26 @@ public class CharacterFireEngine : StateMachine
                 }
             }
         }
+    }
+
+    void Recoil()
+    {
+        this._canCreateBullet = false;
+        LeanTween.delayedCall(this._fireSpeed, () =>
+        {
+            this._canCreateBullet = true;
+            this._curBullet--;
+        });
+    }
+
+    void Reload()
+    {
+        Debug.Log("RELOAD");
+        this._canCreateBullet = false;
+        LeanTween.delayedCall(RELOAD_TIME, () =>
+        {
+            this._canCreateBullet = true;
+            this._curBullet = MAX_BULLET;
+        });
     }
 }

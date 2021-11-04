@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletEngine : StateMachine
 {
-    const float SPEED = 0.2f;
+    const float SPEED = 0.05f;
 
     float _speed;
 
