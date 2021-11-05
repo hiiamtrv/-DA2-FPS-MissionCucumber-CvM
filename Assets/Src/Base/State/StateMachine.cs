@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -74,4 +75,12 @@ public class StateMachine : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+}
+
+public enum State
+{
+    STAND,
+    CROUCH,
+    IMOBILZED,
+    JUMP
 }

@@ -94,7 +94,7 @@ public class CanvasMakeRoom : MonoBehaviour
     void CreateRoom()
     {
         Debug.Log("Create Room");
-        CanvasRoom room = SceneMgr.GetGui(Gui.ROOM).GetComponent<CanvasRoom>();
+        CanvasRoom room = GuiMgr.GetGui(Gui.ROOM).GetComponent<CanvasRoom>();
         room.SetViewMode(RoomViewMode.HOST);
         Gm.ChangeGui(Gui.ROOM);
     }
@@ -105,7 +105,7 @@ public class CanvasMakeRoom : MonoBehaviour
         if (true)
         {
             Debug.Log("Join Room" + roomCode);
-            CanvasRoom room = SceneMgr.GetGui(Gui.ROOM).GetComponent<CanvasRoom>();
+            CanvasRoom room = GuiMgr.GetGui(Gui.ROOM).GetComponent<CanvasRoom>();
             room.SetViewMode(RoomViewMode.GUEST);
             Gm.ChangeGui(Gui.ROOM);
         }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneMgr : MonoBehaviour
+public class GuiMgr : MonoBehaviour
 {
     const float MOVE_TIME = 0.5f;
     const float DELAY = 0;
@@ -56,32 +56,22 @@ public class SceneMgr : MonoBehaviour
 
     void MoveOutOfScreen(GameObject canvas)
     {
-        int screenHeight = Screen.height;
-        LeanTween.moveLocalY(canvas, (float)screenHeight, MOVE_TIME)
-            .setEase(LeanTweenType.easeInOutBack)
-            .setOnComplete(delegate ()
-            {
-                canvas.SetActive(false);
-            });
+        // int screenHeight = Screen.height;
+        canvas.SetActive(false);
+
     }
 
     void MoveIntoScreen(GameObject canvas)
     {
-        int screenHeight = Screen.height;
-        Vector3 startPoint = new Vector3(0, screenHeight * 1.5f);
-        canvas.transform.position = startPoint;
-        LeanTween.moveLocalY(canvas, (float)screenHeight, MOVE_TIME)
-            .setEase(LeanTweenType.easeInOutBack)
-            .setDelay(DELAY)
-            .setOnComplete(delegate ()
-            {
-                canvas.SetActive(true);
-            });
+        // int screenHeight = Screen.height;
+        // Vector3 startPoint = new Vector3(0, screenHeight * 1.5f);
+        // canvas.transform.position = startPoint;
+        canvas.SetActive(true);
     }
 
     public static GameObject GetGui(string guiName)
     {
-        SceneMgr mgr = GameObject.Find("SceneMgr").GetComponent<SceneMgr>();
+        GuiMgr mgr = GameObject.FindObjectOfType<GuiMgr>();
         return mgr.mapGui[guiName];
     }
 }

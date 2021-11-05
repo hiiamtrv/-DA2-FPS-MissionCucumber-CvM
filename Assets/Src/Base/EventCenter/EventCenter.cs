@@ -54,6 +54,7 @@ public partial class EventCenter
                 new List<Action<object>>()
             );
         }
+        _eventMap[eventId] = _eventMap[eventId].FindAll(action => action != null);
         return _eventMap[eventId];
     }
 
