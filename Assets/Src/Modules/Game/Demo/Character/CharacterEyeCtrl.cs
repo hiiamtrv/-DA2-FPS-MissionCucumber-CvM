@@ -9,13 +9,14 @@ public class CharacterEyeCtrl : MonoBehaviour
     const float SPEED = 100.0f;
 
     float _camRotation = 0f;
-    Camera _camera;
+    // [SerializeField] Camera _camera;
+    // [SerializeField] GameObject _weaponAnchor;
+    [SerializeField] GameObject _eyePoint;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        this._camera = this.GetComponentInChildren<Camera>();
     }
 
     // Update is called once per frame
@@ -26,7 +27,7 @@ public class CharacterEyeCtrl : MonoBehaviour
 
         float mouseMoveY = -Input.GetAxis("Mouse Y");
         this._camRotation += mouseMoveY * Time.deltaTime * SPEED;
-        this._camera.transform.Rotate(new Vector3(mouseMoveY, 0, 0) * Time.deltaTime * SPEED);
+        this._eyePoint.transform.Rotate(new Vector3(mouseMoveY, 0, 0) * Time.deltaTime * SPEED);
 
         this.SnapCameraAngle();
     }
@@ -35,7 +36,7 @@ public class CharacterEyeCtrl : MonoBehaviour
     void SnapCameraAngle()
     {
         float fixCamRotation = Mathf.Clamp(this._camRotation, MIN_ROT_Y, MAX_ROT_Y);
-        this._camera.transform.Rotate(new Vector3(fixCamRotation - this._camRotation, 0, 0));
+        this._eyePoint.transform.Rotate(new Vector3(fixCamRotation - this._camRotation, 0, 0));
         this._camRotation = fixCamRotation;
     }
 }

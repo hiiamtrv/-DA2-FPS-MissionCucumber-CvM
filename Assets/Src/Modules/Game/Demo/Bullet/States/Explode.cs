@@ -10,6 +10,7 @@ namespace BulletState
 
         public override void OnEnter()
         {
+            // ObjectPool.Retrieve(this._gameObject);
             this.DestroyGameObject();
         }
     }

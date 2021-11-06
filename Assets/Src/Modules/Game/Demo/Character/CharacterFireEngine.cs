@@ -14,6 +14,7 @@ public class CharacterFireEngine : StateMachine
     int _curBullet = 0;
 
     [SerializeField] GameObject _bullet;
+    
 
     protected override void Start()
     {
@@ -68,6 +69,11 @@ public class CharacterFireEngine : StateMachine
 
                 Vector3 aimSpot = this._eye.transform.position;
                 GameObject newBullet = Instantiate(this._bullet, this._eye.transform.position, this._eye.transform.rotation);
+                // GameObject newBullet = ObjectPool.Instantiate(
+                //     this._bullet.GetType(),
+                //     this._eye.transform.position,
+                //     this._eye.transform.rotation);
+
                 newBullet.transform.LookAt(aimSpot);
 
                 GameObject target = this.GetTarget();
