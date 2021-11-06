@@ -15,7 +15,7 @@ public class CharacterEyeCtrl : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        this._camera = this.GetComponentInChildren<Camera>();
+        this._camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
