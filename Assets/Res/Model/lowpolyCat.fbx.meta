@@ -12,6 +12,18 @@ ModelImporter:
   - first:
       74: -8320175732625009606
     second: Cube|LightAction.001
+  - first:
+      74: 7693504525942378453
+    second: Cube.001|CubeAction.001
+  - first:
+      74: 3995525487012296551
+    second: Cube.001|CubeAction.002
+  - first:
+      74: 7230306397454217088
+    second: Cube.001|LightAction
+  - first:
+      74: -416838883796384650
+    second: Cube.001|LightAction.001
   externalObjects: {}
   materials:
     materialImportMode: 2

@@ -1,3 +1,0 @@
-partial class EvendId {
-    
-}
