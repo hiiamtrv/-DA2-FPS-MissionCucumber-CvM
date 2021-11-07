@@ -11,18 +11,16 @@ public class InputMgr : MonoBehaviour
     static bool _crouch = false;
     static bool _walk = false;
     static bool _interact = false;
-    static bool _useSkill1 = false;
-    static bool _useSkill2 = false;
+    static bool[] _useSkill = { false, false };
 
-    public static float GetZMove() => _zMove;
-    public static float GetXMove() => _xMove;
-    public static bool DoShoot() => _shoot;
-    public static bool DoJump() => _jump;
-    public static bool DoCrouch() => _crouch;
-    public static bool DoWalk() => _walk;
-    public static bool DoInteract() => _interact;
-    public static bool DoUseSkill1() => _useSkill1;
-    public static bool DoUseSkill2() => _useSkill2;
+    public static float ZMove => _zMove;
+    public static float XMove => _xMove;
+    public static bool Shoot => _shoot;
+    public static bool Jump => _jump;
+    public static bool Crouch => _crouch;
+    public static bool Walk => _walk;
+    public static bool Interact => _interact;
+    public static bool UseSkill(int idx) => _useSkill[idx];
 
     // Update is called once per frame
     void FixedUpdate()
@@ -35,11 +33,11 @@ public class InputMgr : MonoBehaviour
         _xMove = Input.GetAxis("Horizontal");
         _zMove = Input.GetAxis("Vertical");
         _shoot = Input.GetMouseButton(KeyBind.FIRE);
-        _jump = !_jump && Input.GetKey(KeyBind.JUMP) || (Input.GetAxis("Mouse ScrollWheel") > 0f) ;
+        _jump = !_jump && Input.GetKey(KeyBind.JUMP) || (Input.GetAxis("Mouse ScrollWheel") > 0f);
         _crouch = Input.GetKey(KeyBind.CROUCH);
         _walk = Input.GetKey(KeyBind.WALK);
         _interact = Input.GetKey(KeyBind.INTERACT);
-        _useSkill1 = Input.GetKey(KeyBind.SKILL_1);
-        _useSkill2 = Input.GetKey(KeyBind.SKILL_2);
+        _useSkill[0] = Input.GetKey(KeyBind.SKILL_0);
+        _useSkill[1] = Input.GetKey(KeyBind.SKILL_1);
     }
 }

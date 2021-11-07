@@ -14,6 +14,7 @@ public class BaseState
 
     #region NEXT STATE
     BaseState _nextState = null;
+
     public void SetNextState(BaseState nextState)
     {
         this._nextState = nextState;
@@ -54,7 +55,8 @@ public class BaseState
         //OVERRIDE ME !
     }
 
-    protected void DestroyGameObject() {
+    protected void DestroyGameObject()
+    {
         this._stateMachine.Destroy();
     }
 }
