@@ -9,18 +9,14 @@ namespace Character
         MoveModel _model;
         public MoveModel Model { get => this._model; private set => this._model = value; }
 
-        void Awake()
-        {
-            this.Model = new MoveModel();
-        }
-
         protected override void Start()
         {
+            this.Model = new MoveModel();
             base.Start();
             this.ResetStats();
         }
 
-        public void ResetStats()
+        protected void ResetStats()
         {
 
         }

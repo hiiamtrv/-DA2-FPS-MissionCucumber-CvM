@@ -11,21 +11,9 @@ namespace Character
             protected CharacterController _charCtrl;
             protected MoveModel Model => ((MoveEngine)this._stateMachine).Model;
 
-            protected float MoveX
-            {
-                get => this.Model.MoveX;
-                set => this.Model.MoveX = value;
-            }
-            protected float MoveY
-            {
-                get => this.Model.MoveY;
-                set => this.Model.MoveY = value;
-            }
-            protected float MoveZ
-            {
-                get => this.Model.MoveZ;
-                set => this.Model.MoveZ = value;
-            }
+            protected float MoveX { get => this.Model.MoveX; set => this.Model.MoveX = value; }
+            protected float MoveY { get => this.Model.MoveY; set => this.Model.MoveY = value; }
+            protected float MoveZ { get => this.Model.MoveZ; set => this.Model.MoveZ = value; }
 
             public Base(StateMachine stateMachine) : base(stateMachine)
             {
@@ -87,9 +75,13 @@ namespace Character
                 this.AdjustXZ();
 
                 float speed = this.Model.Speed;
+                Debug.LogFormat("Speed {0}", speed);
+                Debug.LogFormat("MoveX {0}", this.MoveX);
+                Debug.LogFormat("MoveZ {0}", this.MoveZ);
                 Vector3 vtXZ = new Vector3(this.MoveX, 0, this.MoveZ) * speed * Time.fixedDeltaTime;
                 Vector3 vtY = this.MoveY * Vector3.up;
                 Vector3 vtMove = this._stateMachine.transform.TransformDirection(vtXZ + vtY);
+                Debug.LogFormat("Vector Move {0}", vtMove);
 
                 this._charCtrl.Move(vtMove);
             }
