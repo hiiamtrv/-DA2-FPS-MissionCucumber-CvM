@@ -6,13 +6,13 @@ namespace Interactable
 {
     namespace State
     {
-        public class Obtaining : BaseState
+        public class Interacting : BaseState
         {
             GameObject _obtainPlayer;
             Vector3 _obtainPos;
-            float _obtainTime;
+            float _interactTime;
 
-            public Obtaining(StateMachine stateMachine, GameObject obtainPlayer) : base(stateMachine)
+            public Interacting(StateMachine stateMachine, GameObject obtainPlayer) : base(stateMachine)
             {
                 this._obtainPlayer = obtainPlayer;
             }
@@ -21,15 +21,15 @@ namespace Interactable
             {
                 Debug.Log("Start obtaining");
                 this._obtainPos = this._obtainPlayer.transform.position;
-                this._obtainTime = 0;
+                this._interactTime = 0;
             }
 
             public override void LogicUpdate()
             {
                 if (!PlayerMoved() && InputMgr.Interact)
                 {
-                    this._obtainTime += Time.deltaTime;
-                    Debug.Log("Obtaining: " + this._obtainTime);
+                    this._interactTime += Time.deltaTime;
+                    Debug.Log("Obtaining: " + this._interactTime);
                     this.CheckObtainDone();
                 }
                 else
@@ -48,11 +48,12 @@ namespace Interactable
 
             void CheckObtainDone()
             {
-                if (this._obtainTime >= Stats.OBTAIN_TIME)
+                float INTERACT_TIME = ((InteractEngine) this._stateMachine).Model.InteractTime;
+                if (this._interactTime >= INTERACT_TIME)
                 {
                     Debug.Log("Obtaining DONE !");
 
-                    Obtained stateObtained = new Obtained(this._stateMachine);
+                    DoneInteract stateObtained = new DoneInteract(this._stateMachine);
                     this.SetNextState(stateObtained);
                 }
             }

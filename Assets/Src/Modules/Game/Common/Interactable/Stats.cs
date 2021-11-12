@@ -6,11 +6,14 @@ namespace Interactable
 {
     public class Stats : MonoBehaviour
     {
-        public float obtainTime;
+        public float interactTime;
+
+        Model _model;
+        public Model Model => this._model;
 
         void Awake()
         {
-            OBTAIN_TIME = this.obtainTime;
+            this._model = new Model(interactTime);
         }
 
         public static float OBTAIN_TIME = 3;

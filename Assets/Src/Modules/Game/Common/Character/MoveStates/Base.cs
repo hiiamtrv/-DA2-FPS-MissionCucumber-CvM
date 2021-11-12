@@ -75,13 +75,9 @@ namespace Character
                 this.AdjustXZ();
 
                 float speed = this.Model.Speed;
-                Debug.LogFormat("Speed {0}", speed);
-                Debug.LogFormat("MoveX {0}", this.MoveX);
-                Debug.LogFormat("MoveZ {0}", this.MoveZ);
                 Vector3 vtXZ = new Vector3(this.MoveX, 0, this.MoveZ) * speed * Time.fixedDeltaTime;
                 Vector3 vtY = this.MoveY * Vector3.up;
                 Vector3 vtMove = this._stateMachine.transform.TransformDirection(vtXZ + vtY);
-                Debug.LogFormat("Vector Move {0}", vtMove);
 
                 this._charCtrl.Move(vtMove);
             }

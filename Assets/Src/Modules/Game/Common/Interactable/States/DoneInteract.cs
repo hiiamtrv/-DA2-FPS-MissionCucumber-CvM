@@ -6,9 +6,9 @@ namespace Interactable
 {
     namespace State
     {
-        public class Obtained : BaseState
+        public class DoneInteract : BaseState
         {
-            public Obtained(StateMachine stateMachine) : base(stateMachine) { }
+            public DoneInteract(StateMachine stateMachine) : base(stateMachine) { }
 
             public override void OnEnter()
             {

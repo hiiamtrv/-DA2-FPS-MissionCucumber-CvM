@@ -8,17 +8,18 @@ namespace Character
     {
         public float Speed;
         public float JumpHeight;
-        public float Sensitivity;
+        public float RotateSpeed;
+
+        MoveModel _moveModel;
+        public MoveModel MoveModel => this._moveModel;
+
+        RotateModel _rotateModel;
+        public RotateModel RotateModel => this._rotateModel;
 
         void Awake()
         {
-            SPEED = this.Speed;
-            JUMP_HEIGHT = this.JumpHeight;
-            SENSITIVITY = this.Sensitivity;
+            this._moveModel = new MoveModel(Speed, JumpHeight);
+            this._rotateModel = new RotateModel(RotateSpeed);
         }
-
-        public static float SPEED;
-        public static float JUMP_HEIGHT;
-        public static float SENSITIVITY;
     }
 }

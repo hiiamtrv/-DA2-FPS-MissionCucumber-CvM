@@ -6,6 +6,9 @@ namespace Character
 {
     public class MoveModel
     {
+        float _baseSpeed;
+        float _baseJumpHeight;
+
         float _speed;
         float _jumpHeight;
 
@@ -13,10 +16,13 @@ namespace Character
         float _moveY;
         float _moveZ;
 
-        public MoveModel()
+        public MoveModel(float baseSpeed, float baseJumpHeight)
         {
-            this._speed = Stats.SPEED;
-            this._jumpHeight = Stats.JUMP_HEIGHT;
+            this._baseSpeed = baseSpeed;
+            this._baseJumpHeight = baseJumpHeight;
+
+            this._speed = this._baseSpeed;
+            this._jumpHeight = this._baseJumpHeight;
             this._moveX = 0;
             this._moveY = 0;
             this._moveZ = 0;
@@ -31,14 +37,14 @@ namespace Character
 
         public float SpeedPercent
         {
-            get => this._speed / Stats.SPEED;
-            set => this._speed = Stats.SPEED * value;
+            get => this._speed / this._baseSpeed;
+            set => this._speed = this._baseSpeed * value;
         }
 
         public float JumpHeightPercent
         {
-            get => this._speed / Stats.SPEED;
-            set => this._speed = Stats.SPEED * value;
+            get => this._speed / this._baseJumpHeight;
+            set => this._speed = this._baseJumpHeight * value;
         }
     }
 }

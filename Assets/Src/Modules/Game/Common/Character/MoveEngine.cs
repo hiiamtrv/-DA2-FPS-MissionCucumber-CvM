@@ -11,7 +11,7 @@ namespace Character
 
         protected override void Start()
         {
-            this.Model = new MoveModel();
+            this.Model = this.GetComponent<Stats>().MoveModel;
             base.Start();
             this.ResetStats();
         }

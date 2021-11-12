@@ -888,9 +888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f885ee5c264472348b640fd608381e48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 0
-  _healthMultiplier: 0
-  _curHealth: 0
 --- !u!65 &1247147722
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1062,6 +1059,10 @@ PrefabInstance:
     - target: {fileID: 3935079574917474075, guid: 006bea6614ad7844a8f5236c0eaef00c, type: 3}
       propertyPath: JumpHeight
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935079574917474075, guid: 006bea6614ad7844a8f5236c0eaef00c, type: 3}
+      propertyPath: RotateSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3935079574917474075, guid: 006bea6614ad7844a8f5236c0eaef00c, type: 3}
       propertyPath: Sensitivity

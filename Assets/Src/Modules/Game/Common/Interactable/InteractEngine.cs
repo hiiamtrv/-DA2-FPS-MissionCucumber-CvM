@@ -7,8 +7,15 @@ namespace Interactable
     public class InteractEngine : StateMachine
     {
         List<GameObject> _playerInRange = new List<GameObject>();
+        
+        Model _model;
+        public Model Model => this._model;
 
-        public override BaseState GetDefaultState() => new State.Idle(this);
+        protected override void Start()
+        {
+            base.Start();
+            this._model = this.GetComponent<Stats>().Model;
+        }
 
         public bool IsPlayerInRange(GameObject gameObject)
         {
@@ -19,7 +26,7 @@ namespace Interactable
         {
             if (this.IsPlayerInRange(gameObject) && this._currentState is State.Idle)
             {
-                State.Obtaining obtainState = new State.Obtaining(this, gameObject);
+                State.Interacting obtainState = new State.Interacting(this, gameObject);
                 this.ChangeState(obtainState);
             }
         }
@@ -35,5 +42,7 @@ namespace Interactable
             this._playerInRange.Remove(player);
             Debug.Log("Object exit trigger: " + player);
         }
+
+        public override BaseState GetDefaultState() => new State.Idle(this);
     }
 }
