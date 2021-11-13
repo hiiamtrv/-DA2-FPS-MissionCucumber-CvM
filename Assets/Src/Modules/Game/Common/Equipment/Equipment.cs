@@ -28,10 +28,9 @@ namespace Equipments
             Transform equipmentTransform = this.transform.Find("Equipment");
             if (equipmentTransform != null) this._equipmentObject = equipmentTransform.gameObject;
             else Destroy(this);
-
         }
 
-        protected void Start()
+        protected virtual void Start()
         {
             this._equipMgr = this.GetComponentInParent<EquipmentMgr>();
             if (this._equipMgr == null) Destroy(this.gameObject);
@@ -39,7 +38,7 @@ namespace Equipments
 
         public void OnEquiped()
         {
-            if (!this.IsEquiped)
+            if (this.EquipmentObject != null && !this.IsEquiped)
             {
                 this._isReady = false;
                 this._drawUnix = Time.time;
@@ -54,7 +53,7 @@ namespace Equipments
 
         public void OnUnequiped()
         {
-            if (this.IsEquiped)
+            if (this.EquipmentObject != null && this.IsEquiped)
             {
                 this._isReady = false;
                 this._drawUnix = -1;

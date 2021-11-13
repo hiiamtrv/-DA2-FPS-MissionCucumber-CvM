@@ -41,16 +41,16 @@ namespace Interactable
 
             public override void LogicUpdate()
             {
-                if (this.IsPlayerInRange && InputMgr.Interact)
+                if (!this.IsPlayerInRange || InputMgr.EndInteract)
+                {
+                    Idle stateIdle = new Idle(this._stateMachine);
+                    this.SetNextState(stateIdle);
+                }
+                else
                 {
                     this._interactTime += Time.deltaTime;
                     Debug.Log("Obtaining: " + this._interactTime);
                     this.CheckObtainDone();
-                }
-                else
-                {
-                    Idle stateIdle = new Idle(this._stateMachine);
-                    this.SetNextState(stateIdle);
                 }
             }
 

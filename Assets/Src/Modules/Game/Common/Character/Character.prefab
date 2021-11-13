@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8625178881296057388}
   m_Layer: 5
-  m_Name: WeaponAnchor
+  m_Name: EquipmentAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948b4786667cb60469c76fe4e54c41f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 20
+  Speed: 40
   JumpHeight: 1
   RotateSpeed: 5
 --- !u!114 &8625178881317011919

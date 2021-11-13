@@ -8,7 +8,7 @@ namespace Utilities
     public class ImmediateUtility : BaseUtility
     {
         [SerializeField] float duration;
-        protected virtual bool Active => InputMgr.ToggleUseUtil;
+        protected virtual bool Active => InputMgr.StartUseUtil;
 
         protected void Update()
         {
