@@ -20,7 +20,7 @@ namespace Character
 
             protected override void CheckNextState()
             {
-                bool jump = InputMgr.Jump;
+                bool jump = InputMgr.ToggleJump;
                 if (jump)
                 {
                     Jump jumpState = new Jump(this._stateMachine);

@@ -4,40 +4,80 @@ using UnityEngine;
 
 public class InputMgr : MonoBehaviour
 {
-    static float _zMove = 0;
-    static float _xMove = 0;
-    static bool _shoot = false;
-    static bool _jump = false;
-    static bool _crouch = false;
-    static bool _walk = false;
-    static bool _interact = false;
-    static bool[] _useSkill = { false, false };
+    const float ACCEPTABLE_GAP = 0.2f;
+    static float _curUnix;
 
+    static float _zMove = 0;
     public static float ZMove => _zMove;
+
+    static float _xMove = 0;
     public static float XMove => _xMove;
+
+    static bool _shoot = false;
     public static bool Shoot => _shoot;
+
+    static float _unixToggleShoot = -1;
+    public static bool ToggleShoot => (_curUnix - _unixToggleShoot <= ACCEPTABLE_GAP);
+
+    static bool _jump = false;
     public static bool Jump => _jump;
+
+    static float _unixToggleJump = -1;
+    public static bool ToggleJump => (_curUnix - _unixToggleJump <= ACCEPTABLE_GAP);
+
+    static bool _crouch = false;
     public static bool Crouch => _crouch;
+
+    static bool _walk = false;
     public static bool Walk => _walk;
+
+    static bool _interact = false;
     public static bool Interact => _interact;
-    public static bool UseSkill(int idx) => _useSkill[idx];
+
+    static float _unixToogleInteract = -1;
+    public static bool ToggleInteract => (_curUnix - _unixToogleInteract <= ACCEPTABLE_GAP);
+
+    static bool _useUtil = false;
+    public static bool UseUtil => _useUtil;
+
+    static float _unixToggleUseUtil = -1;
+    public static bool ToggleUseUtil => (_curUnix - _unixToggleUseUtil <= ACCEPTABLE_GAP);
+
+    void Awake()
+    {
+        this.useGUILayout = false;
+    }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         this.HandleInput();
     }
 
     void HandleInput()
     {
-        _xMove = Input.GetAxis("Horizontal");
-        _zMove = Input.GetAxis("Vertical");
-        _shoot = Input.GetMouseButton(KeyBind.FIRE);
-        _jump = !_jump && Input.GetKey(KeyBind.JUMP) || (Input.GetAxis("Mouse ScrollWheel") > 0f);
-        _crouch = Input.GetKey(KeyBind.CROUCH);
-        _walk = Input.GetKey(KeyBind.WALK);
-        _interact = Input.GetKey(KeyBind.INTERACT);
-        _useSkill[0] = Input.GetKey(KeyBind.SKILL_0);
-        _useSkill[1] = Input.GetKey(KeyBind.SKILL_1);
+        float curUnix = Time.time;
+        float xMove = Input.GetAxis("Horizontal");
+        float zMove = Input.GetAxis("Vertical");
+        bool shoot = Input.GetMouseButton(KeyBind.FIRE);
+        bool jump = Input.GetKey(KeyBind.JUMP) || (Input.GetAxis("Mouse ScrollWheel") > 0f);
+        bool crouch = Input.GetKey(KeyBind.CROUCH);
+        bool walk = Input.GetKey(KeyBind.WALK);
+        bool interact = Input.GetKey(KeyBind.INTERACT);
+        bool useUtil = Input.GetKey(KeyBind.USE_UTIL);
+
+        _curUnix = curUnix;
+        _unixToggleJump = !_jump && jump ? curUnix : -1;
+        _unixToggleShoot = !_shoot && shoot ? curUnix : -1;
+        _unixToggleUseUtil = !_useUtil && useUtil ? curUnix : -1;
+
+        _xMove = xMove;
+        _zMove = zMove;
+        _shoot = shoot;
+        _jump = jump;
+        _crouch = crouch;
+        _walk = walk;
+        _interact = interact;
+        _useUtil = useUtil;
     }
 }
