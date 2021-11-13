@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 3935079574917474075}
   - component: {fileID: 8625178881317011919}
   - component: {fileID: 8625178881317011916}
+  - component: {fileID: 391007172954683196}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -194,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 20
   JumpHeight: 1
-  Sensitivity: 5
+  RotateSpeed: 5
 --- !u!114 &8625178881317011919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +221,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eyePoint: {fileID: 8625178881384136491}
+--- !u!114 &391007172954683196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8625178881317011905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59fd91c484c60b64f9d5dfdefa71ebad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8625178881384136491
 GameObject:
   m_ObjectHideFlags: 0

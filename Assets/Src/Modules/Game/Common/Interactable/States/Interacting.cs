@@ -8,25 +8,40 @@ namespace Interactable
     {
         public class Interacting : BaseState
         {
-            GameObject _obtainPlayer;
-            Vector3 _obtainPos;
+            GameObject _interactPlayer;
             float _interactTime;
+            Model Model => ((InteractEngine)this._stateMachine).Model;
 
             public Interacting(StateMachine stateMachine, GameObject obtainPlayer) : base(stateMachine)
             {
-                this._obtainPlayer = obtainPlayer;
+                this._interactPlayer = obtainPlayer;
             }
 
             public override void OnEnter()
             {
                 Debug.Log("Start obtaining");
-                this._obtainPos = this._obtainPlayer.transform.position;
                 this._interactTime = 0;
+
+                if (!this.Model.CanMoveWhileInteract)
+                {
+                    Character.MoveEngine charMoveEngine = this._interactPlayer.GetComponent<Character.MoveEngine>();
+                    if (charMoveEngine) charMoveEngine.ChangeState(new Character.MoveState.Immobilized(charMoveEngine));
+                }
+            }
+
+            public override void OnExit()
+            {
+                if (!this.Model.CanMoveWhileInteract)
+                {
+                    Character.MoveEngine charMoveEngine = this._interactPlayer.GetComponent<Character.MoveEngine>();
+                    if (charMoveEngine) charMoveEngine.ChangeState(new Character.MoveState.Stand(charMoveEngine));
+                }
+                base.OnExit();
             }
 
             public override void LogicUpdate()
             {
-                if (!PlayerMoved() && InputMgr.Interact)
+                if (this.IsPlayerInRange && InputMgr.Interact)
                 {
                     this._interactTime += Time.deltaTime;
                     Debug.Log("Obtaining: " + this._interactTime);
@@ -39,16 +54,9 @@ namespace Interactable
                 }
             }
 
-            bool PlayerMoved()
-            {
-                Vector3 curPos = this._obtainPlayer.transform.position;
-                Vector3 obtainPos = this._obtainPos;
-                return (curPos != obtainPos ? true : false);
-            }
-
             void CheckObtainDone()
             {
-                float INTERACT_TIME = ((InteractEngine) this._stateMachine).Model.InteractTime;
+                float INTERACT_TIME = this.Model.InteractTime;
                 if (this._interactTime >= INTERACT_TIME)
                 {
                     Debug.Log("Obtaining DONE !");
@@ -57,6 +65,8 @@ namespace Interactable
                     this.SetNextState(stateObtained);
                 }
             }
+
+            bool IsPlayerInRange => ((InteractEngine)this._stateMachine).IsPlayerInRange(this._interactPlayer);
         }
     }
 }
