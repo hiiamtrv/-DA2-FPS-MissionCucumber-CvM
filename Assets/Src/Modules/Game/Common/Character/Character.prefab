@@ -190,12 +190,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8625178881317011905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948b4786667cb60469c76fe4e54c41f0, type: 3}
+  m_Script: {fileID: 11500000, guid: eb834e6969a232e488f4cba989486265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 40
+  Speed: 50
   JumpHeight: 1
   RotateSpeed: 5
+  Health: 100
+  HealthRegen: 1
+  Shield: 25
 --- !u!114 &8625178881317011919
 MonoBehaviour:
   m_ObjectHideFlags: 0

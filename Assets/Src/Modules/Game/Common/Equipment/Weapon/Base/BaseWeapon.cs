@@ -9,5 +9,18 @@ namespace Weapons
     {
         [SerializeField] WeaponName _name;
         public WeaponName Name => this._name;
+
+        protected WeaponModel _model;
+        public WeaponModel Model => this._model;  
+
+        void Start()
+        {
+            
+        }
+
+        void Update()
+        {
+            
+        }
     }
 }

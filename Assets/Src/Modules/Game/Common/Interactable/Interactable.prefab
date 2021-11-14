@@ -215,10 +215,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6182242381104177897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 378f263c2821c9c4eab5de879e3c82bb, type: 3}
+  m_Script: {fileID: 11500000, guid: b9b0932a7cf29f04ea89a55d14a4325e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactTime: 10
+  interactTime: 3
   canMoveWhileInteract: 0
 --- !u!114 &6182242381104177898
 MonoBehaviour:

@@ -14,7 +14,7 @@ namespace Interactable
         protected override void Start()
         {
             base.Start();
-            this._model = this.GetComponent<Stats>().Model;
+            this._model = this.GetComponent<InteractableStats>().Model;
         }
 
         public bool IsPlayerInRange(GameObject gameObject)

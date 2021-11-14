@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Interactable
 {
-    public class Stats : MonoBehaviour
+    public class InteractableStats : MonoBehaviour
     {
         public float interactTime;
         public bool canMoveWhileInteract;
@@ -16,7 +16,5 @@ namespace Interactable
         {
             this._model = new Model(interactTime, canMoveWhileInteract);
         }
-
-        public static float OBTAIN_TIME = 3;
     }
 }

@@ -14,7 +14,7 @@ namespace Character
 
         protected override void Start()
         {
-            this.Model = this.GetComponent<Stats>().HealthModel;
+            this.Model = this.GetComponent<CharacterStats>().HealthModel;
             base.Start();
         }
 

@@ -17,7 +17,7 @@ namespace Character
         // Start is called before the first frame update
         void Start()
         {
-            _model = this.GetComponent<Stats>().RotateModel;
+            _model = this.GetComponent<CharacterStats>().RotateModel;
             Cursor.lockState = CursorLockMode.Locked;
         }
 

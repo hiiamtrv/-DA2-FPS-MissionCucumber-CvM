@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character
 {
-    public class Stats : MonoBehaviour
+    public class CharacterStats : MonoBehaviour
     {
         public float Speed;
         public float JumpHeight;
