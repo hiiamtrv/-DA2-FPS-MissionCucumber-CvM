@@ -212,6 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 124449374}
   - component: {fileID: 124449375}
+  - component: {fileID: 124449376}
   m_Layer: 5
   m_Name: M4A1S
   m_TagString: Untagged
@@ -248,6 +249,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drawTime: 3
   _name: 0
+--- !u!114 &124449376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124449373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16b90b0327ac794b856615fef1e09c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fireRate: 0
+  _equipSpeed: 0
+  _shotSpread: 0
+  _reloadSpeed: 0
+  _magazineSize: 0
 --- !u!1 &141135478 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8625178881296057391, guid: 006bea6614ad7844a8f5236c0eaef00c, type: 3}
