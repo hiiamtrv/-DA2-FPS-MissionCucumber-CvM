@@ -50,6 +50,11 @@ public class BaseState
         //OVERRIDE ME !
     }
 
+    public virtual void LateUpdate()
+    {
+        //OVERRIDE ME !
+    }
+
     protected virtual void CheckNextState()
     {
         //OVERRIDE ME !

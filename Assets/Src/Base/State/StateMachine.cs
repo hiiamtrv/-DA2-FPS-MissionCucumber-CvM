@@ -40,6 +40,14 @@ public class StateMachine : MonoBehaviour
         }
     }
 
+    protected virtual void LateUpdate()
+    {
+        if (this._currentState != null)
+        {
+            this._currentState.LateUpdate();
+        }
+    }
+
     public void Init(BaseState startState)
     {
         this._currentState = startState;
