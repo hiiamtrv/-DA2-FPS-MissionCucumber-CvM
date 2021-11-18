@@ -8,8 +8,8 @@ namespace Character
     {
         public class Base : BaseState
         {
-            protected new HealthEngine _stateMachine;
-            protected HealthModel Model => this._stateMachine.Model;
+            protected HealthEngine StateMachine => this._stateMachine as HealthEngine;
+            protected HealthModel Model => this.StateMachine.Model;
 
             protected float Health { get => this.Model.Health; set => this.Model.Health = value; }
             protected float HealthRegen { get => this.Model.HealthRegen; set => this.Model.HealthRegen = value; }
@@ -46,12 +46,13 @@ namespace Character
             {
                 //TODO: Override if you want some effect before/after take damage
                 this.Health -= damage;
+                Debug.LogFormat("{0} get damage {1}, remain health {2}", this.StateMachine, damage, this.Health);
             }
 
             protected virtual void OnHealthOut()
             {
                 //TODO: Override if you want some effect before/after death (as default)
-                this._stateMachine.Destroy();
+                this.StateMachine.Destroy();
             }
 
             protected virtual void OnShieldOut()

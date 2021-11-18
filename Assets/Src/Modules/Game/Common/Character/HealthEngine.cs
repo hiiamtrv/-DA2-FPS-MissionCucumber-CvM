@@ -10,7 +10,9 @@ namespace Character
         HealthModel _model;
         public HealthModel Model { get => this._model; private set => this._model = value; }
 
-        protected new HealthState.Base _currentState = null;
+        protected HealthState.Base CurrentState => this._currentState as HealthState.Base;
+        public override BaseState GetDefaultState() => new HealthState.Base(this);
+
 
         protected override void Start()
         {
@@ -18,37 +20,26 @@ namespace Character
             base.Start();
         }
 
-        public override BaseState GetDefaultState() => new HealthState.Base(this);
-
-        public void OnHealthOut()
-        {
-
-        }
-
-        public void OnShieldOut()
-        {
-
-        }
-
         public void GainShield(float amount, ShieldReason reason = ShieldReason.DEFAULT)
         {
-            this._currentState.OnShieldChange(amount, reason);
+            this.CurrentState.OnShieldChange(amount, reason);
         }
 
         public void InflictDamage(float damage, DamageReason reason = DamageReason.DEFAULT, float penetration = 0)
         {
-            float shieldDamage = Mathf.Max(damage * (1 - penetration), this.Model.Shield);
+            float shieldDamage = Mathf.Min(damage * (1 - penetration), this.Model.Shield);
             float trueDamage = damage - shieldDamage;
+            Debug.LogFormat("Damage {0} {1} {2}", damage, shieldDamage, trueDamage);
             if (this.Model.Shield > 0)
             {
-                this._currentState.OnShieldChange(-shieldDamage, ShieldReason.DAMAGE);
+                this.CurrentState.OnShieldChange(-shieldDamage, ShieldReason.DAMAGE);
             }
-            this._currentState.OnDamaged(trueDamage, reason);
+            this.CurrentState.OnDamaged(trueDamage, reason);
         }
 
         public void Heal(float amount, HealReason reason, bool exceedMaxHealth = false)
         {
-            this._currentState.OnHealed(amount, reason, exceedMaxHealth);
+            this.CurrentState.OnHealed(amount, reason, exceedMaxHealth);
         }
     }
 }

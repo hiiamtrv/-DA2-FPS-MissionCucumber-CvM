@@ -6,8 +6,8 @@ namespace Equipments
 {
     public class Equipment : MonoBehaviour
     {
-        [SerializeField] protected float _drawTime;
-        public float DrawTime => this._drawTime;
+        [SerializeField] protected float _equipTime;
+        public float EquipTime => this._equipTime;
 
         protected bool _isReady;
         public bool IsReady => this._isReady;
@@ -36,7 +36,7 @@ namespace Equipments
             if (this._equipMgr == null) Destroy(this.gameObject);
         }
 
-        public void OnEquiped()
+        public virtual void OnEquiped()
         {
             if (this.EquipmentObject != null && !this.IsEquiped)
             {
@@ -44,14 +44,14 @@ namespace Equipments
                 this._drawUnix = Time.time;
                 this._equipmentObject.SetActive(true);
 
-                LeanTween.delayedCall(this._drawTime, () =>
+                LeanTween.delayedCall(this._equipTime, () =>
                 {
                     if (this != null) this.ActiveEquipment();
                 });
             }
         }
 
-        public void OnUnequiped()
+        public virtual void OnUnequiped()
         {
             if (this.EquipmentObject != null && this.IsEquiped)
             {
