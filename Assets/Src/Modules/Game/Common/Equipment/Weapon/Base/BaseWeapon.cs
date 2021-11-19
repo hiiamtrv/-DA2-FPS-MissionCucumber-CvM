@@ -17,6 +17,7 @@ namespace Weapons
         protected int _isFiring;
         protected int _magazineAmmo;
         protected int _maxAmmo;
+
         protected GunState _gunState;
 
         [SerializeField] Camera _eye;
@@ -28,14 +29,14 @@ namespace Weapons
         protected override void Start()
         {
             this._model = this.GetComponent<WeaponStats>().Model;
-            this._maxAmmo = this.Model.MaxAmmo;
+            this._maxAmmo = this.Model.TotalAmmo;
             this._magazineAmmo = this.Model.MagazineSize;
             base.Start();
         }
 
         void Update()
         {
-            if (this.IsReady && InputMgr.Shoot)
+            if (this.IsReady && this.CanShoot)
             {
                 this.Shoot();
             }
@@ -43,6 +44,8 @@ namespace Weapons
 
         protected void Shoot()
         {
+            this.Model.RemainAmmo--;
+
             // this._audio.PlayOneShot(_soundEquip);
             var targets = this.Target;
             if (targets != null)
@@ -52,6 +55,35 @@ namespace Weapons
                     this.DoHitEffect(target);
                 }
             }
+
+            this.PublishAmmoChange();
+
+            if (this.Model.RemainAmmo == 0)
+            {
+                this._gunState = GunState.RELOADING;
+                if (this.Model.TotalAmmo > 0)
+                {
+                    LeanTween.delayedCall(
+                        this.Model.ReloadTime,
+                        () =>
+                        {
+                            int nextMagazine = System.Math.Min(this.Model.MagazineSize, this.Model.TotalAmmo);
+                            this.Model.RemainAmmo = nextMagazine;
+                            this.Model.TotalAmmo -= nextMagazine;
+                            this._gunState = GunState.READY_TO_FIRE;
+                            this.PublishAmmoChange();
+                        }
+                    );
+                }
+            }
+            else
+            {
+                this._gunState = GunState.RECOIL;
+                LeanTween.delayedCall(
+                    1 / this.Model.FireRate,
+                    () => this._gunState = GunState.READY_TO_FIRE
+                );
+            }
         }
 
         public override void OnEquiped()
@@ -60,13 +92,17 @@ namespace Weapons
             base.OnEquiped();
             EventCenter.Publish(
                 EventId.WEAPON_EQUIP,
-                new PubData.WeaponEquip(this.gameObject, this.Model)
+                new PubData.WeaponEquip(this.Owner, this.Model)
             );
         }
 
         public override void OnUnequiped()
         {
             base.OnUnequiped();
+            EventCenter.Publish(
+                EventId.WEAPON_UNEQUIP,
+                new PubData.WeaponUnequip(this.Owner)
+            );
         }
 
         protected virtual void DoHitEffect(GameObject target)
@@ -95,6 +131,16 @@ namespace Weapons
                 }
                 else return null;
             }
+        }
+
+        protected virtual bool CanShoot => InputMgr.Shoot && this._gunState == GunState.READY_TO_FIRE;
+
+        protected void PublishAmmoChange()
+        {
+            EventCenter.Publish(
+                EventId.WEAPON_AMMO_CHANGE,
+                new PubData.WeaponAmmoChange(this.Owner, this.Model.RemainAmmo, this.Model.TotalAmmo)
+            );
         }
     }
 

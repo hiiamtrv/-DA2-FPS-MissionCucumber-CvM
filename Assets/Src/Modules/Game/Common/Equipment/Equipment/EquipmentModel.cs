@@ -19,7 +19,7 @@ namespace Equipments
 
         public float EquipTime { get => this._equipTime; set => this._equipTime = value; }
 
-        public float FireRatePercent
+        public float EquipTimePercent
         {
             get => this._equipTime / this._baseEquipTime;
             set => this._equipTime = this._baseEquipTime * value;

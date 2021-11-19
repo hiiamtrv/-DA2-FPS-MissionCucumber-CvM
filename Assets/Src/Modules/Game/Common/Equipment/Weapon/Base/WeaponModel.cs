@@ -10,38 +10,41 @@ namespace Weapons
         float _baseFireRate;
         float _baseDamage;
         float _baseShotSpread;
-        float _baseReloadSpeed;
+        float _baseReloadTime;
 
         float _fireRate;
         float _damage;
         float _shotSpread;
-        float _reloadSpeed;
+        float _reloadTime;
         int _magazineSize;
-        int _maxAmmo;
+        int _totalAmmo;
+        int _remainAmmo;
 
         public WeaponModel(float equipTime, float fireRate, float damage, float shotSpread
-                            , float reloadSpeed, int magazineSize, int maxAmmo) : base(equipTime)
+                            , float reloadTime, int magazineSize, int totalAmmo) : base(equipTime)
         {
             this._baseFireRate = fireRate;
             this._baseDamage = damage;
             this._baseShotSpread = shotSpread;
-            this._baseReloadSpeed = reloadSpeed;
+            this._baseReloadTime = reloadTime;
 
             this._magazineSize = magazineSize;
-            this._maxAmmo = maxAmmo;
+            this._totalAmmo = totalAmmo;
 
             this._fireRate = this._baseFireRate;
             this._damage = this._baseDamage;
             this._shotSpread = this._baseShotSpread;
-            this._reloadSpeed = this._baseReloadSpeed;
+            this._reloadTime = this._baseReloadTime;
+            this._remainAmmo = this._magazineSize;
         }
 
         public float FireRate { get => this._fireRate; set => this._fireRate = value; }
         public float Damage { get => this._damage; set => this._damage = value; }
         public float ShotSpread { get => this._shotSpread; set => this._shotSpread = value; }
-        public float ReloadSpeed { get => this._reloadSpeed; set => this._reloadSpeed = value; }
+        public float ReloadTime { get => this._reloadTime; set => this._reloadTime = value; }
+        public int RemainAmmo { get => this._remainAmmo; set => this._remainAmmo = value; }
         public int MagazineSize => this._magazineSize;
-        public int MaxAmmo => this._maxAmmo;
+        public int TotalAmmo { get => this._totalAmmo; set => this._totalAmmo = value; }
 
         public float FireRatePercent
         {
@@ -61,10 +64,10 @@ namespace Weapons
             set => this._shotSpread = this._baseShotSpread * value;
         }
 
-        public float ReloadSpeedPercent
+        public float ReloadTimePercent
         {
-            get => this._reloadSpeed / this._baseReloadSpeed;
-            set => this._reloadSpeed = this._baseReloadSpeed * value;
+            get => this._reloadTime / this._baseReloadTime;
+            set => this._reloadTime = this._baseReloadTime * value;
         }
     }
 }
