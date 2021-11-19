@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Equipments;
 using UnityEngine;
+
 namespace Weapons
 {
-    public class WeaponStats : MonoBehaviour
+    public class WeaponStats : EquipmentStats
     {
         public float _fireRate;
         public float _damage;
@@ -17,7 +19,7 @@ namespace Weapons
 
         void Awake()
         {
-            this._model = new WeaponModel(_fireRate, _damage, _shotSpread, _reloadSpeed, _magazineSize, _maxAmmo);
+            this._model = new WeaponModel(_equipTime, _fireRate, _damage, _shotSpread, _reloadSpeed, _magazineSize, _maxAmmo);
         }
     }
 }

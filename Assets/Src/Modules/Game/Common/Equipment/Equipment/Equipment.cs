@@ -6,7 +6,10 @@ namespace Equipments
 {
     public class Equipment : MonoBehaviour
     {
-        [SerializeField] protected float _equipTime;
+        [SerializeField] protected GameObject _owner;
+        public GameObject Owner => this._owner;
+
+        protected float _equipTime;
         public float EquipTime => this._equipTime;
 
         protected bool _isReady;

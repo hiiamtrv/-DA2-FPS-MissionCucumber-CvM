@@ -58,6 +58,10 @@ namespace Weapons
         {
             // this._audio.PlayOneShot(this._soundEquip);
             base.OnEquiped();
+            EventCenter.Publish(
+                EventId.WEAPON_EQUIP,
+                new PubData.WeaponEquip(this.gameObject, this.Model)
+            );
         }
 
         public override void OnUnequiped()

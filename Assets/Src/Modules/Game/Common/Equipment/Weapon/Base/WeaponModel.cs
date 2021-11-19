@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Equipments;
 
 namespace Weapons
 {
-    public class WeaponModel
+    public class WeaponModel : EquipmentModel
     {
         float _baseFireRate;
         float _baseDamage;
@@ -18,7 +19,8 @@ namespace Weapons
         int _magazineSize;
         int _maxAmmo;
 
-        public WeaponModel(float fireRate, float damage, float shotSpread, float reloadSpeed, int magazineSize, int maxAmmo)
+        public WeaponModel(float equipTime, float fireRate, float damage, float shotSpread
+                            , float reloadSpeed, int magazineSize, int maxAmmo) : base(equipTime)
         {
             this._baseFireRate = fireRate;
             this._baseDamage = damage;
