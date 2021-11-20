@@ -8,8 +8,8 @@ namespace Weapons
 {
     public class BaseWeapon : Equipment
     {
-        [SerializeField] WeaponName _name;
-        public WeaponName Name => this._name;
+        //TODO: Override weapon name to name another name
+        public virtual WeaponName Name => WeaponName.UNDEFINED;
 
         protected WeaponModel _model;
         public WeaponModel Model => this._model;
@@ -125,11 +125,12 @@ namespace Weapons
             get
             {
                 float screenX = Screen.width * 0.5f;
-                float screenY = Screen.height * 0.5f;
+                float screenY = Screen.height * 0.5f;   
                 RaycastHit hit;
                 Ray ray = this._eye.ScreenPointToRay(new Vector2(screenX, screenY));
+                float weaponRange = this.Model.ShotRange;
 
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit, weaponRange))
                 {
                     GameObject[] targets = { hit.collider.gameObject };
                     return targets;

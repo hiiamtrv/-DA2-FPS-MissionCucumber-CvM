@@ -7,8 +7,8 @@ namespace Utilities
 {
     public class BaseUtility : Equipment
     {
-        [SerializeField] UtilName _name;
-        public UtilName Name => this._name;
+        //TODO: Override utility name to name another name
+        public UtilName Name => UtilName.UNDEFINED;
 
         public virtual bool HideGunWhenUse => true;
 
