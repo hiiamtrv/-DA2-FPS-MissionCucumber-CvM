@@ -90,10 +90,15 @@ namespace Weapons
         {
             // this._audio.PlayOneShot(this._soundEquip);
             base.OnEquiped();
-            EventCenter.Publish(
-                EventId.WEAPON_EQUIP,
-                new PubData.WeaponEquip(this.Owner, this.Model)
-            );
+            LeanTween.delayedCall(this._equipTime / 2, () =>
+            {
+                if (this != null)
+                    EventCenter.Publish(
+                        EventId.WEAPON_EQUIP,
+                        new PubData.WeaponEquip(this.Owner, this.Model)
+                    );
+            });
+
         }
 
         public override void OnUnequiped()

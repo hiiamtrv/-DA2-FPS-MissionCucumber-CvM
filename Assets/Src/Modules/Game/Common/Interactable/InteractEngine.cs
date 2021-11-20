@@ -8,8 +8,8 @@ namespace Interactable
     {
         List<GameObject> _playerInRange = new List<GameObject>();
         
-        Model _model;
-        public Model Model => this._model;
+        InteractModel _model;
+        public InteractModel Model => this._model;
 
         protected override void Start()
         {

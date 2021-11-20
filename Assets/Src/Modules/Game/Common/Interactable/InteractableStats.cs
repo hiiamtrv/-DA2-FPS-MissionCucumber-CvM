@@ -9,12 +9,12 @@ namespace Interactable
         public float interactTime;
         public bool canMoveWhileInteract;
 
-        Model _model;
-        public Model Model => this._model;
+        InteractModel _model;
+        public InteractModel Model => this._model;
 
         void Awake()
         {
-            this._model = new Model(interactTime, canMoveWhileInteract);
+            this._model = new InteractModel(interactTime, canMoveWhileInteract);
         }
     }
 }

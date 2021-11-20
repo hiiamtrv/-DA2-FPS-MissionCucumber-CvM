@@ -10,7 +10,7 @@ namespace Interactable
         {
             GameObject _interactPlayer;
             float _interactTime;
-            Model Model => ((InteractEngine)this._stateMachine).Model;
+            InteractModel Model => ((InteractEngine)this._stateMachine).Model;
 
             public Interacting(StateMachine stateMachine, GameObject obtainPlayer) : base(stateMachine)
             {
@@ -20,7 +20,12 @@ namespace Interactable
             public override void OnEnter()
             {
                 Debug.Log("Start obtaining");
+
                 this._interactTime = 0;
+                EventCenter.Publish(
+                    EventId.INTERACT_START,
+                    new PubData.IneractStart(this._interactPlayer, this._interactTime, this.Model)
+                );
 
                 if (!this.Model.CanMoveWhileInteract)
                 {
@@ -36,6 +41,10 @@ namespace Interactable
                     Character.MoveEngine charMoveEngine = this._interactPlayer.GetComponent<Character.MoveEngine>();
                     if (charMoveEngine) charMoveEngine.ChangeState(new Character.MoveState.Stand(charMoveEngine));
                 }
+                EventCenter.Publish(
+                    EventId.INTERACT_END,
+                    new PubData.InteractEnd(this._interactPlayer)
+                );
                 base.OnExit();
             }
 

@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Interactable
 {
-    public class Model
+    public class InteractModel
     {
         float _interactTime;
         bool _canMoveWhileInteract;
 
-        public Model(float interactTime, bool canMoveWhileInteract)
+        public InteractModel(float interactTime, bool canMoveWhileInteract)
         {
             this._interactTime = interactTime;
             this._canMoveWhileInteract = canMoveWhileInteract;
