@@ -41,10 +41,6 @@ namespace Interactable
                     Character.MoveEngine charMoveEngine = this._interactPlayer.GetComponent<Character.MoveEngine>();
                     if (charMoveEngine) charMoveEngine.ChangeState(new Character.MoveState.Stand(charMoveEngine));
                 }
-                EventCenter.Publish(
-                    EventId.INTERACT_END,
-                    new PubData.InteractEnd(this._interactPlayer)
-                );
                 base.OnExit();
             }
 
@@ -54,11 +50,15 @@ namespace Interactable
                 {
                     Idle stateIdle = new Idle(this._stateMachine);
                     this.SetNextState(stateIdle);
+
+                    EventCenter.Publish(
+                        EventId.INTERACT_END,
+                        new PubData.InteractEnd(this._interactPlayer, this._gameObject, false)
+                    );
                 }
                 else
                 {
                     this._interactTime += Time.deltaTime;
-                    Debug.Log("Obtaining: " + this._interactTime);
                     this.CheckObtainDone();
                 }
             }
@@ -68,10 +68,13 @@ namespace Interactable
                 float INTERACT_TIME = this.Model.InteractTime;
                 if (this._interactTime >= INTERACT_TIME)
                 {
-                    Debug.Log("Obtaining DONE !");
-
                     DoneInteract stateObtained = new DoneInteract(this._stateMachine);
                     this.SetNextState(stateObtained);
+
+                    EventCenter.Publish(
+                        EventId.INTERACT_END,
+                        new PubData.InteractEnd(this._interactPlayer, this._gameObject, true)
+                    );
                 }
             }
 

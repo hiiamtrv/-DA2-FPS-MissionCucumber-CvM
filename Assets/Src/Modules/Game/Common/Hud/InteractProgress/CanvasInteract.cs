@@ -17,6 +17,11 @@ namespace GameHud
         float _curTime = 0;
         float _endTime = 0;
 
+        void Awake()
+        {
+            this.SubEvents();
+        }
+
         void Start()
         {
             this.uiHelper = new UiHelper(this.gameObject);
@@ -24,7 +29,6 @@ namespace GameHud
             this._lbTime = uiHelper.ui[LB_TIME].GetComponent<Text>();
 
             this.HideInteracTimer();
-            this.SubEvents();
         }
 
         void Update()

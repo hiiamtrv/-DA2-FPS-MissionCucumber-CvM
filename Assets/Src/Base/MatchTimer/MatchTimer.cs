@@ -9,12 +9,16 @@ public class MatchTimer : MonoBehaviour
     float _remainTime;
     public float RemainTime => this._remainTime;
 
-    bool _isPaused;
-    public bool IsPause => this._isPaused;
+    static bool _isPaused;
+    public static bool IsPaused => _isPaused;
+
+    static bool _isStopped;
+    public static bool IsStopped => _isStopped;
 
     void Awake()
     {
         this._remainTime = this._matchSeconds;
+        EventCenter.Subcribe(EventId.TIMER_END, this.OnTimerEnd);
     }
 
     void Start()
@@ -24,27 +28,40 @@ public class MatchTimer : MonoBehaviour
 
     void LateUpdate()
     {
-        if (!this._isPaused)
+        if (!_isPaused && !_isStopped)
         {
             this._remainTime -= Time.deltaTime;
             if (this._remainTime <= 0)
             {
+                this.Stop();
+                EventCenter.Publish(
+                    EventId.MATCH_END,
+                    new PubData.MatchEnd(PlayerSide.CATS, WinReason.TIME_OUT)    
+                );
                 EventCenter.Publish(EventId.TIMER_END, true);
-                this.Pause();
             }
         }
     }
 
     void Pause()
     {
-        this._isPaused = true;
+        _isPaused = true;
         EventCenter.Publish(EventId.TIMER_END, false);
     }
 
     void Play()
     {
-        this._isPaused = false;
-        Debug.LogFormat("Start event timer start {0}", this._remainTime);
+        _isPaused = false;
         EventCenter.Publish(EventId.TIMER_START, this._remainTime);
+    }
+
+    void Stop()
+    {
+        _isStopped = true;
+    }
+
+    void OnTimerEnd(object pubData)
+    {
+        _isStopped = (bool)pubData;
     }
 }

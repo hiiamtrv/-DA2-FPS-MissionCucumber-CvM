@@ -33,7 +33,7 @@ namespace GameHud
 
         void LateUpdate()
         {
-            if (!this._isPaused)
+            if (!this._isPaused && !this._isStopped)
             {
                 this._remainTime -= Time.deltaTime;
                 TimeSpan timeDisplay = TimeSpan.FromSeconds((double) this._remainTime);
@@ -48,7 +48,6 @@ namespace GameHud
 
         void StartTimer(object pubData)
         {
-            Debug.LogFormat("Receive time start event {0}", pubData.ToString());
             this._isPaused = false;
             this._remainTime = (float)pubData;
         }

@@ -12,7 +12,8 @@ namespace Interactable
 
             public override void OnEnter()
             {
-                this._stateMachine.Destroy();
+                // this._stateMachine.Destroy();
+                this._gameObject.SetActive(false);
             }
         }
     }

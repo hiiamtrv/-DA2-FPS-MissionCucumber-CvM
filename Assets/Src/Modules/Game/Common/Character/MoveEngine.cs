@@ -9,6 +9,14 @@ namespace Character
         MoveModel _model;
         public MoveModel Model { get => this._model; private set => this._model = value; }
 
+        void Awake()
+        {
+            EventCenter.Subcribe(
+                EventId.MATCH_END,
+                (object data) => this.ChangeState(new MoveState.Immobilized(this))
+            );
+        }
+
         protected override void Start()
         {
             this.Model = this.GetComponent<CharacterStats>().MoveModel;
