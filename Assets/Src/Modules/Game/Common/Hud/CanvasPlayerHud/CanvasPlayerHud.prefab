@@ -585,7 +585,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Bullets
+  m_Text: Ammo
 --- !u!1 &7955498382421259334
 GameObject:
   m_ObjectHideFlags: 0
