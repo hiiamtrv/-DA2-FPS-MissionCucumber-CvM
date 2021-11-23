@@ -6,6 +6,9 @@ namespace Character
 {
     public class CharacterStats : MonoBehaviour
     {
+        [SerializeField] PlayerSide _characterSide;
+        public PlayerSide CharacterSide => this._characterSide;
+
         public float Speed;
         public float JumpHeight;
         public float RotateSpeed;

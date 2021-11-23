@@ -29,7 +29,6 @@ public class ObjectiveTracker : MonoBehaviour
                     EventId.MATCH_END,
                     new MatchEnd(PlayerSide.MICE, WinReason.MICE_OBTAIN_ALL)
                 );
-                EventCenter.Publish(EventId.TIMER_END, true);
             }
         }
     }

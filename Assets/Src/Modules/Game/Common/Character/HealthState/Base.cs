@@ -52,7 +52,9 @@ namespace Character
             protected virtual void OnHealthOut()
             {
                 //TODO: Override if you want some effect before/after death (as default)
-                this.StateMachine.Destroy();
+                // this.StateMachine.Destroy();
+                this._gameObject.SetActive(false);
+                EventCenter.Publish(EventId.CHARACTER_ELIMINATED);
             }
 
             protected virtual void OnShieldOut()

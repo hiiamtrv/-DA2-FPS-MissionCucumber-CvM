@@ -19,6 +19,7 @@ public class MatchTimer : MonoBehaviour
     {
         this._remainTime = this._matchSeconds;
         EventCenter.Subcribe(EventId.TIMER_END, this.OnTimerEnd);
+        EventCenter.Subcribe(EventId.MATCH_END, (object data) => this.OnMatchEnd());
     }
 
     void Start()
@@ -36,9 +37,8 @@ public class MatchTimer : MonoBehaviour
                 this.Stop();
                 EventCenter.Publish(
                     EventId.MATCH_END,
-                    new PubData.MatchEnd(PlayerSide.CATS, WinReason.TIME_OUT)    
+                    new PubData.MatchEnd(PlayerSide.CATS, WinReason.TIME_OUT)
                 );
-                EventCenter.Publish(EventId.TIMER_END, true);
             }
         }
     }
@@ -63,5 +63,11 @@ public class MatchTimer : MonoBehaviour
     void OnTimerEnd(object pubData)
     {
         _isStopped = (bool)pubData;
+    }
+
+    void OnMatchEnd()
+    {
+        this.OnTimerEnd(true);
+        EventCenter.Publish(EventId.TIMER_END, true);
     }
 }

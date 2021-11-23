@@ -285,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characters:
   - {fileID: 1809889397}
+  - {fileID: 1247147720}
 --- !u!114 &240199510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1053,6 +1054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb834e6969a232e488f4cba989486265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _characterSide: 2
   Speed: 0
   JumpHeight: 0
   RotateSpeed: 0
@@ -1252,6 +1254,10 @@ PrefabInstance:
     - target: {fileID: 3935079574917474075, guid: 006bea6614ad7844a8f5236c0eaef00c, type: 3}
       propertyPath: Sensitivity
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935079574917474075, guid: 006bea6614ad7844a8f5236c0eaef00c, type: 3}
+      propertyPath: _characterSide
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8625178881317011905, guid: 006bea6614ad7844a8f5236c0eaef00c, type: 3}
       propertyPath: m_Name
