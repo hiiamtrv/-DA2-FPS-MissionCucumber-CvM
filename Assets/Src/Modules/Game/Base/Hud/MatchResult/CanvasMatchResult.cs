@@ -37,9 +37,9 @@ namespace GameHud
             this.gameObject.SetActive(true);
 
             MatchEnd data = pubData as MatchEnd;
-            this._lbMiceWin.gameObject.SetActive(data.WinSide == PlayerSide.MICE);
-            this._lbCatsWin.gameObject.SetActive(data.WinSide == PlayerSide.CATS);
-            this._lbDraw.gameObject.SetActive(data.WinSide == PlayerSide.UNDEFINED);
+            this._lbMiceWin.gameObject.SetActive(data.WinSide == CharacterSide.MICE);
+            this._lbCatsWin.gameObject.SetActive(data.WinSide == CharacterSide.CATS);
+            this._lbDraw.gameObject.SetActive(data.WinSide == CharacterSide.UNDEFINED);
             this._lbWinReason.text = data.WinReason;
 
             this._hideHuds.ForEach(hud => hud.gameObject.SetActive(false));

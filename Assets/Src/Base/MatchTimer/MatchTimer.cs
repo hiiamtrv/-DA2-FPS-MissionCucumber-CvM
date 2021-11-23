@@ -37,7 +37,7 @@ public class MatchTimer : MonoBehaviour
                 this.Stop();
                 EventCenter.Publish(
                     EventId.MATCH_END,
-                    new PubData.MatchEnd(PlayerSide.CATS, WinReason.TIME_OUT)
+                    new PubData.MatchEnd(CharacterSide.CATS, WinReason.TIME_OUT)
                 );
             }
         }

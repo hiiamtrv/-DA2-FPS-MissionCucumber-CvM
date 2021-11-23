@@ -56,10 +56,11 @@ namespace Interactable
                         EventId.INTERACT_END,
                         new PubData.InteractEnd(this.InteractPlayer, this._gameObject, false)
                     );
+
+                    (this._stateMachine as InteractEngine).OnInteractFailed();
                 }
                 else
                 {
-                    Debug.Log("Player is still in range");
                     this._interactTime += Time.deltaTime;
                     this.CheckObtainDone();
                 }

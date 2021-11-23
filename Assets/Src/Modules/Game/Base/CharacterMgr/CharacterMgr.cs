@@ -31,10 +31,10 @@ public class CharacterMgr : MonoBehaviour
             {
                 switch (stats.CharacterSide)
                 {
-                    case PlayerSide.CATS:
+                    case CharacterSide.CATS:
                         this._numCatAlive++;
                         break;
-                    case PlayerSide.MICE:
+                    case CharacterSide.MICE:
                         this._numMouseAlive++;
                         break;
                 }
@@ -49,21 +49,21 @@ public class CharacterMgr : MonoBehaviour
         {
             EventCenter.Publish(
                 EventId.MATCH_END,
-                new MatchEnd(PlayerSide.CATS, WinReason.MICE_ELIMINATED)
+                new MatchEnd(CharacterSide.CATS, WinReason.MICE_ELIMINATED)
             );
         }
         else if (this._numCatAlive <= 0 && this._numMouseAlive > 0)
         {
             EventCenter.Publish(
                 EventId.MATCH_END,
-                new MatchEnd(PlayerSide.MICE, WinReason.CATS_ELIMINATED)
+                new MatchEnd(CharacterSide.MICE, WinReason.CATS_ELIMINATED)
             );
         }
         else if (this._numCatAlive <= 0 && this._numMouseAlive <= 0)
         {
             EventCenter.Publish(
                 EventId.MATCH_END,
-                new MatchEnd(PlayerSide.UNDEFINED, WinReason.DRAW)
+                new MatchEnd(CharacterSide.UNDEFINED, WinReason.DRAW)
             );
         }
     }

@@ -1,4 +1,4 @@
-public enum PlayerSide {
+public enum CharacterSide {
     UNDEFINED,
     CATS,
     MICE,

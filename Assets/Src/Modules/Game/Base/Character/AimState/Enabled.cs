@@ -22,7 +22,7 @@ namespace Character
                 {
                     this.Shoot();
                 }
-                else if (InputMgr.Interact)
+                else if (InputMgr.StartInteract)
                 {
                     this.Interact();
                 }

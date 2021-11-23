@@ -19,7 +19,9 @@ namespace Interactable
                         EventId.INTERACT_END,
                         new PubData.InteractEnd(this.InteractPlayer, this._gameObject, true)
                     );
-                this._gameObject.SetActive(false);
+
+                (this._stateMachine as InteractEngine).OnInteractSuccesful();
+                this.SetNextState(new Idle(this._stateMachine));
             }
         }
     }

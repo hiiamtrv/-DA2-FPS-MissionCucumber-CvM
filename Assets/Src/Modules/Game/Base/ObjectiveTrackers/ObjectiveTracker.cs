@@ -21,14 +21,18 @@ public class ObjectiveTracker : MonoBehaviour
         InteractEnd data = pubData as InteractEnd;
         if (data.IsSuccessful && this._cucumbers.Contains(data.InteractObject))
         {
-            this._cucumbers.Remove(data.InteractObject);
-            //if there is no more cucumber, end game and mouse win
-            if (this._cucumbers.Count == 0)
+            Character.CharacterStats stats = data.Dispatcher.GetComponent<Character.CharacterStats>();
+            if (stats.CharacterSide == CharacterSide.MICE)
             {
-                EventCenter.Publish(
-                    EventId.MATCH_END,
-                    new MatchEnd(PlayerSide.MICE, WinReason.MICE_OBTAIN_ALL)
-                );
+                this._cucumbers.Remove(data.InteractObject);
+                //if there is no more cucumber, end game and mouse win
+                if (this._cucumbers.Count == 0)
+                {
+                    EventCenter.Publish(
+                        EventId.MATCH_END,
+                        new MatchEnd(CharacterSide.MICE, WinReason.MICE_OBTAIN_ALL)
+                    );
+                }
             }
         }
     }
