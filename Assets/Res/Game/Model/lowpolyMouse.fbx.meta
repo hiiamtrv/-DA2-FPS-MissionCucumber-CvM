@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bde1279247d80704586ba9f72661deb7
+guid: 736c55fee578dbd43ae30da161406656
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
@@ -13,17 +13,44 @@ ModelImporter:
       74: -8320175732625009606
     second: Cube|LightAction.001
   - first:
-      74: 7693504525942378453
-    second: Cube.001|CubeAction.001
+      74: -4473016424031684122
+    second: Cube|CubeAction.002
   - first:
-      74: 3995525487012296551
-    second: Cube.001|CubeAction.002
+      74: -4954090093107511943
+    second: Cube|CubeAction.003
   - first:
-      74: 7230306397454217088
-    second: Cube.001|LightAction
+      74: -6045865710964554881
+    second: Cube|PlaneAction
   - first:
-      74: -416838883796384650
-    second: Cube.001|LightAction.001
+      74: 4682048202735278669
+    second: Cube|PlaneAction.001
+  - first:
+      74: -2341792543444936284
+    second: Cube|PlaneAction.002
+  - first:
+      74: 1567606062312136507
+    second: Cube|PlaneAction.003
+  - first:
+      74: -6488513976405029043
+    second: Cube|PlaneAction.004
+  - first:
+      74: -5786660181797073364
+    second: Cube|PlaneAction.005
+  - first:
+      74: 3957201917914128285
+    second: Cube|PlaneAction.015
+  - first:
+      74: 1643447434230041878
+    second: Cube|PlaneAction.016
+  - first:
+      74: -4603415324524942463
+    second: Cube|PlaneAction.017
+  - first:
+      74: 2622407754767864564
+    second: Cube|PlaneAction.018
+  - first:
+      74: 2677177367656419449
+    second: Cube|PlaneAction.019
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -55,7 +82,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 2.687107
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -106,7 +133,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 2.687107
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
