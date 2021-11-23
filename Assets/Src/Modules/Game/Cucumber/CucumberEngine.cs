@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Interactable;
 using Character;
+using Cats;
 using Cats.HealthState;
 
 namespace Cucumbers
@@ -28,7 +29,7 @@ namespace Cucumbers
 
         void ActiveDyingState()
         {
-            HealthEngine healthEngine = this._interactPlayer.GetComponent<HealthEngine>();
+            CatHealthEngine healthEngine = this._interactPlayer.GetComponent<CatHealthEngine>();
             CatDying stateDying = new CatDying(healthEngine);
             healthEngine.ChangeState(stateDying);
         }

@@ -29,10 +29,10 @@ namespace Character
         {
             float shieldDamage = Mathf.Min(damage * (1 - penetration), this.Model.Shield);
             float trueDamage = damage - shieldDamage;
-            Debug.LogFormat("Damage {0} {1} {2}", damage, shieldDamage, trueDamage);
             if (this.Model.Shield > 0)
             {
-                this.CurrentState.OnShieldChange(-shieldDamage, ShieldReason.DAMAGE);
+                float remainShield = this.Model.Shield - shieldDamage;
+                this.CurrentState.OnShieldChange(remainShield, ShieldReason.DAMAGE);
             }
             this.CurrentState.OnDamaged(trueDamage, reason);
         }

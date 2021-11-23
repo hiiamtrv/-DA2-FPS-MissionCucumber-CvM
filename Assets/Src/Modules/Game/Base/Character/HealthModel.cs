@@ -66,7 +66,7 @@ namespace Character
     {
         DEFAULT,
         DAMAGE,
-        GAIN,
+        CAT_RECOVERED,
         FORCE_SET,
     }
 }

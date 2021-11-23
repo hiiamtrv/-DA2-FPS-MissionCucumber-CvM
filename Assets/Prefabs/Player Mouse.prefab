@@ -466,7 +466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1546172e655f0d6439983853ff79f98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _owner: {fileID: 5555273902289459925}
   _eye: {fileID: 5555273902486804596}
   _soundGunShot: {fileID: 8300000, guid: 3666408d010bd644fa2c42494e0bdfe2, type: 3}
   _soundNoAmmo: {fileID: 8300000, guid: 3666408d010bd644fa2c42494e0bdfe2, type: 3}
@@ -539,7 +538,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed90c81f82b0d564d9a84de71963a17d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _owner: {fileID: 5555273902289459925}
 --- !u!114 &5555273902267281033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,7 +550,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da399caf1d4389748b63cfc242e6ece5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _owner: {fileID: 5555273902289459925}
 --- !u!114 &5555273902267281032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,7 +562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e3ccd7c2c4b204d93d0e6dfdc01042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _owner: {fileID: 5555273902289459925}
   duration: 5
 --- !u!114 &5555273902267281035
 MonoBehaviour:
@@ -1009,10 +1005,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12fc5059a7d51f4580ceac3d3fb52eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _owner: {fileID: 5555273902289459925}
   _objectWeapon: {fileID: 5555273902066502306}
   _objectUtility: {fileID: 5555273902267281037}
-  _reserveWeapon: []
-  _reserveUtility: []
+  _reserveWeapon: {fileID: 0}
 --- !u!1 &5555273902770123824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,7 +1075,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1546172e655f0d6439983853ff79f98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _owner: {fileID: 5555273902289459925}
   _eye: {fileID: 5555273902486804596}
   _soundGunShot: {fileID: 0}
   _soundNoAmmo: {fileID: 0}

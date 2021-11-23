@@ -23,9 +23,11 @@ namespace Cats
                 CatDyingStats stats = this._gameObject.GetComponent<CatDyingStats>();
                 if (stats != null)
                 {
-                    this.Model.Shield = 0;
+                    base.OnShieldChange(0, ShieldReason.FORCE_SET);
                     this._catDyingModel = stats.Model;
                     this._lastEffectTime = Time.time;
+
+                    EventCenter.Publish(EventId.CAT_DYING, this._gameObject);
                 }
                 else
                 {

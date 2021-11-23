@@ -28,10 +28,10 @@ namespace Character
 
             public virtual void OnShieldChange(float amount, ShieldReason reason)
             {
-                if (amount != 0)
+                if (amount >= 0)
                 {
-                    if (this.Shield <= -amount) this.OnShieldOut();
-                    this.Shield += amount;
+                    if (amount == 0) this.OnShieldOut();
+                    this.Shield = amount;
                     EventCenter.Publish(
                         EventId.SHILED_CHANGE,
                         new ShieldChange(this._gameObject, this.Shield, reason)
