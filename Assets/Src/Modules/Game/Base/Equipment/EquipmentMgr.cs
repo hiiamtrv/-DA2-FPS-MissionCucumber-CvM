@@ -19,15 +19,15 @@ namespace Equipments
 
         bool _isUsingWeapon;
 
-        BaseWeapon _weapon;
-        public BaseWeapon Weapons => this._weapon;
+        Equipment _weapon;
+        public Equipment Weapons => this._weapon;
 
         BaseUtility _utility;
         public BaseUtility Utility => this._utility;
 
         void Awake()
         {
-            this._weapon = this._objectWeapon.GetComponent<BaseWeapon>();
+            this._weapon = this._objectWeapon.GetComponent<AmmoWeapon>();
             this._weapon.Owner = this._owner;
             this._weapon.OnUnequiped();
 
@@ -69,7 +69,15 @@ namespace Equipments
         public void SetWeaponToReserved()
         {
             this.UnequipAll();
-            this._weapon = this._reserveWeapon.GetComponent<BaseWeapon>();
+
+            MeleeWeapon meleeWeapon = this._reserveWeapon.GetComponent<MeleeWeapon>();
+            AmmoWeapon ammoWeapon = this._reserveWeapon.GetComponent<AmmoWeapon>();
+
+            this._weapon = null;
+            if (meleeWeapon != null) this._weapon = meleeWeapon;
+            else if (ammoWeapon != null) this._weapon = ammoWeapon;
+
+            if (this._weapon == null) return;
             this._weapon.Owner = this._owner;
             this._weapon.OnUnequiped();
             this.EquipWeapon();

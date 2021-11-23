@@ -5,11 +5,8 @@ using UnityEngine;
 
 namespace Weapons
 {
-    public class WeaponStats : EquipmentStats
+    public class AmmoWeaponStats : EquipmentStats
     {
-        [SerializeField] WeaponName _weaponName;
-        public WeaponName WeaponName => this._weaponName;
-
         public float _fireRate;
         public float _damage;
         public float _shotRange;
@@ -18,12 +15,12 @@ namespace Weapons
         public int _magazineSize;
         public int _maxAmmo;
 
-        WeaponModel _model;
-        public WeaponModel Model => this._model;
+        AmmoWeaponModel _model;
+        public AmmoWeaponModel Model => this._model;
 
         void Awake()
         {
-            this._model = new WeaponModel(_equipTime, _fireRate, _damage, _shotRange, _shotSpread, _reloadSpeed, _magazineSize, _maxAmmo);
+            this._model = new AmmoWeaponModel(_equipTime, _fireRate, _damage, _shotRange, _shotSpread, _reloadSpeed, _magazineSize, _maxAmmo);
         }
     }
 }

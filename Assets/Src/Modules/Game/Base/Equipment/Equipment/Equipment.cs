@@ -64,7 +64,7 @@ namespace Equipments
             }
         }
 
-        protected void ActiveEquipment()
+        protected virtual void ActiveEquipment()
         {
             this._isReady = true;
         }

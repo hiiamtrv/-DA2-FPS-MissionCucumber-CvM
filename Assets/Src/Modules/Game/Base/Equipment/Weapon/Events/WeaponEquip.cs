@@ -5,15 +5,15 @@ using Weapons;
 
 namespace PubData
 {
-    public class WeaponEquip
+    public class WeaponAmmoEquip
     {
         GameObject _dispatcher;
-        WeaponModel _weaponModel;
+        AmmoWeaponModel _weaponModel;
 
         public GameObject Dispatcher => this._dispatcher;
-        public WeaponModel WeaponModel => this._weaponModel;
+        public AmmoWeaponModel WeaponModel => this._weaponModel;
 
-        public WeaponEquip(GameObject dispatcher, WeaponModel weaponModel)
+        public WeaponAmmoEquip(GameObject dispatcher, AmmoWeaponModel weaponModel)
         {
             this._dispatcher = dispatcher;
             this._weaponModel = weaponModel;

@@ -431,8 +431,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 864632090705112507}
-  - component: {fileID: 864632090705112505}
-  - component: {fileID: 864632090705112506}
+  - component: {fileID: 1140224521989292104}
+  - component: {fileID: 2705983699463088540}
   m_Layer: 5
   m_Name: Bat
   m_TagString: Untagged
@@ -455,7 +455,7 @@ Transform:
   m_Father: {fileID: 864632091689839458}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &864632090705112505
+--- !u!114 &1140224521989292104
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -464,34 +464,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 864632090705112508}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b56936e64875eb84d91f1372bf57a596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _equipTime: 1
-  _weaponName: 0
-  _fireRate: 10
-  _damage: 100
-  _shotRange: 2
-  _shotSpread: 0
-  _reloadSpeed: 5
-  _magazineSize: 30
-  _maxAmmo: 60
---- !u!114 &864632090705112506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864632090705112508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1546172e655f0d6439983853ff79f98a, type: 3}
+  m_Script: {fileID: 11500000, guid: b2d4fdcb00ecf894d8f74a2c6fbd0b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _eye: {fileID: 864632090860278921}
-  _soundGunShot: {fileID: 0}
-  _soundNoAmmo: {fileID: 0}
+  _soundAttack: {fileID: 0}
   _soundEquip: {fileID: 0}
+--- !u!114 &2705983699463088540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864632090705112508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 352caeca07be70b4a90cb7fe02d0b99b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _equipTime: 0.5
+  _attackSpeed: 3
+  _damage: 999
+  _attackRange: 10
 --- !u!1 &864632090767682381
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +743,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _equipTime: 1
-  _weaponName: 0
   _fireRate: 1
   _damage: 1
   _shotRange: 1e+13

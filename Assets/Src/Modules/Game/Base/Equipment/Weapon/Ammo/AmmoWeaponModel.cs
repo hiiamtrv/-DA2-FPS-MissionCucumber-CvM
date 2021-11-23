@@ -5,7 +5,7 @@ using Equipments;
 
 namespace Weapons
 {
-    public class WeaponModel : EquipmentModel
+    public class AmmoWeaponModel : EquipmentModel
     {
         float _baseFireRate;
         float _baseDamage;
@@ -22,7 +22,7 @@ namespace Weapons
         int _totalAmmo;
         int _remainAmmo;
 
-        public WeaponModel(
+        public AmmoWeaponModel(
             float equipTime, float fireRate, float damage, float shotRange,
             float shotSpread, float reloadTime, int magazineSize, int totalAmmo) : base(equipTime)
         {

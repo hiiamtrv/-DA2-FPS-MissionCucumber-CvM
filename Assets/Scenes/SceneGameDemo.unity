@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &67967589 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 864632090705112508, guid: 77cfb0a9c4e41914d8e33c1d71e6bbda, type: 3}
+  m_PrefabInstance: {fileID: 1279264162}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &197430634 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8223086360679582028, guid: b47a88ca959ffef47a788b5b5d1d66e1, type: 3}
@@ -694,6 +699,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 864632091689839457, guid: 77cfb0a9c4e41914d8e33c1d71e6bbda, type: 3}
+      propertyPath: _reserveWeapon
+      value: 
+      objectReference: {fileID: 67967589}
     - target: {fileID: 864632091934002037, guid: 77cfb0a9c4e41914d8e33c1d71e6bbda, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -736,6 +745,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 864632091934002037, guid: 77cfb0a9c4e41914d8e33c1d71e6bbda, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 864632091934002044, guid: 77cfb0a9c4e41914d8e33c1d71e6bbda, type: 3}
+      propertyPath: _amount
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 864632091934002045, guid: 77cfb0a9c4e41914d8e33c1d71e6bbda, type: 3}
@@ -1230,6 +1243,10 @@ PrefabInstance:
     - target: {fileID: 5382293116289820352, guid: 88730dbd0d77ec24b9b4d84421ee6a3c, type: 3}
       propertyPath: m_Name
       value: Dummy Mouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 5382293116289820359, guid: 88730dbd0d77ec24b9b4d84421ee6a3c, type: 3}
+      propertyPath: Health
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88730dbd0d77ec24b9b4d84421ee6a3c, type: 3}
@@ -1808,6 +1825,10 @@ PrefabInstance:
     - target: {fileID: 8223086360679582028, guid: b47a88ca959ffef47a788b5b5d1d66e1, type: 3}
       propertyPath: m_Name
       value: Dummy Cat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223086360679582029, guid: b47a88ca959ffef47a788b5b5d1d66e1, type: 3}
+      propertyPath: Health
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8223086360679582038, guid: b47a88ca959ffef47a788b5b5d1d66e1, type: 3}
       propertyPath: m_RootOrder

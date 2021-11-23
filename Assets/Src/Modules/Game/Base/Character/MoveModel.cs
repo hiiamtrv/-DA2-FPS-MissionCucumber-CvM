@@ -43,8 +43,8 @@ namespace Character
 
         public float JumpHeightPercent
         {
-            get => this._speed / this._baseJumpHeight;
-            set => this._speed = this._baseJumpHeight * value;
+            get => this._jumpHeight / this._baseJumpHeight;
+            set => this._jumpHeight = this._baseJumpHeight * value;
         }
     }
 }

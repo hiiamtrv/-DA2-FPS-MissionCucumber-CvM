@@ -32,7 +32,7 @@ namespace GameHud
 
             this.GetPlayerInfo();
 
-            EventCenter.Subcribe(EventId.WEAPON_EQUIP, this.LoadWeaponInfo);
+            EventCenter.Subcribe(EventId.WEAPON_AMMO_EQUIP, this.LoadWeaponInfo);
             EventCenter.Subcribe(EventId.WEAPON_AMMO_CHANGE, this.UpdateRemainAmmo);
             EventCenter.Subcribe(EventId.WEAPON_UNEQUIP, this.HideWeaponPanel);
             EventCenter.Subcribe(EventId.HEALTH_CHANGE, this.UpdatePlayerHealth);
@@ -58,7 +58,7 @@ namespace GameHud
 
         void LoadWeaponInfo(object pubData)
         {
-            PubData.WeaponEquip data = pubData as PubData.WeaponEquip;
+            PubData.WeaponAmmoEquip data = pubData as PubData.WeaponAmmoEquip;
             if (data.Dispatcher == this._player)
             {
                 this._pnlWeapon.gameObject.SetActive(true);

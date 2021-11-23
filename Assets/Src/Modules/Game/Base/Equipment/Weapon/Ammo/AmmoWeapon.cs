@@ -6,10 +6,10 @@ using UnityEngine;
 
 namespace Weapons
 {
-    public class BaseWeapon : Equipment
+    public class AmmoWeapon : Equipment
     {
-        protected WeaponModel _model;
-        public WeaponModel Model => this._model;
+        protected AmmoWeaponModel _model;
+        public AmmoWeaponModel Model => this._model;
 
         protected int _isFiring;
         protected int _magazineAmmo;
@@ -25,7 +25,7 @@ namespace Weapons
 
         protected override void Start()
         {
-            this._model = this.GetComponent<WeaponStats>().Model;
+            this._model = this.GetComponent<AmmoWeaponStats>().Model;
             this._maxAmmo = this.Model.TotalAmmo;
             this._magazineAmmo = this.Model.MagazineSize;
             base.Start();
@@ -91,8 +91,8 @@ namespace Weapons
             {
                 if (this != null)
                     EventCenter.Publish(
-                        EventId.WEAPON_EQUIP,
-                        new PubData.WeaponEquip(this.Owner, this.Model)
+                        EventId.WEAPON_AMMO_EQUIP,
+                        new PubData.WeaponAmmoEquip(this.Owner, this.Model)
                     );
             });
 
