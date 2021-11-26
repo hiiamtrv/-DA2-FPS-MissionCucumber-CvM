@@ -17,10 +17,10 @@ namespace Weapons
 
         protected GunState _gunState;
 
-        [SerializeField] Camera _eye;
-        [SerializeField] AudioClip _soundGunShot;
-        [SerializeField] AudioClip _soundNoAmmo;
-        [SerializeField] AudioClip _soundEquip;
+        [SerializeField] protected Camera _eye;
+        [SerializeField] protected AudioClip _soundGunShot;
+        [SerializeField] protected AudioClip _soundNoAmmo;
+        [SerializeField] protected AudioClip _soundEquip;
         AudioSource _audio = new AudioSource();
 
         protected override void Start()
@@ -31,7 +31,7 @@ namespace Weapons
             base.Start();
         }
 
-        void Update()
+        protected virtual void Update()
         {
             if (this.IsReady && this.CanShoot)
             {
@@ -39,7 +39,7 @@ namespace Weapons
             }
         }
 
-        protected void Shoot()
+        protected virtual void Shoot()
         {
             this.Model.RemainAmmo--;
 
@@ -54,33 +54,7 @@ namespace Weapons
             }
 
             this.PublishAmmoChange();
-
-            if (this.Model.RemainAmmo == 0)
-            {
-                this._gunState = GunState.RELOADING;
-                if (this.Model.TotalAmmo > 0)
-                {
-                    LeanTween.delayedCall(
-                        this.Model.ReloadTime,
-                        () =>
-                        {
-                            int nextMagazine = System.Math.Min(this.Model.MagazineSize, this.Model.TotalAmmo);
-                            this.Model.RemainAmmo = nextMagazine;
-                            this.Model.TotalAmmo -= nextMagazine;
-                            this._gunState = GunState.READY_TO_FIRE;
-                            this.PublishAmmoChange();
-                        }
-                    );
-                }
-            }
-            else
-            {
-                this._gunState = GunState.RECOIL;
-                LeanTween.delayedCall(
-                    1 / this.Model.FireRate,
-                    () => this._gunState = GunState.READY_TO_FIRE
-                );
-            }
+            this.RecalulateAmmo();
         }
 
         public override void OnEquiped()
@@ -148,6 +122,36 @@ namespace Weapons
                 EventId.WEAPON_AMMO_CHANGE,
                 new PubData.WeaponAmmoChange(this.Owner, this.Model.RemainAmmo, this.Model.TotalAmmo)
             );
+        }
+
+        protected void RecalulateAmmo()
+        {
+            if (this.Model.RemainAmmo == 0)
+            {
+                this._gunState = GunState.RELOADING;
+                if (this.Model.TotalAmmo > 0)
+                {
+                    LeanTween.delayedCall(
+                        this.Model.ReloadTime,
+                        () =>
+                        {
+                            int nextMagazine = System.Math.Min(this.Model.MagazineSize, this.Model.TotalAmmo);
+                            this.Model.RemainAmmo = nextMagazine;
+                            this.Model.TotalAmmo -= nextMagazine;
+                            this._gunState = GunState.READY_TO_FIRE;
+                            this.PublishAmmoChange();
+                        }
+                    );
+                }
+            }
+            else
+            {
+                this._gunState = GunState.RECOIL;
+                LeanTween.delayedCall(
+                    1 / this.Model.FireRate,
+                    () => this._gunState = GunState.READY_TO_FIRE
+                );
+            }
         }
     }
 

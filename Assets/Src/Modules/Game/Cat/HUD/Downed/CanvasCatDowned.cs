@@ -19,10 +19,10 @@ namespace Cats
 
         void Awake()
         {
-            CharacterStats stats = this._player.GetComponent<CharacterStats>();
-            if (stats == null || stats.CharacterSide != CharacterSide.CATS)
+            CharacterStats stats = this._player == null ? null : this._player.GetComponent<CharacterStats>();
+            if (this._player == null || stats == null || stats.CharacterSide != CharacterSide.CATS)
             {
-                Destroy(this);
+                Destroy(this.gameObject);
             }
         }
 

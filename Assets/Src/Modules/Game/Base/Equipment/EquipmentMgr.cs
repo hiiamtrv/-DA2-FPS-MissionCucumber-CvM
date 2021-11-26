@@ -31,9 +31,12 @@ namespace Equipments
             this._weapon.Owner = this._owner;
             this._weapon.OnUnequiped();
 
-            this._utility = this._objectUtility.GetComponent<BaseUtility>();
-            this._utility.Owner = this._owner;
-            this._utility.OnUnequiped();
+            if (this._objectUtility != null)
+            {
+                this._utility = this._objectUtility.GetComponent<BaseUtility>();
+                this._utility.Owner = this._owner;
+                this._utility.OnUnequiped();
+            }
 
             this.EquipWeapon();
             this.SubEvents();
@@ -41,16 +44,18 @@ namespace Equipments
 
         public void EquipUtility(bool hideWeapon = true)
         {
+            if (!this.HasUtility) return;
+
             if (hideWeapon) this._weapon.OnUnequiped();
             this._utility.OnEquiped();
-
             this._isUsingWeapon = hideWeapon;
         }
 
         public void EquipWeapon()
         {
+            if (this._weapon == null) return;
             this._isUsingWeapon = true;
-            this._utility.OnUnequiped();
+            if (this.HasUtility) this._utility.OnUnequiped();
             this._weapon.OnEquiped();
         }
 
@@ -62,14 +67,15 @@ namespace Equipments
 
         public void UnequipAll()
         {
-            this._utility.OnUnequiped();
+            if (this.HasUtility) this._utility.OnUnequiped();
             this._weapon.OnUnequiped();
         }
 
         public void SetWeaponToReserved()
         {
-            this.UnequipAll();
+            if (this._reserveWeapon == null) return;
 
+            this.UnequipAll();
             MeleeWeapon meleeWeapon = this._reserveWeapon.GetComponent<MeleeWeapon>();
             AmmoWeapon ammoWeapon = this._reserveWeapon.GetComponent<AmmoWeapon>();
 
@@ -128,5 +134,7 @@ namespace Equipments
                 if (data.Dispatcher == this.Owner) this.EquipLasted();
             });
         }
+
+        bool HasUtility => (this._objectUtility != null && this._utility != null);
     }
 }
