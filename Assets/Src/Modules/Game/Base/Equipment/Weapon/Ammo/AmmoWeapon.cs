@@ -35,7 +35,7 @@ namespace Weapons
 
         protected virtual void Update()
         {
-            if (this.IsReady && this.CanShoot)
+            if (this.IsReady && this.CanShoot && InputMgr.StartShoot)
             {
                 this.Shoot();
             }

@@ -1362,12 +1362,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1729841268}
-  - component: {fileID: 1729841272}
-  - component: {fileID: 1729841271}
   - component: {fileID: 1729841270}
   - component: {fileID: 1729841269}
   m_Layer: 5
-  m_Name: FlamePistol
+  m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1397,36 +1395,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1729841267}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f104b786ebf5a64a8216ffe16375150, type: 3}
+  m_Script: {fileID: 11500000, guid: 95d5a3cf8e5195d4cacbc18c3bc93c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _equipTime: 3
+  _fireBall: {fileID: 7781400165985174019, guid: df4c5e9746b80054b98742cceead10af, type: 3}
+  _eye: {fileID: 2514783}
 --- !u!114 &1729841270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1729841267}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87e3ccd7c2c4b204d93d0e6dfdc01042, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 5
---- !u!114 &1729841271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1729841267}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da399caf1d4389748b63cfc242e6ece5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1729841272
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1435,9 +1409,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1729841267}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed90c81f82b0d564d9a84de71963a17d, type: 3}
+  m_Script: {fileID: 11500000, guid: ab98612b167bd234eb6a7826a6fad9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _equipTime: 3
+  _damage: 5
 --- !u!1 &1735748713
 GameObject:
   m_ObjectHideFlags: 0

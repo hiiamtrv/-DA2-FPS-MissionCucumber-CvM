@@ -8,9 +8,16 @@ namespace Utilities
     public class BaseUtility : Equipment
     {
         //TODO: Override utility name to name another name
-        public UtilName Name => UtilName.UNDEFINED;
+        UtilityModel _model;
+        public UtilityModel Model => _model;
 
         public virtual bool HideGunWhenUse => true;
+
+        protected override void Start()
+        {
+            this.GetModel();
+            base.Start();
+        }
 
         protected virtual void EquipUtil()
         {
@@ -21,6 +28,12 @@ namespace Utilities
         protected virtual void UnequipUtil()
         {
             this.EquipMgr.EquipWeapon();
+        }
+
+        protected virtual void GetModel()
+        {
+            this._model = this.GetComponent<UtilityStats>().Model;
+            //TODO: must override if Stats or Model have differences
         }
 
         protected virtual void ActiveUtil()
