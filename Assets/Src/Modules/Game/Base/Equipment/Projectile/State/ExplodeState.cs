@@ -9,13 +9,12 @@ namespace Projectile
         public class ExplodeState : BaseState, IProjectileState
         {
             public ProjectileEngine StateMachine => (this._stateMachine as ProjectileEngine);
-            public bool ApplyGravity => StateMachine.ApplyGravity;
 
             public ExplodeState(StateMachine stateMachine) : base(stateMachine) { }
 
             public override void OnEnter()
             {
-                this.StateMachine.Explode();
+                this.StateMachine.HitObject();
             }
 
             public void OnCollsion()

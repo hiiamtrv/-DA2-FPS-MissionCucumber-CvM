@@ -42,6 +42,11 @@ namespace Equipments
             this.SubEvents();
         }
 
+        void Start()
+        {
+            this.EquipWeapon();
+        }
+
         public void EquipUtility(bool hideWeapon = true)
         {
             if (!this.HasUtility) return;

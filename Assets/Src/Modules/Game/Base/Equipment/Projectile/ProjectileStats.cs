@@ -9,10 +9,10 @@ namespace Projectile
         [SerializeField] int _numBounce;
         public int NumBounce { get => _numBounce; set => _numBounce = value; }
 
-        [SerializeField] bool _applyGravity;
-        public bool ApplyGravity => _applyGravity;
-
         [SerializeField] float _flySpeed;
         public float FlySpeed => this._flySpeed;
+
+        [SerializeField] int _timeDestroy;
+        public float TimeDestroy => _timeDestroy;
     }
 }

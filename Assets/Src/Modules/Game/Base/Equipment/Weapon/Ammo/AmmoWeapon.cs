@@ -8,12 +8,15 @@ namespace Weapons
 {
     public class AmmoWeapon : Equipment
     {
+        protected readonly Vector2 AIM_POINT = new Vector2(
+            Screen.width * 0.5f,
+            Screen.height * 0.5f
+        );
+
         protected AmmoWeaponModel _model;
         public AmmoWeaponModel Model => this._model;
 
         protected int _isFiring;
-        protected int _magazineAmmo;
-        protected int _maxAmmo;
 
         protected GunState _gunState;
 
@@ -26,8 +29,7 @@ namespace Weapons
         protected override void Start()
         {
             this._model = this.GetComponent<AmmoWeaponStats>().Model;
-            this._maxAmmo = this.Model.TotalAmmo;
-            this._magazineAmmo = this.Model.MagazineSize;
+            this.Model.TotalAmmo -= this.Model.MagazineSize;
             base.Start();
         }
 
@@ -97,11 +99,8 @@ namespace Weapons
             get
             {
                 List<GameObject> targets = new List<GameObject>();
-
-                float screenX = Screen.width * 0.5f;
-                float screenY = Screen.height * 0.5f;
                 RaycastHit hit;
-                Ray ray = this._eye.ScreenPointToRay(new Vector2(screenX, screenY));
+                Ray ray = this._eye.ScreenPointToRay(this.AIM_POINT);
                 float weaponRange = this.Model.ShotRange;
 
                 if (Physics.Raycast(ray, out hit, weaponRange))

@@ -10,17 +10,19 @@ namespace Projectile
         ProjectileStats _model;
         public ProjectileStats Model => this._model;
         public int NumBounce { get => Model.NumBounce; set => Model.NumBounce = value; }
-        public bool ApplyGravity => Model.ApplyGravity;
         public float FlySpeed => Model.FlySpeed;
 
         Vector3 _flyVector;
         public Vector3 FlyVector { get => _flyVector; set => _flyVector = value; }
 
+        GameObject _owner;
+        public GameObject Owner { set => _owner = value; }
+
         GameObject _collidedObject;
         public GameObject CollidedObject => _collidedObject;
 
-        Action<object> _onExplode;
-        public Action<object> OnExplode { get => _onExplode; set => _onExplode = value; }
+        Action _onHit;
+        public Action OnHit { get => _onHit; set => _onHit = value; }
 
         public override BaseState GetDefaultState() => new State.FlyState(this);
 
@@ -37,17 +39,26 @@ namespace Projectile
                 base.Start();
                 this._flyVector = Vector3.forward;
             }
+
+            LeanTween.delayedCall(this.Model.TimeDestroy, () =>
+            {
+                if (this) Destroy(this.gameObject);
+            });
         }
 
-        public void Explode()
+        public void HitObject()
         {
-            if (_onExplode != null) _onExplode(this._collidedObject);
+            if (_onHit != null) _onHit();
+            Destroy(this.gameObject);
         }
 
-        void OnCollisionEnter(Collision collisionInfo)
+        void OnTriggerEnter(Collider collider)
         {
-            this._collidedObject = collisionInfo.gameObject;
-            (this._currentState as State.IProjectileState).OnCollsion();
+            if (collider.gameObject != _owner)
+            {
+                this._collidedObject = collider.gameObject;
+                (this._currentState as State.IProjectileState).OnCollsion();
+            }
         }
     }
 }

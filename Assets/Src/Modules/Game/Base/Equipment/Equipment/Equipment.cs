@@ -21,14 +21,15 @@ namespace Equipments
         protected EquipmentMgr _equipMgr;
         public EquipmentMgr EquipMgr => this._equipMgr;
 
+        const string EQUIPMENT = "Equipment";
         protected GameObject _equipmentObject;
         public GameObject EquipmentObject => this._equipmentObject;
 
         public bool IsEquiped => this._equipmentObject.activeInHierarchy;
 
-        void Awake()
+        protected virtual void Awake()
         {
-            Transform equipmentTransform = this.transform.Find("Equipment");
+            Transform equipmentTransform = this.transform.Find(EQUIPMENT);
             if (equipmentTransform != null) this._equipmentObject = equipmentTransform.gameObject;
             else Destroy(this);
         }
