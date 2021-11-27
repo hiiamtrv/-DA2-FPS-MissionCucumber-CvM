@@ -6,16 +6,16 @@ namespace Interactable
 {
     public class InteractableStats : MonoBehaviour
     {
-        public float interactTime;
-        public bool canMoveWhileInteract;
-        public float interactRadius;
+        [SerializeField] protected float _interactTime;
+        [SerializeField] protected bool _canMoveWhileInteract;
+        [SerializeField] protected float _interactRadius;
 
         InteractModel _model;
         public InteractModel Model => this._model;
 
         void Awake()
         {
-            this._model = new InteractModel(interactTime, canMoveWhileInteract, interactRadius);
+            this._model = new InteractModel(_interactTime, _canMoveWhileInteract, _interactRadius);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Character
                 }
             }
 
-            public virtual void OnShieldChange(float amount, ShieldReason reason)
+            public virtual void OnShieldChange(float amount, ShieldReason reason, GameObject sender)
             {
                 if (amount >= 0)
                 {
@@ -40,7 +40,7 @@ namespace Character
                 //TODO: Override if you want some effect before/after get shield damage
             }
 
-            public virtual void OnHealed(float amount, HealReason reason, bool exceedMaxHealth)
+            public virtual void OnHealed(float amount, HealReason reason, bool exceedMaxHealth, GameObject sender)
             {
                 //TODO: Override if you want some effect before/after get healed
                 this.Health += amount;
@@ -51,7 +51,7 @@ namespace Character
                 );
             }
 
-            public virtual void OnDamaged(float damage, DamageReason reason)
+            public virtual void OnDamaged(float damage, DamageReason reason, GameObject sender)
             {
                 //TODO: Override if you want some effect before/after take damage
                 this.Health -= damage;

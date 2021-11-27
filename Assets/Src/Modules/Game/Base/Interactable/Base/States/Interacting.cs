@@ -9,20 +9,27 @@ namespace Interactable
         public class Interacting : BaseState
         {
             protected float _interactTime;
-            protected InteractModel Model => ((InteractEngine)this._stateMachine).Model;
-            public GameObject InteractPlayer => ((InteractEngine) this._stateMachine).InteractPlayer;
+            public float InteractTime => _interactTime;
+
+            protected bool _isSuccessful;
+
+            protected InteractEngine StateMachine => ((InteractEngine)this._stateMachine);
+            protected InteractModel Model => StateMachine.Model;
+            public GameObject InteractPlayer => StateMachine.InteractPlayer;
 
             //ADJACENTS STATES
-            protected BaseState NextStateIdle => new Idle(this._stateMachine);
-            protected BaseState NextStateDoneInteract => new DoneInteract(this._stateMachine);
+            protected virtual BaseState NextStateIdle => new Idle(this._stateMachine);
+            protected virtual BaseState NextStateDoneInteract => new DoneInteract(this._stateMachine);
 
-            public Interacting(StateMachine stateMachine) : base(stateMachine) { }
+            public Interacting(StateMachine stateMachine) : base(stateMachine)
+            {
+                this._interactTime = 0;
+                this._isSuccessful = false;
+            }
 
             public override void OnEnter()
             {
-                Debug.Log("Start obtaining");
 
-                this._interactTime = 0;
                 EventCenter.Publish(
                     EventId.INTERACT_START,
                     new PubData.IneractStart(this.InteractPlayer, this._interactTime, this.Model)
@@ -42,6 +49,8 @@ namespace Interactable
                     Character.MoveEngine charMoveEngine = this.InteractPlayer.GetComponent<Character.MoveEngine>();
                     if (charMoveEngine) charMoveEngine.ChangeState(new Character.MoveState.Stand(charMoveEngine));
                 }
+
+                if (!this._isSuccessful) this.StateMachine.OnInteractFailed();
                 base.OnExit();
             }
 
@@ -56,8 +65,6 @@ namespace Interactable
                         EventId.INTERACT_END,
                         new PubData.InteractEnd(this.InteractPlayer, this._gameObject, false)
                     );
-
-                    (this._stateMachine as InteractEngine).OnInteractFailed();
                 }
                 else
                 {
@@ -71,7 +78,8 @@ namespace Interactable
                 float INTERACT_TIME = this.Model.InteractTime;
                 if (this._interactTime >= INTERACT_TIME)
                 {
-                    DoneInteract stateObtained = this.NextStateDoneInteract as DoneInteract;
+                    this._isSuccessful = true;
+                    BaseState stateObtained = this.NextStateDoneInteract;
                     this.SetNextState(stateObtained);
                 }
             }

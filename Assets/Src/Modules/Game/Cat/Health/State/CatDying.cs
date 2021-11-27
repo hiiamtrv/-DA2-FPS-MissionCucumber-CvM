@@ -23,7 +23,7 @@ namespace Cats
                 CatDyingStats stats = this._gameObject.GetComponent<CatDyingStats>();
                 if (stats != null)
                 {
-                    base.OnShieldChange(0, ShieldReason.FORCE_SET);
+                    base.OnShieldChange(0, ShieldReason.FORCE_SET, this._gameObject);
                     this._catDyingModel = stats.Model;
                     this._lastEffectTime = Time.time;
 
@@ -43,17 +43,17 @@ namespace Cats
                 {
                     this._lastEffectTime = Time.time;
                     float damage = this.CatDyingModel.Amount;
-                    this.OnDamaged(damage, DamageReason.CAT_DYING);
+                    this.OnDamaged(damage, DamageReason.CAT_DYING, this._gameObject);
                 }
                 base.LateUpdate();
             }
 
-            public override void OnDamaged(float damage, DamageReason reason)
+            public override void OnDamaged(float damage, DamageReason reason, GameObject sender)
             {
-                if (reason == DamageReason.CAT_DYING) base.OnDamaged(damage, reason);
+                if (reason == DamageReason.CAT_DYING) base.OnDamaged(damage, reason, sender);
             }
 
-            public override void OnShieldChange(float amount, ShieldReason reason)
+            public override void OnShieldChange(float amount, ShieldReason reason, GameObject sender)
             {
                 //do nothing
             }

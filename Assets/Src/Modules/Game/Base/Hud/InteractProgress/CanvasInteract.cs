@@ -7,7 +7,7 @@ namespace GameHud
 {
     public class CanvasInteract : MonoBehaviour
     {
-        [SerializeField] GameObject _player;
+        GameObject _player;
 
         UiHelper uiHelper = null;
         Slider _slider = null;
@@ -24,6 +24,8 @@ namespace GameHud
 
         void Start()
         {
+            this._player = GameVar.Ins.Player;
+
             this.uiHelper = new UiHelper(this.gameObject);
             this._slider = uiHelper.ui[SLIDER].GetComponent<Slider>();
             this._lbTime = uiHelper.ui[LB_TIME].GetComponent<Text>();

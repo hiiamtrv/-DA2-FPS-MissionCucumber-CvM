@@ -849,9 +849,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4829168729616271775}
+  - component: {fileID: 4829168729616271772}
   - component: {fileID: 4829168729616271774}
   - component: {fileID: 4829168729616271773}
-  - component: {fileID: 4829168729616271772}
   - component: {fileID: 4829168729616271763}
   - component: {fileID: 4829168729616271762}
   - component: {fileID: 4829168729616271761}
@@ -879,6 +879,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4829168729616271772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4829168729616271767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb834e6969a232e488f4cba989486265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterSide: 2
+  Speed: 20
+  JumpHeight: 1
+  RotateSpeed: 2
+  Health: 100
+  HealthRegen: 1
+  Shield: 25
 --- !u!143 &4829168729616271774
 CharacterController:
   m_ObjectHideFlags: 0
@@ -910,25 +929,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.6, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4829168729616271772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4829168729616271767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb834e6969a232e488f4cba989486265, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterSide: 2
-  Speed: 20
-  JumpHeight: 1
-  RotateSpeed: 2
-  Health: 100
-  HealthRegen: 1
-  Shield: 25
 --- !u!114 &4829168729616271763
 MonoBehaviour:
   m_ObjectHideFlags: 0

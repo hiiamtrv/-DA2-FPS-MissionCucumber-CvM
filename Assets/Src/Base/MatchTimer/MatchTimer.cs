@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MatchTimer : MonoBehaviour
 {
-    [SerializeField] float _matchSeconds;
-
     float _remainTime;
     public float RemainTime => this._remainTime;
 
@@ -17,7 +15,7 @@ public class MatchTimer : MonoBehaviour
 
     void Awake()
     {
-        this._remainTime = this._matchSeconds;
+        this._remainTime = GameVar.Ins.MatchDuration;
         EventCenter.Subcribe(EventId.TIMER_END, this.OnTimerEnd);
         EventCenter.Subcribe(EventId.MATCH_END, (object data) => this.OnMatchEnd());
     }

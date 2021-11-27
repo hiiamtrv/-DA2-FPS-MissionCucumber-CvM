@@ -42,21 +42,21 @@ namespace Cats
 
             public override void OnExit()
             {
-                this.OnShieldChange(this._receivedShield, ShieldReason.CAT_RECOVERED);
+                this.OnShieldChange(this._receivedShield, ShieldReason.CAT_RECOVERED, this._gameObject);
                 this._playerMoveModel.SpeedPercent += this._slow;
                 this._playerMoveModel.JumpHeightPercent += this._slow;
                 EventCenter.Publish(EventId.CAT_RECOVERED, this._stateMachine.gameObject);
                 base.OnExit();
             }
 
-            public override void OnDamaged(float damage, DamageReason reason)
+            public override void OnDamaged(float damage, DamageReason reason, GameObject sender)
             {
                 //do nothing
             }
 
-            public override void OnShieldChange(float amount, ShieldReason reason)
+            public override void OnShieldChange(float amount, ShieldReason reason, GameObject sender)
             {
-                if (reason == ShieldReason.CAT_RECOVERED) base.OnShieldChange(amount, reason);
+                if (reason == ShieldReason.CAT_RECOVERED) base.OnShieldChange(amount, reason, sender);
             }
         }
     }

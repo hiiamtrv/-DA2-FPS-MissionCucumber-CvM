@@ -10,7 +10,7 @@ namespace GameHud
 {
     public class CanvasPlayerHud : MonoBehaviour
     {
-        [SerializeField] GameObject _player;
+        GameObject _player;
 
         UiHelper uiHelper = null;
         RectTransform _pnlHealth = null;
@@ -22,6 +22,8 @@ namespace GameHud
 
         void Start()
         {
+            this._player = GameVar.Ins.Player;
+
             this.uiHelper = new UiHelper(this.gameObject);
             this._pnlHealth = uiHelper.ui[PNL_HEALTH].GetComponent<RectTransform>();
             this._pnlWeapon = uiHelper.ui[PNL_WEAPON].GetComponent<RectTransform>();

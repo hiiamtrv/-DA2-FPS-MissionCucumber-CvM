@@ -19,35 +19,30 @@ namespace Interactable
 
         protected override void Start()
         {
+            this._interactPlayer = null;
             base.Start();
+            this.GetModel();
+        }
+
+        protected virtual void GetModel()
+        {
             this._model = this.GetComponent<InteractableStats>().Model;
         }
 
         public bool IsPlayerInRange(GameObject gameObject)
         {
-            return this._playerInRange.Contains(gameObject);
+            float distance = Vector3.Distance(gameObject.transform.position, this.transform.position);
+            return distance <= this.Model.InteractRadius;
         }
 
         public void DoInteract(GameObject gameObject)
         {
-            if (this.IsPlayerInRange(gameObject) && this.IsIdle)
+            if (this.CanInteract(gameObject))
             {
                 this._interactPlayer = gameObject;
                 Interacting obtainState = new Interacting(this);
                 this.ChangeState(obtainState);
             }
-        }
-
-        public void NotifyObjectEnter(GameObject player)
-        {
-            this._playerInRange.Add(player);
-            Debug.Log("Object enter trigger: " + player);
-        }
-
-        public void NotifyObjectExit(GameObject player)
-        {
-            this._playerInRange.Remove(player);
-            Debug.Log("Object exit trigger: " + player);
         }
 
         public override BaseState GetDefaultState() => new Idle(this);
@@ -60,7 +55,17 @@ namespace Interactable
 
         public virtual void OnInteractFailed()
         {
-            //TODO: Override to do effect when interact object at full time
+            //TODO: Override to do effect when not nteract object at full time 
+        }
+
+        protected virtual bool CanInteract(GameObject gameObject)
+        {
+            return this.InteractPlayer == null && this.IsPlayerInRange(gameObject) && this.IsIdle;
+        }
+
+        public void ResetInteractPlayer()
+        {
+            this._interactPlayer = null;
         }
     }
 }

@@ -12,9 +12,9 @@ namespace Cats
         {
             public CatNormal(StateMachine stateMachine) : base(stateMachine) { }
 
-            public override void OnDamaged(float damage, DamageReason reason)
+            public override void OnDamaged(float damage, DamageReason reason, GameObject sender)
             {
-                if (this.Model.Shield > 0) base.OnDamaged(damage, reason);
+                if (this.Model.Shield <= 0) base.OnDamaged(damage, reason, sender);
             }
 
             protected override void OnShieldOut()

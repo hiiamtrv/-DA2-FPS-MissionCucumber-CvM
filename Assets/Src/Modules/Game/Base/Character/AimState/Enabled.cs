@@ -44,6 +44,7 @@ namespace Character
                 var target = this.Target;
                 if (target != null)
                 {
+                    Debug.LogFormat("[{0}]", target);
                     Interactable.InteractEngine interactEngine = target.GetComponent<Interactable.InteractEngine>();
                     if (interactEngine != null) interactEngine.DoInteract(this._gameObject);
                 }

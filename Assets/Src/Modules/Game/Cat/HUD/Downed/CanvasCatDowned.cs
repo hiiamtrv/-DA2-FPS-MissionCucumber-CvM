@@ -8,7 +8,7 @@ namespace Cats
 {
     public class CanvasCatDowned : MonoBehaviour
     {
-        [SerializeField] GameObject _player;
+        GameObject _player;
 
         UiHelper uiHelper = null;
         Slider _slider = null;
@@ -17,17 +17,10 @@ namespace Cats
         float _downTime;
         float _timeRemain;
 
-        void Awake()
-        {
-            CharacterStats stats = this._player == null ? null : this._player.GetComponent<CharacterStats>();
-            if (this._player == null || stats == null || stats.CharacterSide != CharacterSide.CATS)
-            {
-                Destroy(this.gameObject);
-            }
-        }
-
         void Start()
         {
+            this._player = GameVar.Ins.Player;
+
             this.uiHelper = new UiHelper(this.gameObject);
             this._slider = uiHelper.ui[SLIDER].GetComponent<Slider>();
             this._lbTime = uiHelper.ui[LB_TIME].GetComponent<Text>();
@@ -35,6 +28,17 @@ namespace Cats
             this.HideView();
             EventCenter.Subcribe(EventId.CAT_DOWN, this.ShowView);
             EventCenter.Subcribe(EventId.CAT_RECOVERED, this.HideView);
+
+            this.EnableIfPlayerIsCat();
+        }
+
+        void EnableIfPlayerIsCat()
+        {
+            CharacterStats stats = this._player == null ? null : this._player.GetComponent<CharacterStats>();
+            if (this._player == null || stats == null || stats.CharacterSide != CharacterSide.CATS)
+            {
+                Destroy(this.gameObject);
+            }
         }
 
         void Update()
