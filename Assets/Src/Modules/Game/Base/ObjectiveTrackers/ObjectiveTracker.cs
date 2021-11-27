@@ -8,9 +8,6 @@ public class ObjectiveTracker : MonoBehaviour
     [SerializeField] List<GameObject> _cucumbers;
     public List<GameObject> Cucumbers => this._cucumbers;
 
-    [SerializeField] GameObject _shieldCenter;
-    public GameObject ShieldCenter => this._shieldCenter;
-
     void Awake()
     {
         EventCenter.Subcribe(EventId.INTERACT_END, this.OnEndInteractObject);
