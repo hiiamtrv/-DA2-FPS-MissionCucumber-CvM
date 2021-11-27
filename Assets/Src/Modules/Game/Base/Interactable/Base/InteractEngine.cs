@@ -35,7 +35,7 @@ namespace Interactable
             return distance <= this.Model.InteractRadius;
         }
 
-        public void DoInteract(GameObject gameObject)
+        public virtual void DoInteract(GameObject gameObject)
         {
             if (this.CanInteract(gameObject))
             {

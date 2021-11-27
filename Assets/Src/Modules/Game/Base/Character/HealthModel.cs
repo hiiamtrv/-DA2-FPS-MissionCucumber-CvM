@@ -53,6 +53,7 @@ namespace Character
     {
         DEFAULT,
         CAT_DYING,
+        SELF_DAMAGE,
     }
 
     public enum HealReason
@@ -67,6 +68,7 @@ namespace Character
         DEFAULT,
         DAMAGE,
         CAT_RECOVERED,
+        CAT_WEAKENED,
         FORCE_SET,
     }
 }

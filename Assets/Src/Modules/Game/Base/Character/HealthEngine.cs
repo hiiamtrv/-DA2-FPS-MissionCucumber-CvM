@@ -35,6 +35,11 @@ namespace Character
                 this.CurrentState.OnShieldChange(remainShield, ShieldReason.DAMAGE, sender);
             }
             this.CurrentState.OnDamaged(trueDamage, reason, sender);
+
+            if (GameVar.Ins.SelfDamage && sender != null) {
+                HealthEngine health = sender.GetComponent<HealthEngine>();
+                if (health != null) health.InflictDamage(damage, DamageReason.SELF_DAMAGE, penetration, null);
+            }
         }
 
         public void Heal(float amount, HealReason reason, bool exceedMaxHealth = false, GameObject sender = null)

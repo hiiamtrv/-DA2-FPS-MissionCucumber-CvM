@@ -107,7 +107,6 @@ namespace Weapons
                 {
                     targets.Add(hit.collider.gameObject);
                 }
-                targets.Add(this._owner);
 
                 return targets.ToArray();
             }

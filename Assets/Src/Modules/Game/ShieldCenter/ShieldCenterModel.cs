@@ -13,6 +13,7 @@ namespace ShieldCenter
             : base(interactTime, canMoveWhileInteract, interactRadius)
         {
             this._checkPoints = checkPoints;
+            this._checkPoints.Sort();
         }
 
         public float GetLastedCheckPoint(float lastProgress)

@@ -8,8 +8,7 @@ namespace ShieldCenter
 {
     public class ShieldCenterEngine : InteractEngine
     {
-        ShieldCenterModel _model;
-        public ShieldCenterModel Model => _model;
+        public new ShieldCenterModel Model => (ShieldCenterModel)this._model;
 
         float _lastInteractTime;
 
@@ -21,10 +20,10 @@ namespace ShieldCenter
         protected override bool CanInteract(GameObject gameObject)
         {
             CharacterStats stats = gameObject.GetComponent<CharacterStats>();
-            return base.CanInteract(gameObject) && stats != null && stats.CharacterSide == CharacterSide.MICE;
+            return stats != null && stats.CharacterSide == CharacterSide.MICE && base.CanInteract(gameObject);
         }
 
-        public void DoInteract(GameObject gameObject)
+        public new void DoInteract(GameObject gameObject)
         {
             if (CanInteract(gameObject))
             {
@@ -44,7 +43,7 @@ namespace ShieldCenter
             }
         }
 
-        public virtual void OnInteractSuccesful()
+        public override void OnInteractSuccesful()
         {
             EventCenter.Publish(EventId.SHIELD_CENTER_DESTROYED);
             this.gameObject.SetActive(false);

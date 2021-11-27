@@ -7,13 +7,14 @@ namespace Demo
 {
     public class CanvasDummyTag : MonoBehaviour
     {
-        [SerializeField] GameObject _character;
+        GameObject _character;
+        GameObject _anchor;
+        const string TAG_ANCHOR = "TagAnchor";
 
         UiHelper uiHelper = null;
         RectTransform _pnlStats = null;
         Text _lbHealth = null;
         Text _lbShield = null;
-        float _objectHeight;
 
         const string PNL_STATS = "PnlStats";
         const string LB_HEALTH = "LbHealth";
@@ -21,10 +22,11 @@ namespace Demo
 
         void Awake()
         {
+            this._character = this.transform.parent.gameObject;
+            this._anchor = this._character.transform.Find(TAG_ANCHOR).gameObject;
+
             EventCenter.Subcribe(EventId.HEALTH_CHANGE, this.ChangeHealth);
             EventCenter.Subcribe(EventId.SHILED_CHANGE, this.ChangeShield);
-            this._objectHeight = this._character.GetComponent<Collider>().bounds.size.y * 20;
-            Debug.LogFormat("{0}", this._objectHeight);
         }
 
         void Start()
@@ -41,8 +43,8 @@ namespace Demo
 
         void Update()
         {
-            Vector3 pos = Camera.main.WorldToScreenPoint(this._character.transform.position);
-            this._pnlStats.transform.position = pos + Vector3.up * this._objectHeight;
+            Vector3 pos = Camera.main.WorldToScreenPoint(this._anchor.transform.position);
+            this._pnlStats.transform.position = pos;
         }
 
         void ChangeHealth(object pubData)
