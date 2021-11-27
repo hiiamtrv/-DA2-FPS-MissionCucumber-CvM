@@ -23,7 +23,7 @@ namespace ShieldCenter
             return stats != null && stats.CharacterSide == CharacterSide.MICE && base.CanInteract(gameObject);
         }
 
-        public new void DoInteract(GameObject gameObject)
+        public override void DoInteract(GameObject gameObject)
         {
             if (CanInteract(gameObject))
             {
