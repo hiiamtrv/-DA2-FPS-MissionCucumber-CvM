@@ -895,9 +895,9 @@ MonoBehaviour:
   Speed: 20
   JumpHeight: 1
   RotateSpeed: 2
-  Health: 100
+  Health: 5
   HealthRegen: 1
-  Shield: 25
+  Shield: 0
 --- !u!143 &4829168729616271774
 CharacterController:
   m_ObjectHideFlags: 0

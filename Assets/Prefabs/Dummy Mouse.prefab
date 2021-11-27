@@ -190,7 +190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19409705266d2484287c6bfe134258a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 1902327356698521171}
 --- !u!1 &1902327356698521171
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +318,7 @@ MonoBehaviour:
   Speed: 0
   JumpHeight: 0
   RotateSpeed: 0
-  Health: 1
+  Health: 5
   HealthRegen: 0
   Shield: 0
 --- !u!54 &1902327356698521172
