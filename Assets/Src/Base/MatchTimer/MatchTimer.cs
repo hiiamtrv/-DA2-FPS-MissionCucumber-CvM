@@ -15,13 +15,13 @@ public class MatchTimer : MonoBehaviour
 
     void Awake()
     {
-        this._remainTime = GameVar.Ins.MatchDuration;
         EventCenter.Subcribe(EventId.TIMER_END, this.OnTimerEnd);
         EventCenter.Subcribe(EventId.MATCH_END, (object data) => this.OnMatchEnd());
     }
 
     void Start()
     {
+        this._remainTime = GameVar.Ins.MatchDuration;
         this.Play();
     }
 

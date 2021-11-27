@@ -45,7 +45,7 @@ namespace Cats
         {
             if (this._timeRemain > 0)
             {
-                this._timeRemain -= Time.deltaTime;
+                this._timeRemain = Mathf.Max(0, this._timeRemain - Time.deltaTime);
                 float ratio = this._timeRemain / this._downTime;
                 this._slider.value = ratio;
                 this._lbTime.text = this._timeRemain.ToString("F2");

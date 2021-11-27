@@ -24,9 +24,14 @@ namespace Cats
                 this._downTime = model.TimeDown;
                 this._receivedShield = model.ShieldReceived;
 
-                this._playerMoveModel = this._gameObject.GetComponent<MoveEngine>().Model;
-                this._playerMoveModel.SpeedPercent -= this._slow;
-                this._playerMoveModel.JumpHeightPercent -= this._slow;
+                MoveEngine moveEngine = this._gameObject.GetComponent<MoveEngine>();
+                if (moveEngine != null)
+                {
+                    this._playerMoveModel = this._gameObject.GetComponent<MoveEngine>().Model;
+                    this._playerMoveModel.SpeedPercent -= this._slow;
+                    this._playerMoveModel.JumpHeightPercent -= this._slow;
+                }
+                else this._playerMoveModel = null;
 
                 LeanTween.delayedCall(this._downTime, () =>
                 {
@@ -43,8 +48,11 @@ namespace Cats
             public override void OnExit()
             {
                 this.OnShieldChange(this._receivedShield, ShieldReason.CAT_RECOVERED, this._gameObject);
-                this._playerMoveModel.SpeedPercent += this._slow;
-                this._playerMoveModel.JumpHeightPercent += this._slow;
+                if (this._playerMoveModel != null)
+                {
+                    this._playerMoveModel.SpeedPercent += this._slow;
+                    this._playerMoveModel.JumpHeightPercent += this._slow;
+                }
                 EventCenter.Publish(EventId.CAT_RECOVERED, this._stateMachine.gameObject);
                 base.OnExit();
             }
