@@ -64,8 +64,10 @@ namespace GameHud
             if (data.Dispatcher == this._player)
             {
                 this._pnlWeapon.gameObject.SetActive(true);
-                this._lbRemainAmmo.text = data.WeaponModel.RemainAmmo.ToString();
-                this._lbTotalAmmo.text = "/" + data.WeaponModel.TotalAmmo.ToString();
+                this._lbRemainAmmo.text = data.AmmoInMag.ToString();
+
+                if (data.AmmoRemain > 0) this._lbTotalAmmo.text = "/" + data.AmmoRemain.ToString();
+                else this._lbTotalAmmo.text = "";
             }
         }
 
@@ -74,8 +76,10 @@ namespace GameHud
             WeaponAmmoChange data = pubData as WeaponAmmoChange;
             if (data.Dispatcher == this._player)
             {
-                this._lbRemainAmmo.text = data.RemainAmmo.ToString();
-                this._lbTotalAmmo.text = "/" + data.TotalAmmo.ToString();
+                this._lbRemainAmmo.text = data.AmmoInMag.ToString();
+
+                if (data.AmmoRemain > 0) this._lbTotalAmmo.text = "/" + data.AmmoRemain.ToString();
+                else this._lbTotalAmmo.text = "";
             }
         }
 

@@ -73,7 +73,7 @@ namespace Weapons
                 if (this != null)
                     EventCenter.Publish(
                         EventId.WEAPON_AMMO_EQUIP,
-                        new PubData.WeaponAmmoEquip(this.Owner, this.Model)
+                        new PubData.WeaponAmmoEquip(this.Owner, this.Model.RemainAmmo, this.Model.TotalAmmo)
                     );
             });
 
