@@ -5,18 +5,18 @@ namespace PubData
     public class WeaponAmmoChange
     {
         GameObject _dispatcher;
-        int _remainAmmo;
-        int _totalAmmo;
+        int _ammoInMag;
+        int _ammoRemain;
 
         public GameObject Dispatcher => this._dispatcher;
-        public int RemainAmmo => this._remainAmmo;
-        public int TotalAmmo => this._totalAmmo;
+        public int AmmoInMag => this._ammoInMag;
+        public int AmmoRemain => this._ammoRemain;
 
         public WeaponAmmoChange(GameObject dispatcher, int remainAmmo, int totalAmmo)
         {
             this._dispatcher = dispatcher;
-            this._remainAmmo = remainAmmo;
-            this._totalAmmo = totalAmmo;
+            this._ammoInMag = remainAmmo;
+            this._ammoRemain = totalAmmo;
         }
     }
 }

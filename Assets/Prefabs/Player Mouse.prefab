@@ -744,6 +744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _equipTime: 3
+  _cooldown: 30
   _damage: 5
 --- !u!114 &1016946490696982593
 MonoBehaviour:

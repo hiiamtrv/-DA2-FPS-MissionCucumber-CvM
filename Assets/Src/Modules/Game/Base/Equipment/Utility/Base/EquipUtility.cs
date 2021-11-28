@@ -11,7 +11,7 @@ namespace Utilities
         protected virtual bool Unequip => this.IsEquiped && InputMgr.StartUseUtil;
         protected virtual bool Active => InputMgr.StartShoot;
 
-        protected void Update()
+        protected override void Update()
         {
             //if object is equiped and has command active => Active
             if (this.IsEquiped)
@@ -27,6 +27,8 @@ namespace Utilities
             {
                 if (this.Equip) this.EquipUtil();
             }
+
+            base.Update();
         }
 
         protected override void ActiveUtil()

@@ -40,6 +40,12 @@ namespace Kunai
             engine.OnHit = () => base.DoHitEffect(engine.CollidedObject);
             engine.Owner = _owner;
 
+            this._equipmentObject.gameObject.SetActive(false);
+            LeanTween.delayedCall(1 / this.Model.FireRate, () =>
+            {
+                this._equipmentObject.gameObject.SetActive(true);
+            });
+
             base.Shoot();
         }
 

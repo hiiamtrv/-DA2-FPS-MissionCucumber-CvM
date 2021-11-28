@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using Equipments;
 using UnityEngine;
+using PubData;
 
 namespace Utilities
 {
     public class BaseUtility : Equipment
     {
         //TODO: Override utility name to name another name
-        UtilityModel _model;
+        protected UtilityModel _model;
         public UtilityModel Model => _model;
+
+        protected float _curCooldown;
+        public float Cooldown => this._curCooldown;
+        public virtual bool IsOnCooldown => this._curCooldown > Time.deltaTime;
 
         public virtual bool HideGunWhenUse => true;
 
@@ -19,9 +24,16 @@ namespace Utilities
             base.Start();
         }
 
+        protected virtual void Update()
+        {
+            this._curCooldown = Mathf.Max(0, this._curCooldown - Time.deltaTime);
+        }
+
         protected virtual void EquipUtil()
         {
-            //TODO: inherit if you want to do somewthing before equip the utility
+            if (this.IsOnCooldown) return;
+
+            //TODO: inherit if you want to do somewthing before equip the utility, remember this.IsOnCooldown
             this.EquipMgr.EquipUtility(this.HideGunWhenUse);
         }
 
@@ -38,6 +50,12 @@ namespace Utilities
 
         protected virtual void ActiveUtil()
         {
+            this._curCooldown = this.Model.Cooldown;
+            EventCenter.Publish(
+                EventId.UTILITY_START_COOLDOWN,
+                new UtilityStartCooldown(this._owner, this.Model.Cooldown)
+            );
+
             //TODO: must inherit and do something else
         }
     }

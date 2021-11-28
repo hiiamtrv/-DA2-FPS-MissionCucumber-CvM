@@ -14,7 +14,7 @@ namespace FireBall
 
         void Awake()
         {
-            this._model = new FireballModel(_equipTime, _damage);
+            this._model = new FireballModel(_equipTime, _cooldown, _damage);
         }
     }
 }

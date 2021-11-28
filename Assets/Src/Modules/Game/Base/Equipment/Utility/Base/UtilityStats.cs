@@ -7,12 +7,14 @@ namespace Utilities
 {
     public class UtilityStats : EquipmentStats
     {
+        [SerializeField] protected float _cooldown;
+
         UtilityModel _model;
         public UtilityModel Model => this._model;
 
         void Awake()
         {
-            this._model = new EquipmentModel(_equipTime) as UtilityModel;
+            this._model = new UtilityModel(_equipTime, _cooldown);
         }
     }
 }

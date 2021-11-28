@@ -18,7 +18,7 @@ namespace Utilities
             base.Start();
         }
 
-        protected void Update()
+        protected override void Update()
         {
             if (this.StartUse)
             {
@@ -33,6 +33,8 @@ namespace Utilities
             }
 
             if (this._isUsing) this.ActiveUtil();
+
+            base.Update();
         }
     }
 }

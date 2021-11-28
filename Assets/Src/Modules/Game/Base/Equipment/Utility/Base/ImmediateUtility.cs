@@ -10,7 +10,7 @@ namespace Utilities
         [SerializeField] float duration;
         protected virtual bool Active => InputMgr.StartUseUtil;
 
-        protected void Update()
+        protected override void Update()
         {
             //hold to equip and active object
             if (this.Active)
@@ -23,6 +23,8 @@ namespace Utilities
                     if (this != null && this.IsEquiped) this.UnequipUtil();
                 });
             }
+
+            base.Update();
         }
     }
 }

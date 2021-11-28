@@ -5,11 +5,23 @@ using Character;
 using Weapons;
 using UnityEngine.UI;
 using PubData;
+using System;
 
 namespace GameHud
 {
     public class CanvasPlayerHud : MonoBehaviour
     {
+        const string PNL_HEALTH = "PnlHealth";
+        const string PNL_WEAPON = "PnlWeapon";
+        const string LB_HEALTH = "LbHealth";
+        const string LB_SHIELD = "LbShield";
+        const string LB_TOTAL_AMMO = "LbTotalAmmo";
+        const string LB_REMAIN_AMMO = "LbRemainAmmo";
+        const string IMG_UTIL = "ImgUtil";
+        const string LB_COOLDOWN = "LbCooldown";
+
+        const string ENABLED = "Enabled";
+
         GameObject _player;
 
         UiHelper uiHelper = null;
@@ -19,6 +31,10 @@ namespace GameHud
         Text _lbShield = null;
         Text _lbTotalAmmo = null;
         Text _lbRemainAmmo = null;
+        Image _imgUtil = null;
+        Text _lbCooldown = null;
+
+        float _cooldown = 0;
 
         void Start()
         {
@@ -31,6 +47,8 @@ namespace GameHud
             this._lbShield = uiHelper.ui[LB_SHIELD].GetComponent<Text>();
             this._lbTotalAmmo = uiHelper.ui[LB_TOTAL_AMMO].GetComponent<Text>();
             this._lbRemainAmmo = uiHelper.ui[LB_REMAIN_AMMO].GetComponent<Text>();
+            this._imgUtil = uiHelper.ui[IMG_UTIL].GetComponent<Image>();
+            this._lbCooldown = uiHelper.ui[LB_COOLDOWN].GetComponent<Text>();
 
             this.GetPlayerInfo();
 
@@ -39,6 +57,7 @@ namespace GameHud
             EventCenter.Subcribe(EventId.WEAPON_UNEQUIP, this.HideWeaponPanel);
             EventCenter.Subcribe(EventId.HEALTH_CHANGE, this.UpdatePlayerHealth);
             EventCenter.Subcribe(EventId.SHILED_CHANGE, this.UpdatePlayerShield);
+            EventCenter.Subcribe(EventId.UTILITY_START_COOLDOWN, this.UpdateUtilityCooldown);
         }
 
         void GetPlayerInfo()
@@ -64,6 +83,8 @@ namespace GameHud
             if (data.Dispatcher == this._player)
             {
                 this._pnlWeapon.gameObject.SetActive(true);
+                this._lbRemainAmmo.gameObject.SetActive(true);
+                this._lbTotalAmmo.gameObject.SetActive(true);
                 this._lbRemainAmmo.text = data.AmmoInMag.ToString();
 
                 if (data.AmmoRemain > 0) this._lbTotalAmmo.text = "/" + data.AmmoRemain.ToString();
@@ -88,7 +109,8 @@ namespace GameHud
             WeaponUnequip data = pubData as WeaponUnequip;
             if (data.Dispatcher == this._player)
             {
-                this._pnlWeapon.gameObject.SetActive(false);
+                this._lbRemainAmmo.gameObject.SetActive(false);
+                this._lbTotalAmmo.gameObject.SetActive(false);
             }
         }
 
@@ -112,11 +134,30 @@ namespace GameHud
             }
         }
 
-        const string PNL_HEALTH = "PnlHealth";
-        const string PNL_WEAPON = "PnlWeapon";
-        const string LB_HEALTH = "LbHealth";
-        const string LB_SHIELD = "LbShield";
-        const string LB_TOTAL_AMMO = "LbTotalAmmo";
-        const string LB_REMAIN_AMMO = "LbRemainAmmo";
+        void UpdateUtilityCooldown(object pubData)
+        {
+            UtilityStartCooldown data = pubData as UtilityStartCooldown;
+            if (data.Dispatcher == this._player)
+            {
+                this._cooldown = data.Cooldown;
+                this._lbCooldown.gameObject.SetActive(true);
+                this.DisplayCoolDown();
+            }
+        }
+
+        void DisplayCoolDown()
+        {
+            this._imgUtil.transform.Find(ENABLED).gameObject.SetActive(this._cooldown <= 0);
+            if (this._cooldown <= 0)
+            {
+                this._lbCooldown.gameObject.SetActive(false);
+            }
+            else
+            {
+                this._lbCooldown.text = this._cooldown.ToString();
+                Invoke("DisplayCoolDown", Mathf.Min(this._cooldown, 1));
+                this._cooldown--;
+            }
+        }
     }
 }
