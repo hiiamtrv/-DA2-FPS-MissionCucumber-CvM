@@ -227,8 +227,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1366613112791452977}
-  - component: {fileID: 1366613112791452983}
-  - component: {fileID: 1366613112791452982}
+  - component: {fileID: 8479347210330642229}
+  - component: {fileID: 3374523551324353064}
   m_Layer: 5
   m_Name: Laser
   m_TagString: Untagged
@@ -248,10 +248,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1366613113673739102}
+  - {fileID: 8458127121341428654}
   m_Father: {fileID: 1366613112505594975}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1366613112791452983
+--- !u!114 &8479347210330642229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -260,14 +261,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1366613112791452976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1546172e655f0d6439983853ff79f98a, type: 3}
+  m_Script: {fileID: 11500000, guid: d80f3c09efea4164f855134ce9a2d890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _eye: {fileID: 1366613113372887988}
-  _soundGunShot: {fileID: 8300000, guid: 3666408d010bd644fa2c42494e0bdfe2, type: 3}
-  _soundNoAmmo: {fileID: 8300000, guid: 3666408d010bd644fa2c42494e0bdfe2, type: 3}
-  _soundEquip: {fileID: 8300000, guid: 3666408d010bd644fa2c42494e0bdfe2, type: 3}
---- !u!114 &1366613112791452982
+  _soundGunShot: {fileID: 0}
+  _soundNoAmmo: {fileID: 0}
+  _soundEquip: {fileID: 0}
+  _projectile: {fileID: 1431812130790149153, guid: 03df27734ef3ab44caffc4f4f0dc8648, type: 3}
+--- !u!114 &3374523551324353064
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,7 +278,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1366613112791452976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b56936e64875eb84d91f1372bf57a596, type: 3}
+  m_Script: {fileID: 11500000, guid: a05aebb42e437a5419657994861415e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _equipTime: 1
@@ -594,7 +596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1366613113673739102
 Transform:
   m_ObjectHideFlags: 0
@@ -774,6 +776,36 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366613114067986417}
   m_Enabled: 0
+--- !u!1 &4405951992218500709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8458127121341428654}
+  m_Layer: 5
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8458127121341428654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4405951992218500709}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.133, y: -0.12, z: 0.524}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1366613112791452977}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6539562004165357404
 PrefabInstance:
   m_ObjectHideFlags: 0

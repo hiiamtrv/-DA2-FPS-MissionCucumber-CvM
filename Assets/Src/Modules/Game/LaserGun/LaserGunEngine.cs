@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Projectile;
 using UnityEngine;
 using Weapons;
 
-namespace Projectile
+namespace LaserGun
 {
-    public class ProjectileWeapon : AmmoWeapon
+    public class LaserGunEngine : AmmoWeapon
     {
         [SerializeField] GameObject _projectile;
 
@@ -14,10 +15,17 @@ namespace Projectile
         GameObject _muzzle;
         public GameObject Muzzle => _muzzle;
 
+        public LaserGunModel Model => this._model as LaserGunModel;
+
         protected override void Awake()
         {
-            _muzzle = this.transform.Find(MUZZLE).gameObject;
             base.Awake();
+            _muzzle = this.transform.Find(MUZZLE).gameObject;
+        }
+
+        protected override void GetModel()
+        {
+            this._model = this.GetComponent<LaserGunStats>().Model;
         }
 
         protected override void Shoot()
@@ -29,7 +37,6 @@ namespace Projectile
             GameObject newProjectile = Instantiate(_projectile, muzzlePoint, Quaternion.identity);
             newProjectile.transform.LookAt(aimPoint);
             ProjectileEngine engine = newProjectile.GetComponent<ProjectileEngine>();
-            engine.OnHit = () => base.DoHitEffect(engine.CollidedObject);
             engine.Owner = _owner;
 
             base.Shoot();
@@ -37,7 +44,13 @@ namespace Projectile
 
         protected override void DoHitEffect(GameObject target)
         {
-            //do nothing
+            Vector3 muzzlePoint = _muzzle.transform.position;
+            Vector3 targetPoint = target.transform.position;
+
+            float flySpeed = _projectile.GetComponent<ProjectileStats>().FlySpeed;
+            float distance = Vector3.Distance(muzzlePoint, targetPoint);
+            float timeDelayDamage = distance / flySpeed;
+            LeanTween.delayedCall(timeDelayDamage, () => base.DoHitEffect(target));
         }
 
         Vector3 GetRayEndpoint()

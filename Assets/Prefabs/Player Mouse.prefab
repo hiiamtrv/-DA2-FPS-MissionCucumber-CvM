@@ -351,7 +351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1016946490035730987}
-  - component: {fileID: 1016946490035730965}
+  - component: {fileID: 73399484533874781}
   - component: {fileID: 1016946490035730964}
   m_Layer: 5
   m_Name: Kunais
@@ -376,7 +376,7 @@ Transform:
   m_Father: {fileID: 1016946489597690142}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1016946490035730965
+--- !u!114 &73399484533874781
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -385,13 +385,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1016946490035730986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b56936e64875eb84d91f1372bf57a596, type: 3}
+  m_Script: {fileID: 11500000, guid: 9426f7c124935bf4cb0dffe4c47e4c17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _equipTime: 1
   _fireRate: 1
   _damage: 1
-  _shotRange: 1e+13
+  _shotRange: 0
   _shotSpread: 0
   _reloadSpeed: 0
   _magazineSize: 15
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1016946490035730986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e312c3a7fd880348a7aea13c7cfae07, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b513d2d81c8ff34d8136f67675e19c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _eye: {fileID: 1016946489037944683}
@@ -656,7 +656,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016946490695653718}
-  m_Mesh: {fileID: -7680421480359007204, guid: a09676fdb682d504182c87dbc3fe8740, type: 3}
+  m_Mesh: {fileID: -7680421480359007204, guid: 294d8c8e710e22246ad7b0d016ef67f2, type: 3}
 --- !u!23 &1016946490695653712
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -676,7 +676,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: a09676fdb682d504182c87dbc3fe8740, type: 3}
+  - {fileID: -6478536213147159724, guid: 294d8c8e710e22246ad7b0d016ef67f2, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
