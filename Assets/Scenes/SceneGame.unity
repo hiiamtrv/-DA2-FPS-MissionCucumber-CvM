@@ -228,7 +228,7 @@ MonoBehaviour:
   _player: {fileID: 2021614469}
   _friendlyFire: 0
   _matchDuration: 120
-  _selfDamage: 0
+  _selfDamage: 1
 --- !u!4 &136148140
 Transform:
   m_ObjectHideFlags: 0
