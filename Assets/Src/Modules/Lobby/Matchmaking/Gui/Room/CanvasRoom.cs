@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CanvasRoom : MonoBehaviour
@@ -32,7 +33,9 @@ public class CanvasRoom : MonoBehaviour
             slot.SetController(this);
             this._playerSlots.Add(slot);
         }
+
         this._btnLeave.onClick.AddListener(this.OnLeave);
+        this._btnStart.onClick.AddListener(this.OnStart);
     }
 
     void Update()
@@ -93,6 +96,11 @@ public class CanvasRoom : MonoBehaviour
     void OnLeave()
     {
         Gm.ChangeGui(Gui.MAIN_MENU);
+    }
+
+    void OnStart()
+    {
+        SceneManager.LoadScene(SceneId.GAME);
     }
 
     public void SetViewMode(RoomViewMode viewMode)

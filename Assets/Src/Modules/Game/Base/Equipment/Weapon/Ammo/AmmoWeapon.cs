@@ -28,9 +28,14 @@ namespace Weapons
 
         protected override void Start()
         {
-            this._model = this.GetComponent<AmmoWeaponStats>().Model;
-            this.Model.TotalAmmo -= this.Model.MagazineSize;
             base.Start();
+            this.GetModel();
+            this.Model.TotalAmmo -= this.Model.MagazineSize;
+        }
+
+        protected virtual void GetModel()
+        {
+            this._model = this.GetComponent<AmmoWeaponStats>().Model;
         }
 
         protected virtual void Update()
@@ -90,7 +95,14 @@ namespace Weapons
             HealthEngine health = target.GetComponent<HealthEngine>();
             if (health)
             {
-                health.InflictDamage(this.Model.Damage);
+                health.InflictDamage(this.Model.Damage, DamageReason.DEFAULT, 0, this._owner);
+            }
+
+
+            if (GameVar.Ins.SelfDamage)
+            {
+                HealthEngine ownerHealth = this._owner.GetComponent<HealthEngine>();
+                if (ownerHealth != null) ownerHealth.InflictDamage(this.Model.Damage, DamageReason.SELF_DAMAGE, 0, null);
             }
         }
 
