@@ -109,9 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b0932a7cf29f04ea89a55d14a4325e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactTime: 0
+  _interactTime: 10
   _canMoveWhileInteract: 0
-  _interactRadius: 0
+  _interactRadius: 5
 --- !u!114 &6678294473229313413
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Character;
@@ -44,6 +45,12 @@ namespace Weapons
             {
                 this.Shoot();
             }
+            else if (InputMgr.Reload)
+            {
+                this.DoReload();
+            }
+
+            Debug.Log(this._gunState);
         }
 
         protected virtual void Shoot()
@@ -71,10 +78,13 @@ namespace Weapons
             LeanTween.delayedCall(this._equipTime / 2, () =>
             {
                 if (this != null)
+                {
+                    this._gunState = GunState.READY_TO_FIRE;
                     EventCenter.Publish(
                         EventId.WEAPON_AMMO_EQUIP,
                         new PubData.WeaponAmmoEquip(this.Owner, this.Model.RemainAmmo, this.Model.TotalAmmo)
                     );
+                }
             });
 
         }
@@ -138,35 +148,49 @@ namespace Weapons
         {
             if (this.Model.RemainAmmo == 0)
             {
-                this._gunState = GunState.RELOADING;
-                if (this.Model.TotalAmmo > 0)
+                this._gunState = GunState.AMMO_OUT;
+                this.DoReload();
+            }
+            else this.DoRecoil();
+        }
+
+        protected virtual void DoReload()
+        {
+            if (this.Model.TotalAmmo <= 0 || this.Model.RemainAmmo == this.Model.MagazineSize) return;
+
+            this._gunState = GunState.RELOADING;
+            int ammoInLastMag = this.Model.RemainAmmo;
+            this._equipmentObject.SetActive(false);
+
+            LeanTween.delayedCall(
+                this.Model.ReloadTime,
+                () =>
                 {
-                    LeanTween.delayedCall(
-                        this.Model.ReloadTime,
-                        () =>
-                        {
-                            int nextMagazine = System.Math.Min(this.Model.MagazineSize, this.Model.TotalAmmo);
-                            this.Model.RemainAmmo = nextMagazine;
-                            this.Model.TotalAmmo -= nextMagazine;
-                            this._gunState = GunState.READY_TO_FIRE;
-                            this.PublishAmmoChange();
-                        }
-                    );
+                    this._equipmentObject.SetActive(true);
+                    int totalAmmo = this.Model.TotalAmmo + this.Model.RemainAmmo;
+                    int nextMagazine = Math.Min(this.Model.MagazineSize, totalAmmo);
+
+                    this.Model.RemainAmmo = nextMagazine;
+                    this.Model.TotalAmmo = totalAmmo - nextMagazine;
+                    this._gunState = GunState.READY_TO_FIRE;
+                    this.PublishAmmoChange();
                 }
-            }
-            else
-            {
-                this._gunState = GunState.RECOIL;
-                LeanTween.delayedCall(
-                    1 / this.Model.FireRate,
-                    () => this._gunState = GunState.READY_TO_FIRE
-                );
-            }
+            );
+        }
+
+        protected virtual void DoRecoil()
+        {
+            this._gunState = GunState.RECOIL;
+            LeanTween.delayedCall(
+                1 / this.Model.FireRate,
+                () => this._gunState = GunState.READY_TO_FIRE
+            );
         }
     }
 
     public enum GunState
     {
+        AMMO_OUT,
         READY_TO_FIRE,
         RECOIL,
         RELOADING,

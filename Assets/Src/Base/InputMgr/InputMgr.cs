@@ -11,6 +11,8 @@ public class InputMgr : MonoBehaviour
     public static bool Crouch => Input.GetKey(KeyBind.CROUCH);
     public static bool Walk => Input.GetKey(KeyBind.WALK);
 
+    public static bool Reload => Input.GetKeyDown(KeyBind.RELOAD);
+
     public static bool Shoot => Input.GetMouseButton(KeyBind.FIRE);
     public static bool StartShoot => Input.GetMouseButtonDown(KeyBind.FIRE);
     public static bool EndShoot => Input.GetMouseButtonUp(KeyBind.FIRE);

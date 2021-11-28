@@ -36,6 +36,7 @@ namespace Equipments
                 this._utility = this._objectUtility.GetComponent<BaseUtility>();
                 this._utility.Owner = this._owner;
                 this._utility.OnUnequiped();
+                EventCenter.Publish(EventId.UTILITY_CHARACTER_OWN, this._owner);
             }
 
             this.EquipWeapon();
@@ -54,6 +55,8 @@ namespace Equipments
             if (hideWeapon) this._weapon.OnUnequiped();
             this._utility.OnEquiped();
             this._isUsingWeapon = hideWeapon;
+
+            EventCenter.Publish(EventId.UTILITY_CHARACTER_OWN, this._owner);
         }
 
         public void EquipWeapon()

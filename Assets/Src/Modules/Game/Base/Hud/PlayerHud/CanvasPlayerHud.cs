@@ -17,6 +17,7 @@ namespace GameHud
         const string LB_SHIELD = "LbShield";
         const string LB_TOTAL_AMMO = "LbTotalAmmo";
         const string LB_REMAIN_AMMO = "LbRemainAmmo";
+        const string PNL_UTILITY = "PnlUtilty";
         const string IMG_UTIL = "ImgUtil";
         const string LB_COOLDOWN = "LbCooldown";
 
@@ -31,6 +32,7 @@ namespace GameHud
         Text _lbShield = null;
         Text _lbTotalAmmo = null;
         Text _lbRemainAmmo = null;
+        RectTransform _pnlUtility = null;
         Image _imgUtil = null;
         Text _lbCooldown = null;
 
@@ -47,17 +49,20 @@ namespace GameHud
             this._lbShield = uiHelper.ui[LB_SHIELD].GetComponent<Text>();
             this._lbTotalAmmo = uiHelper.ui[LB_TOTAL_AMMO].GetComponent<Text>();
             this._lbRemainAmmo = uiHelper.ui[LB_REMAIN_AMMO].GetComponent<Text>();
+            this._pnlUtility = uiHelper.ui[PNL_UTILITY].GetComponent<RectTransform>();
             this._imgUtil = uiHelper.ui[IMG_UTIL].GetComponent<Image>();
             this._lbCooldown = uiHelper.ui[LB_COOLDOWN].GetComponent<Text>();
-
-            this.GetPlayerInfo();
 
             EventCenter.Subcribe(EventId.WEAPON_AMMO_EQUIP, this.LoadWeaponInfo);
             EventCenter.Subcribe(EventId.WEAPON_AMMO_CHANGE, this.UpdateRemainAmmo);
             EventCenter.Subcribe(EventId.WEAPON_UNEQUIP, this.HideWeaponPanel);
             EventCenter.Subcribe(EventId.HEALTH_CHANGE, this.UpdatePlayerHealth);
             EventCenter.Subcribe(EventId.SHILED_CHANGE, this.UpdatePlayerShield);
+            EventCenter.Subcribe(EventId.UTILITY_CHARACTER_OWN, this.ShowUtilityPanel);
             EventCenter.Subcribe(EventId.UTILITY_START_COOLDOWN, this.UpdateUtilityCooldown);
+
+            this._pnlUtility.gameObject.SetActive(false);
+            this.GetPlayerInfo();
         }
 
         void GetPlayerInfo()
@@ -157,6 +162,15 @@ namespace GameHud
                 this._lbCooldown.text = this._cooldown.ToString();
                 Invoke("DisplayCoolDown", Mathf.Min(this._cooldown, 1));
                 this._cooldown--;
+            }
+        }
+
+        void ShowUtilityPanel(object pubData)
+        {
+            GameObject character = pubData as GameObject;
+            if (character == this._player)
+            {
+                this._pnlUtility.gameObject.SetActive(true);
             }
         }
     }
