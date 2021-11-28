@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -390,6 +390,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2102343380859782283, guid: 289e3b9ab478853478e7a92062723b5c, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102343381496439175, guid: 289e3b9ab478853478e7a92062723b5c, type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102343381496439175, guid: 289e3b9ab478853478e7a92062723b5c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102343381496439175, guid: 289e3b9ab478853478e7a92062723b5c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -8
+      objectReference: {fileID: 0}
     - target: {fileID: 2102343382792311609, guid: 289e3b9ab478853478e7a92062723b5c, type: 3}
       propertyPath: m_Name
       value: CanvasTopbar
@@ -1084,6 +1100,14 @@ PrefabInstance:
     - target: {fileID: 1373007758866305453, guid: 13be1010eb39290488e68b554e04d82b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1373007759114249012, guid: 13be1010eb39290488e68b554e04d82b, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1373007759423656659, guid: 13be1010eb39290488e68b554e04d82b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13be1010eb39290488e68b554e04d82b, type: 3}
