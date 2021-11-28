@@ -37,10 +37,8 @@ namespace GameHud
         {
             if (this._isShowing)
             {
-                const float ratioUiEnhancement = 1.05f;
-
                 this._curTime += Time.deltaTime;
-                float ratio = this._curTime * ratioUiEnhancement / this._endTime;
+                float ratio = this._curTime / this._endTime;
 
                 this._slider.value = ratio;
                 this._lbTime.text = this._curTime.ToString("F2");

@@ -49,8 +49,6 @@ namespace Weapons
             {
                 this.DoReload();
             }
-
-            Debug.Log(this._gunState);
         }
 
         protected virtual void Shoot()
