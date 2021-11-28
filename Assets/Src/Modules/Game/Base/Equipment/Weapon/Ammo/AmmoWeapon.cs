@@ -90,7 +90,13 @@ namespace Weapons
             HealthEngine health = target.GetComponent<HealthEngine>();
             if (health)
             {
-                health.InflictDamage(this.Model.Damage);
+                health.InflictDamage(this.Model.Damage, DamageReason.DEFAULT, 0, this._owner);
+            }
+
+            
+            if (GameVar.Ins.SelfDamage) {
+                HealthEngine ownerHealth = this._owner.GetComponent<HealthEngine>();
+                if (ownerHealth != null) ownerHealth.InflictDamage(this.Model.Damage, DamageReason.SELF_DAMAGE, 0, null);
             }
         }
 
