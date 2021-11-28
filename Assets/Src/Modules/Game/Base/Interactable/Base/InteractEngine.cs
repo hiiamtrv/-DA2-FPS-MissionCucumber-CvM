@@ -29,10 +29,24 @@ namespace Interactable
             this._model = this.GetComponent<InteractableStats>().Model;
         }
 
-        public bool IsPlayerInRange(GameObject gameObject)
+        public virtual bool IsPlayerInRange(GameObject gameObject)
         {
             float distance = Vector3.Distance(gameObject.transform.position, this.transform.position);
             return distance <= this.Model.InteractRadius;
+        }
+
+        public virtual bool IsPlayerLooking(GameObject gameObject)
+        {
+            const string EYE_POINT = "EyePoint";
+            Transform eyePoint = gameObject.transform.Find(EYE_POINT);
+            if (eyePoint == null) return false;
+    
+            Vector3 posChar = gameObject.transform.position;
+            Vector3 objPos = this.transform.position;
+            float angle = Vector3.Angle((objPos - posChar), eyePoint.forward);
+
+            const float MAX_INTERACTABLE_ANGLE = 30f;
+            return (angle <= MAX_INTERACTABLE_ANGLE);
         }
 
         public virtual void DoInteract(GameObject gameObject)
@@ -60,7 +74,8 @@ namespace Interactable
 
         protected virtual bool CanInteract(GameObject gameObject)
         {
-            return this.InteractPlayer == null && this.IsPlayerInRange(gameObject) && this.IsIdle;
+            return this.InteractPlayer == null && this.IsPlayerInRange(gameObject)
+                && this.IsIdle && this.IsPlayerLooking(gameObject);
         }
 
         public void ResetInteractPlayer()

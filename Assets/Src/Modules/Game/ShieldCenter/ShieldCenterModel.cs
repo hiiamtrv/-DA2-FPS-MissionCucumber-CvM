@@ -18,12 +18,14 @@ namespace ShieldCenter
 
         public float GetLastedCheckPoint(float lastProgress)
         {
+            Debug.LogFormat("Get lastest check point {0}", lastProgress);
             float lastedCheckPoint = 0;
             foreach (float checkPoint in this._checkPoints)
             {
                 if (checkPoint <= lastProgress) lastedCheckPoint = checkPoint;
                 else break;
             }
+            Debug.LogFormat("Lasted check point {0}", lastedCheckPoint);
             return lastedCheckPoint;
         }
     }

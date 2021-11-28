@@ -56,7 +56,8 @@ namespace Interactable
 
             public override void LogicUpdate()
             {
-                if (!this.IsPlayerInRange || InputMgr.EndInteract)
+                if (!this.IsPlayerInRange || InputMgr.EndInteract
+                    || !this.StateMachine.IsPlayerLooking(this.InteractPlayer))
                 {
                     Idle stateIdle = this.NextStateIdle as Idle;
                     this.SetNextState(stateIdle);
