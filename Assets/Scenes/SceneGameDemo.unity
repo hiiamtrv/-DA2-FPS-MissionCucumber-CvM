@@ -233,7 +233,6 @@ MonoBehaviour:
   _cucumbers:
   - {fileID: 1493113112}
   - {fileID: 6182242381321363257}
-  _shieldCenter: {fileID: 0}
 --- !u!114 &240199512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,10 +1085,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2089130965803700323, guid: b47a88ca959ffef47a788b5b5d1d66e1, type: 3}
-      propertyPath: m_Size.y
-      value: 4.4
-      objectReference: {fileID: 0}
     - target: {fileID: 2089130965803700324, guid: b47a88ca959ffef47a788b5b5d1d66e1, type: 3}
       propertyPath: m_Name
       value: Dummy Cat
