@@ -6,12 +6,12 @@ namespace Interactable
 {
     public class InteractModel
     {
-        float _baseInteractTime;
-        float _baseInteractRadius;
+        protected float _baseInteractTime;
+        protected float _baseInteractRadius;
 
-        float _interactTime;
-        bool _canMoveWhileInteract;
-        float _interactRadius;
+        protected float _interactTime;
+        protected bool _canMoveWhileInteract;
+        protected float _interactRadius;
 
         public InteractModel(float interactTime, bool canMoveWhileInteract, float interactRadius)
         {

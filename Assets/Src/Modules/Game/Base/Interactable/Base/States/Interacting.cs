@@ -23,13 +23,12 @@ namespace Interactable
 
             public Interacting(StateMachine stateMachine) : base(stateMachine)
             {
-                this._interactTime = 0;
+                this._interactTime = this.GetInteractTime();
                 this._isSuccessful = false;
             }
 
             public override void OnEnter()
             {
-
                 EventCenter.Publish(
                     EventId.INTERACT_START,
                     new PubData.IneractStart(this.InteractPlayer, this._interactTime, this.Model)
@@ -59,7 +58,7 @@ namespace Interactable
                 if (!this.IsPlayerInRange || InputMgr.EndInteract
                     || !this.StateMachine.IsPlayerLooking(this.InteractPlayer))
                 {
-                    Idle stateIdle = this.NextStateIdle as Idle;
+                    BaseState stateIdle = this.NextStateIdle;
                     this.SetNextState(stateIdle);
 
                     EventCenter.Publish(
@@ -86,6 +85,11 @@ namespace Interactable
             }
 
             bool IsPlayerInRange => ((InteractEngine)this._stateMachine).IsPlayerInRange(this.InteractPlayer);
+
+            protected virtual float GetInteractTime()
+            {
+                return 0;
+            }
         }
     }
 }

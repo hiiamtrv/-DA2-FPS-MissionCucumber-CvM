@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 677138360868652881}
   - component: {fileID: 677138360868652882}
   - component: {fileID: 677138360868652883}
-  - component: {fileID: 677138360868652908}
   - component: {fileID: 6678294473229313413}
   m_Layer: 0
   m_Name: Cucumber
@@ -97,21 +96,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &677138360868652908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677138360868652910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9b0932a7cf29f04ea89a55d14a4325e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactTime: 10
-  _canMoveWhileInteract: 0
-  _interactRadius: 5
 --- !u!114 &6678294473229313413
 MonoBehaviour:
   m_ObjectHideFlags: 0

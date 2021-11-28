@@ -15,6 +15,8 @@ namespace Interactable
         protected InteractModel _model;
         public InteractModel Model => this._model;
 
+        protected virtual BaseState InteractingState => new Interacting(this);
+
         protected bool IsIdle => this._currentState is Idle;
 
         protected override void Start()
@@ -40,7 +42,7 @@ namespace Interactable
             const string EYE_POINT = "EyePoint";
             Transform eyePoint = gameObject.transform.Find(EYE_POINT);
             if (eyePoint == null) return false;
-    
+
             Vector3 posChar = gameObject.transform.position;
             Vector3 objPos = this.transform.position;
             float angle = Vector3.Angle((objPos - posChar), eyePoint.forward);
@@ -54,7 +56,7 @@ namespace Interactable
             if (this.CanInteract(gameObject))
             {
                 this._interactPlayer = gameObject;
-                Interacting obtainState = new Interacting(this);
+                BaseState obtainState = this.InteractingState;
                 this.ChangeState(obtainState);
             }
         }
