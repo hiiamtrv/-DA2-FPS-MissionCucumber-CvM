@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CanvasStat : MonoBehaviour
+public class CanvasStat : BaseGui
 {
     const string IMG_AVATAR = "ImgAvatar";
     const string LB_USERNAME = "LbUsername";
@@ -19,7 +19,6 @@ public class CanvasStat : MonoBehaviour
     const string LB_NUM_SKIN = "LbNumSkin";
     const string LB_NUM_FRIEND = "LbNumFriend";
 
-    UiHelper uiHelper = null;
     Image _imgAvatar = null;
     Text _lbUsername = null;
     Text _lbDescription = null;
@@ -34,10 +33,9 @@ public class CanvasStat : MonoBehaviour
     Text _lbNumSkin = null;
     Text _lbNumFiend = null;
 
-    // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        this.uiHelper = new UiHelper(this.gameObject);
+        base.Start();
         this._imgAvatar = uiHelper.ui[IMG_AVATAR].GetComponent<Image>();
         this._lbUsername = uiHelper.ui[LB_USERNAME].GetComponent<Text>();
         this._lbDescription = uiHelper.ui[LB_DESCRIPTION].GetComponent<Text>();
@@ -54,16 +52,13 @@ public class CanvasStat : MonoBehaviour
 
         this._btnEdit.onClick.AddListener(this.SetEditMode);
         this._btnConfirm.onClick.AddListener(delegate () { this.SetViewMode(true); });
-
-        this.Refresh();
-        this.SetViewMode(false);
         this.SubEvents();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnEnter()
     {
-
+        this.Refresh();
+        this.SetViewMode(false);
     }
 
     void Refresh()

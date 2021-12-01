@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CanvasMakeRoom : MonoBehaviour
+public class CanvasMakeRoom : BaseGui
 {
     const string BTN_CREATE = "BtnCreate";
     const string BTN_JOIN = "BtnJoin";
@@ -14,7 +14,6 @@ public class CanvasMakeRoom : MonoBehaviour
     const string TXT_ROOM_CODE = "TxtRoomCode";
     const string BTN_CONFIRM = "BtnConfirm";
 
-    UiHelper uiHelper = null;
     Button _btnCreate = null;
     Button _btnJoin = null;
     Button _btnSolo = null;
@@ -35,9 +34,9 @@ public class CanvasMakeRoom : MonoBehaviour
     Selection curSelection;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        this.uiHelper = new UiHelper(this.gameObject);
+        base.Start();
         this._btnCreate = uiHelper.ui[BTN_CREATE].GetComponent<Button>();
         this._btnJoin = uiHelper.ui[BTN_JOIN].GetComponent<Button>();
         this._btnSolo = uiHelper.ui[BTN_SOLO].GetComponent<Button>();
@@ -46,22 +45,16 @@ public class CanvasMakeRoom : MonoBehaviour
         this._txtRoomCode = uiHelper.ui[TXT_ROOM_CODE].GetComponent<InputField>();
         this._btnConfirm = uiHelper.ui[BTN_CONFIRM].GetComponent<Button>();
 
-        this._btnCreate.onClick.AddListener(delegate { this.SetSelection(Selection.CREATE); });
-        this._btnJoin.onClick.AddListener(delegate { this.SetSelection(Selection.JOIN); });
-        this._btnSolo.onClick.AddListener(delegate { this.SetSelection(Selection.SOLO); });
+        this._btnCreate.onClick.AddListener(() => this.SetSelection(Selection.CREATE));
+        this._btnJoin.onClick.AddListener(() => this.SetSelection(Selection.JOIN));
+        this._btnSolo.onClick.AddListener(() => this.SetSelection(Selection.SOLO));
         this._btnConfirm.onClick.AddListener(this.Confirm);
 
         this.SetRoomMode(RoomMode.PUBLIC);
         this.SetSelection(Selection.NULL);
 
-        this._tooglePublic.onValueChanged.AddListener(delegate { this.SetRoomMode(RoomMode.PUBLIC); });
-        this._tooglePrivate.onValueChanged.AddListener(delegate { this.SetRoomMode(RoomMode.PRIVATE); });
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        this._tooglePublic.onValueChanged.AddListener((value) => this.SetRoomMode(RoomMode.PUBLIC));
+        this._tooglePrivate.onValueChanged.AddListener((value) => this.SetRoomMode(RoomMode.PRIVATE));
     }
 
     void SetSelection(Selection selection)
@@ -91,12 +84,10 @@ public class CanvasMakeRoom : MonoBehaviour
         }
     }
 
-    void CreateRoom()
+    void RequestCreateRoom()
     {
         Debug.Log("Create Room");
-        CanvasRoom room = GuiMgr.GetGui(Gui.ROOM).GetComponent<CanvasRoom>();
-        room.SetViewMode(RoomViewMode.HOST);
-        Gm.ChangeGui(Gui.ROOM);
+        NetworkLobby.Ins.CreateRoom();
     }
 
     void JoinRoom()
@@ -130,7 +121,7 @@ public class CanvasMakeRoom : MonoBehaviour
         {
             case Selection.CREATE:
                 {
-                    this.CreateRoom();
+                    this.RequestCreateRoom();
                     break;
                 }
             case Selection.JOIN:

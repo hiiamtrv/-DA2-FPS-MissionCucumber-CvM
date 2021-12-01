@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 136148136}
   - component: {fileID: 136148135}
   - component: {fileID: 136148134}
+  - component: {fileID: 136148141}
   m_Layer: 0
   m_Name: Mgr
   m_TagString: Untagged
@@ -225,10 +226,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0b341538cd7e14c8a833fd7b4d9716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2021614469}
+  _player: {fileID: 2021690786}
   _friendlyFire: 0
   _matchDuration: 120
-  _selfDamage: 1
+  _selfDamage: 0
 --- !u!4 &136148140
 Transform:
   m_ObjectHideFlags: 0
@@ -243,6 +244,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &136148141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136148133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69ce01c8a408f3468060bfb73d30035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &305268851
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,7 +1176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1366613112299131968, guid: 77cfb0a9c4e41914d8e33c1d71e6bbda, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1366613112299131976, guid: 77cfb0a9c4e41914d8e33c1d71e6bbda, type: 3}
       propertyPath: m_RootOrder
@@ -1657,11 +1670,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &2021614469 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1366613112299131968, guid: 77cfb0a9c4e41914d8e33c1d71e6bbda, type: 3}
-  m_PrefabInstance: {fileID: 1086024598}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2021690785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1675,7 +1683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4829168729616271767, guid: 49913ed026a254941a2facf0af7a5b14, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4829168729616271774, guid: 49913ed026a254941a2facf0af7a5b14, type: 3}
       propertyPath: m_SlopeLimit

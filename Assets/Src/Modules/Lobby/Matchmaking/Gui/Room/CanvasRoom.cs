@@ -4,25 +4,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CanvasRoom : MonoBehaviour
+public class CanvasRoom : BaseGui
 {
     const string BTN_START = "BtnStart";
     const string PNL_PLAYER = "PnlPlayer";
     const string BTN_LEAVE = "BtnLeave";
+    const string LB_ID_ROOM = "LbIdRoom";
 
-    UiHelper uiHelper = null;
     Button _btnStart = null;
     Button _btnLeave = null;
+    Text _lbIdRoom = null;
     List<PnlPlayerSlot> _playerSlots = new List<PnlPlayerSlot>();
     List<string> _playerNames = new List<string>();
 
     bool _initiated = false;
     RoomViewMode _viewMode;
 
-    // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        this.uiHelper = new UiHelper(this.gameObject);
+        base.Start();
+        this._lbIdRoom = uiHelper.ui[LB_ID_ROOM].GetComponent<Text>();
         this._btnStart = uiHelper.ui[BTN_START].GetComponent<Button>();
         this._btnLeave = uiHelper.ui[BTN_LEAVE].GetComponent<Button>();
         int maxPlayer = LobbyConst.MAX_PLAYER;
@@ -38,19 +39,16 @@ public class CanvasRoom : MonoBehaviour
         this._btnStart.onClick.AddListener(this.OnStart);
     }
 
-    void Update()
+    public override void OnEnter()
     {
-        if (!this._initiated)
-        {
-            this._playerNames = new List<string>(){
+        this._lbIdRoom.text = "ID Room: " + NetworkLobby.Ins.CurrentRoom.Name;
+        this._playerNames = new List<string>(){
                 "John Wick",
                 "John Wick",
                 "John Wick",
                 "John Wick"
             };
-            this.UpdatePlayerSlot();
-            this._initiated = true;
-        }
+        this.UpdatePlayerSlot();
     }
 
     void UpdatePlayerSlot()
@@ -95,7 +93,7 @@ public class CanvasRoom : MonoBehaviour
 
     void OnLeave()
     {
-        Gm.ChangeGui(Gui.MAIN_MENU);
+        NetworkLobby.Ins.LeaveRoom();
     }
 
     void OnStart()

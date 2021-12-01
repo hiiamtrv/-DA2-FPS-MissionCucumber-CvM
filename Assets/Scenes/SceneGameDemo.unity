@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 240199510}
   - component: {fileID: 240199506}
   - component: {fileID: 240199508}
+  - component: {fileID: 240199513}
   m_Layer: 0
   m_Name: Mgr
   m_TagString: Untagged
@@ -249,6 +250,18 @@ MonoBehaviour:
   _friendlyFire: 0
   _matchDuration: 60
   _selfDamage: 0
+--- !u!114 &240199513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240199505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69ce01c8a408f3468060bfb73d30035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &250863723
 GameObject:
   m_ObjectHideFlags: 0

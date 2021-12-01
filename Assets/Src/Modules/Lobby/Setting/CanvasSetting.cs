@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CanvasSetting : MonoBehaviour
+public class CanvasSetting : BaseGui
 {
     const string BTN_GENERAL = "BtnGeneral";
     const string BTN_TERM = "BtnTerm";
@@ -14,7 +14,6 @@ public class CanvasSetting : MonoBehaviour
     const string SLIDER_MUSIC = "SliderMusic";
     const string SLIDER_SFX = "SliderSfx";
 
-    UiHelper uiHelper = null;
     Button _btnGeneral = null;
     Button _btnTerm = null;
     Button _btnClose = null;
@@ -24,10 +23,9 @@ public class CanvasSetting : MonoBehaviour
     Slider _sliderMusic = null;
     Slider _sliderSfx = null;
 
-    // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        this.uiHelper = new UiHelper(this.gameObject);
+        base.Start();
         this._btnGeneral = uiHelper.ui[BTN_GENERAL].GetComponent<Button>();
         this._btnTerm = uiHelper.ui[BTN_TERM].GetComponent<Button>();
         this._btnClose = uiHelper.ui[BTN_CLOSE].GetComponent<Button>();
@@ -45,14 +43,12 @@ public class CanvasSetting : MonoBehaviour
         this._sliderMusic.onValueChanged.AddListener(this.OnChangeSoundMusic);
         this._sliderSfx.onValueChanged.AddListener(this.OnChangeSoundSfx);
 
-        GetInitData();
-        OpenPnlGeneral();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnEnter()
     {
-
+        this.GetInitData();
+        this.OpenPnlGeneral();
     }
 
     void GetInitData()

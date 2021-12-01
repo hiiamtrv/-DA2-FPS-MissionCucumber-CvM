@@ -18,7 +18,7 @@ public class InputMgr : MonoBehaviour
     public static bool EndShoot => Input.GetMouseButtonUp(KeyBind.FIRE);
 
     public static bool Jump => Input.GetKey(KeyBind.JUMP) || (Input.GetAxis("Mouse ScrollWheel") > 0f);
-    public static bool ToggleJump => Input.GetKeyDown(KeyBind.JUMP) || (Input.GetAxis("Mouse ScrollWheel") > 0f);
+    public static bool ToggleJump => Input.GetKeyUp(KeyBind.JUMP) || (Input.GetAxis("Mouse ScrollWheel") > 0f);
 
     public static bool Interact => Input.GetKey(KeyBind.INTERACT);
     public static bool StartInteract => Input.GetKeyDown(KeyBind.INTERACT);
