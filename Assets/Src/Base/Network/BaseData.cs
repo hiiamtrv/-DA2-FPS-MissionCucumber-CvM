@@ -35,7 +35,7 @@ public class BaseData
     {
         if (this._readIdx >= this._packetData.Count)
         {
-            Debug.LogWarningFormat("Index out of bound --- class: {1} --- index: {2}", this.ToString(), this._readIdx);
+            UnityEngine.Debug.LogWarningFormat("Index out of bound --- class: {1} --- index: {2}", this.ToString(), this._readIdx);
             return null;
         }
         else

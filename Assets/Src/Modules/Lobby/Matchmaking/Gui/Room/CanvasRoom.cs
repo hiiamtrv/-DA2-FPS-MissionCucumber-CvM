@@ -20,13 +20,21 @@ public class CanvasRoom : BaseGui
     bool _initiated = false;
     RoomViewMode _viewMode;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         this._lbIdRoom = uiHelper.ui[LB_ID_ROOM].GetComponent<Text>();
         this._btnStart = uiHelper.ui[BTN_START].GetComponent<Button>();
         this._btnLeave = uiHelper.ui[BTN_LEAVE].GetComponent<Button>();
+
+        this._btnLeave.onClick.AddListener(this.OnLeave);
+        this._btnStart.onClick.AddListener(this.OnStart);
+    }
+
+    void Start()
+    {
         int maxPlayer = LobbyConst.MAX_PLAYER;
+        this._playerSlots.Clear();
         for (int i = 0; i < maxPlayer; i++)
         {
             string uiName = PNL_PLAYER + i.ToString();
@@ -34,21 +42,12 @@ public class CanvasRoom : BaseGui
             slot.SetController(this);
             this._playerSlots.Add(slot);
         }
-
-        this._btnLeave.onClick.AddListener(this.OnLeave);
-        this._btnStart.onClick.AddListener(this.OnStart);
     }
 
     public override void OnEnter()
     {
+        Debug.Log(NetworkLobby.Ins.CurrentRoom, this._lbIdRoom != null);
         this._lbIdRoom.text = "ID Room: " + NetworkLobby.Ins.CurrentRoom.Name;
-        this._playerNames = new List<string>(){
-                "John Wick",
-                "John Wick",
-                "John Wick",
-                "John Wick"
-            };
-        this.UpdatePlayerSlot();
     }
 
     void UpdatePlayerSlot()

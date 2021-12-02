@@ -31,7 +31,7 @@ namespace Projectile
             this._model = this.GetComponent<ProjectileStats>();
             if (this._model == null)
             {
-                Debug.LogWarning("[{0}] Model is not set, destroy self");
+                UnityEngine.Debug.LogWarning("[{0}] Model is not set, destroy self");
                 Destroy(this.gameObject);
             }
             else

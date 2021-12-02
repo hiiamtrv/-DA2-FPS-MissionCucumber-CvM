@@ -11,9 +11,9 @@ public class CanvasMainMenu : BaseGui
     Button btnSetting = null;
     Button btnPlay = null;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         this.btnSetting = uiHelper.ui[BTN_SETTING].gameObject.GetComponent<Button>();
         this.btnPlay = uiHelper.ui[BTN_PLAY].gameObject.GetComponent<Button>();
 
@@ -23,13 +23,13 @@ public class CanvasMainMenu : BaseGui
 
     void OnOpenSetting()
     {
-        Debug.Log("[CanvasMainMenu] open setting");
+        UnityEngine.Debug.Log("[CanvasMainMenu] open setting");
         Gm.ChangeGui(Gui.SETTING);
     }
 
     void OnPlay()
     {
-        Debug.Log("[CanvasMainMenu] open make room");
+        UnityEngine.Debug.Log("[CanvasMainMenu] open make room");
         Gm.ChangeGui(Gui.MAKE_ROOM);
     }
 }

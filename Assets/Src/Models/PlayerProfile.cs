@@ -22,7 +22,7 @@ public class PlayerProfile
     {
         if (this.HasLocalData())
         {
-            Debug.Log("[PlayerProfile] has local data");
+            UnityEngine.Debug.Log("[PlayerProfile] has local data");
             this._username = PlayerPrefs.GetString(LocalKey.PLAYER_PROFILE_USERNAME);
             this._description = PlayerPrefs.GetString(LocalKey.PLAYER_PROFILE_DESCRIPTION);
             this._numKill = PlayerPrefs.GetInt(LocalKey.PLAYER_PROFILE_NUMKILL);
@@ -33,7 +33,7 @@ public class PlayerProfile
         }
         else
         {
-            Debug.Log("[PlayerProfile] has no local data");
+            UnityEngine.Debug.Log("[PlayerProfile] has no local data");
             this._username = "";
             this._description = "";
             this._numKill = 0;
@@ -109,14 +109,14 @@ public class PlayerProfile
 
     void LogPlayerProfile()
     {
-        Debug.Log("[PlayerProfile] log player profile");
-        Debug.Log("username:\t" + this._username);
-        Debug.Log("description:\t" + this._description);
-        Debug.Log("numKill:\t" + this._numKill);
-        Debug.Log("numDeath:\t" + this._numDeath);
-        Debug.Log("numAssist:\t" + this._numAssist);
-        Debug.Log("curRP:\t" + this._curRankPoint);
-        Debug.Log("highestRP:\t" + this._highestRankPoint);
+        UnityEngine.Debug.Log("[PlayerProfile] log player profile");
+        UnityEngine.Debug.Log("username:\t" + this._username);
+        UnityEngine.Debug.Log("description:\t" + this._description);
+        UnityEngine.Debug.Log("numKill:\t" + this._numKill);
+        UnityEngine.Debug.Log("numDeath:\t" + this._numDeath);
+        UnityEngine.Debug.Log("numAssist:\t" + this._numAssist);
+        UnityEngine.Debug.Log("curRP:\t" + this._curRankPoint);
+        UnityEngine.Debug.Log("highestRP:\t" + this._highestRankPoint);
     }
 
     void SaveOnLocalData()

@@ -77,7 +77,7 @@ namespace GameHud
             }
             else
             {
-                Debug.LogErrorFormat("[{0}] cannot get stats", this);
+                UnityEngine.Debug.LogErrorFormat("[{0}] cannot get stats", this);
                 Destroy(this);
             }
         }

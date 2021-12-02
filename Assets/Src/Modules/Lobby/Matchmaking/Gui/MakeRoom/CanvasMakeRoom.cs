@@ -33,10 +33,9 @@ public class CanvasMakeRoom : BaseGui
     }
     Selection curSelection;
 
-    // Start is called before the first frame update
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         this._btnCreate = uiHelper.ui[BTN_CREATE].GetComponent<Button>();
         this._btnJoin = uiHelper.ui[BTN_JOIN].GetComponent<Button>();
         this._btnSolo = uiHelper.ui[BTN_SOLO].GetComponent<Button>();
@@ -50,11 +49,15 @@ public class CanvasMakeRoom : BaseGui
         this._btnSolo.onClick.AddListener(() => this.SetSelection(Selection.SOLO));
         this._btnConfirm.onClick.AddListener(this.Confirm);
 
+        this._tooglePublic.onValueChanged.AddListener((value) => this.SetRoomMode(RoomMode.PUBLIC));
+        this._tooglePrivate.interactable = false;
+        // this._tooglePrivate.onValueChanged.AddListener((value) => this.SetRoomMode(RoomMode.PRIVATE));
+    }
+
+    public override void OnEnter()
+    {
         this.SetRoomMode(RoomMode.PUBLIC);
         this.SetSelection(Selection.NULL);
-
-        this._tooglePublic.onValueChanged.AddListener((value) => this.SetRoomMode(RoomMode.PUBLIC));
-        this._tooglePrivate.onValueChanged.AddListener((value) => this.SetRoomMode(RoomMode.PRIVATE));
     }
 
     void SetSelection(Selection selection)
@@ -86,7 +89,7 @@ public class CanvasMakeRoom : BaseGui
 
     void RequestCreateRoom()
     {
-        Debug.Log("Create Room");
+        UnityEngine.Debug.Log("Request create Room");
         NetworkLobby.Ins.CreateRoom();
     }
 
@@ -95,7 +98,7 @@ public class CanvasMakeRoom : BaseGui
         string roomCode = this._txtRoomCode.text;
         if (true)
         {
-            Debug.Log("Join Room" + roomCode);
+            UnityEngine.Debug.Log("Join Room" + roomCode);
             CanvasRoom room = GuiMgr.GetGui(Gui.ROOM).GetComponent<CanvasRoom>();
             room.SetViewMode(RoomViewMode.GUEST);
             Gm.ChangeGui(Gui.ROOM);
@@ -104,13 +107,13 @@ public class CanvasMakeRoom : BaseGui
 
     void Solo()
     {
-        Debug.Log("Request solo");
+        UnityEngine.Debug.Log("Request solo");
     }
 
     void SetRoomMode(RoomMode roomMode)
     {
         this._currentRoomMode = roomMode;
-        Debug.Log("Set room mode: " + roomMode);
+        UnityEngine.Debug.Log("Set room mode: " + roomMode);
         this._tooglePublic.SetIsOnWithoutNotify(roomMode == RoomMode.PUBLIC ? true : false);
         this._tooglePrivate.SetIsOnWithoutNotify(roomMode == RoomMode.PRIVATE ? true : false);
     }

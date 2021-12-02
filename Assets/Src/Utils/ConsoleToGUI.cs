@@ -5,7 +5,7 @@ public class ConsoleToGUI : MonoBehaviour
     string myLog = "*begin log";
     string filename = "";
     bool doShow = false;
-    int kChars = 700;
+    int kChars = 3000;
     void OnEnable() { Application.logMessageReceived += Log; }
     void OnDisable() { Application.logMessageReceived -= Log; }
     void Update() { if (Input.GetKeyDown(KeyCode.BackQuote)) { doShow = !doShow; } }
@@ -33,6 +33,6 @@ public class ConsoleToGUI : MonoBehaviour
     void OnGUI()
     {
         if (!doShow || Application.isEditor) { return; }
-        myLog = GUI.TextArea(new Rect(10, 10, Screen.width - 10, Screen.height - 10), myLog);
+        myLog = GUI.TextArea(new Rect(10, 10, Screen.width - 128, Screen.height - 128), myLog);
     }
 }

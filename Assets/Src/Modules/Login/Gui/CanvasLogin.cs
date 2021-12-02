@@ -62,12 +62,8 @@ public class CanvasLogin : MonoBehaviour
 
     void OnLogin()
     {
-        Debug.Log("ALO LOGIN !!!");
         if (this._txtUsername.text.Length == 0) return;
-
-        Gm.PlayerProfile.SetUsername(this._txtUsername.text);
-        SceneManager.LoadScene(SceneId.LOBBY);
-        EventCenter.Publish(EventId.LOGIN_SUCCESS);
+        NetworkLogin.Ins.Login(this._txtUsername.text);
     }
 
     void OnExit()
@@ -78,6 +74,6 @@ public class CanvasLogin : MonoBehaviour
     void OnClearLocalData()
     {
         PlayerPrefs.DeleteAll();
-        Debug.Log("[CanvasLogin] Local data has been cleared");
+        UnityEngine.Debug.Log("[CanvasLogin] Local data has been cleared");
     }
 }

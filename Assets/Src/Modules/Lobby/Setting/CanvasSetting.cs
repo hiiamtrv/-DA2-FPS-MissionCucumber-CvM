@@ -23,9 +23,10 @@ public class CanvasSetting : BaseGui
     Slider _sliderMusic = null;
     Slider _sliderSfx = null;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
+
         this._btnGeneral = uiHelper.ui[BTN_GENERAL].GetComponent<Button>();
         this._btnTerm = uiHelper.ui[BTN_TERM].GetComponent<Button>();
         this._btnClose = uiHelper.ui[BTN_CLOSE].GetComponent<Button>();
@@ -42,7 +43,6 @@ public class CanvasSetting : BaseGui
         this._sliderMaster.onValueChanged.AddListener(this.OnChangeSoundMaster);
         this._sliderMusic.onValueChanged.AddListener(this.OnChangeSoundMusic);
         this._sliderSfx.onValueChanged.AddListener(this.OnChangeSoundSfx);
-
     }
 
     public override void OnEnter()

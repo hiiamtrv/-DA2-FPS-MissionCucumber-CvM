@@ -55,7 +55,7 @@ namespace Character
             {
                 //TODO: Override if you want some effect before/after take damage
                 this.Health -= damage;
-                Debug.LogFormat("{0} get damage {1}, remain health {2}", this.StateMachine, damage, this.Health);
+                UnityEngine.Debug.LogFormat("{0} get damage {1}, remain health {2}", this.StateMachine, damage, this.Health);
                 EventCenter.Publish(
                     EventId.HEALTH_CHANGE,
                     new HealthChange(this._gameObject, this.Health, reason)

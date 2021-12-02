@@ -111,7 +111,7 @@ public class LeanAudio : object {
 			if(passed + 0.5f*f>=time)
 				break;
 			if(listLength >= PROCESSING_ITERATIONS_MAX-1){
-				Debug.LogError("LeanAudio has reached it's processing cap. To avoid this error increase the number of iterations ex: LeanAudio.PROCESSING_ITERATIONS_MAX = "+(PROCESSING_ITERATIONS_MAX*2));
+                UnityEngine.Debug.LogError("LeanAudio has reached it's processing cap. To avoid this error increase the number of iterations ex: LeanAudio.PROCESSING_ITERATIONS_MAX = "+(PROCESSING_ITERATIONS_MAX * 2));
 				break;
 			}else{
 				int distPoint = listLength / 2;

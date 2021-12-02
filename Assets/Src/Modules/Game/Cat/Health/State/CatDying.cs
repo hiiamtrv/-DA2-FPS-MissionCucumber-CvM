@@ -31,7 +31,7 @@ namespace Cats
                 }
                 else
                 {
-                    Debug.LogWarningFormat("[{0}] Cannot get CatDyingStats", this._gameObject);
+                    UnityEngine.Debug.LogWarningFormat("[{0}] Cannot get CatDyingStats", this._gameObject);
                     this.SetNextState(new Base(this.StateMachine));
                 }
             }

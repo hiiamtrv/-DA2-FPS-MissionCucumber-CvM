@@ -33,9 +33,10 @@ public class CanvasStat : BaseGui
     Text _lbNumSkin = null;
     Text _lbNumFiend = null;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
+
         this._imgAvatar = uiHelper.ui[IMG_AVATAR].GetComponent<Image>();
         this._lbUsername = uiHelper.ui[LB_USERNAME].GetComponent<Text>();
         this._lbDescription = uiHelper.ui[LB_DESCRIPTION].GetComponent<Text>();
@@ -51,7 +52,7 @@ public class CanvasStat : BaseGui
         this._lbNumFiend = uiHelper.ui[LB_NUM_FRIEND].GetComponent<Text>();
 
         this._btnEdit.onClick.AddListener(this.SetEditMode);
-        this._btnConfirm.onClick.AddListener(delegate () { this.SetViewMode(true); });
+        this._btnConfirm.onClick.AddListener(() => this.SetViewMode(true));
         this.SubEvents();
     }
 

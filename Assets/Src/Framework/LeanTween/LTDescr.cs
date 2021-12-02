@@ -2268,7 +2268,7 @@ public class LTDescr
 
 	public LTDescr setDirection( float direction ){
 		if(this.direction!=-1f && this.direction!=1f){
-			Debug.LogWarning("You have passed an incorrect direction of '"+direction+"', direction must be -1f or 1f");
+            UnityEngine.Debug.LogWarning("You have passed an incorrect direction of '"+ direction + "', direction must be -1f or 1f");
 			return this;
 		}
 

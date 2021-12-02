@@ -19,12 +19,12 @@ public class ObjectPool : MonoBehaviour
 
     public static GameObject Instantiate(Type objType, Vector3 position, Quaternion rotation)
     {
-        Debug.Log("[ObjectPool] ask for creation " + objType + " " + position + " " + rotation);
+        UnityEngine.Debug.Log("[ObjectPool] ask for creation " + objType + " " + position + " " + rotation);
         Queue<GameObject> _pool = _poolMap[objType];
 
         countCall++;
         countCreation += (_pool.Count == 0 ? 1 : 0);
-        Debug.Log("[ObjectPool] creation called" + countCall + "\t" + countCreation + "\t" + (countCall - countCreation));
+        UnityEngine.Debug.Log("[ObjectPool] creation called" + countCall + "\t" + countCreation + "\t" + (countCall - countCreation));
 
         if (_pool.Count == 0)
         {

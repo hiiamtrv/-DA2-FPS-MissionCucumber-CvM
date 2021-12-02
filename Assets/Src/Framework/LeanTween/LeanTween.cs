@@ -951,11 +951,11 @@ public class LeanTween : MonoBehaviour {
     }
 
     public static object logError( string error ){
-        if(throwErrors) Debug.LogError(error); else Debug.Log(error);
+        if(throwErrors) UnityEngine.Debug.LogError(error); else UnityEngine.Debug.Log(error);
         return null;
     }
 
-    public static LTDescr options(LTDescr seed){ Debug.LogError("error this function is no longer used"); return null; }
+    public static LTDescr options(LTDescr seed){ UnityEngine.Debug.LogError("error this function is no longer used"); return null; }
     public static LTDescr options(){
         init();
 
@@ -2782,7 +2782,7 @@ public class LeanTween : MonoBehaviour {
             }
             #endif
         }
-        Debug.LogError("You ran out of areas to add listeners, consider increasing LISTENERS_MAX, ex: LeanTween.LISTENERS_MAX = "+(LISTENERS_MAX*2));
+        UnityEngine.Debug.LogError("You ran out of areas to add listeners, consider increasing LISTENERS_MAX, ex: LeanTween.LISTENERS_MAX = "+(LISTENERS_MAX * 2));
     }
 
     public static bool removeListener( int eventId, System.Action<LTEvent> callback ){
@@ -3993,7 +3993,7 @@ public class LTGUI {
         }
         if(rect.type==LTGUI.Element_Type.Label && rect.style!=null){
             if(rect.style.normal.textColor.a<=0f){
-                Debug.LogWarning("Your GUI normal color has an alpha of zero, and will not be rendered.");
+                UnityEngine.Debug.LogWarning("Your GUI normal color has an alpha of zero, and will not be rendered.");
             }
         }
         if(rect.relativeRect.width==float.PositiveInfinity){
@@ -4017,7 +4017,7 @@ public class LTGUI {
             k++;
         }
 
-        Debug.LogError("You ran out of GUI Element spaces");
+        UnityEngine.Debug.LogError("You ran out of GUI Element spaces");
 
         return null;
     }

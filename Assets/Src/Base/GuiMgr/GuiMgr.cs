@@ -52,7 +52,7 @@ public class GuiMgr : MonoBehaviour
 
         GameObject newGui = mapGui[newGuiName];
         newGui.GetComponent<BaseGui>().OnEnter();
-        
+
         this.MoveIntoScreen(newGui);
         curGuiName = newGuiName;
     }
@@ -60,7 +60,7 @@ public class GuiMgr : MonoBehaviour
     void MoveOutOfScreen(GameObject canvas)
     {
         // int screenHeight = Screen.height;
-        canvas.SetActive(false);
+        if (canvas != null) canvas.SetActive(false);
 
     }
 
@@ -69,7 +69,7 @@ public class GuiMgr : MonoBehaviour
         // int screenHeight = Screen.height;
         // Vector3 startPoint = new Vector3(0, screenHeight * 1.5f);
         // canvas.transform.position = startPoint;
-        canvas.SetActive(true);
+        if (canvas != null) canvas.SetActive(true);
     }
 
     public static GameObject GetGui(string guiName)

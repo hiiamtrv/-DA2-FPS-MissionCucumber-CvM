@@ -18,7 +18,7 @@ namespace Cats
                 EventId.SHIELD_CENTER_DESTROYED,
                 (object pubData) =>
                 {
-                    Debug.Log("Change Cat State to weakened !");
+                    UnityEngine.Debug.Log("Change Cat State to weakened !");
                     this.ChangeState(this.CatWeakened);
                 }
             );
