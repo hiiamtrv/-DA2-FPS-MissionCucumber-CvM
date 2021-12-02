@@ -9,7 +9,7 @@ public class NetworkLobby : BaseNetwork
 {
     //room id: 00 -> 99
     const int MAX_NUM_ROOM = 100;
-    const int MAX_LENGTH_ROOM_NAME = 2;
+    public const int MAX_LENGTH_ROOM_NAME = 2;
 
     static HashSet<int> _roomIdexes;
     static NetworkLobby _ins;
@@ -34,6 +34,7 @@ public class NetworkLobby : BaseNetwork
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
+        base.OnRoomListUpdate(roomList);
         UnityEngine.Debug.Log("Get List room:");
         _roomIdexes.Clear();
         roomList.ForEach(room =>
@@ -45,6 +46,7 @@ public class NetworkLobby : BaseNetwork
         base.OnRoomListUpdate(roomList);
     }
 
+    #region CREATE ROOM
     public void CreateRoom()
     {
         string roomIdx = this.GetEmptyRoomIndex();
@@ -61,6 +63,7 @@ public class NetworkLobby : BaseNetwork
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
+        base.OnCreateRoomFailed(returnCode, message);
         //try create another room
         UnityEngine.Debug.LogFormat("[Lobby] room create failed, message: {0}", message);
         this.CreateRoom();
@@ -68,6 +71,7 @@ public class NetworkLobby : BaseNetwork
 
     public override void OnCreatedRoom()
     {
+        base.OnCreatedRoom();
         Debug.Log("[Lobby] room create success", PhotonNetwork.CurrentRoom);
         this._curRoom = PhotonNetwork.CurrentRoom;
         CanvasRoom room = GuiMgr.GetGui(Gui.ROOM).GetComponent<CanvasRoom>();
@@ -79,7 +83,7 @@ public class NetworkLobby : BaseNetwork
     string GetEmptyRoomIndex()
     {
         if (_roomIdexes.Count >= MAX_NUM_ROOM) return "null";
-        
+
         this._thisRoomIdx = MathUtils.RandomInt(0, MAX_NUM_ROOM);
         while (_roomIdexes.Contains(this._thisRoomIdx))
         {
@@ -88,7 +92,30 @@ public class NetworkLobby : BaseNetwork
         string roomIdx = _thisRoomIdx.ToString();
         return roomIdx.PadLeft(MAX_LENGTH_ROOM_NAME, '0');
     }
+    #endregion
 
+    #region JOIN ROOM
+    public void JoinRoom(string roomCode)
+    {
+        PhotonNetwork.JoinRoom(roomCode);
+    }
+
+    public override void OnJoinedRoom()
+    {
+        base.OnJoinedRoom();
+        this._curRoom = PhotonNetwork.CurrentRoom;
+        CanvasRoom room = GuiMgr.GetGui(Gui.ROOM).GetComponent<CanvasRoom>();
+        room.SetViewMode(RoomViewMode.GUEST);
+        Gm.ChangeGui(Gui.ROOM);
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+    }
+    #endregion
+
+    #region LEAVE ROOM
     public void LeaveRoom()
     {
         UnityEngine.Debug.LogFormat("[Lobby] attempt leave room");
@@ -97,9 +124,16 @@ public class NetworkLobby : BaseNetwork
 
     public override void OnLeftRoom()
     {
+        base.OnLeftRoom();
         this._curRoom = null;
         UnityEngine.Debug.LogFormat("[Lobby] room left success");
         Gm.ChangeGui(Gui.MAIN_MENU);
         PhotonNetwork.JoinLobby();
     }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+    }
+    #endregion
 }

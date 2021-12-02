@@ -60,6 +60,11 @@ public class CanvasMakeRoom : BaseGui
         this.SetSelection(Selection.NULL);
     }
 
+    public override void OnExit()
+    {
+        this.SetSelection(Selection.NULL);
+    }
+
     void SetSelection(Selection selection)
     {
         this.curSelection = selection;
@@ -93,15 +98,12 @@ public class CanvasMakeRoom : BaseGui
         NetworkLobby.Ins.CreateRoom();
     }
 
-    void JoinRoom()
+    void RequestJoinRoom()
     {
-        string roomCode = this._txtRoomCode.text;
-        if (true)
+        if (this._txtRoomCode.text.Length == NetworkLobby.MAX_LENGTH_ROOM_NAME)
         {
-            UnityEngine.Debug.Log("Join Room" + roomCode);
-            CanvasRoom room = GuiMgr.GetGui(Gui.ROOM).GetComponent<CanvasRoom>();
-            room.SetViewMode(RoomViewMode.GUEST);
-            Gm.ChangeGui(Gui.ROOM);
+            string roomCode = this._txtRoomCode.text;
+            NetworkLobby.Ins.JoinRoom(roomCode);
         }
     }
 
@@ -129,7 +131,7 @@ public class CanvasMakeRoom : BaseGui
                 }
             case Selection.JOIN:
                 {
-                    this.JoinRoom();
+                    this.RequestJoinRoom();
                     break;
                 }
             case Selection.SOLO:
@@ -138,7 +140,6 @@ public class CanvasMakeRoom : BaseGui
                     break;
                 }
         }
-        this.SetSelection(Selection.NULL);
     }
 
     void SetStateSelected(Button button, bool isSelected)
