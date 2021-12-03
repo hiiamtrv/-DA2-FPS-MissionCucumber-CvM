@@ -15,6 +15,8 @@ public class NetworkLogin : BaseNetwork
     {
         base.Awake();
         _ins = this;
+        
+        PhotonNetwork.EnableCloseConnection = false;
     }
 
     public void Login(string userName)

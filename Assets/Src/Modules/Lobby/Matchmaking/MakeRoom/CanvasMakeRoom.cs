@@ -48,6 +48,7 @@ public class CanvasMakeRoom : BaseGui
         this._btnJoin.onClick.AddListener(() => this.SetSelection(Selection.JOIN));
         this._btnSolo.onClick.AddListener(() => this.SetSelection(Selection.SOLO));
         this._btnConfirm.onClick.AddListener(this.Confirm);
+        this._txtRoomCode.onValueChanged.AddListener((data) => this.SetSelection(Selection.JOIN));
 
         this._tooglePublic.onValueChanged.AddListener((value) => this.SetRoomMode(RoomMode.PUBLIC));
         this._tooglePrivate.interactable = false;
@@ -107,9 +108,9 @@ public class CanvasMakeRoom : BaseGui
         }
     }
 
-    void Solo()
+    void RequestSolo()
     {
-        UnityEngine.Debug.Log("Request solo");
+        NetworkLobby.Ins.GoSolo();
     }
 
     void SetRoomMode(RoomMode roomMode)
@@ -136,7 +137,7 @@ public class CanvasMakeRoom : BaseGui
                 }
             case Selection.SOLO:
                 {
-                    this.Solo();
+                    this.RequestSolo();
                     break;
                 }
         }

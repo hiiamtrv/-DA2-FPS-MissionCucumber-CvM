@@ -55,9 +55,9 @@ public class CanvasTopbar : BaseGui
 
     void UpdatePlayerProfile()
     {
-        Debug.Log("Update player profile", NetworkLobby.Ins.UserId, NetworkLobby.Ins.UserName);
-        this._lbUserId.text = "UserId:@userId".Replace("@userId", NetworkLobby.Ins.UserId);
-        this._lbUserName.text = "UserName:@userName".Replace("@userName", NetworkLobby.Ins.UserName);
+        Debug.Log("Update player profile", NetworkLobby.Ins.MyUserId, NetworkLobby.Ins.MyUserName);
+        this._lbUserId.text = "UserId:@userId".Replace("@userId", NetworkLobby.Ins.MyUserId);
+        this._lbUserName.text = "UserName:@userName".Replace("@userName", NetworkLobby.Ins.MyUserName);
     }
 
     void OnGoToLobby()

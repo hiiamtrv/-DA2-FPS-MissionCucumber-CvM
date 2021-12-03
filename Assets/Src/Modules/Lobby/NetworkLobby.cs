@@ -10,6 +10,7 @@ public class NetworkLobby : BaseNetwork
     //room id: 00 -> 99
     const int MAX_NUM_ROOM = 100;
     public const int MAX_LENGTH_ROOM_NAME = 2;
+    public const int MAX_PLAYER_IN_ROOM = 6;
 
     static HashSet<int> _roomIdexes;
     static NetworkLobby _ins;
@@ -17,8 +18,8 @@ public class NetworkLobby : BaseNetwork
 
     int _thisRoomIdx;
 
-    RoomInfo _curRoom;
-    public RoomInfo CurrentRoom => this._curRoom;
+    public RoomInfo CurrentRoomInfo => PhotonNetwork.CurrentRoom;
+    public Room CurrentRoom => PhotonNetwork.CurrentRoom;
 
     protected override void Awake()
     {
@@ -28,7 +29,9 @@ public class NetworkLobby : BaseNetwork
         _roomIdexes = new HashSet<int>();
         this._thisRoomIdx = 0;
 
+        PhotonNetwork.EnableCloseConnection = true;
         PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.LeaveRoom();
         PhotonNetwork.JoinLobby();
     }
 
@@ -46,18 +49,31 @@ public class NetworkLobby : BaseNetwork
         base.OnRoomListUpdate(roomList);
     }
 
+    void AchieveRoomPlayerData()
+    {
+        EventCenter.Publish(EventId.REMOVE_PLAYER_IN_ROOM);
+        Dictionary<int, Player> players = PhotonNetwork.CurrentRoom.Players;
+        foreach (var item in players)
+        {
+            EventCenter.Publish(EventId.PLAYER_JOIN_ROOM, new PlayerDisplayData(item.Value));
+        }
+    }
+
     #region CREATE ROOM
     public void CreateRoom()
     {
         string roomIdx = this.GetEmptyRoomIndex();
         if (roomIdx != "null")
         {
+            RoomOptions options = new RoomOptions();
+            options.MaxPlayers = NetworkLobby.MAX_PLAYER_IN_ROOM;
+
             UnityEngine.Debug.LogFormat("[Lobby] attemp create room {0}", roomIdx);
-            PhotonNetwork.CreateRoom(roomIdx);
+            PhotonNetwork.CreateRoom(roomIdx, options);
         }
         else
         {
-            UnityEngine.Debug.LogFormat("[Lobby] cannot find room, room empty is null");
+            UnityEngine.Debug.LogFormat("[Lobby] cannot create a room: no more empty room");
         }
     }
 
@@ -72,11 +88,14 @@ public class NetworkLobby : BaseNetwork
     public override void OnCreatedRoom()
     {
         base.OnCreatedRoom();
-        Debug.Log("[Lobby] room create success", PhotonNetwork.CurrentRoom);
-        this._curRoom = PhotonNetwork.CurrentRoom;
+        Debug.Log("[Lobby] room create success", this.CurrentRoom);
+
         CanvasRoom room = GuiMgr.GetGui(Gui.ROOM).GetComponent<CanvasRoom>();
         room.SetViewMode(RoomViewMode.HOST);
         Gm.ChangeGui(Gui.ROOM);
+
+        this.AchieveRoomPlayerData();
+
         PhotonNetwork.LeaveLobby();
     }
 
@@ -103,30 +122,34 @@ public class NetworkLobby : BaseNetwork
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-        this._curRoom = PhotonNetwork.CurrentRoom;
         CanvasRoom room = GuiMgr.GetGui(Gui.ROOM).GetComponent<CanvasRoom>();
-        room.SetViewMode(RoomViewMode.GUEST);
+        bool isHost = PhotonNetwork.IsMasterClient;
+        room.SetViewMode(isHost ? RoomViewMode.HOST : RoomViewMode.GUEST);
         Gm.ChangeGui(Gui.ROOM);
+
+        this.AchieveRoomPlayerData();
+
+        PhotonNetwork.LeaveLobby();
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         base.OnPlayerEnteredRoom(newPlayer);
+        EventCenter.Publish(EventId.PLAYER_JOIN_ROOM, new PlayerDisplayData(newPlayer));
     }
     #endregion
 
     #region LEAVE ROOM
     public void LeaveRoom()
     {
-        UnityEngine.Debug.LogFormat("[Lobby] attempt leave room");
+        Debug.Log("[Lobby] attempt leave room");
         PhotonNetwork.LeaveRoom();
     }
 
     public override void OnLeftRoom()
     {
         base.OnLeftRoom();
-        this._curRoom = null;
-        UnityEngine.Debug.LogFormat("[Lobby] room left success");
+        Debug.Log("[Lobby] room left success");
         Gm.ChangeGui(Gui.MAIN_MENU);
         PhotonNetwork.JoinLobby();
     }
@@ -134,6 +157,52 @@ public class NetworkLobby : BaseNetwork
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         base.OnPlayerLeftRoom(otherPlayer);
+        Debug.Log("[Lobby] Player left room", otherPlayer.NickName);
+        EventCenter.Publish(EventId.PLAYER_LEAVE_ROOM, new PlayerDisplayData(otherPlayer));
+    }
+    #endregion
+
+    #region SWTICH HOST
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        Debug.Log("[Lobby] Switch host");
+        base.OnMasterClientSwitched(newMasterClient);
+        if (PhotonNetwork.IsMasterClient) EventCenter.Publish(EventId.PLAYER_IS_HOST);
+        this.AchieveRoomPlayerData();
+    }
+    #endregion
+
+    #region KICK_PLAYER
+    public void KickPlayer(string playerId)
+    {
+        Debug.Log("Attempt kick player", playerId);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Dictionary<int, Player> players = PhotonNetwork.CurrentRoom.Players;
+            foreach (var item in players)
+            {
+                Player player = item.Value;
+                if (player.UserId == playerId)
+                {
+                    Debug.Log("Do kick player", player);
+                    PhotonNetwork.CloseConnection(player);
+                    EventCenter.Publish(EventId.PLAYER_LEAVE_ROOM, playerId);
+                }
+            }
+        }
+    }
+    #endregion
+
+    #region SOLO
+    public void GoSolo()
+    {
+        PhotonNetwork.JoinRandomRoom();
+    }
+
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        base.OnJoinRandomFailed(returnCode, message);
+        this.CreateRoom();
     }
     #endregion
 }

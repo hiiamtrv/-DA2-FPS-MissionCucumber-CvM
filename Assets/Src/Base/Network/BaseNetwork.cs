@@ -6,8 +6,8 @@ using Photon.Realtime;
 
 public class BaseNetwork : MonoBehaviourPunCallbacks
 {
-    public string UserId => PhotonNetwork.AuthValues.UserId;
-    public string UserName => PhotonNetwork.NickName;
+    public string MyUserId => PhotonNetwork.AuthValues.UserId;
+    public string MyUserName => PhotonNetwork.NickName;
 
     private static bool _connected = false;
 

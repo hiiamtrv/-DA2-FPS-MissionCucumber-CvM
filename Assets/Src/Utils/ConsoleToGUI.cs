@@ -3,6 +3,7 @@ using UnityEngine;
 public class ConsoleToGUI : MonoBehaviour
 {
     string myLog = "*begin log";
+    bool allowFilelog = false;
     string filename = "";
     bool doShow = false;
     int kChars = 3000;
@@ -18,16 +19,19 @@ public class ConsoleToGUI : MonoBehaviour
         if (myLog.Length > kChars) { myLog = myLog.Substring(myLog.Length - kChars); }
 
         // for the file ...
-        if (filename == "")
+        if (allowFilelog)
         {
-            string d = System.Environment.GetFolderPath(
-               System.Environment.SpecialFolder.Desktop) + "/YOUR_LOGS";
-            System.IO.Directory.CreateDirectory(d);
-            string r = Random.Range(1000, 9999).ToString();
-            filename = d + "/log-" + r + ".txt";
+            if (filename == "")
+            {
+                string d = System.Environment.GetFolderPath(
+                   System.Environment.SpecialFolder.Desktop) + "/YOUR_LOGS";
+                System.IO.Directory.CreateDirectory(d);
+                string r = Random.Range(1000, 9999).ToString();
+                filename = d + "/log-" + r + ".txt";
+            }
+            try { System.IO.File.AppendAllText(filename, logString + "\n"); }
+            catch { }
         }
-        try { System.IO.File.AppendAllText(filename, logString + "\n"); }
-        catch { }
     }
 
     void OnGUI()

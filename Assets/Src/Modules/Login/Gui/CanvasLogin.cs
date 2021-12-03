@@ -52,6 +52,7 @@ public class CanvasLogin : MonoBehaviour
     void Init()
     {
         this._txtUsername.text = Gm.PlayerProfile.GetUsername();
+        this._txtPassword.interactable = false;
     }
 
     // Update is called once per frame

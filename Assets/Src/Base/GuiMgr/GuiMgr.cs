@@ -46,11 +46,13 @@ public class GuiMgr : MonoBehaviour
             if (curGuiName == newGuiName) return;
 
             GameObject oldGui = mapGui[curGuiName];
+            if (oldGui == null) return;
             this.MoveOutOfScreen(oldGui);
             oldGui.GetComponent<BaseGui>().OnExit();
         }
 
         GameObject newGui = mapGui[newGuiName];
+        if (newGui == null) return;
         newGui.GetComponent<BaseGui>().OnEnter();
 
         this.MoveIntoScreen(newGui);

@@ -19,10 +19,16 @@ public class PnlPlayerSlot : MonoBehaviour
     Button _btnKick = null;
     SlotState _curSlotState;
 
-    CanvasRoom _controller = null;
+    PlayerDisplayData _playerData = null;
+
+    bool _isHostSlot = false;
+    public bool IsHostSlot { get => _isHostSlot; set => _isHostSlot = value; }
+
+    RoomViewMode _roomViewMode;
+    public RoomViewMode RoomViewMode { get => _roomViewMode; set => _roomViewMode = value; }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         this.uiHelper = new UiHelper(this.gameObject);
 
@@ -56,20 +62,27 @@ public class PnlPlayerSlot : MonoBehaviour
     public void SetSlotState(SlotState newState)
     {
         this._curSlotState = newState;
-        this.SetEnabledRectTransform(this._pnlEmpty, newState == SlotState.EMPTY);
-        this.SetEnabledRectTransform(this._pnlOccupied, newState == SlotState.OCCUPIED);
+        this._pnlEmpty.gameObject.SetActive(newState == SlotState.EMPTY);
+        this._pnlOccupied.gameObject.SetActive(newState == SlotState.OCCUPIED);
     }
 
     public void EmptySlot()
     {
+        this._playerData = null;
         this.SetName("");
         this.SetSlotState(SlotState.EMPTY);
+        this._btnKick.gameObject.SetActive(false);
     }
 
-    public void OccupySlot(string username)
+    public void OccupySlot(PlayerDisplayData playerData)
     {
-        this.SetName(username);
+        this._playerData = playerData;
+        this.SetName(playerData.UserName);
         this.SetSlotState(SlotState.OCCUPIED);
+
+        bool enableKictButton = this._roomViewMode == RoomViewMode.HOST && !this._isHostSlot;
+        Debug.Log(this._roomViewMode, this._isHostSlot);
+        this._btnKick.gameObject.SetActive(enableKictButton);
     }
 
     void SetEnabledRectTransform(RectTransform panel, bool enabled)
@@ -79,13 +92,7 @@ public class PnlPlayerSlot : MonoBehaviour
 
     void KickPlayer()
     {
-        string playerName = this.GetName();
-        this._controller.RemovePlayer(playerName);
-    }
-
-    public void SetController(CanvasRoom controller)
-    {
-        this._controller = controller;
+        NetworkLobby.Ins.KickPlayer(this._playerData.UserId);
     }
 
     public void SetVisibleBtnKick(bool enable)
