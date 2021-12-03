@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using System;
+using UnityEngine.SceneManagement;
 
 public class NetworkLobby : BaseNetwork
 {
@@ -17,9 +18,6 @@ public class NetworkLobby : BaseNetwork
     public static NetworkLobby Ins => _ins;
 
     int _thisRoomIdx;
-
-    public RoomInfo CurrentRoomInfo => PhotonNetwork.CurrentRoom;
-    public Room CurrentRoom => PhotonNetwork.CurrentRoom;
 
     protected override void Awake()
     {
@@ -52,7 +50,7 @@ public class NetworkLobby : BaseNetwork
     void AchieveRoomPlayerData()
     {
         EventCenter.Publish(EventId.REMOVE_PLAYER_IN_ROOM);
-        Dictionary<int, Player> players = PhotonNetwork.CurrentRoom.Players;
+        Dictionary<int, Player> players = this.MyRoom.Players;
         foreach (var item in players)
         {
             EventCenter.Publish(EventId.PLAYER_JOIN_ROOM, new PlayerDisplayData(item.Value));
@@ -67,6 +65,7 @@ public class NetworkLobby : BaseNetwork
         {
             RoomOptions options = new RoomOptions();
             options.MaxPlayers = NetworkLobby.MAX_PLAYER_IN_ROOM;
+            options.PublishUserId = true;
 
             UnityEngine.Debug.LogFormat("[Lobby] attemp create room {0}", roomIdx);
             PhotonNetwork.CreateRoom(roomIdx, options);
@@ -88,7 +87,7 @@ public class NetworkLobby : BaseNetwork
     public override void OnCreatedRoom()
     {
         base.OnCreatedRoom();
-        Debug.Log("[Lobby] room create success", this.CurrentRoom);
+        Debug.Log("[Lobby] room create success", this.MyRoom);
 
         CanvasRoom room = GuiMgr.GetGui(Gui.ROOM).GetComponent<CanvasRoom>();
         room.SetViewMode(RoomViewMode.HOST);
@@ -178,13 +177,13 @@ public class NetworkLobby : BaseNetwork
         Debug.Log("Attempt kick player", playerId);
         if (PhotonNetwork.IsMasterClient)
         {
-            Dictionary<int, Player> players = PhotonNetwork.CurrentRoom.Players;
+            Dictionary<int, Player> players = this.MyRoom.Players;
             foreach (var item in players)
             {
                 Player player = item.Value;
                 if (player.UserId == playerId)
                 {
-                    Debug.Log("Do kick player", player);
+                    Debug.Log("Do kick player", player, playerId, playerId == null);
                     PhotonNetwork.CloseConnection(player);
                     EventCenter.Publish(EventId.PLAYER_LEAVE_ROOM, playerId);
                 }
@@ -203,6 +202,19 @@ public class NetworkLobby : BaseNetwork
     {
         base.OnJoinRandomFailed(returnCode, message);
         this.CreateRoom();
+    }
+    #endregion
+
+    #region START GAME
+    public void StartGame()
+    {
+        Debug.Log("Attemp Start game");
+        Network.Send(CMD.START_GAME);
+    }
+
+    public void OnStartGame()
+    {
+        SceneManager.LoadScene(SceneId.LOADING);
     }
     #endregion
 }

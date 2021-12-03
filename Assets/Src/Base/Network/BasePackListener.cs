@@ -8,10 +8,10 @@ using System;
 
 public class BasePackListener : MonoBehaviour, IOnEventCallback
 {
-    protected virtual List<(byte cmd, Action<object> action)> Listeners =>
-        new List<(byte cmd, Action<object> action)>()
+    protected virtual List<(CMD cmd, Action<object> action)> Listeners =>
+        new List<(CMD cmd, Action<object> action)>()
         {
-
+            
         };
 
     #region DO NOT OVERRIDE
@@ -24,7 +24,7 @@ public class BasePackListener : MonoBehaviour, IOnEventCallback
         _curListener = this;
         this.Listeners.ForEach(listener =>
         {
-            Network.AssignListener(listener.cmd, listener.action);
+            Network.AssignListener((byte)listener.cmd, listener.action);
         });
     }
 
@@ -34,7 +34,7 @@ public class BasePackListener : MonoBehaviour, IOnEventCallback
         _curListener = null;
         this.Listeners.ForEach(listener =>
         {
-            Network.RemoveListener(listener.cmd, listener.action);
+            Network.RemoveListener((byte)listener.cmd, listener.action);
         });
     }
 

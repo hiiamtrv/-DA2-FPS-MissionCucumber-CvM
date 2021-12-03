@@ -56,7 +56,7 @@ public class CanvasRoom : BaseGui
 
     public override void OnEnter()
     {
-        this._lbIdRoom.text = "ID Room: " + NetworkLobby.Ins.CurrentRoomInfo.Name;
+        this._lbIdRoom.text = "ID Room: " + NetworkLobby.Ins.MyRoomInfo.Name;
     }
 
     public override void OnExit()
@@ -114,13 +114,14 @@ public class CanvasRoom : BaseGui
 
     void RequestStart()
     {
-        SceneManager.LoadScene(SceneId.GAME);
+        NetworkLobby.Ins.StartGame();
     }
 
     public void SetViewMode(RoomViewMode viewMode)
     {
         this._viewMode = viewMode;
         this.UpdatePlayerSlot();
+        this._btnStart.enabled = viewMode == RoomViewMode.HOST;
     }
 }
 

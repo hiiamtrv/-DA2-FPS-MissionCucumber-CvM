@@ -1,4 +1,6 @@
 public enum CMD
 {
-    SAMPLE_CMD = 0,
+    AVOID_THIS_CMD,
+    START_GAME,
+    MAKE_TEAM,
 }

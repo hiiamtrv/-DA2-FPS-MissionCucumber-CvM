@@ -12,11 +12,16 @@ partial class Network
 
     public static void Receive(EventData photonEvent)
     {
+        Debug.Log("[Network] Receive event", photonEvent.Code);
+
         byte cmd = photonEvent.Code;
+        EventCenter.Publish(EventId.NETWORK_RECEIVE, cmd);
+
+        _listeners = _listeners.FindAll(listener => listener.IsValid);
         List<NetworkListener> suitableListeners = _listeners.FindAll(listener => listener.Cmd == cmd);
         suitableListeners.ForEach(listener =>
         {
-            listener.Action(photonEvent);
+            if (listener.IsValid) listener.Action(photonEvent);
         });
     }
 

@@ -81,7 +81,6 @@ public class PnlPlayerSlot : MonoBehaviour
         this.SetSlotState(SlotState.OCCUPIED);
 
         bool enableKictButton = this._roomViewMode == RoomViewMode.HOST && !this._isHostSlot;
-        Debug.Log(this._roomViewMode, this._isHostSlot);
         this._btnKick.gameObject.SetActive(enableKictButton);
     }
 

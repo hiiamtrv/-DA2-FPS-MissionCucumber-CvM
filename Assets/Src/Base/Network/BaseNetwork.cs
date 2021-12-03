@@ -8,6 +8,8 @@ public class BaseNetwork : MonoBehaviourPunCallbacks
 {
     public string MyUserId => PhotonNetwork.AuthValues.UserId;
     public string MyUserName => PhotonNetwork.NickName;
+    public Room MyRoom => PhotonNetwork.CurrentRoom;
+    public RoomInfo MyRoomInfo => PhotonNetwork.CurrentRoom;
 
     private static bool _connected = false;
 
@@ -26,6 +28,7 @@ public class BaseNetwork : MonoBehaviourPunCallbacks
         Debug.Log("Server settings: ", PhotonNetwork.PhotonServerSettings.ToString());
 
         PhotonNetwork.GameVersion = GameVersion.CURRENT_VERSION;
+        PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.AuthValues = new Photon.Realtime.AuthenticationValues();
     }
