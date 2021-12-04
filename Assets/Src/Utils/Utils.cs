@@ -15,4 +15,17 @@ public class Utils
             return result;
         }
     }
+
+    //gameobject is different from general object
+    public static GameObject PickFromList(List<GameObject> listObject, bool removeAfterPick = false)
+    {
+        if (listObject.Count == 0) return null;
+        else
+        {
+            int index = MathUtils.RandomInt(0, listObject.Count - 1);
+            GameObject result = listObject[index];
+            if (removeAfterPick) listObject.RemoveAt(index);
+            return result;
+        }
+    }
 }

@@ -6,10 +6,10 @@ using PubData;
 
 public class CharacterMgr : MonoBehaviour
 {
-    public int _numMouseAlive = 0;
+    int _numMouseAlive = 0;
     public int NumMouseAlive => this._numMouseAlive;
 
-    public int _numCatAlive = 0;
+    int _numCatAlive = 0;
     public int NumCatAlive => this._numCatAlive;
 
     [SerializeField] List<GameObject> _characters;
@@ -66,5 +66,15 @@ public class CharacterMgr : MonoBehaviour
                 new MatchEnd(CharacterSide.UNDEFINED, WinReason.DRAW)
             );
         }
+    }
+
+    public void AddCharacter(GameObject character)
+    {
+        this._characters.Add(character);
+    }
+
+    public void RemoveCharacter(GameObject character)
+    {
+        this._characters.Remove(character);
     }
 }

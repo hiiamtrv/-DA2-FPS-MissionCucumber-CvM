@@ -4,8 +4,24 @@ using UnityEngine;
 
 public class GameVar : MonoBehaviour
 {
-    [SerializeField] GameObject _player;
-    public GameObject Player => _player;
+    [SerializeField] CharacterSide _startSide;
+    public CharacterSide StartSide => _startSide;
+
+    GameObject _player;
+    public GameObject Player
+    {
+        get => _player;
+        set
+        {
+            if (_player != null)
+            {
+                this.GetComponent<CharacterMgr>().RemoveCharacter(_player);
+                Destroy(_player);
+            }
+            _player = value;
+            this.GetComponent<CharacterMgr>().AddCharacter(_player);
+        }
+    }
 
     [SerializeField] bool _friendlyFire;
     public bool FriendlyFire => _friendlyFire;
@@ -22,5 +38,7 @@ public class GameVar : MonoBehaviour
     void Awake()
     {
         _ins = this;
+        Debug.Log("Do spawn character");
+        this.GetComponent<Spawner>().DoSpawn(this._startSide);
     }
 }
