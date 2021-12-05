@@ -37,4 +37,12 @@ public class ObjectiveTracker : MonoBehaviour
             }
         }
     }
+
+    public void AddObjective(GameObject gameObject)
+    {
+        if (!this._cucumbers.Contains(gameObject))
+        {
+            this._cucumbers.Add(gameObject);
+        }
+    }
 }

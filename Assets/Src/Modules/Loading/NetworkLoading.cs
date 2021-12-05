@@ -22,7 +22,7 @@ public class NetworkLoading : BaseNetwork
 
         if (PhotonNetwork.IsMasterClient)
         {
-            this.GenerateTeams();
+            this.PrepareMatch();
         }
     }
 
@@ -34,21 +34,22 @@ public class NetworkLoading : BaseNetwork
             Debug.Log("Game starts in", waitSecond, "seconds");
             if (SceneManager.GetActiveScene().buildIndex != SceneId.GAME)
             {
-                SceneManager.LoadScene(SceneId.GAME);
+                SceneManager.LoadScene(SceneId.GAMEDEMO);
             }
         });
     }
 
-    void GenerateTeams()
+    void PrepareMatch()
     {
         List<Player> listPlayer = new List<Player>(this.MyRoom.Players.Values);
         List<string> listUserId = listPlayer.ConvertAll(player => player.UserId);
 
         Dictionary<string, int> resultTeam = TeamMaker.GenerateTeams(listUserId);
         long startTime = TimeUtils.NowButModded() + DELAY_BEFORE_START;
-
-        MakeTeamDataPack packData = new MakeTeamDataPack(resultTeam, startTime);
+        List<int> cucumberIndex = CucumberSpawn.GetSpawnIndexes();
+    
+        MakeTeamDataPack packData = new MakeTeamDataPack(resultTeam, startTime, cucumberIndex);
         packData.WriteData();
-        Network.Send(CMD.MAKE_TEAM, packData.ForSend);
+        Network.Send(CMD.PREPARE_MATCH, packData.ForSend);
     }
 }

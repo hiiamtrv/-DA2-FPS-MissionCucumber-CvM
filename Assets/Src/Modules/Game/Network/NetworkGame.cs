@@ -10,6 +10,9 @@ public class NetworkGame : BaseNetwork
     public const int NUM_PLAYER_CATS = 1;
     public const int NUM_PLAYER_MICE = 1;
 
+    public const int NUM_CUCUMBER_POINT = 10;
+    public const int NUM_CUCUMBER_ON_FIELD = 5;
+
     static NetworkGame _ins;
     public static NetworkGame Ins => _ins;
     static PhotonView _view;

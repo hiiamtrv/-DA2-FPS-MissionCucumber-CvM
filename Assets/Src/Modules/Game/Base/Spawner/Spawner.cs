@@ -11,6 +11,9 @@ public class Spawner : MonoBehaviour
     [SerializeField] List<GameObject> _mouseSpawns;
     [SerializeField] List<GameObject> _catSpawns;
 
+    [SerializeField] GameObject _prefabCucumber;
+    [SerializeField] List<GameObject> _cucumberPoints;
+
     public void DoSpawn(CharacterSide startSide)
     {
         switch (startSide)
@@ -36,5 +39,15 @@ public class Spawner : MonoBehaviour
 
         Debug.Log("Spawn character", character.name, spawnPosition, randomRotation);
         return PhotonNetwork.Instantiate(character.name, spawnPosition, randomRotation);
+    }
+
+    public void SpawnCucumbers(List<int> cucumberIndexes)
+    {
+        cucumberIndexes.ForEach(index =>
+        {
+            Vector3 position = this._cucumberPoints[index].transform.position;
+            GameObject cucumber = PhotonNetwork.Instantiate(_prefabCucumber.name, position, Quaternion.identity);
+            ObjectiveTracker.Ins.AddObjective(cucumber);
+        });
     }
 }

@@ -34,6 +34,7 @@ public class BaseDataPack
     protected void PutValue(object value)
     {
         string jsonData = JsonFormatter.SerializeObject(value);
+        Debug.Log("Put data", jsonData);
         this._packetData.Add(jsonData);
     }
 

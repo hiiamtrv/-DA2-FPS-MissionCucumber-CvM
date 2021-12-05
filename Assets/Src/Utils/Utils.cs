@@ -30,6 +30,19 @@ public class Utils
         }
     }
 
+    //gameobject is different from general object
+    public static T PickFromList<T>(List<T> list, bool removeAfterPick = false)
+    {
+        if (list.Count == 0) return default(T);
+        else
+        {
+            int index = MathUtils.RandomInt(0, list.Count - 1);
+            T result = list[index];
+            if (removeAfterPick) list.RemoveAt(index);
+            return result;
+        }
+    }
+
     public static void DestroyGO(GameObject gameObject)
     {
         if (gameObject != null

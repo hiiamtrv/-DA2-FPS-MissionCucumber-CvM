@@ -10,7 +10,7 @@ public class PackListenerLoading : BasePackListener
     protected override List<(CMD cmd, Action<object> action)> Listeners =>
         new List<(CMD cmd, Action<object> action)>()
         {
-            (CMD.MAKE_TEAM, this.OnMakeTeam)
+            (CMD.PREPARE_MATCH, this.OnMakeTeam)
         };
 
     void OnMakeTeam(object pack)
@@ -20,6 +20,7 @@ public class PackListenerLoading : BasePackListener
 
         Debug.Log("Log data: ", data.ToString(), JsonFormatter.SerializeObject(data.TeamResult));
         GameVar.StartSide = (CharacterSide)data.TeamResult[NetworkLoading.Ins.MyUserId];
+        GameVar.CucumberIndex = data.CucumberIndex;
         NetworkLoading.Ins.StartGame(data.StartTime);
     }
 }

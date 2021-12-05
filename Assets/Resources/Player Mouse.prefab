@@ -412,7 +412,8 @@ MonoBehaviour:
   _soundGunShot: {fileID: 0}
   _soundNoAmmo: {fileID: 0}
   _soundEquip: {fileID: 0}
-  _projectile: {fileID: 3293449337654725148, guid: f4d1787c5e1c28447af5b707f04dc1f6, type: 3}
+  _projectile: {fileID: 3293449337654725148, guid: f4d1787c5e1c28447af5b707f04dc1f6,
+    type: 3}
 --- !u!1 &1016946490077097861
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,7 +759,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d5a3cf8e5195d4cacbc18c3bc93c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fireBall: {fileID: 7781400165985174019, guid: df4c5e9746b80054b98742cceead10af, type: 3}
+  _fireBall: {fileID: 7781400165985174019, guid: df4c5e9746b80054b98742cceead10af,
+    type: 3}
   _eye: {fileID: 1016946489037944683}
 --- !u!1 &1016946490703922269
 GameObject:

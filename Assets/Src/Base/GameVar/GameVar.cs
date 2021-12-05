@@ -11,6 +11,9 @@ public class GameVar : MonoBehaviour
     static CharacterSide _startSide;
     public static CharacterSide StartSide { get => _startSide; set => _startSide = value; }
 
+    static List<int> _cucumberIndex;
+    public static List<int> CucumberIndex { get => _cucumberIndex; set => _cucumberIndex = value; }
+
     GameObject _player;
     public GameObject Player
     {
@@ -50,5 +53,7 @@ public class GameVar : MonoBehaviour
         {
             EventCenter.Publish(EventId.CREATE_PLAYER);
         });
+
+        this.GetComponent<Spawner>().SpawnCucumbers(_cucumberIndex);
     }
 }

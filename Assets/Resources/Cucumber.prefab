@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 677138360868652881}
   - component: {fileID: 677138360868652882}
   - component: {fileID: 677138360868652883}
+  - component: {fileID: -1049989039276395123}
   - component: {fileID: 6678294473229313413}
   - component: {fileID: -6079918697501785211}
   - component: {fileID: 2549288737826173064}
@@ -51,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677138360868652910}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -98,6 +99,23 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-1049989039276395123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677138360868652910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf3e5c2a37c06f40895d0c1d94ce010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactTime: 0
+  _canMoveWhileInteract: 0
+  _interactRadius: 5
+  _catObtainTime: 5
+  _mouseObtainTime: 10
 --- !u!114 &6678294473229313413
 MonoBehaviour:
   m_ObjectHideFlags: 0
