@@ -20,10 +20,8 @@ public class GameVar : MonoBehaviour
             if (_player != null)
             {
                 this.GetComponent<CharacterMgr>().RemoveCharacter(_player);
-                Utils.DestroyGO(_player);
             }
             _player = value;
-            this.GetComponent<CharacterMgr>().AddCharacter(_player);
         }
     }
 

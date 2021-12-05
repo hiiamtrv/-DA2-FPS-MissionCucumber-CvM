@@ -32,5 +32,10 @@ namespace Character
             this._rotateModel = new RotateModel(RotateSpeed);
             this._healthModel = new HealthModel(Health, HealthRegen, Shield);
         }
+
+        void Start()
+        {
+            CharacterMgr.Ins.AddCharacter(this.gameObject);
+        }
     }
 }

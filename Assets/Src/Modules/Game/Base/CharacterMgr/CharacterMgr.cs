@@ -6,6 +6,9 @@ using PubData;
 
 public class CharacterMgr : MonoBehaviour
 {
+    static CharacterMgr _ins;
+    public static CharacterMgr Ins => _ins;
+
     int _numMouseAlive = 0;
     public int NumMouseAlive => this._numMouseAlive;
 
@@ -16,6 +19,8 @@ public class CharacterMgr : MonoBehaviour
 
     void Awake()
     {
+        _ins = this;
+        
         EventCenter.Subcribe(EventId.CHARACTER_ELIMINATED, (object pubData) => this.CheckEndMatchCondition());
         this.UpdateNumCharacterAlive();
     }
