@@ -424,7 +424,7 @@ GameObject:
   - component: {fileID: 1016946490077097862}
   - component: {fileID: 1016946490077097856}
   - component: {fileID: 1016946490077097863}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: lowpolyMouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -857,6 +857,9 @@ GameObject:
   - component: {fileID: 4829168729616271762}
   - component: {fileID: 4829168729616271761}
   - component: {fileID: 4829168729616271760}
+  - component: {fileID: 7372871160496315909}
+  - component: {fileID: -9037426574539034438}
+  - component: {fileID: -914944693436220034}
   m_Layer: 0
   m_Name: Player Mouse
   m_TagString: Untagged
@@ -955,6 +958,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eyePoint: {fileID: 1016946489538176223}
+  _blindFold: {fileID: 8400000, guid: 07e24345398138444afbb6e844ffc818, type: 2}
+  _cameras:
+  - {fileID: 1016946489037944682}
+  - {fileID: 1016946489159809316}
+  _charModel: {fileID: 1016946490077097861}
 --- !u!114 &4829168729616271761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,3 +987,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15319dbc43d23544faeb8b3d714aa26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7372871160496315909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4829168729616271767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: -9037426574539034438}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &-9037426574539034438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4829168729616271767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 1
+--- !u!114 &-914944693436220034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4829168729616271767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177bddf229f8d8445a70c0652f03b7df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DisconnectAfterKeepAlive: 0
+  KeepAliveInBackground: 60000
+  ApplyDontDestroyOnLoad: 1

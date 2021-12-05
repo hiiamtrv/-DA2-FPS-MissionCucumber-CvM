@@ -50,8 +50,9 @@ public class BaseDataPack
         {
             string jsonData = this._packetData[this._readIdx];
             this._readIdx++;
-            object value = JsonFormatter.DeserializeObject(jsonData, typeof(T));
-            return (T)value;
+            T value = (T)JsonFormatter.DeserializeObject(jsonData, typeof(T));
+            Debug.Log("Get next value", value.ToString(), value.ToJson());
+            return value;
         }
     }
 

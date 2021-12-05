@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class MakeTeamDataPack : BaseDataPack
 {
-    TeamMaker.Result _teamResult;
-    public TeamMaker.Result TeamResult => _teamResult;
+    Dictionary<string, int> _teamResult;
+    public Dictionary<string, int> TeamResult => _teamResult;
 
-    float _startTime;
-    public float StartTime => _startTime;
+    long _startTime;
+    public long StartTime => _startTime;
 
     public MakeTeamDataPack() : base() { }
 
-    public MakeTeamDataPack(TeamMaker.Result teamResult, float startTime) : base()
+    public MakeTeamDataPack(Dictionary<string, int> teamResult, long startTime) : base()
     {
         this._teamResult = teamResult;
         this._startTime = startTime;
@@ -28,7 +28,7 @@ public class MakeTeamDataPack : BaseDataPack
     public override void ReadData(EventData eventData)
     {
         base.ReadData(eventData);
-        this._teamResult = this.GetNextValue<TeamMaker.Result>();
-        this._startTime = this.GetNextValue<float>();
+        this._teamResult = this.GetNextValue<Dictionary<string, int>>();
+        this._startTime = this.GetNextValue<long>();
     }
 }

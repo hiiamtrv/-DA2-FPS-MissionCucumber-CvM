@@ -26,7 +26,7 @@ namespace Weapons
 
         void Update()
         {
-            if (this.IsReady && this._canAttack && InputMgr.StartShoot)
+            if (this.IsReady && this._canAttack && InputMgr.StartShoot(this._owner))
             {
                 this.Attack();
             }

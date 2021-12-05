@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Character;
+using Photon.Pun;
 
 namespace Cats
 {
@@ -17,10 +18,17 @@ namespace Cats
         float _downTime;
         float _timeRemain;
 
+        void Awake()
+        {
+            EventCenter.Subcribe(EventId.CREATE_PLAYER, (data) =>
+            {
+                this._player = GameVar.Ins.Player;
+                this.EnableIfPlayerIsCat();
+            });
+        }
+
         void Start()
         {
-            this._player = GameVar.Ins.Player;
-
             this.uiHelper = new UiHelper(this.gameObject);
             this._slider = uiHelper.ui[SLIDER].GetComponent<Slider>();
             this._lbTime = uiHelper.ui[LB_TIME].GetComponent<Text>();
@@ -28,8 +36,6 @@ namespace Cats
             this.HideView();
             EventCenter.Subcribe(EventId.CAT_DOWN, this.ShowView);
             EventCenter.Subcribe(EventId.CAT_RECOVERED, this.HideView);
-
-            this.EnableIfPlayerIsCat();
         }
 
         void EnableIfPlayerIsCat()

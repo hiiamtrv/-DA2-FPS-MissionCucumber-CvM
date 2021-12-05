@@ -121,7 +121,7 @@ public class CanvasRoom : BaseGui
     {
         this._viewMode = viewMode;
         this.UpdatePlayerSlot();
-        this._btnStart.enabled = viewMode == RoomViewMode.HOST;
+        this._btnStart.gameObject.SetActive(viewMode == RoomViewMode.HOST);
     }
 }
 

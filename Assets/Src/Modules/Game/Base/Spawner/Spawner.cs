@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -33,6 +34,7 @@ public class Spawner : MonoBehaviour
         Vector3 spawnPosition = spawnPoint.transform.position;
         Quaternion randomRotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
 
-        return Instantiate(character, spawnPosition, randomRotation);
+        Debug.Log("Spawn character", character.name, spawnPosition, randomRotation);
+        return PhotonNetwork.Instantiate(character.name, spawnPosition, randomRotation);
     }
 }

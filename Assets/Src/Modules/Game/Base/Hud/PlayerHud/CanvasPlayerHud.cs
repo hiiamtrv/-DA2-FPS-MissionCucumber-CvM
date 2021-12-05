@@ -38,10 +38,17 @@ namespace GameHud
 
         float _cooldown = 0;
 
+        void Awake()
+        {
+            EventCenter.Subcribe(EventId.CREATE_PLAYER, (data) =>
+            {
+                this._player = GameVar.Ins.Player;
+                this.GetPlayerInfo();
+            });
+        }
+
         void Start()
         {
-            this._player = GameVar.Ins.Player;
-
             this.uiHelper = new UiHelper(this.gameObject);
             this._pnlHealth = uiHelper.ui[PNL_HEALTH].GetComponent<RectTransform>();
             this._pnlWeapon = uiHelper.ui[PNL_WEAPON].GetComponent<RectTransform>();
@@ -62,7 +69,6 @@ namespace GameHud
             EventCenter.Subcribe(EventId.UTILITY_START_COOLDOWN, this.UpdateUtilityCooldown);
 
             this._pnlUtility.gameObject.SetActive(false);
-            this.GetPlayerInfo();
         }
 
         void GetPlayerInfo()
@@ -124,7 +130,7 @@ namespace GameHud
             HealthChange data = pubData as HealthChange;
             if (data.Dispatcher == this._player)
             {
-                int displayAmount = Mathf.RoundToInt(data.Amount);
+                int displayAmount = Mathf.RoundToInt(data.NewHealth);
                 this._lbHealth.text = displayAmount.ToString();
             }
         }
@@ -134,7 +140,7 @@ namespace GameHud
             ShieldChange data = pubData as ShieldChange;
             if (data.Dispatcher == this._player)
             {
-                int displayAmount = Mathf.RoundToInt(data.Amount);
+                int displayAmount = Mathf.RoundToInt(data.NewShield);
                 this._lbShield.text = displayAmount.ToString();
             }
         }

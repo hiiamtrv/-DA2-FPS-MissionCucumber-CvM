@@ -18,11 +18,11 @@ namespace Character
 
             public override void LogicUpdate()
             {
-                if (InputMgr.Shoot)
+                if (InputMgr.Shoot(this._gameObject))
                 {
                     this.Shoot();
                 }
-                else if (InputMgr.StartInteract)
+                else if (InputMgr.StartInteract(this._gameObject))
                 {
                     this.Interact();
                 }
@@ -46,7 +46,13 @@ namespace Character
                 {
                     UnityEngine.Debug.LogFormat("[{0}]", target);
                     Interactable.InteractEngine interactEngine = target.GetComponent<Interactable.InteractEngine>();
-                    if (interactEngine != null) interactEngine.DoInteract(this._gameObject);
+                    if (interactEngine != null)
+                    {
+                        // interactEngine.DoInteract(this._gameObject);
+                        PubData.InteractRequest pubData = new PubData.InteractRequest(this._gameObject, target.gameObject);
+                        EventCenter.Publish(EventId.INTERACT_REQUEST, pubData);
+                        NetworkGame.Publish(EventId.INTERACT_REQUEST, pubData.Serialize());
+                    }
                 }
             }
 

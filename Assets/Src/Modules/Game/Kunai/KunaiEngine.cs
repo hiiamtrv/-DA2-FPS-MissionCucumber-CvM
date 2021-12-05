@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Weapons;
 using Projectile;
+using Photon.Pun;
 
 namespace Kunai
 {
@@ -34,7 +35,7 @@ namespace Kunai
             Vector3 muzzlePoint = _muzzle.transform.position;
             Vector3 aimPoint = this.GetRayEndpoint();
 
-            GameObject newProjectile = Instantiate(_projectile, muzzlePoint, Quaternion.identity);
+            GameObject newProjectile = PhotonNetwork.Instantiate(_projectile.name, muzzlePoint, Quaternion.identity);
             newProjectile.transform.LookAt(aimPoint);
             ProjectileEngine engine = newProjectile.GetComponent<ProjectileEngine>();
             engine.OnHit = () => base.DoHitEffect(engine.CollidedObject);

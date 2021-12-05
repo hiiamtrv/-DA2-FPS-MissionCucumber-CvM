@@ -31,7 +31,7 @@ namespace Interactable
             {
                 EventCenter.Publish(
                     EventId.INTERACT_START,
-                    new PubData.IneractStart(this.InteractPlayer, this._interactTime, this.Model)
+                    new PubData.IneractStart(this.InteractPlayer, this._interactTime, this._gameObject, this.Model)
                 );
 
                 if (!this.Model.CanMoveWhileInteract)
@@ -55,7 +55,7 @@ namespace Interactable
 
             public override void LogicUpdate()
             {
-                if (!this.IsPlayerInRange || InputMgr.EndInteract
+                if (!this.IsPlayerInRange || InputMgr.EndInteract(this.InteractPlayer)
                     || !this.StateMachine.IsPlayerLooking(this.InteractPlayer))
                 {
                     BaseState stateIdle = this.NextStateIdle;

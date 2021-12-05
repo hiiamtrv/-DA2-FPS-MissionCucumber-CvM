@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Character;
+using Photon.Pun;
 using Projectile;
 using UnityEngine;
 using Utilities;
@@ -23,7 +24,7 @@ namespace FireBall
         {
             base.ActiveUtil();
             
-            GameObject newProjectile = Instantiate(_fireBall, _eye.transform.position, _eye.transform.rotation);
+            GameObject newProjectile = PhotonNetwork.Instantiate(_fireBall.name, _eye.transform.position, _eye.transform.rotation);
             newProjectile.transform.LookAt(_eye.transform.position);
             ProjectileEngine engine = newProjectile.GetComponent<ProjectileEngine>();
             engine.OnHit = () => this.ApplyHitEffect(engine.CollidedObject, this.Model.Damage);

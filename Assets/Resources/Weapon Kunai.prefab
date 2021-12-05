@@ -116,7 +116,7 @@ MonoBehaviour:
   _shotSpread: 0
   _reloadSpeed: 0
   _magazineSize: 15
-  _maxAmmo: 99999
+  _maxAmmo: 165
 --- !u!114 &3460933278350195382
 MonoBehaviour:
   m_ObjectHideFlags: 0

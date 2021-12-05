@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class GameVar : MonoBehaviour
 {
-    [SerializeField] CharacterSide _startSide;
-    public CharacterSide StartSide => _startSide;
+    // [SerializeField] CharacterSide _startSide;
+    // public CharacterSide StartSide => _startSide;
+
+    static CharacterSide _startSide;
+    public static CharacterSide StartSide { get => _startSide; set => _startSide = value; }
 
     GameObject _player;
     public GameObject Player
@@ -16,7 +20,7 @@ public class GameVar : MonoBehaviour
             if (_player != null)
             {
                 this.GetComponent<CharacterMgr>().RemoveCharacter(_player);
-                Destroy(_player);
+                Utils.DestroyGO(_player);
             }
             _player = value;
             this.GetComponent<CharacterMgr>().AddCharacter(_player);
@@ -38,7 +42,15 @@ public class GameVar : MonoBehaviour
     void Awake()
     {
         _ins = this;
-        Debug.Log("Do spawn character");
-        this.GetComponent<Spawner>().DoSpawn(this._startSide);
+    }
+
+    void Start()
+    {
+        Debug.Log("Do spawn character", _startSide);
+        this.GetComponent<Spawner>().DoSpawn(_startSide);
+        LeanTween.delayedCall(Time.fixedDeltaTime, () =>
+        {
+            EventCenter.Publish(EventId.CREATE_PLAYER);
+        });
     }
 }

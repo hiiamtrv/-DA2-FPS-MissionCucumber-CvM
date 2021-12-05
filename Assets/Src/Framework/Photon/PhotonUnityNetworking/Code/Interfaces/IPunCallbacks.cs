@@ -96,7 +96,7 @@ namespace Photon.Pun
     }
 
     /// <summary>
-    /// Defines an interface for object pooling, used in PhotonNetwork.Instantiate and PhotonNetwork.Destroy.
+    /// Defines an interface for object pooling, used in PhotonNetwork.Instantiate and Utils.DestroyGO.
     /// </summary>
     /// <remarks>
     /// To apply your custom IPunPrefabPool, set PhotonNetwork.PrefabPool.

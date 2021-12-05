@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 namespace Projectile
@@ -42,7 +43,7 @@ namespace Projectile
 
             LeanTween.delayedCall(this.Model.TimeDestroy, () =>
             {
-                if (this) Destroy(this.gameObject);
+                if (this != null) Destroy(this.gameObject);
             });
         }
 
@@ -54,7 +55,7 @@ namespace Projectile
 
         void OnTriggerEnter(Collider collider)
         {
-            if (collider.gameObject != _owner)
+            if (this != null && collider.gameObject != _owner)
             {
                 this._collidedObject = collider.gameObject;
                 (this._currentState as State.IProjectileState).OnCollsion();

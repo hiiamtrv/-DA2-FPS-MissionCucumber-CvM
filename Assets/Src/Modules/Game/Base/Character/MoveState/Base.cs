@@ -22,8 +22,11 @@ namespace Character
 
             public override void PhysicUpdate()
             {
-                this.HandleGravity();
-                this.ApplyMove();
+                if (this._gameObject.GetComponent<Photon.Pun.PhotonView>().IsMine)
+                {
+                    this.HandleGravity();
+                    this.ApplyMove();
+                }
             }
 
             #region ACTIONS
@@ -45,8 +48,8 @@ namespace Character
 
             protected void Walk(WalkMode walkMove = WalkMode.BOTH)
             {
-                if (walkMove != WalkMode.X_ONLY) this.MoveZ = InputMgr.ZMove;
-                if (walkMove != WalkMode.Z_ONLY) this.MoveX = InputMgr.XMove;
+                if (walkMove != WalkMode.X_ONLY) this.MoveZ = InputMgr.ZMove(this._gameObject);
+                if (walkMove != WalkMode.Z_ONLY) this.MoveX = InputMgr.XMove(this._gameObject);
             }
 
             protected void Jump(float? height = null)

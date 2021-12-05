@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class StateMachine : MonoBehaviour
@@ -81,7 +82,7 @@ public class StateMachine : MonoBehaviour
 
     public virtual void Destroy()
     {
-        Destroy(this.gameObject);
+        Utils.DestroyGO(this.gameObject);
     }
 }
 

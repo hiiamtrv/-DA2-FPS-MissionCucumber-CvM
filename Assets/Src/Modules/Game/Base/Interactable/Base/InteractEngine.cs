@@ -24,6 +24,15 @@ namespace Interactable
             this._interactPlayer = null;
             base.Start();
             this.GetModel();
+
+            EventCenter.Subcribe(EventId.INTERACT_REQUEST, (pubData) =>
+            {
+                PubData.InteractRequest data = pubData as PubData.InteractRequest;
+                if (data.InteractObject == this.gameObject)
+                {
+                    this.DoInteract(data.Dispatcher);
+                }
+            });
         }
 
         protected virtual void GetModel()

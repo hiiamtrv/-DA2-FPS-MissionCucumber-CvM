@@ -41,11 +41,11 @@ namespace Weapons
 
         protected virtual void Update()
         {
-            if (this.IsReady && this.CanShoot && InputMgr.StartShoot)
+            if (this.IsReady && this.CanShoot && InputMgr.StartShoot(this._owner))
             {
                 this.Shoot();
             }
-            else if (InputMgr.Reload)
+            else if (InputMgr.Reload(this._owner))
             {
                 this.DoReload();
             }
@@ -73,7 +73,7 @@ namespace Weapons
         {
             // this._audio.PlayOneShot(this._soundEquip);
             base.OnEquiped();
-            LeanTween.delayedCall(this._equipTime / 2, () =>
+            LeanTween.delayedCall(this._equipTime, () =>
             {
                 if (this != null)
                 {
@@ -132,7 +132,7 @@ namespace Weapons
             }
         }
 
-        protected virtual bool CanShoot => InputMgr.Shoot && this._gunState == GunState.READY_TO_FIRE;
+        protected virtual bool CanShoot => InputMgr.Shoot(this._owner) && this._gunState == GunState.READY_TO_FIRE;
 
         protected void PublishAmmoChange()
         {

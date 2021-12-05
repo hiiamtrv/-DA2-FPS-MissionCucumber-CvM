@@ -2,27 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
+using BayatGames.Serialization.Formatters.Json;
 using PubData;
 
-public class NetworkGame : BaseNetwork
+public class SyncEvent : MonoBehaviour
 {
-    public const int NUM_PLAYER_CATS = 1;
-    public const int NUM_PLAYER_MICE = 1;
-
-    static NetworkGame _ins;
-    public static NetworkGame Ins => _ins;
-    static PhotonView _view;
+    static SyncEvent _ins;
 
     public static void Publish(string eventId, object data)
     {
         Debug.Log("Publish Sync event", eventId, data);
-        _view.RPC("Pub", RpcTarget.OthersBuffered, new object[] { eventId, data });
+        _ins._view.RPC("Pub", RpcTarget.OthersBuffered, new object[] { eventId, data });
     }
 
-    protected override void Awake()
+    PhotonView _view;
+
+    void Awake()
     {
-        base.Awake();
         _ins = this;
         _view = this.GetComponent<PhotonView>();
     }

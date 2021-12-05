@@ -7,8 +7,8 @@ namespace Utilities
 {
     public class HoldUtility : BaseUtility
     {
-        protected virtual bool StartUse => InputMgr.StartUseUtil;
-        protected virtual bool EndUse => InputMgr.EndUseUtil;
+        protected virtual bool StartUse => InputMgr.StartUseUtil(this._owner);
+        protected virtual bool EndUse => InputMgr.EndUseUtil(this._owner);
 
         protected bool _isUsing;
 

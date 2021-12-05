@@ -51,6 +51,7 @@ namespace Character
 
     public enum DamageReason
     {
+        NULL,
         DEFAULT,
         CAT_DYING,
         SELF_DAMAGE,
@@ -58,6 +59,7 @@ namespace Character
 
     public enum HealReason
     {
+        NULL,
         REGEN,
         SELF_SKILL,
         ALLIES_SKILL,

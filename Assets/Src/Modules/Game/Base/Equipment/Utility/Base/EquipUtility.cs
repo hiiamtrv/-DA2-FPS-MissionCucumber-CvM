@@ -7,9 +7,9 @@ namespace Utilities
 {
     public class EquipUtility : BaseUtility
     {
-        protected virtual bool Equip => !this.IsEquiped && InputMgr.StartUseUtil;
-        protected virtual bool Unequip => this.IsEquiped && InputMgr.StartUseUtil;
-        protected virtual bool Active => InputMgr.StartShoot;
+        protected virtual bool Equip => !this.IsEquiped && InputMgr.StartUseUtil(this._owner);
+        protected virtual bool Unequip => this.IsEquiped && InputMgr.StartUseUtil(this._owner);
+        protected virtual bool Active => InputMgr.StartShoot(this._owner);
 
         protected override void Update()
         {

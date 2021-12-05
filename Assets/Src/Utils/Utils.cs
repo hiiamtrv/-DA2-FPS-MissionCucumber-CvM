@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class Utils
@@ -26,6 +27,17 @@ public class Utils
             GameObject result = listObject[index];
             if (removeAfterPick) listObject.RemoveAt(index);
             return result;
+        }
+    }
+
+    public static void DestroyGO(GameObject gameObject)
+    {
+        if (gameObject != null
+            && gameObject.GetComponent<PhotonView>() != null
+            && gameObject.GetComponent<PhotonView>().IsMine
+        )
+        {
+            PhotonNetwork.Destroy(gameObject);
         }
     }
 }

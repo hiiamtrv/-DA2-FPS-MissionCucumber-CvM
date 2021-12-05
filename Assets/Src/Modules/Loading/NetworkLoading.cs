@@ -9,7 +9,7 @@ using BayatGames.Serialization.Formatters.Json;
 
 public class NetworkLoading : BaseNetwork
 {
-    const float DELAY_BEFORE_START = 3;
+    const long DELAY_BEFORE_START = 3;
 
     static NetworkLoading _ins;
     public static NetworkLoading Ins => _ins;
@@ -26,11 +26,12 @@ public class NetworkLoading : BaseNetwork
         }
     }
 
-    public void StartGame(float startTime)
+    public void StartGame(long startTime)
     {
-        float waitSecond = startTime - Time.fixedTime;
+        long waitSecond = startTime - TimeUtils.NowButModded();
         LeanTween.delayedCall(waitSecond, () =>
         {
+            Debug.Log("Game starts in", waitSecond, "seconds");
             if (SceneManager.GetActiveScene().buildIndex != SceneId.GAME)
             {
                 SceneManager.LoadScene(SceneId.GAME);
@@ -43,8 +44,8 @@ public class NetworkLoading : BaseNetwork
         List<Player> listPlayer = new List<Player>(this.MyRoom.Players.Values);
         List<string> listUserId = listPlayer.ConvertAll(player => player.UserId);
 
-        TeamMaker.Result resultTeam = TeamMaker.GenerateTeams(listUserId);
-        float startTime = Time.fixedTime + DELAY_BEFORE_START;
+        Dictionary<string, int> resultTeam = TeamMaker.GenerateTeams(listUserId);
+        long startTime = TimeUtils.NowButModded() + DELAY_BEFORE_START;
 
         MakeTeamDataPack packData = new MakeTeamDataPack(resultTeam, startTime);
         packData.WriteData();

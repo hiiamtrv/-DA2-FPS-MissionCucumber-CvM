@@ -54,14 +54,14 @@ namespace Demo
         {
             PubData.HealthChange data = pubData as PubData.HealthChange;
             if (data.Dispatcher == this._character)
-                this._lbHealth.text = "Health: @numHealth".Replace("@numHealth", data.Amount.ToString());
+                this._lbHealth.text = "Health: @numHealth".Replace("@numHealth", data.NewHealth.ToString());
         }
 
         void ChangeShield(object pubData)
         {
             PubData.ShieldChange data = pubData as PubData.ShieldChange;
             if (data.Dispatcher == this._character)
-                this._lbShield.text = "Shield: @numShield".Replace("@numShield", data.Amount.ToString());
+                this._lbShield.text = "Shield: @numShield".Replace("@numShield", data.NewShield.ToString());
         }
     }
 }
