@@ -20,7 +20,7 @@ public class NetworkGame : BaseNetwork
     public static void Publish(string eventId, object data)
     {
         Debug.Log("Publish Sync event", eventId, data);
-        _view.RPC("Pub", RpcTarget.OthersBuffered, new object[] { eventId, data });
+        _view.RPC(nameof(Pub), RpcTarget.OthersBuffered, new object[] { eventId, data });
     }
 
     protected override void Awake()
