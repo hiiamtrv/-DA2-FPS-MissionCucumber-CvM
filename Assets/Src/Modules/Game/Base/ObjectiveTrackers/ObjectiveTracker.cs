@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class ObjectiveTracker : MonoBehaviour
 {
+    static ObjectiveTracker _ins;
+    public static ObjectiveTracker Ins => _ins;
+
     [SerializeField] List<GameObject> _cucumbers;
     public List<GameObject> Cucumbers => this._cucumbers;
 
     void Awake()
     {
+        _ins = this;
         EventCenter.Subcribe(EventId.INTERACT_END, this.OnEndInteractObject);
     }
 
