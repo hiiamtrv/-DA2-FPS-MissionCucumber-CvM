@@ -9,6 +9,9 @@ public class TeamMaker
         List<object> cloneList = new List<object>(listPlayer);
         Dictionary<string, int> teamResult = new Dictionary<string, int>();
 
+        int numPlayerMice = NetworkGame.NUM_PLAYER_MICE;
+        int numPlayerCat = NetworkGame.NUM_PLAYER_CATS;
+
         //pick side mice
         for (var i = 0; i < Mathf.Min(NetworkGame.NUM_PLAYER_MICE, cloneList.Count); i++)
         {
