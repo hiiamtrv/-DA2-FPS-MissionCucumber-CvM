@@ -16,6 +16,7 @@ public class CharacterMgr : MonoBehaviour
     public int NumCatAlive => this._numCatAlive;
 
     [SerializeField] List<GameObject> _characters;
+    public List<GameObject> Characters => _characters;
 
     void Awake()
     {

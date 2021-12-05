@@ -94,7 +94,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 23
+    m_Bits: 279
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -202,7 +202,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 5
+  far clip plane: 1
   field of view: 35.983395
   orthographic: 0
   orthographic size: 5
@@ -961,6 +961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eyePoint: {fileID: 1016946489538176223}
   _blindFold: {fileID: 8400000, guid: 07e24345398138444afbb6e844ffc818, type: 2}
+  _isAI: 0
   _cameras:
   - {fileID: 1016946489037944682}
   - {fileID: 1016946489159809316}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Character;
 using Photon.Pun;
 using UnityEngine;
 
@@ -51,7 +52,8 @@ public class InputMgr : MonoBehaviour
         else
         {
             PhotonView view = gameObject.GetComponent<PhotonView>();
-            return (view != null && view.IsMine);
+            Eye eye = gameObject.GetComponent<Eye>();
+            return (view != null && view.IsMine && eye && !eye.IsAI);
         }
     }
 

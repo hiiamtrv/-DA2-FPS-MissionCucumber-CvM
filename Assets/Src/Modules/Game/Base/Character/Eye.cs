@@ -14,6 +14,9 @@ namespace Character
         [SerializeField] GameObject _eyePoint;
         [SerializeField] RenderTexture _blindFold;
 
+        [SerializeField] bool _isAI;
+        public bool IsAI => _isAI;
+
         [SerializeField] GameObject[] _cameras;
         [SerializeField] GameObject _charModel;
 
@@ -24,7 +27,7 @@ namespace Character
         {
             this._view = this.GetComponent<PhotonView>();
             Debug.Log("Game object is mine? ", this.gameObject, _view.IsMine);
-            if (!_view.IsMine)
+            if (!_view.IsMine || _isAI)
             {
                 foreach (var camera in _cameras)
                 {
@@ -44,7 +47,7 @@ namespace Character
 
         void Update()
         {
-            if (this._view.IsMine)
+            if (this._view.IsMine && !this._isAI)
             {
                 float mouseMoveX = Input.GetAxis("Mouse X");
                 this.transform.Rotate(new Vector3(0, mouseMoveX, 0) * this._model.RotateSpeed);

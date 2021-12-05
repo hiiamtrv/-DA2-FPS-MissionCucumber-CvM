@@ -12,7 +12,17 @@ public class Spawner : MonoBehaviour
     [SerializeField] List<GameObject> _catSpawns;
 
     [SerializeField] GameObject _prefabCucumber;
+
     [SerializeField] List<GameObject> _cucumberPoints;
+    public List<GameObject> CucumberPoints => _cucumberPoints;
+
+    static Spawner _ins;
+    public static Spawner Ins => _ins;
+
+    void Awake()
+    {
+        _ins = this;
+    }
 
     public void DoSpawn(CharacterSide startSide)
     {
