@@ -36,6 +36,7 @@ namespace Character
         void Start()
         {
             CharacterMgr.Ins.AddCharacter(this.gameObject);
+            EventCenter.Publish(EventId.MINIMAP_CREATE_DOT, this.gameObject);
         }
     }
 }
