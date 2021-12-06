@@ -19,6 +19,7 @@ namespace Character
 
         [SerializeField] GameObject[] _cameras;
         [SerializeField] GameObject _charModel;
+        public GameObject CharModel => _charModel;
 
         RotateModel _model;
         PhotonView _view;
@@ -56,6 +57,16 @@ namespace Character
                 this._camRotation += mouseMoveY * this._model.RotateSpeed;
                 this._camRotation = Mathf.Clamp(this._camRotation, MIN_ROT_Y, MAX_ROT_Y);
                 this._eyePoint.transform.localRotation = Quaternion.Euler(this._camRotation, 0, 0);
+            }
+        }
+
+        public Camera MainCamera
+        {
+            get
+            {
+                foreach (var camGameObject in this._cameras)
+                    if (camGameObject.tag == "MainCamera") return camGameObject.GetComponent<Camera>();
+                return null;
             }
         }
     }

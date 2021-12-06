@@ -9,4 +9,5 @@ public static class KeyBind
     public const KeyCode CROUCH = KeyCode.LeftControl;
     public const KeyCode WALK = KeyCode.LeftShift;
     public const KeyCode JUMP = KeyCode.Space;
+    public const KeyCode MAP = KeyCode.Tab;
 }
