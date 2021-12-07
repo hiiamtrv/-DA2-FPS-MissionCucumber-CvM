@@ -9,10 +9,23 @@ public class MinimapDot : MonoBehaviour
     GameObject _follower;
     public GameObject Follower { get => _follower; set => _follower = value; }
 
+    void Awake()
+    {
+        EventCenter.Subcribe(EventId.CHARACTER_ELIMINATED, (pubData) =>
+        {
+            GameObject eliminatedChar = pubData as GameObject;
+            if (eliminatedChar == this._follower)
+            {
+                Destroy(this._sprite);
+                this.gameObject.SetActive(false);
+            }
+        });
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (this._follower != null)
+        if (this._follower != null && this._follower.activeInHierarchy)
         {
             float playerX = this._follower.transform.position.x;
             float playerZ = this._follower.transform.position.z;
@@ -22,6 +35,7 @@ public class MinimapDot : MonoBehaviour
 
     public void SetVisible(bool isVisible)
     {
+        if (this._sprite == null) return;
         this._sprite.GetComponent<SpriteRenderer>().enabled = isVisible;
     }
 }

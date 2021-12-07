@@ -75,7 +75,7 @@ namespace Character
                 //TODO: Override if you want some effect before/after death (as default)
                 // this.StateMachine.Destroy();
                 this._gameObject.SetActive(false);
-                EventCenter.Publish(EventId.CHARACTER_ELIMINATED);
+                EventCenter.Publish(EventId.CHARACTER_ELIMINATED, this._gameObject);
             }
 
             protected virtual void OnShieldOut()

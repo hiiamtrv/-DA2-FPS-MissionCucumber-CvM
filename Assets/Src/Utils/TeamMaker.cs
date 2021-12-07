@@ -12,13 +12,6 @@ public class TeamMaker
         int numPlayerMice = NetworkGame.NUM_PLAYER_MICE;
         int numPlayerCat = NetworkGame.NUM_PLAYER_CATS;
 
-        //pick side mice
-        for (var i = 0; i < Mathf.Min(NetworkGame.NUM_PLAYER_MICE, cloneList.Count); i++)
-        {
-            string playerId = Utils.PickFromList(cloneList, true) as string;
-            teamResult.Add(playerId, ((int)CharacterSide.MICE));
-        }
-
         //pick side cat
         for (var i = 0; i < Mathf.Min(NetworkGame.NUM_PLAYER_CATS, cloneList.Count); i++)
         {
@@ -26,6 +19,13 @@ public class TeamMaker
             teamResult.Add(playerId, ((int)CharacterSide.CATS));
         }
         
+        //pick side mice
+        for (var i = 0; i < Mathf.Min(NetworkGame.NUM_PLAYER_MICE, cloneList.Count); i++)
+        {
+            string playerId = Utils.PickFromList(cloneList, true) as string;
+            teamResult.Add(playerId, ((int)CharacterSide.MICE));
+        }
+
         return teamResult;
     }
 }

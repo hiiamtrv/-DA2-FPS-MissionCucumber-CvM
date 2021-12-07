@@ -55,9 +55,11 @@ namespace Character
 
                 float mouseMoveY = -Input.GetAxis("Mouse Y");
                 this._camRotation += mouseMoveY * this._model.RotateSpeed;
-                this._camRotation = Mathf.Clamp(this._camRotation, MIN_ROT_Y, MAX_ROT_Y);
-                this._eyePoint.transform.localRotation = Quaternion.Euler(this._camRotation, 0, 0);
             }
+
+            this.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+            this._camRotation = Mathf.Clamp(this._camRotation, MIN_ROT_Y, MAX_ROT_Y);
+            this._eyePoint.transform.localRotation = Quaternion.Euler(this._camRotation, 0, 0);
         }
 
         public Camera MainCamera
@@ -68,6 +70,17 @@ namespace Character
                     if (camGameObject.tag == "MainCamera") return camGameObject.GetComponent<Camera>();
                 return null;
             }
+        }
+
+        public void LookAt(GameObject target)
+        {
+            Vector3 targetPos = target.GetComponent<Eye>().CharModel.transform.position;
+
+            this.transform.LookAt(targetPos);
+            this.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+
+            this._eyePoint.transform.LookAt(targetPos);
+            this._camRotation = this._eyePoint.transform.localEulerAngles.x;
         }
     }
 }

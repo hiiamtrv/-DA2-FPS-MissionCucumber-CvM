@@ -5,128 +5,150 @@ using UnityEngine.AI;
 using Character;
 using Weapons;
 using BayatGames.Serialization.Formatters.Json;
+using Photon.Pun;
 
 public class AICatController : MonoBehaviour
 {
     public NavMeshAgent agent;
+    [SerializeField] float _nerfScale;
 
-    [SerializeField] float nerfScale;
+    [SerializeField] CharacterStats _characterStats;
+    [SerializeField] Camera _eye;
 
-    [SerializeField] CharacterStats characterStats;
-    [SerializeField] AmmoWeaponStats defaultWeaponStats;
-
-    List<GameObject> _playerInSight;
-    Transform target;
-
-    [SerializeField] LayerMask layerGround;
+    [SerializeField] AmmoWeaponStats _defaultWeaponStats;
+    [SerializeField] GameObject _gun;
+    IWeapon _gunEngine;
+    GameObject _target;
 
     Vector3 walkPoint;
-    bool walkPointSet;
-    float walkPointRange;
+    bool _isPatrolPointSet;
 
-    float timeBetweenAttacks;
-    bool alreadyAttacked;
-
-    [SerializeField] float sightRange;
-    [SerializeField] float attackRange;
+    [SerializeField] float _attackRange;
     [SerializeField] GameObject _model;
 
     Vector3 _lastPos;
 
+    PhotonView view;
+
     void Awake()
     {
         agent = this.GetComponent<NavMeshAgent>();
+        view = this.GetComponent<PhotonView>();
+
+        if (this._gun.GetComponent<MeleeWeapon>() != null) this._gunEngine = this._gun.GetComponent<MeleeWeapon>();
+        else if (this._gun.GetComponent<AmmoWeapon>() != null) this._gunEngine = this._gun.GetComponent<AmmoWeapon>();
     }
 
     void Start()
     {
-        walkPointRange = characterStats.Speed * 2;
-        timeBetweenAttacks = 1 / defaultWeaponStats._fireRate * nerfScale;
-
-        agent.speed = characterStats.Speed * nerfScale;
+        agent.speed = _characterStats.Speed * _nerfScale;
+        this.RecordPos();
     }
 
-    void Update()
+    void LateUpdate()
     {
-        bool playerInSight = this.IsPlayerInSight;
-        bool playerInAtkRange = this.IsPlayerInRange;
+        if (view.IsMine)
+        {
+            bool playerInSight = this.IsPlayerInSight;
+            bool playerIsNear = this.IsPlayerIsNear;
 
-        if (!playerInSight && !playerInAtkRange) Patrol();
-        if (playerInSight && !playerInAtkRange) Chase();
-        if (playerInSight && playerInAtkRange) Attack();
-
-        _lastPos = this.transform.position;
+            if (!playerInSight) Patrol();
+            else
+            {
+                this._isPatrolPointSet = false;
+                if (!playerIsNear) Chase();
+                else Attack();
+            }
+        }
     }
 
     void Patrol()
     {
-        Debug.Log("Patrol", walkPoint, this.transform.eulerAngles);
-        if (
-            !walkPointSet ||
-            (_lastPos != null && _lastPos == this.transform.position)
-        ) SearchWalkPoint();
+        if (this._gunEngine.NeedReload()) this._gunEngine.TriggerReload();
+        if (!_isPatrolPointSet || this._lastPos == this.transform.position) SearchWalkPoint();
 
-        if (walkPointSet)
-        {
-            agent.SetDestination(walkPoint);
-            // LeanTween.rotateAroundLocal(this._model, Vector3.up, 360, Time.deltaTime);
-        }
+        if (_isPatrolPointSet) agent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
-        if (distanceToWalkPoint.magnitude <= 2) walkPointSet = false;
+        if (distanceToWalkPoint.magnitude <= 4) _isPatrolPointSet = false;
     }
 
     void SearchWalkPoint()
     {
-        Debug.Log("Search for destination");
         if (Spawner.Ins == null) return;
         List<Vector3> cucumberPos = Spawner.Ins.CucumberPoints.ConvertAll(cucumber => cucumber.transform.position);
-        Vector3 randomPos = Utils.PickFromList<Vector3>(cucumberPos);
-        if (Vector3.Distance(this.transform.position, randomPos) > 2)
-        {
-            Debug.Log("Select cucumber point", randomPos);
-            walkPoint = randomPos;
-            walkPointSet = true;
-        }
+        cucumberPos = cucumberPos.FindAll(pos => Vector3.Distance(this.transform.position, pos) > 1);
 
+        if (cucumberPos.Count > 0)
+        {
+            Vector3 randomPos = Utils.PickFromList<Vector3>(cucumberPos);
+            walkPoint = randomPos;
+            _isPatrolPointSet = true;
+            Debug.Log("Heading to cucumber ", cucumberPos.IndexOf(randomPos));
+        }
     }
 
     void Chase()
     {
-        agent.SetDestination(target.position);
+        Debug.Log("Chase", this._target);
+        if (this._gunEngine.NeedReload()) this._gunEngine.TriggerReload();
+        this.GetComponent<Eye>().LookAt(this._target);
+        agent.SetDestination(this._target.transform.position);
     }
 
     void Attack()
     {
-        agent.SetDestination(transform.position);
-        transform.LookAt(target);
-        if (!alreadyAttacked)
-        {
-            Debug.Log("Attack !");
+        if (MathUtils.RandomInt(0, 4) == 0) this.Chase();
+        else agent.SetDestination(this.transform.position);
 
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
+        Debug.Log("Attack", this._target);
+        this.GetComponent<Eye>().LookAt(this._target);
+        if (MathUtils.RandomInt(0, 9) == 0) this._gunEngine.TriggerAttack();
     }
 
-    void ResetAttack()
+    void RecordPos()
     {
-        alreadyAttacked = true;
+        this._lastPos = this.transform.position;
+        LeanTween.delayedCall(1, () =>
+        {
+            this.RecordPos();
+        });
     }
 
     bool IsPlayerInSight
     {
         get
         {
+            List<GameObject> mice = CharacterMgr.Ins.Characters.FindAll(go =>
+                go.GetComponent<CharacterStats>().CharacterSide == CharacterSide.MICE
+            );
+
+            this._target = null;
+            while (mice.Count > 0)
+            {
+                GameObject mouse = Utils.PickFromList(mice, true);
+                MeshRenderer renderer = mouse.GetComponent<Eye>().CharModel.GetComponent<MeshRenderer>();
+                if (this._eye.IsObjectVisible(renderer))
+                {
+                    this._target = mouse;
+                    return true;
+                }
+            }
             return false;
         }
     }
 
-    bool IsPlayerInRange
+    bool IsPlayerIsNear
     {
         get
         {
-            return false;
+            if (this._target == null) return false;
+            else
+            {
+                float distance = Vector3.Distance(this._target.transform.position, this.transform.position);
+                Debug.Log("Distance to target", distance, this._gunEngine);
+                return (distance <= this._attackRange);
+            }
         }
     }
 }

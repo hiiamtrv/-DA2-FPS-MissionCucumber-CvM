@@ -35,7 +35,8 @@ namespace LaserGun
             Vector3 muzzlePoint = _muzzle.transform.position;
             Vector3 aimPoint = this.GetRayEndpoint();
 
-            GameObject newProjectile = PhotonNetwork.Instantiate(_projectile.name, muzzlePoint, Quaternion.identity);
+            // GameObject newProjectile = PhotonNetwork.Instantiate(_projectile.name, muzzlePoint, Quaternion.identity);
+            GameObject newProjectile = Instantiate(_projectile, muzzlePoint, Quaternion.identity);
             newProjectile.transform.LookAt(aimPoint);
             ProjectileEngine engine = newProjectile.GetComponent<ProjectileEngine>();
             engine.Owner = _owner;
@@ -57,7 +58,8 @@ namespace LaserGun
         Vector3 GetRayEndpoint()
         {
             RaycastHit hit;
-            Ray ray = this._eye.ScreenPointToRay(this.AIM_POINT);
+            // Ray ray = this._eye.ScreenPointToRay(this.AIM_POINT);
+            Ray ray = new Ray(this._eye.transform.position, this._eye.transform.forward);
             float weaponRange = this.Model.ShotRange;
 
             if (Physics.Raycast(ray, out hit, weaponRange))
@@ -66,7 +68,7 @@ namespace LaserGun
             }
             else
             {
-                return this.transform.position + ray.direction * weaponRange;
+                return this._eye.transform.position + ray.direction * weaponRange;
             }
         }
     }

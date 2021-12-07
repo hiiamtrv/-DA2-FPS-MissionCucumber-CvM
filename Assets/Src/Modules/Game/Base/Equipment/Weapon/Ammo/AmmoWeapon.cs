@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Weapons
 {
-    public class AmmoWeapon : Equipment
+    public class AmmoWeapon : Equipment, IWeapon
     {
         protected readonly Vector2 AIM_POINT = new Vector2(
             Screen.width * 0.5f,
@@ -61,6 +61,7 @@ namespace Weapons
             {
                 foreach (GameObject target in targets)
                 {
+                    Debug.Log(target);
                     this.DoHitEffect(target);
                 }
             }
@@ -120,7 +121,7 @@ namespace Weapons
             {
                 List<GameObject> targets = new List<GameObject>();
                 RaycastHit hit;
-                Ray ray = this._eye.ScreenPointToRay(this.AIM_POINT);
+                Ray ray = new Ray(this._eye.transform.position, this._eye.transform.forward);
                 float weaponRange = this.Model.ShotRange;
 
                 if (Physics.Raycast(ray, out hit, weaponRange))
@@ -132,7 +133,7 @@ namespace Weapons
             }
         }
 
-        protected virtual bool CanShoot => InputMgr.Shoot(this._owner) && this._gunState == GunState.READY_TO_FIRE;
+        protected virtual bool CanShoot => this._gunState == GunState.READY_TO_FIRE;
 
         protected void PublishAmmoChange()
         {
@@ -183,6 +184,24 @@ namespace Weapons
                 1 / this.Model.FireRate,
                 () => this._gunState = GunState.READY_TO_FIRE
             );
+        }
+
+        public virtual void TriggerAttack()
+        {
+            if (this.IsReady && this.CanShoot)
+            {
+                this.Shoot();
+            }
+        }
+
+        public virtual void TriggerReload()
+        {
+            this.DoReload();
+        }
+
+        public virtual bool NeedReload()
+        {
+            return (float)this.Model.RemainAmmo / this.Model.MagazineSize <= 0.3;
         }
     }
 

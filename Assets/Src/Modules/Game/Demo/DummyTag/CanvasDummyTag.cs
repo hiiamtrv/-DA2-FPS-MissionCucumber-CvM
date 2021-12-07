@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Character;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,11 +44,21 @@ namespace Demo
 
         void Update()
         {
-            Vector3 posScreen = Camera.main.WorldToScreenPoint(this._anchor.transform.position);
-            this._pnlStats.transform.position = posScreen;
-
-            Vector3 viewPort = Camera.main.WorldToViewportPoint(this._anchor.transform.position);
-            this._pnlStats.gameObject.SetActive(viewPort.z > 0 && viewPort.x > 0 && viewPort.x < 1 && viewPort.y > 0 && viewPort.y < 1);
+            GameObject player = GameVar.Ins.Player;
+            Camera pEye = player.GetComponent<Eye>().MainCamera;
+            MeshRenderer modelRender = this._character.GetComponent<Eye>().CharModel.GetComponent<MeshRenderer>();
+            if (pEye.IsObjectVisible(modelRender))
+            {
+                this._pnlStats.gameObject.SetActive(true);
+                Vector3 posScreen = Camera.main.WorldToScreenPoint(this._anchor.transform.position);
+                this._pnlStats.transform.position = posScreen;
+                Vector3 viewPort = Camera.main.WorldToViewportPoint(this._anchor.transform.position);
+                this._pnlStats.gameObject.SetActive(viewPort.z > 0 && viewPort.x > 0 && viewPort.x < 1 && viewPort.y > 0 && viewPort.y < 1);
+            }
+            else
+            {
+                this._pnlStats.gameObject.SetActive(false);
+            }
         }
 
         void ChangeHealth(object pubData)

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Weapons
 {
-    public class MeleeWeapon : Equipment
+    public class MeleeWeapon : Equipment, IWeapon
     {
         protected MeleeWeaponModel _model;
         public MeleeWeaponModel Model => this._model;
@@ -95,6 +95,21 @@ namespace Weapons
 
                 return targets.ToArray();
             }
+        }
+
+        public virtual void TriggerAttack()
+        {
+            this.Attack();
+        }
+
+        public virtual void TriggerReload()
+        {
+            //do nothing
+        }
+
+        public bool NeedReload()
+        {
+            return false;
         }
     }
 }

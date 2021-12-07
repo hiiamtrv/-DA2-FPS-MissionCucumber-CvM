@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MinimapDotMgr : MonoBehaviour
 {
+    [SerializeField] bool _revealAll;
     [SerializeField] GameObject _catDot;
     [SerializeField] GameObject _miceDot;
 
@@ -44,7 +45,7 @@ public class MinimapDotMgr : MonoBehaviour
         if (GameVar.Ins.Player != null)
         {
             this._isVisible = new List<bool>();
-            for (var i = 0; i < this._listPlayer.Count; i++) this._isVisible.Add(false);
+            for (var i = 0; i < this._listPlayer.Count; i++) this._isVisible.Add(this._revealAll);
 
             CharacterSide mainPlayerSide = GameVar.Ins.Player.GetComponent<CharacterStats>().CharacterSide;
             for (var i = 0; i < this._listPlayer.Count; i++)

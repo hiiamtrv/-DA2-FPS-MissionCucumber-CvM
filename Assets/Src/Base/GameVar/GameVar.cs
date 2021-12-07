@@ -8,6 +8,9 @@ public class GameVar : MonoBehaviour
     // [SerializeField] CharacterSide _startSide;
     // public CharacterSide StartSide => _startSide;
 
+    static Dictionary<string, int> _players;
+    public static Dictionary<string, int> Players { get => _players; set => _players = value; }
+
     static CharacterSide _startSide;
     public static CharacterSide StartSide { get => _startSide; set => _startSide = value; }
 
@@ -53,6 +56,8 @@ public class GameVar : MonoBehaviour
         {
             EventCenter.Publish(EventId.CREATE_PLAYER);
         });
+
+        this.GetComponent<Spawner>().SpawnBots();
 
         this.GetComponent<Spawner>().SpawnCucumbers(_cucumberIndex);
     }
