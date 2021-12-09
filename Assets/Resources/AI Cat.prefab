@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: -8334062632289380893}
+  _side: 1
   _nerfScale: 0.5
   _characterStats: {fileID: 1325823361084006835}
   _eye: {fileID: 1325823362157772354}
