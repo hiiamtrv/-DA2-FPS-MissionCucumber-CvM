@@ -41,6 +41,11 @@ namespace Weapons
 
         protected virtual void Update()
         {
+            if (this._owner == GameVar.Ins.Player)
+            {
+                Debug.Log("Num max ammo", this.Model.TotalAmmo);
+            }
+
             if (this.IsReady && this.CanShoot && InputMgr.StartShoot(this._owner))
             {
                 this.Shoot();
@@ -74,7 +79,7 @@ namespace Weapons
         {
             // this._audio.PlayOneShot(this._soundEquip);
             base.OnEquiped();
-            LeanTween.delayedCall(this._equipTime, () =>
+            LeanTween.delayedCall(Mathf.Max(this._equipTime, Time.deltaTime), () =>
             {
                 if (this != null)
                 {
