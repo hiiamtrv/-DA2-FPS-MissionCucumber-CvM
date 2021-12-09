@@ -892,7 +892,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 215
+    m_Bits: 471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 09f790dc607727847a43e334109fd7bb, type: 2}
   m_TargetDisplay: 0
@@ -966,7 +966,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 215
+    m_Bits: 471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 0efbaffb365ce9248bb7628f88ac175a, type: 2}
   m_TargetDisplay: 0
@@ -1292,7 +1292,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 215
+    m_Bits: 471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: a04a6db3655357c4083d34a56dd8a68d, type: 2}
   m_TargetDisplay: 0
@@ -1552,7 +1552,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 215
+    m_Bits: 471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 9f14068c43fa6a5459f3ee8fff84d8d6, type: 2}
   m_TargetDisplay: 0
@@ -1626,7 +1626,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 215
+    m_Bits: 471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: bac1e96bd42c86545bd73a6b2fa731f9, type: 2}
   m_TargetDisplay: 0
@@ -1730,7 +1730,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 215
+    m_Bits: 471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 3aa51725a1d8d384187b946f32b504e7, type: 2}
   m_TargetDisplay: 0
@@ -3087,7 +3087,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 215
+    m_Bits: 471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 51fff8e3386bfcb408404f43f3f9ba58, type: 2}
   m_TargetDisplay: 0
@@ -3853,7 +3853,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 215
+    m_Bits: 471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 52b8da9f5d010ea4ebb163488efebb63, type: 2}
   m_TargetDisplay: 0
@@ -4296,7 +4296,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 215
+    m_Bits: 471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 81dddd4cdeaaf5e45aebbb29fbf354bd, type: 2}
   m_TargetDisplay: 0
@@ -4562,7 +4562,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 215
+    m_Bits: 471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 83e7e614f934cee468646ab3ad3b8315, type: 2}
   m_TargetDisplay: 0
@@ -4636,7 +4636,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 215
+    m_Bits: 471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 6786babc893daf64391d50b8db988251, type: 2}
   m_TargetDisplay: 0
