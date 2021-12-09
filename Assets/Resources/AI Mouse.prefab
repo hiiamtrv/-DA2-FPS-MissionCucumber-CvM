@@ -1237,6 +1237,7 @@ MonoBehaviour:
   _eye: {fileID: 562195012972355824}
   _defaultWeaponStats: {fileID: 636553882156136390}
   _gun: {fileID: 562195013970275761}
+  _noticeRange: 10
   _attackRange: 20
   _model: {fileID: 562195014012729374}
 --- !u!195 &-8100583638763191024

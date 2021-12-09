@@ -23,6 +23,7 @@ public class AIMouseController : MonoBehaviour
     Vector3 walkPoint;
     bool _isPatrolPointSet;
 
+    [SerializeField] float _noticeRange;
     [SerializeField] float _attackRange;
     [SerializeField] GameObject _model;
 
@@ -121,18 +122,18 @@ public class AIMouseController : MonoBehaviour
     {
         get
         {
-            List<GameObject> mice = CharacterMgr.Ins.Characters.FindAll(go =>
+            List<GameObject> cats = CharacterMgr.Ins.Characters.FindAll(go =>
                 go.GetComponent<CharacterStats>().CharacterSide == CharacterSide.CATS
             );
 
             this._target = null;
-            while (mice.Count > 0)
+            while (cats.Count > 0)
             {
-                GameObject mouse = Utils.PickFromList(mice, true);
-                MeshRenderer renderer = mouse.GetComponent<Eye>().CharModel.GetComponent<MeshRenderer>();
-                if (this._eye.IsObjectVisible(renderer))
+                GameObject cat = Utils.PickFromList(cats, true);
+                MeshRenderer renderer = cat.GetComponent<Eye>().CharModel.GetComponent<MeshRenderer>();
+                if (this._eye.IsObjectVisible(renderer) || this.IsPlayerIsNoticeable(cat))
                 {
-                    this._target = mouse;
+                    this._target = cat;
                     return true;
                 }
             }
@@ -152,5 +153,10 @@ public class AIMouseController : MonoBehaviour
                 return (distance <= this._attackRange);
             }
         }
+    }
+
+    bool IsPlayerIsNoticeable(GameObject gameObject)
+    {
+        return Vector3.Distance(this.transform.position, gameObject.transform.position) <= this._noticeRange; 
     }
 }

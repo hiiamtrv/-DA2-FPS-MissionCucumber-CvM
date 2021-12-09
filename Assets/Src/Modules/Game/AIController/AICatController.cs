@@ -23,6 +23,7 @@ public class AICatController : MonoBehaviour
     Vector3 walkPoint;
     bool _isPatrolPointSet;
 
+    [SerializeField] float _noticeRange;
     [SerializeField] float _attackRange;
     [SerializeField] GameObject _model;
 
@@ -128,7 +129,7 @@ public class AICatController : MonoBehaviour
             {
                 GameObject mouse = Utils.PickFromList(mice, true);
                 MeshRenderer renderer = mouse.GetComponent<Eye>().CharModel.GetComponent<MeshRenderer>();
-                if (this._eye.IsObjectVisible(renderer))
+                if (this._eye.IsObjectVisible(renderer) || this.IsPlayerIsNoticeable(mouse))
                 {
                     this._target = mouse;
                     return true;
@@ -150,5 +151,10 @@ public class AICatController : MonoBehaviour
                 return (distance <= this._attackRange);
             }
         }
+    }
+    
+    bool IsPlayerIsNoticeable(GameObject gameObject)
+    {
+        return Vector3.Distance(this.transform.position, gameObject.transform.position) <= this._noticeRange; 
     }
 }
