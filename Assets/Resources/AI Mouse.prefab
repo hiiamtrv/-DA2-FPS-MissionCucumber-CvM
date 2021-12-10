@@ -533,10 +533,10 @@ GameObject:
   - component: {fileID: 812097615603017505}
   - component: {fileID: 8835161647804033765}
   - component: {fileID: 1973130767830486235}
-  - component: {fileID: 7020837911411605809}
   - component: {fileID: -8100583638763191024}
   - component: {fileID: 8451511189589347782}
   - component: {fileID: -2714062040551352380}
+  - component: {fileID: -3382933717741148639}
   m_Layer: 0
   m_Name: AI Mouse
   m_TagString: Untagged
@@ -708,28 +708,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7020837911411605809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5392248343267810828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe12b04a3407d054abab8bfbd0067b84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: -8100583638763191024}
-  _side: 2
-  _nerfScale: 0.5
-  _characterStats: {fileID: 5392248343267810823}
-  _eye: {fileID: 562195012972355824}
-  _defaultWeaponStats: {fileID: 686729711852411604}
-  _gun: {fileID: 477361804722634915}
-  _noticeRange: 10
-  _attackRange: 20
-  _model: {fileID: 562195014012729374}
 --- !u!195 &-8100583638763191024
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -871,6 +849,22 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &-3382933717741148639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5392248343267810828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f0f87964a4dff458f0d3a5513bafbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _powerScale: 1
+  _gun: {fileID: 477361804722634915}
+  NoticeRange: 20
+  AttackRange: 20
 --- !u!1 &5790299189441693117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,18 +1211,6 @@ PrefabInstance:
       objectReference: {fileID: 562195012972355824}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ca1c8eab263b1e40ae1272de6e2f76d, type: 3}
---- !u!114 &686729711852411604 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4548525097947390207, guid: 0ca1c8eab263b1e40ae1272de6e2f76d,
-    type: 3}
-  m_PrefabInstance: {fileID: 3933993724084828715}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477361804722634915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9426f7c124935bf4cb0dffe4c47e4c17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &477361804722634915 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3460933278350195336, guid: 0ca1c8eab263b1e40ae1272de6e2f76d,

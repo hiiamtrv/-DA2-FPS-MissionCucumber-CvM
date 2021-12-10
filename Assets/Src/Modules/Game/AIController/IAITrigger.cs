@@ -1,16 +1,19 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace AI
 {
     public interface IAITrigger
     {
         public void OnEndAction();
 
-        public void OnSpotEnemy();
+        public void OnSpotEnemy(List<GameObject> enemies);
 
-        public void OnLostTarget();
+        public void OnLostTarget(GameObject target);
 
-        public void OnTargetDead();
+        public void OnTargetDead(GameObject target);
 
-        public void OnMeetInteractable();
+        public void OnMeetInteractable(GameObject interactObject);
 
         public void OnDamaged();
 

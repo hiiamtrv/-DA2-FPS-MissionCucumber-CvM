@@ -41,11 +41,6 @@ namespace Weapons
 
         protected virtual void Update()
         {
-            if (this._owner == GameVar.Ins.Player)
-            {
-                Debug.Log("Num max ammo", this.Model.TotalAmmo);
-            }
-
             if (this.IsReady && this.CanShoot && InputMgr.StartShoot(this._owner))
             {
                 this.Shoot();
@@ -193,9 +188,14 @@ namespace Weapons
 
         public virtual void TriggerAttack()
         {
+            Debug.Log("Shoot", this.IsReady, this.CanShoot, this.NeedReload());
             if (this.IsReady && this.CanShoot)
             {
                 this.Shoot();
+            }
+            else if (this.NeedReload())
+            {
+                this.TriggerReload();
             }
         }
 

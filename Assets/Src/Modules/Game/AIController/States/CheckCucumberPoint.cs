@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace AI
 {
-    public class CheckCucumberPoint : BaseState
+    public class CheckCucumberPoint : BaseState, IAIState
     {
+        public bool IsTargetLockMode() { return false; }
+
         public AIBaseEngine StateMachine => (AIBaseEngine)this._stateMachine;
         public CheckCucumberPoint(StateMachine stateMachine) : base(stateMachine) { }
 

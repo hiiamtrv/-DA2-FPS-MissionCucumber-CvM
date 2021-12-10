@@ -8,9 +8,17 @@ namespace ShieldCenter
 {
     public class ShieldCenterEngine : InteractEngine
     {
+        static ShieldCenterEngine _ins;
+        public static ShieldCenterEngine Ins;
+
         public new ShieldCenterModel Model => (ShieldCenterModel)this._model;
 
         float _lastInteractTime;
+
+        void Awake()
+        {
+            _ins = this;
+        }
 
         protected override void GetModel()
         {

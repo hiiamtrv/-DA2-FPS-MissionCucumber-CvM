@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 4377141650582146184}
   - component: {fileID: 4669340184413154528}
   - component: {fileID: 1885785284574055779}
-  - component: {fileID: 8956628835570361977}
   - component: {fileID: -8334062632289380893}
   - component: {fileID: 3501372883973784529}
   - component: {fileID: -5541180228128986815}
@@ -193,28 +192,6 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 1
   m_UseLocal: 1
---- !u!114 &8956628835570361977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1325823361084006838}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 809ee5514eb7186419a6c1049ab9433a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: -8334062632289380893}
-  _side: 1
-  _nerfScale: 0.5
-  _characterStats: {fileID: 1325823361084006835}
-  _eye: {fileID: 1325823362157772354}
-  _defaultWeaponStats: {fileID: 3334314617295341534}
-  _gun: {fileID: 1325823361665464518}
-  _noticeRange: 10
-  _attackRange: 20
-  _model: {fileID: 1325823362619136090}
 --- !u!195 &-8334062632289380893
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -384,8 +361,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22651204f24c973498543ea9cceebe4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nerfScale: 1
+  _powerScale: 1
   _gun: {fileID: 1325823361665464518}
+  NoticeRange: 20
+  AttackRange: 20
 --- !u!1 &1325823361412088232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,18 +1152,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 444313797781372071}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3334314617295341534 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2913644730461469561, guid: cc42f2b14cd6a7b4f8dbca57d9031486,
-    type: 3}
-  m_PrefabInstance: {fileID: 444313797781372071}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1325823361665464518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05aebb42e437a5419657994861415e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1325823361665464518 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1462755468268782689, guid: cc42f2b14cd6a7b4f8dbca57d9031486,

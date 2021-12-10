@@ -15,16 +15,16 @@ namespace AI
         protected CharacterSide side;
         public CharacterSide Side => side;
 
-        [SerializeField] protected float _nerfScale;
+        [SerializeField] protected float _powerScale;
 
         protected Camera eye;
         public Camera Eye => eye;
 
         [SerializeField] protected GameObject _gun;
-        protected IWeapon _gunEngine;
+        public IWeapon Weapon { get; private set; }
 
-        [SerializeField] public float NoticeRange { get; set; }
-        [SerializeField] public float AttackRange { get; set; }
+        [SerializeField] public float NoticeRange;
+        [SerializeField] public float AttackRange;
 
         protected PhotonView view;
 
@@ -34,17 +34,37 @@ namespace AI
             view = this.GetComponent<PhotonView>();
             side = this.GetComponent<CharacterStats>().CharacterSide;
             eye = this.GetComponent<Eye>().MainCamera;
+
+            if (this._gun.GetComponent<MeleeWeapon>() != null) this.Weapon = this._gun.GetComponent<MeleeWeapon>();
+            else if (this._gun.GetComponent<AmmoWeapon>() != null) this.Weapon = this._gun.GetComponent<AmmoWeapon>();
+
+            EventCenter.Subcribe(EventId.MATCH_END, (data) => this.enabled = false);
         }
 
         protected override void Update()
         {
             base.Update();
-            agent.speed = this.GetComponent<CharacterStats>().Speed * this._nerfScale;
+            agent.speed = this.GetComponent<CharacterStats>().Speed * this._powerScale;
         }
 
         protected override void LateUpdate()
         {
             //TODO: Check for next state change
+
+            if (this.IsInTargetLockState())
+            {
+
+            }
+            else
+            {
+                //Check for spotted enemy
+                List<GameObject> spottedEnemies = this.GetSpottedEnemies();
+                if (spottedEnemies.Count > 0) this.OnSpotEnemy(spottedEnemies);
+
+                //Check for spotted interactable
+
+            }
+
             base.LateUpdate();
         }
 
@@ -61,24 +81,25 @@ namespace AI
             this.ChangeState(nextState);
         }
 
-        public virtual void OnSpotEnemy()
+        public virtual void OnSpotEnemy(List<GameObject> enemies)
         {
-
+            //TODO: override
         }
 
-        public virtual void OnLostTarget()
+        public virtual void OnLostTarget(GameObject target)
         {
-
+            this.OnEndAction();
         }
 
-        public virtual void OnTargetDead()
+        public virtual void OnTargetDead(GameObject target)
         {
-
+            this.OnEndAction();
         }
 
-        public virtual void OnMeetInteractable()
+        public virtual void OnMeetInteractable(GameObject interactObject)
         {
-
+            //TODO: with cat, no interract
+            //TODO: with mouse, interract if cucumber
         }
 
         public virtual void OnDamaged()
@@ -89,6 +110,11 @@ namespace AI
         public virtual void OnShieldOut()
         {
             //TODO: CAT OVERRIDE
+        }
+
+        bool IsInTargetLockState()
+        {
+            return (this._currentState as IAIState).IsTargetLockMode();
         }
     }
 }

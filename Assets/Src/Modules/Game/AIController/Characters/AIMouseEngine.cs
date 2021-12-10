@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AI
 {
-    public class AICatEngine : AIBaseEngine
+    public class AIMouseEngine : AIBaseEngine
     {
         public override void OnEndAction()
         {
