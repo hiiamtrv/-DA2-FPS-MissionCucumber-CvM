@@ -150,6 +150,7 @@ MonoBehaviour:
   _eyePoint: {fileID: 1366613113672944435}
   _blindFold: {fileID: 8400000, guid: 07e24345398138444afbb6e844ffc818, type: 2}
   _isAI: 0
+  _enableMouse: 1
   _cameras:
   - {fileID: 1366613113372887991}
   - {fileID: 1366613114067986417}

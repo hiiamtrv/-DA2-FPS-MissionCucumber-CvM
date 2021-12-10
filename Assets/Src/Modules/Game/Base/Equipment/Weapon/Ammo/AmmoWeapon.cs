@@ -79,7 +79,7 @@ namespace Weapons
         {
             // this._audio.PlayOneShot(this._soundEquip);
             base.OnEquiped();
-            LeanTween.delayedCall(Mathf.Max(this._equipTime, Time.deltaTime), () =>
+            LeanTween.delayedCall(Mathf.Max(this._equipTime, Time.fixedDeltaTime), () =>
             {
                 if (this != null)
                 {

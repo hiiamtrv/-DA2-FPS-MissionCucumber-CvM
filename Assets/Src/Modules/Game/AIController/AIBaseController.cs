@@ -29,10 +29,11 @@ public class AIBaseController : MonoBehaviour
     [SerializeField] protected GameObject _model;
 
     protected Vector3 _lastPos;
+    protected float _moveY = 0;
 
     protected PhotonView view;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         agent = this.GetComponent<NavMeshAgent>();
         view = this.GetComponent<PhotonView>();
@@ -41,14 +42,15 @@ public class AIBaseController : MonoBehaviour
         else if (this._gun.GetComponent<AmmoWeapon>() != null) this._gunEngine = this._gun.GetComponent<AmmoWeapon>();
     }
 
-    protected void Start()
+    protected virtual void Start()
     {
         agent.speed = _characterStats.Speed * _nerfScale;
         this.RecordPos();
     }
 
-    protected void LateUpdate()
+    protected virtual void LateUpdate()
     {
+        Debug.Log("Path status", agent.pathStatus);
         if (view.IsMine)
         {
             bool playerInSight = this.IsPlayerInSight;
@@ -61,26 +63,27 @@ public class AIBaseController : MonoBehaviour
                 if (!playerIsNear) Chase();
                 else Attack();
             }
-
-            _lastPos = this.transform.position;
         }
     }
 
-    protected void Patrol()
+    protected virtual void Patrol()
     {
+        Debug.Log("Patrol", walkPoint);
         if (this._gunEngine.NeedReload()) this._gunEngine.TriggerReload();
-        if (!_isPatrolPointSet) SearchWalkPoint();
 
+        if (!_isPatrolPointSet) SearchWalkPoint();
         if (_isPatrolPointSet) agent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
         if (distanceToWalkPoint.magnitude <= 4) _isPatrolPointSet = false;
     }
 
-    protected void SearchWalkPoint()
+    protected virtual void SearchWalkPoint()
     {
         if (Spawner.Ins == null) return;
-        List<Vector3> cucumberPos = Spawner.Ins.CucumberPoints.ConvertAll(cucumber => cucumber.transform.position);
+        // List<GameObject> cucumbers = Spawner.Ins.CucumberPoints.FindAll(cucumber => cucumber.name.Contains("9") || cucumber.name.Contains("10"));
+        List<GameObject> cucumbers = Spawner.Ins.CucumberPoints;
+        List<Vector3> cucumberPos = cucumbers.ConvertAll(cucumber => cucumber.transform.position);
         cucumberPos = cucumberPos.FindAll(pos => Vector3.Distance(this.transform.position, pos) > 1);
 
         if (cucumberPos.Count > 0)
@@ -89,10 +92,11 @@ public class AIBaseController : MonoBehaviour
             walkPoint = randomPos;
             _isPatrolPointSet = true;
             Debug.Log("Heading to cucumber ", cucumberPos.IndexOf(randomPos) + 1);
+
         }
     }
 
-    protected void Chase()
+    protected virtual void Chase()
     {
         Debug.Log("Chase", this._target);
         if (this._gunEngine.NeedReload()) this._gunEngine.TriggerReload();
@@ -100,7 +104,7 @@ public class AIBaseController : MonoBehaviour
         agent.SetDestination(this._target.transform.position);
     }
 
-    protected void Attack()
+    protected virtual void Attack()
     {
         if (MathUtils.RandomInt(0, 4) == 0) this.Chase();
         else agent.SetDestination(this.transform.position);
@@ -110,16 +114,18 @@ public class AIBaseController : MonoBehaviour
         if (MathUtils.RandomInt(0, 9) == 0) this._gunEngine.TriggerAttack();
     }
 
-    protected void RecordPos()
+    protected virtual void RecordPos()
     {
+        Debug.Log("Record pos", this.transform.position, this._lastPos);
+        if (this._lastPos == this.transform.position) this._isPatrolPointSet = false;
         this._lastPos = this.transform.position;
-        LeanTween.delayedCall(5, () =>
+        LeanTween.delayedCall(Time.fixedDeltaTime, () =>
         {
             this.RecordPos();
         });
     }
 
-    protected bool IsPlayerInSight
+    protected virtual bool IsPlayerInSight
     {
         get
         {
@@ -132,7 +138,7 @@ public class AIBaseController : MonoBehaviour
             {
                 GameObject enemy = Utils.PickFromList(enemies, true);
                 MeshRenderer renderer = enemy.GetComponent<Eye>().CharModel.GetComponent<MeshRenderer>();
-                if (this._eye.IsObjectVisible(renderer) || this.IsPlayerIsNoticeable(enemy))
+                if (enemy.activeInHierarchy && (this._eye.IsObjectVisible(renderer) || this.IsPlayerIsNoticeable(enemy)))
                 {
                     this._target = enemy;
                     return true;
@@ -142,7 +148,7 @@ public class AIBaseController : MonoBehaviour
         }
     }
 
-    protected bool IsPlayerIsNear
+    protected virtual bool IsPlayerIsNear
     {
         get
         {
@@ -156,8 +162,12 @@ public class AIBaseController : MonoBehaviour
         }
     }
 
-    protected bool IsPlayerIsNoticeable(GameObject gameObject)
+    protected virtual bool IsPlayerIsNoticeable(GameObject gameObject)
     {
-        return Vector3.Distance(this.transform.position, gameObject.transform.position) <= this._noticeRange; 
+        Vector3 direction = this.transform.position - gameObject.transform.position;
+        float distance = direction.magnitude;
+
+        return Vector3.Distance(this.transform.position, gameObject.transform.position) <= this._noticeRange
+        && !Physics.Raycast(this.gameObject.transform.position, direction, distance, LayerMask.GetMask("Map"));
     }
 }

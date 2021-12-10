@@ -50,6 +50,7 @@ namespace Projectile
         public void HitObject()
         {
             if (_onHit != null) _onHit();
+            this.gameObject.SetActive(false);
             Destroy(this.gameObject);
         }
 

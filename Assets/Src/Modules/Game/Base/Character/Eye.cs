@@ -17,6 +17,9 @@ namespace Character
         [SerializeField] bool _isAI;
         public bool IsAI => _isAI;
 
+        [SerializeField] bool _enableMouse;
+        public bool EnableMouse => _enableMouse;
+
         [SerializeField] GameObject[] _cameras;
         [SerializeField] GameObject _charModel;
         public GameObject CharModel => _charModel;
@@ -48,7 +51,7 @@ namespace Character
 
         void Update()
         {
-            if (this._view.IsMine && !this._isAI)
+            if (this._view.IsMine && !this._isAI && this._enableMouse)
             {
                 float mouseMoveX = Input.GetAxis("Mouse X");
                 this.transform.Rotate(new Vector3(0, mouseMoveX, 0) * this._model.RotateSpeed);
@@ -76,10 +79,10 @@ namespace Character
         {
             Vector3 targetPos = target.GetComponent<Eye>().CharModel.transform.position;
 
-            this.transform.LookAt(targetPos);
+            this.transform.LookAt(targetPos, Vector3.up);
             this.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
 
-            this._eyePoint.transform.LookAt(targetPos);
+            this._eyePoint.transform.LookAt(targetPos, Vector3.up);
             this._camRotation = this._eyePoint.transform.localEulerAngles.x;
         }
     }
