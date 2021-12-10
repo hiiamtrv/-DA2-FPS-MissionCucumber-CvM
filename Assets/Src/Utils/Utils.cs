@@ -43,14 +43,24 @@ public class Utils
         }
     }
 
-    public static void DestroyGO(GameObject gameObject)
+    public static void DestroyGO(GameObject gameObject, bool forceDestroy = false)
     {
-        if (gameObject != null
-            && gameObject.GetComponent<PhotonView>() != null
-            && gameObject.GetComponent<PhotonView>().IsMine
-        )
+        if (forceDestroy)
         {
-            PhotonNetwork.Destroy(gameObject);
+            Object.DestroyImmediate(gameObject);
+            return;
+        }
+
+        if (gameObject != null)
+        {
+            if (gameObject.GetComponent<PhotonView>() != null)
+            {
+                if (gameObject.GetComponent<PhotonView>().IsMine) PhotonNetwork.Destroy(gameObject);
+            }
+            else
+            {
+                Object.Destroy(gameObject);
+            }
         }
     }
 }
