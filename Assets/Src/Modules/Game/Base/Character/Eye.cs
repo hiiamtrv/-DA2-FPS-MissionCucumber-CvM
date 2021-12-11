@@ -85,5 +85,10 @@ namespace Character
             this._eyePoint.transform.LookAt(targetPos, Vector3.up);
             this._camRotation = this._eyePoint.transform.localEulerAngles.x;
         }
+
+        public void ResetRotation()
+        {
+            this._camRotation = 0;
+        }
     }
 }

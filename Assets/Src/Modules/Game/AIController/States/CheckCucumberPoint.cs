@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Character;
 using UnityEngine;
 
 namespace AI
@@ -14,6 +15,7 @@ namespace AI
         public override void OnEnter()
         {
             base.OnEnter();
+            this.StateMachine.GetComponent<Eye>().ResetRotation();
             this.StateMachine.GotoRandomCucumberPos();
         }
 

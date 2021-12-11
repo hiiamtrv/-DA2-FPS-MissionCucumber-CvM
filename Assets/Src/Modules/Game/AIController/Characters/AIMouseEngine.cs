@@ -20,7 +20,7 @@ namespace AI
                 chaseState.SetTarget(enemies);
                 this.ChangeState(chaseState);
             }
-            //else, chase or retreat up to shield remains
+            //else, retreat
             else
             {
 

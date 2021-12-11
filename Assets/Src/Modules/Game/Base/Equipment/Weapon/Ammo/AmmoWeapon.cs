@@ -162,7 +162,7 @@ namespace Weapons
             this._equipmentObject.SetActive(false);
 
             LeanTween.delayedCall(
-                this.Model.ReloadTime,
+                Mathf.Max(Time.fixedDeltaTime, this.Model.ReloadTime),
                 () =>
                 {
                     this._equipmentObject.SetActive(true);
@@ -188,7 +188,6 @@ namespace Weapons
 
         public virtual void TriggerAttack()
         {
-            Debug.Log("Shoot", this.IsReady, this.CanShoot, this.NeedReload());
             if (this.IsReady && this.CanShoot)
             {
                 this.Shoot();
