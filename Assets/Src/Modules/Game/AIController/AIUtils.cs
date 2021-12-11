@@ -40,10 +40,10 @@ public static class AIUtils
 
     public static bool IsEnemyNoticable(this AIBaseEngine engine, GameObject enemy)
     {
-        Vector3 direction = engine.transform.position - enemy.transform.position;
+        Vector3 direction = enemy.transform.position - engine.transform.position;
         float distance = direction.magnitude;
 
-        return !Physics.Raycast(engine.gameObject.transform.position, direction, distance, LayerMask.GetMask("Map"))
+        return !Physics.Raycast(engine.transform.position, direction, distance, LayerMask.GetMask("Map"))
         && Vector3.Distance(engine.transform.position, enemy.transform.position) <= engine.NoticeRange;
     }
 
@@ -77,6 +77,12 @@ public static class AIUtils
     public static bool CanSeeTarget(this AIBaseEngine engine, GameObject target)
     {
         MeshRenderer renderer = target.GetComponent<Eye>().CharModel.GetComponent<MeshRenderer>();
-        return (target.activeInHierarchy && (engine.Eye.IsObjectVisible(renderer) || engine.IsEnemyNoticable(target)));
+        return (
+            target.activeInHierarchy
+            && (
+                engine.Eye.IsObjectVisible(renderer)
+                || engine.IsEnemyNoticable(target)
+                )
+            );
     }
 }
