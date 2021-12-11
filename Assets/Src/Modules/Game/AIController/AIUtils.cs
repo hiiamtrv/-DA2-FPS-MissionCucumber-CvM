@@ -10,22 +10,16 @@ public static class AIUtils
 {
     public const float MIN_ACCEPTABLE_DISTANCE = 4;
 
-    public static bool GotoRandomCucumberPos(this AIBaseEngine engine)
+    public static Vector3? GetRandomPoint(this AIBaseEngine engine, List<GameObject> listPoint)
     {
-        if (Spawner.Ins == null) return false;
-        // List<GameObject> cucumbers = Spawner.Ins.CucumberPoints.FindAll(cucumber => cucumber.name.Contains("9") || cucumber.name.Contains("10"));
-        List<GameObject> cucumbers = Spawner.Ins.CucumberPoints;
-        List<Vector3> cucumberPos = cucumbers.ConvertAll(cucumber => cucumber.transform.position);
-        cucumberPos = cucumberPos.FindAll(pos => Vector3.Distance(engine.transform.position, pos) > MIN_ACCEPTABLE_DISTANCE);
+        List<Vector3> pointPos = listPoint.ConvertAll(cucumber => cucumber.transform.position);
+        pointPos = pointPos.FindAll(pos => Vector3.Distance(engine.transform.position, pos) > MIN_ACCEPTABLE_DISTANCE);
 
-        if (cucumberPos.Count > 0)
+        if (pointPos.Count > 0)
         {
-            Vector3 randomPos = Utils.PickFromList<Vector3>(cucumberPos);
-            // Debug.Log("Heading to cucumber ", engine, cucumberPos.IndexOf(randomPos) + 1);
-            engine.agent.SetDestination(randomPos);
-            return true;
+            return Utils.PickFromList<Vector3>(pointPos);
         }
-        else return false;
+        else return null;
     }
 
     public static List<GameObject> GetSpottedEnemies(this AIBaseEngine engine)

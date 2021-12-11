@@ -9,7 +9,7 @@ namespace ShieldCenter
     public class ShieldCenterEngine : InteractEngine
     {
         static ShieldCenterEngine _ins;
-        public static ShieldCenterEngine Ins;
+        public static ShieldCenterEngine Ins => _ins;
 
         public new ShieldCenterModel Model => (ShieldCenterModel)this._model;
 

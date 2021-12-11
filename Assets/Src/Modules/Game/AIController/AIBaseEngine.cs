@@ -68,7 +68,7 @@ namespace AI
             base.LateUpdate();
         }
 
-        public override BaseState GetDefaultState() => new CheckCucumberPoint(this);
+        public override BaseState GetDefaultState() => new Patrol(this);
 
         public virtual BaseState RollNextState()
         {
