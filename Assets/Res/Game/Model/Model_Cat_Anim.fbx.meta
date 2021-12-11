@@ -45,6 +45,21 @@ ModelImporter:
   - first:
       74: 6059336001588132254
     second: Armature|Die
+  - first:
+      74: 678975344414715995
+    second: Armature|0.TPose
+  - first:
+      74: 7524709377905238416
+    second: Armature|1.Idle
+  - first:
+      74: 8414002853885880468
+    second: Armature|2Run
+  - first:
+      74: -6125167637391557854
+    second: Armature|3.attack
+  - first:
+      74: 9117864131988064298
+    second: Armature|4.Die
   externalObjects: {}
   materials:
     materialImportMode: 2

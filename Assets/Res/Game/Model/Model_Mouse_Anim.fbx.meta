@@ -1,62 +1,29 @@
 fileFormatVersion: 2
-guid: 4c6dad13045352141ad09a04b565c9ef
+guid: 4d3ffaa74758bf443a1a18ae59b40377
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: -187127193843562030
-    second: 1.Idle
-  - first:
       74: -4449717305648701825
     second: Armature|0TPose
   - first:
-      74: 2733008048072890651
-    second: Armature|0TPose.001
-  - first:
-      74: 1192131507832858021
-    second: Armature|1.Action
-  - first:
-      74: 7524709377905238416
-    second: Armature|1.Idle
-  - first:
-      74: -369693454847318030
-    second: Armature|2.Attack
+      74: 5265059509584228138
+    second: Armature|1Idle
   - first:
       74: 8414002853885880468
     second: Armature|2Run
   - first:
-      74: -3049345578903333291
-    second: Armature|2Run.001
+      74: 6059336001588132254
+    second: Armature|Die
   - first:
-      74: -6503900078611729427
-    second: Armature|2Run.002
+      74: 8807448955579162661
+    second: Armature|fireball
   - first:
-      74: 885944232402757753
-    second: Armature|Action
+      74: 3070470142484463298
+    second: Armature|jumping
   - first:
-      74: -9125523489441110064
-    second: Armature|Action.001
-  - first:
-      74: 4864456487366326693
-    second: Armature|Action.002
-  - first:
-      74: 2825254910079918813
-    second: Armature|Action.003
-  - first:
-      74: 6755636440131579798
-    second: Armature|CubeAction.002
-  - first:
-      74: -1900132722527647994
-    second: Armature|LightAction
-  - first:
-      74: 8398469426210628447
-    second: Armature|LightAction.001
-  - first:
-      74: -6299476795703760702
-    second: Armature|0.Idle
-  - first:
-      74: -7613133742944954840
-    second: Armature|1.Attack
+      74: 1409496866357907088
+    second: Armature|SurikenLaunch
   externalObjects: {}
   materials:
     materialImportMode: 2
