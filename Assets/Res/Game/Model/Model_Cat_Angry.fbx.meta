@@ -66,6 +66,9 @@ ModelImporter:
   - first:
       74: 9117864131988064298
     second: Armature|4.Die
+  - first:
+      74: 3688802976486086526
+    second: Armature|5.Jump
   externalObjects: {}
   materials:
     materialImportMode: 1
