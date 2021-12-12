@@ -19,6 +19,12 @@ public class Spawner : MonoBehaviour
     [SerializeField] List<GameObject> _cucumberPoints;
     public List<GameObject> CucumberPoints => _cucumberPoints;
 
+    [SerializeField] GameObject _mouseRetreatPoint;
+    public GameObject MouseRetreatPoint => _mouseRetreatPoint;
+
+    [SerializeField] GameObject _catRetreatPoint;
+    public GameObject CatRetreatPoint => _catRetreatPoint;
+
     static Spawner _ins;
     public static Spawner Ins => _ins;
 

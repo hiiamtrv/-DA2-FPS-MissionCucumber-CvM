@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Character;
 using UnityEngine;
 
 namespace AI
 {
     public class AIMouseEngine : AIBaseEngine
     {
+        protected override void LateUpdate()
+        {
+            base.LateUpdate();
+            Debug.Log("Current state", this._currentState);
+        }
+
         public override void OnEndAction()
         {
             base.OnEndAction();
@@ -13,17 +20,33 @@ namespace AI
 
         public override void OnSpotEnemy(List<GameObject> enemies)
         {
-            //if there is only 1 enemy, chase that target
+            //if there is only 1 enemy
             if (enemies.Count == 1)
             {
-                ChaseTarget chaseState = new ChaseTarget(this);
-                chaseState.SetTarget(enemies);
-                this.ChangeState(chaseState);
+                GameObject enemy = enemies[0];
+                float shieldRemain = enemy.GetComponent<HealthEngine>().Model.Shield;
+
+                //attack if the enemy has no shield
+                if (shieldRemain <= 0)
+                {
+                    ChaseTarget chaseState = new ChaseTarget(this);
+                    chaseState.SetTarget(enemies);
+                    this.ChangeState(chaseState);
+                }
+                //else, retreat
+                else
+                {
+                    Retreat retreatState = new Retreat(this);
+                    retreatState.Chaser = enemy;
+                    this.ChangeState(retreatState);
+                }
             }
-            //else, retreat
+            //else auto-retreat
             else
             {
-
+                Retreat retreatState = new Retreat(this);
+                retreatState.Chaser = enemies[0];
+                this.ChangeState(retreatState);
             }
         }
 
