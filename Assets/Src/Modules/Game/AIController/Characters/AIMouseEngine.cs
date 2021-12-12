@@ -7,12 +7,6 @@ namespace AI
 {
     public class AIMouseEngine : AIBaseEngine
     {
-        protected override void LateUpdate()
-        {
-            base.LateUpdate();
-            Debug.Log("Current state", this._currentState);
-        }
-
         public override void OnEndAction()
         {
             base.OnEndAction();

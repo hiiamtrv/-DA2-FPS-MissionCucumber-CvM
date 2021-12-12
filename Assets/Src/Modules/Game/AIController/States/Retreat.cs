@@ -45,7 +45,6 @@ namespace AI
         protected override void CheckNextState()
         {
             base.CheckNextState();
-            Debug.Log("Check visible from chaser", this.IsVisibleFromChaser());
             if (this.Chaser != null && !this.IsVisibleFromChaser())
             {
                 BaseState nextState = this.StateMachine.RollNextState();
