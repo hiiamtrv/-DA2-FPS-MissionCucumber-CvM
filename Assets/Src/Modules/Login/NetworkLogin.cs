@@ -28,6 +28,7 @@ public class NetworkLogin : BaseNetwork
 
         if (PhotonNetwork.IsConnectedAndReady)
         {
+            EventCenter.Renew();
             SceneManager.LoadScene(SceneId.LOBBY);
         }
     }

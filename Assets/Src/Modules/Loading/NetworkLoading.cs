@@ -34,7 +34,9 @@ public class NetworkLoading : BaseNetwork
             Debug.Log("Game starts in", waitSecond, "seconds");
             if (SceneManager.GetActiveScene().buildIndex != SceneId.GAME)
             {
-                SceneManager.LoadScene(SceneId.GAMEDEMO);
+                int sceneId = SceneId.GAMEDEMO;
+                EventCenter.Renew();
+                SceneManager.LoadScene(sceneId);
             }
         });
     }
@@ -47,7 +49,7 @@ public class NetworkLoading : BaseNetwork
         Dictionary<string, int> resultTeam = TeamMaker.GenerateTeams(listUserId);
         long startTime = TimeUtils.NowButModded() + DELAY_BEFORE_START;
         List<int> cucumberIndex = CucumberSpawn.GetSpawnIndexes();
-    
+
         MakeTeamDataPack packData = new MakeTeamDataPack(resultTeam, startTime, cucumberIndex);
         packData.WriteData();
         Network.Send(CMD.PREPARE_MATCH, packData.ForSend);

@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using PubData;
+using UnityEngine.SceneManagement;
 
 public class NetworkGame : BaseNetwork
 {
@@ -50,5 +51,12 @@ public class NetworkGame : BaseNetwork
             case EventId.INTERACT_REQUEST: return InteractRequest.Deserialize(data as object[]);
             default: return data;
         }
+    }
+
+    public void EndGame()
+    {
+        SceneManager.UnloadSceneAsync(SceneId.GAMEDEMO);
+        EventCenter.Renew();
+        SceneManager.LoadScene(SceneId.LOBBY);
     }
 }

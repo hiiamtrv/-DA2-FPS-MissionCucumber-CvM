@@ -23,6 +23,12 @@ public partial class EventCenter
     {
         GetInstance().Notify(eventId, null);
     }
+
+    public static void Renew()
+    {
+        GetInstance().CreateNewInstance();
+
+    }
 }
 
 #region PRIVATE METHODS
@@ -77,6 +83,11 @@ public partial class EventCenter
         {
             action(data);
         }
+    }
+
+    public void CreateNewInstance()
+    {
+        _instance = new EventCenter();
     }
 }
 #endregion

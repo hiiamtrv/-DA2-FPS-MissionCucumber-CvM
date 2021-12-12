@@ -103,8 +103,11 @@ public class CanvasRoom : BaseGui
 
     void RemoveAllPlayer(object pubData)
     {
-        this._playerData.Clear();
-        this.UpdatePlayerSlot();
+        if (this.gameObject != null)
+        {
+            this._playerData.Clear();
+            this.UpdatePlayerSlot();
+        }
     }
 
     void RequestLeave()

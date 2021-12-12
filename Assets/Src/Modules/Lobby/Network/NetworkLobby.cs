@@ -28,7 +28,7 @@ public class NetworkLobby : BaseNetwork
         this._thisRoomIdx = 0;
 
         PhotonNetwork.EnableCloseConnection = true;
-        PhotonNetwork.AutomaticallySyncScene = true;
+        // PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.JoinLobby();
     }
@@ -214,7 +214,9 @@ public class NetworkLobby : BaseNetwork
 
     public void OnStartGame()
     {
+        EventCenter.Renew();
         SceneManager.LoadScene(SceneId.LOADING);
+        SceneManager.UnloadSceneAsync(SceneId.LOBBY);
     }
     #endregion
 }

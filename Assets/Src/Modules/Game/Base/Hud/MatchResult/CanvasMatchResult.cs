@@ -13,6 +13,8 @@ namespace GameHud
         Text _lbCatsWin = null;
         Text _lbDraw = null;
         Text _lbWinReason = null;
+        Button _btnStay = null;
+        Button _btnLeave = null;
 
         [SerializeField] List<GameObject> _hideHuds;
 
@@ -28,12 +30,19 @@ namespace GameHud
             this._lbCatsWin = uiHelper.ui[LB_CATS_WIN].GetComponent<Text>();
             this._lbDraw = uiHelper.ui[LB_DRAW].GetComponent<Text>();
             this._lbWinReason = uiHelper.ui[LB_WIN_REASON].GetComponent<Text>();
+            this._btnStay = uiHelper.ui[BTN_STAY].GetComponent<Button>();
+            this._btnLeave = uiHelper.ui[BTN_LEAVE].GetComponent<Button>();
 
             this.gameObject.SetActive(false);
+
+            this._btnStay.onClick.AddListener(this.StayAtRoom);
+            this._btnLeave.onClick.AddListener(this.LeaveRoom);
         }
 
         void DisplayMatchEnd(object pubData)
         {
+            Cursor.lockState = CursorLockMode.None;
+
             this.gameObject.SetActive(true);
 
             MatchEnd data = pubData as MatchEnd;
@@ -45,9 +54,21 @@ namespace GameHud
             this._hideHuds.ForEach(hud => hud.gameObject.SetActive(false));
         }
 
+        void StayAtRoom()
+        {
+            // NetworkGame.Ins.EndGame(false);
+        }
+
+        void LeaveRoom()
+        {
+            NetworkGame.Ins.EndGame();
+        }
+
         const string LB_MICE_WIN = "LbMiceWin";
         const string LB_CATS_WIN = "LbCatsWin";
         const string LB_DRAW = "LbDraw";
         const string LB_WIN_REASON = "LbWinReason";
+        const string BTN_STAY = "BtnStay";
+        const string BTN_LEAVE = "BtnLeave";
     }
 }
