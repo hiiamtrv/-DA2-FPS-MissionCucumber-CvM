@@ -55,7 +55,7 @@ public class StateMachine : MonoBehaviour
         this._currentState.OnEnter();
     }
 
-    public void ChangeState(BaseState newState)
+    public virtual void ChangeState(BaseState newState)
     {
         if (newState != null && this._currentState != null && newState != this._currentState)
         {

@@ -39,6 +39,10 @@ namespace AI
             else if (this._gun.GetComponent<AmmoWeapon>() != null) this.Weapon = this._gun.GetComponent<AmmoWeapon>();
 
             EventCenter.Subcribe(EventId.MATCH_END, (data) => this.enabled = false);
+
+            if (!PhotonNetwork.IsMasterClient) {
+                this.enabled = false;
+            }
         }
 
         protected override void Update()
