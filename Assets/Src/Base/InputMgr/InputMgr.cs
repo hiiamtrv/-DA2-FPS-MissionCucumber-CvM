@@ -55,7 +55,7 @@ public class InputMgr : MonoBehaviour
         {
             PhotonView view = gameObject.GetComponent<PhotonView>();
             Eye eye = gameObject.GetComponent<Eye>();
-            return (view != null && view.IsMine && eye && !eye.IsAI);
+            return (view != null && view.IsMine && (eye ? !eye.IsAI : true));
         }
     }
 

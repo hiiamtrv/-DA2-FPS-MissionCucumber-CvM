@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using Character;
+using Equipments;
+using Photon.Pun;
 using UnityEngine;
 
 namespace HawkDrone
 {
     public class HawkDroneEngine : StateMachine
     {
+        [SerializeField] float _remainTime;
         [SerializeField] GameObject _markBullet;
 
-        Camera _ownerEye = null;
+        GameObject _owner = null;
 
         GameObject _eye;
         MoveModel _moveModel;
@@ -20,17 +23,25 @@ namespace HawkDrone
         protected override void Start()
         {
             base.Start();
+
             _moveModel = this.GetComponent<CharacterStats>().MoveModel;
             _charCtrl = this.GetComponent<CharacterController>();
             _charCtrl.enabled = true;
             _eye = this.GetComponent<Eye>().MainCamera.gameObject;
             this.GetComponent<Eye>().MainCamera.enabled = true;
+
+            float delay = Mathf.Max(_remainTime, Time.deltaTime);
+            LeanTween.delayedCall(delay, () =>
+            {
+                this.Destroy();
+            });
+            
+            this.transform.Translate(Vector3.forward + Vector3.up, Space.Self);
         }
 
         protected override void Update()
         {
             base.Update();
-            this.GetComponent<Eye>().MainCamera.enabled = (this._ownerEye != null);
             if (InputMgr.StartShoot(this.gameObject))
             {
                 if (this.MarkTarget())
@@ -52,16 +63,26 @@ namespace HawkDrone
             this._charCtrl.Move(worldMove);
         }
 
-        public void SetOwnerEye(Camera ownerEye)
+        public void SetOwner(GameObject owner)
         {
-            this._ownerEye = ownerEye;
-            this._ownerEye.enabled = false;
+            this._owner = owner;
+            this._owner.GetComponent<Eye>().enabled = false;
+            this._owner.GetComponent<MoveEngine>().enabled = false;
+            this._owner.GetComponent<CharacterController>().enabled = false;
+            this._owner.transform.Find("EyePoint").gameObject.SetActive(false);
+
             this.GetComponent<Eye>().MainCamera.enabled = true;
         }
 
         public override void Destroy()
         {
-            this._ownerEye.enabled = true;
+            this.GetComponent<Eye>().MainCamera.enabled = false;
+
+            this._owner.GetComponent<Eye>().enabled = true;
+            this._owner.GetComponent<MoveEngine>().enabled = true;
+            this._owner.GetComponent<CharacterController>().enabled = true;
+            this._owner.transform.Find("EyePoint").gameObject.SetActive(true);
+
             base.Destroy();
         }
 
@@ -73,9 +94,9 @@ namespace HawkDrone
             if (Physics.Raycast(ray, out hit))
             {
                 GameObject target = hit.collider.gameObject;
-                if (target.GetComponent<CharacterStats>())
+                if (target != this._owner && target.GetComponent<CharacterStats>())
                 {
-                    GameObject newMarker = Instantiate(this._markBullet, target.transform.position, Quaternion.identity);
+                    GameObject newMarker = PhotonNetwork.Instantiate(this._markBullet.name, target.transform.position, Quaternion.identity);
                     newMarker.GetComponent<HawkBullet>().SetTarget(target);
                     return true;
                 }

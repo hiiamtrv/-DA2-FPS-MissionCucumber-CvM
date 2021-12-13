@@ -46,7 +46,6 @@ namespace AI
         {
             Vector3 destination = this.StateMachine.agent.destination;
             Vector3 curPos = this._gameObject.transform.position;
-            Debug.Log("Check destination", destination, curPos, Vector3.Distance(destination, curPos));
             if (Vector3.Distance(destination, curPos) <= AIUtils.MIN_ACCEPTABLE_DISTANCE)
             {
                 this.StateMachine.OnEndAction();

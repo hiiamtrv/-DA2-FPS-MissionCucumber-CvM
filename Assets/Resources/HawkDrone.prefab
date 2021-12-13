@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c19a7a75125f60e46afb25588b41222e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _remainTime: 999
   _markBullet: {fileID: 4322030009869069155, guid: b7aa243d039456646bb59c0990c581fb,
     type: 3}
 --- !u!143 &2057641726662986754
@@ -221,6 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2057641727808117282}
   - component: {fileID: 2057641727808117280}
+  - component: {fileID: 2585924304576512296}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -285,3 +287,11 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!81 &2585924304576512296
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057641727808117285}
+  m_Enabled: 1

@@ -17,7 +17,7 @@ public class GameVar : MonoBehaviour
     static List<int> _cucumberIndex;
     public static List<int> CucumberIndex { get => _cucumberIndex; set => _cucumberIndex = value; }
 
-    GameObject _player;
+    [SerializeField] GameObject _player;
     public GameObject Player
     {
         get => _player;

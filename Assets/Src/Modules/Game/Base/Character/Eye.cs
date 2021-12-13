@@ -90,5 +90,21 @@ namespace Character
         {
             this._camRotation = 0;
         }
+
+        void OnDisable()
+        {
+            foreach (var camera in _cameras)
+            {
+                camera.gameObject.SetActive(false);
+            }
+        }
+
+        void OnEnable()
+        {
+            foreach (var camera in _cameras)
+            {
+                camera.gameObject.SetActive(true);
+            }
+        }
     }
 }

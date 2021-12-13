@@ -35,8 +35,11 @@ namespace Character
 
         void Start()
         {
-            CharacterMgr.Ins.AddCharacter(this.gameObject);
-            EventCenter.Publish(EventId.MINIMAP_CREATE_DOT, this.gameObject);
+            if (this.CharacterSide != CharacterSide.UNDEFINED)
+            {
+                CharacterMgr.Ins.AddCharacter(this.gameObject);
+                EventCenter.Publish(EventId.MINIMAP_CREATE_DOT, this.gameObject);
+            }
         }
     }
 }

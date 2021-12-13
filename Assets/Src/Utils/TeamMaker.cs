@@ -9,13 +9,10 @@ public class TeamMaker
         List<object> cloneList = new List<object>(listPlayer);
         Dictionary<string, int> teamResult = new Dictionary<string, int>();
 
-        // int numPlayerMice = cloneList.Count / 2 + MathUtils.RandomInt(0, cloneList.Count % 2);
-        // int numPlayerMice = 1;
-        // int numPlayerCat = cloneList.Count - numPlayerMice;
-        
-        int numPlayerCat = 1;
         int numPlayerMice = 0;
-
+        // int numPlayerMice = cloneList.Count / 2 + MathUtils.RandomInt(0, cloneList.Count % 2);
+        int numPlayerCat = cloneList.Count - numPlayerMice;
+        
         //pick side mice
         for (var i = 0; i < numPlayerMice; i++)
         {

@@ -47,11 +47,7 @@ namespace Equipments
                 this._isReady = false;
                 this._drawUnix = Time.time;
                 this._equipmentObject.SetActive(true);
-
-                LeanTween.delayedCall(Mathf.Max(Time.deltaTime, this._equipTime), () =>
-                {
-                    if (this.IsEquiped) this.ActiveEquipment();
-                });
+                this.ActiveEquipment();
             }
         }
 

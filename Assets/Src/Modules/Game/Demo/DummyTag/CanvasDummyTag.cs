@@ -46,13 +46,13 @@ namespace Demo
         {
             GameObject player = GameVar.Ins.Player;
             Camera pEye = player.GetComponent<Eye>().MainCamera;
-            MeshRenderer modelRender = this._character.GetComponent<Eye>().CharModel.GetComponent<MeshRenderer>();
-            if (pEye.IsObjectVisible(modelRender))
+            if (pEye == null) pEye = Camera.main;
+            if (pEye.IsObjectVisible(this._character.transform.position))
             {
                 this._pnlStats.gameObject.SetActive(true);
-                Vector3 posScreen = Camera.main.WorldToScreenPoint(this._anchor.transform.position);
+                Vector3 posScreen = pEye.WorldToScreenPoint(this._anchor.transform.position);
                 this._pnlStats.transform.position = posScreen;
-                Vector3 viewPort = Camera.main.WorldToViewportPoint(this._anchor.transform.position);
+                Vector3 viewPort = pEye.WorldToViewportPoint(this._anchor.transform.position);
                 this._pnlStats.gameObject.SetActive(viewPort.z > 0 && viewPort.x > 0 && viewPort.x < 1 && viewPort.y > 0 && viewPort.y < 1);
             }
             else

@@ -25,8 +25,11 @@ public static class AIUtils
     public static List<GameObject> GetSpottedEnemies(this AIBaseEngine engine)
     {
         List<GameObject> enemies = CharacterMgr.Ins.Characters.FindAll(go =>
-                go.GetComponent<CharacterStats>().CharacterSide != engine.Side
-            );
+        {
+            Debug.Log("Checking object", go);
+            CharacterSide side = go.GetComponent<CharacterStats>().CharacterSide;
+            return side != CharacterSide.UNDEFINED && side != engine.Side;
+        });
 
         enemies = enemies.FindAll(enemy => engine.CanSeeTarget(enemy));
         return enemies;

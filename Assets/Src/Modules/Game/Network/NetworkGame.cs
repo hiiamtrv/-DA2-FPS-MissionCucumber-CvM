@@ -8,9 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class NetworkGame : BaseNetwork
 {
-    public const int NUM_PLAYER_CATS = 1;
-    public const int NUM_PLAYER_MICE = 1;
-
     public const int NUM_CATS_SLOT = 2;
     public const int NUM_MICE_SLOT = 4;
 
