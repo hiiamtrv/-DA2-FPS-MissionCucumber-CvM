@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: e7d3ff997a20338428eedd85f830ea74
 ModelImporter:
-  serializedVersion: 19301
+  serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: 3995525487012296551
@@ -12,6 +12,855 @@ ModelImporter:
   - first:
       74: -416838883796384650
     second: Cube.001|LightAction.001
+  - first:
+      74: 678975344414715995
+    second: Armature|0.TPose
+  - first:
+      74: 7524709377905238416
+    second: Armature|1.Idle
+  - first:
+      74: 8414002853885880468
+    second: Armature|2Run
+  - first:
+      74: 9017896552190641969
+    second: 'Armature|3.attack '
+  - first:
+      74: 9117864131988064298
+    second: Armature|4.Die
+  - first:
+      74: 8248150677920389663
+    second: "Armature|at\u0131\u015F \u0131\u0131k|at\u0131\u015F \u0131\u0131k|Cube.001Action|at\u0131\u015F
+      \u0131\u0131k|Cube.001A"
+  - first:
+      74: -385834717842652278
+    second: "Armature|at\u0131\u015F \u0131\u0131k|at\u0131\u015F \u0131\u0131k|CubeAction|at\u0131\u015F
+      \u0131\u0131k|CubeAction"
+  - first:
+      74: -4365047416401633165
+    second: "Armature|at\u0131\u015F \u0131\u0131k|at\u0131\u015F \u0131\u0131k|CylinderAction|at\u0131\u015F
+      \u0131\u0131k|CylinderA"
+  - first:
+      74: 3836627115059912885
+    second: "Armature|at\u0131\u015F \u0131\u0131k|at\u0131\u015F \u0131\u0131k|dipcik
+      i\u015Fik.001Action|at\u0131\u015F \u0131\u0131k|d"
+  - first:
+      74: -4617558706211241313
+    second: "Armature|at\u0131\u015F \u0131\u0131k|at\u0131\u015F \u0131\u0131k|dipcik
+      i\u015FikAction|at\u0131\u015F \u0131\u0131k|dipci"
+  - first:
+      74: -3165830503781656161
+    second: "Armature|at\u0131\u015F \u0131\u0131k|at\u0131\u015F \u0131\u0131k|LightAction|at\u0131\u015F
+      \u0131\u0131k|LightAction"
+  - first:
+      74: 2498742726401770768
+    second: "Armature|at\u0131\u015F \u0131\u0131k|at\u0131\u015F \u0131\u0131k|merkz
+      daire i\u015Fik.001Action|at\u0131\u015F \u0131"
+  - first:
+      74: 6549049648726372345
+    second: "Armature|at\u0131\u015F \u0131\u0131k|at\u0131\u015F \u0131\u0131k|merkz.daiere
+      tut.001Action|at\u0131\u015F \u0131"
+  - first:
+      74: -7456490523084627165
+    second: "Armature|at\u0131\u015F \u0131\u0131k|at\u0131\u015F \u0131\u0131k|merkz.daire.001Action|at\u0131\u015F
+      \u0131\u0131k|me"
+  - first:
+      74: 2853106534031085586
+    second: "Armature|at\u0131\u015F \u0131\u0131k|at\u0131\u015F \u0131\u0131k|tutavakAction|at\u0131\u015F
+      \u0131\u0131k|tutavakAct"
+  - first:
+      74: 2871743001676546882
+    second: "Armature|at\u0131\u015F|at\u0131\u015F|Cube.001Action|at\u0131\u015F|Cube.001Action"
+  - first:
+      74: 2216955160582340079
+    second: "Armature|at\u0131\u015F|at\u0131\u015F|CubeAction|at\u0131\u015F|CubeAction"
+  - first:
+      74: -4349226446084540418
+    second: "Armature|at\u0131\u015F|at\u0131\u015F|CylinderAction|at\u0131\u015F|CylinderAction"
+  - first:
+      74: 308011611350162495
+    second: "Armature|at\u0131\u015F|at\u0131\u015F|dipcik i\u015Fik.001Action|at\u0131\u015F|dipcik
+      i\u015Fik.001Act"
+  - first:
+      74: -5237832608356689384
+    second: "Armature|at\u0131\u015F|at\u0131\u015F|dipcik i\u015FikAction|at\u0131\u015F|dipcik
+      i\u015FikAction"
+  - first:
+      74: -453844422382340148
+    second: "Armature|at\u0131\u015F|at\u0131\u015F|LightAction|at\u0131\u015F|LightAction"
+  - first:
+      74: 1859794634030377832
+    second: "Armature|at\u0131\u015F|at\u0131\u015F|merkz daire i\u015Fik.001Action|at\u0131\u015F|merkz
+      daire i"
+  - first:
+      74: -4505519514791105694
+    second: "Armature|at\u0131\u015F|at\u0131\u015F|merkz.daiere tut.001Action|at\u0131\u015F|merkz.daiere
+      tu"
+  - first:
+      74: -8491593994563408907
+    second: "Armature|at\u0131\u015F|at\u0131\u015F|merkz.daire.001Action|at\u0131\u015F|merkz.daire.001Actio"
+  - first:
+      74: -4944264667732941317
+    second: "Armature|at\u0131\u015F|at\u0131\u015F|tutavakAction|at\u0131\u015F|tutavakAction"
+  - first:
+      74: -8577006281851114481
+    second: "Armature|cube \xE7\u0131k\u0131nnt\u0131Action"
+  - first:
+      74: 3602739319315682006
+    second: "Armature|cube \u0131\u015F\u0131klz\u0131Action"
+  - first:
+      74: -784696569880229235
+    second: Armature|Cube.002|Cube.001|Cube.001Action|Cube.001|Cube.001Action
+  - first:
+      74: 7668300490265807859
+    second: Armature|Cube.002|Cube.001|CubeAction|Cube.001|CubeAction
+  - first:
+      74: 6976891980603972934
+    second: Armature|Cube.002|Cube.001|CylinderAction|Cube.001|CylinderAction
+  - first:
+      74: -8336341449958969846
+    second: "Armature|Cube.002|Cube.001|dipcik i\u015Fik.001Action|Cube.001|dipcik
+      i\u015Fik."
+  - first:
+      74: 7487069416677953077
+    second: "Armature|Cube.002|Cube.001|dipcik i\u015FikAction|Cube.001|dipcik i\u015FikActio"
+  - first:
+      74: -4096579251437423841
+    second: Armature|Cube.002|Cube.001|LightAction|Cube.001|LightAction
+  - first:
+      74: 5456346960688265590
+    second: "Armature|Cube.002|Cube.001|merkz daire i\u015Fik.001Action|Cube.001|merkz
+      da"
+  - first:
+      74: 3709305571463047903
+    second: Armature|Cube.002|Cube.001|merkz.daiere tut.001Action|Cube.001|merkz.dai
+  - first:
+      74: 2830001577154988319
+    second: Armature|Cube.002|Cube.001|merkz.daire.001Action|Cube.001|merkz.daire.00
+  - first:
+      74: -3664352393830087672
+    second: Armature|Cube.002|Cube.001|namlu yeriAction|Cube.001|namlu yeriAction
+  - first:
+      74: -8830491203729670220
+    second: Armature|Cube.002|Cube.001|tutavakAction|Cube.001|tutavakAction
+  - first:
+      74: -2557760820856789271
+    second: Armature|Cube.003|Cube.002|Cube.001Action|Cube.002|Cube.001Action
+  - first:
+      74: 4083250758172695734
+    second: Armature|Cube.003|Cube.002|CubeAction|Cube.002|CubeAction
+  - first:
+      74: -593248354601738138
+    second: Armature|Cube.003|Cube.002|CylinderAction|Cube.002|CylinderAction
+  - first:
+      74: -6465870060506775622
+    second: "Armature|Cube.003|Cube.002|dipcik i\u015Fik.001Action|Cube.002|dipcik
+      i\u015Fik."
+  - first:
+      74: 7750004860792543716
+    second: "Armature|Cube.003|Cube.002|dipcik i\u015FikAction|Cube.002|dipcik i\u015FikActio"
+  - first:
+      74: -3553043744780393177
+    second: Armature|Cube.003|Cube.002|LightAction|Cube.002|LightAction
+  - first:
+      74: 8964130840182436197
+    second: "Armature|Cube.003|Cube.002|merkz daire i\u015Fik.001Action|Cube.002|merkz
+      da"
+  - first:
+      74: 309613845214563628
+    second: Armature|Cube.003|Cube.002|merkz.daiere tut.001Action|Cube.002|merkz.dai
+  - first:
+      74: 6570192222313140284
+    second: Armature|Cube.003|Cube.002|merkz.daire.001Action|Cube.002|merkz.daire.00
+  - first:
+      74: -4741391480443062344
+    second: Armature|Cube.003|Cube.002|namlu yeriAction|Cube.002|namlu yeriAction
+  - first:
+      74: 4654147048196660171
+    second: Armature|Cube.003|Cube.002|tutavakAction|Cube.002|tutavakAction
+  - first:
+      74: 4219050083260063053
+    second: Armature|Cube|Cube|Cube.001Action|Cube|Cube.001Action
+  - first:
+      74: 252502329673005377
+    second: Armature|Cube|Cube|CubeAction|Cube|CubeAction
+  - first:
+      74: -5662118959610827847
+    second: Armature|Cube|Cube|CylinderAction|Cube|CylinderAction
+  - first:
+      74: -114231324976231551
+    second: "Armature|Cube|Cube|dipcik i\u015Fik.001Action|Cube|dipcik i\u015Fik.001Action"
+  - first:
+      74: 4263661716196898032
+    second: "Armature|Cube|Cube|dipcik i\u015FikAction|Cube|dipcik i\u015FikAction"
+  - first:
+      74: 247233520231193779
+    second: Armature|Cube|Cube|LightAction|Cube|LightAction
+  - first:
+      74: -5795514537239955847
+    second: "Armature|Cube|Cube|merkz daire i\u015Fik.001Action|Cube|merkz daire
+      i\u015Fik.00"
+  - first:
+      74: 2854996700037606111
+    second: Armature|Cube|Cube|merkz.daiere tut.001Action|Cube|merkz.daiere tut.001A
+  - first:
+      74: 3599063727711672173
+    second: Armature|Cube|Cube|merkz.daire.001Action|Cube|merkz.daire.001Action
+  - first:
+      74: 8027322066254995130
+    second: Armature|Cube|Cube|namlu yeriAction|Cube|namlu yeriAction
+  - first:
+      74: 974451523465534887
+    second: Armature|Cube|Cube|tutavakAction|Cube|tutavakAction
+  - first:
+      74: 1859807561830058865
+    second: Armature|dipcik ark|dipcik ark|Cube.001Action|dipcik ark|Cube.001Action
+  - first:
+      74: 3537475541834610849
+    second: Armature|dipcik ark|dipcik ark|CubeAction|dipcik ark|CubeAction
+  - first:
+      74: 3743649892080466415
+    second: Armature|dipcik ark|dipcik ark|CylinderAction|dipcik ark|CylinderAction
+  - first:
+      74: -1016115596757903854
+    second: "Armature|dipcik ark|dipcik ark|dipcik i\u015Fik.001Action|dipcik ark|dipcik "
+  - first:
+      74: 5831214860949155793
+    second: "Armature|dipcik ark|dipcik ark|dipcik i\u015FikAction|dipcik ark|dipcik
+      i\u015Fi"
+  - first:
+      74: 430180164494631754
+    second: Armature|dipcik ark|dipcik ark|LightAction|dipcik ark|LightAction
+  - first:
+      74: -4898195626780095943
+    second: "Armature|dipcik ark|dipcik ark|merkz daire i\u015Fik.001Action|dipcik
+      ark|me"
+  - first:
+      74: -6134630035250806062
+    second: Armature|dipcik ark|dipcik ark|merkz.daiere tut.001Action|dipcik ark|mer
+  - first:
+      74: 7972615548669188775
+    second: Armature|dipcik ark|dipcik ark|merkz.daire.001Action|dipcik ark|merkz.da
+  - first:
+      74: 626735315099360624
+    second: Armature|dipcik ark|dipcik ark|tutavakAction|dipcik ark|tutavakAction
+  - first:
+      74: -4618070837620641781
+    second: "Armature|dipcik i\u015Fik.001|dipcik i\u015Fik.001|Cube.001Action|dipcik
+      i\u015Fik.0"
+  - first:
+      74: -7845798241741167850
+    second: "Armature|dipcik i\u015Fik.001|dipcik i\u015Fik.001|CubeAction|dipcik
+      i\u015Fik.001|C"
+  - first:
+      74: 190904109342865016
+    second: "Armature|dipcik i\u015Fik.001|dipcik i\u015Fik.001|CylinderAction|dipcik
+      i\u015Fik.0"
+  - first:
+      74: 1704276505559660179
+    second: "Armature|dipcik i\u015Fik.001|dipcik i\u015Fik.001|dipcik i\u015Fik.001Action|dipcik"
+  - first:
+      74: 330450676086963387
+    second: "Armature|dipcik i\u015Fik.001|dipcik i\u015Fik.001|dipcik i\u015FikAction|dipcik
+      i\u015F"
+  - first:
+      74: -1623795358117711201
+    second: "Armature|dipcik i\u015Fik.001|dipcik i\u015Fik.001|LightAction|dipcik
+      i\u015Fik.001|"
+  - first:
+      74: 4326846193168821702
+    second: "Armature|dipcik i\u015Fik.001|dipcik i\u015Fik.001|merkz daire i\u015Fik.001Action|d"
+  - first:
+      74: -6429331210703054318
+    second: "Armature|dipcik i\u015Fik.001|dipcik i\u015Fik.001|merkz.daiere tut.001Action|di"
+  - first:
+      74: -5439567597691850693
+    second: "Armature|dipcik i\u015Fik.001|dipcik i\u015Fik.001|merkz.daire.001Action|dipcik "
+  - first:
+      74: 586003558214922867
+    second: "Armature|dipcik i\u015Fik.001|dipcik i\u015Fik.001|tutavakAction|dipcik
+      i\u015Fik.00"
+  - first:
+      74: -69705968709018988
+    second: Armature|dipcik |dipcik |Cube.001Action|dipcik |Cube.001Action
+  - first:
+      74: 8601812780818680634
+    second: Armature|dipcik |dipcik |CubeAction|dipcik |CubeAction
+  - first:
+      74: -8147655028377705058
+    second: Armature|dipcik |dipcik |CylinderAction|dipcik |CylinderAction
+  - first:
+      74: 2991341764574234930
+    second: "Armature|dipcik |dipcik |dipcik i\u015Fik.001Action|dipcik |dipcik i\u015Fik.001"
+  - first:
+      74: 5055778918798677474
+    second: "Armature|dipcik |dipcik |dipcik i\u015FikAction|dipcik |dipcik i\u015FikAction"
+  - first:
+      74: -9113907508320709618
+    second: Armature|dipcik |dipcik |LightAction|dipcik |LightAction
+  - first:
+      74: -8230528762012146007
+    second: "Armature|dipcik |dipcik |merkz daire i\u015Fik.001Action|dipcik |merkz
+      daire"
+  - first:
+      74: -1090835044646305954
+    second: Armature|dipcik |dipcik |merkz.daiere tut.001Action|dipcik |merkz.daiere
+  - first:
+      74: 2475505266123392588
+    second: Armature|dipcik |dipcik |merkz.daire.001Action|dipcik |merkz.daire.001Ac
+  - first:
+      74: 72248714784463990
+    second: Armature|dipcik |dipcik |tutavakAction|dipcik |tutavakAction
+  - first:
+      74: 2535850755834874456
+    second: Armature|JAJRJOT TUTAaAction
+  - first:
+      74: 1871296401286961214
+    second: Armature|JAJRJOT TUTACAK kapakAction
+  - first:
+      74: -2828727572634675043
+    second: Armature|JAJRJOT TUTACAK.001Action
+  - first:
+      74: -8955393901284740202
+    second: Armature|jarjor takma.001Action
+  - first:
+      74: 671978253910400525
+    second: Armature|jarjor takmaAction
+  - first:
+      74: -3820524305298685783
+    second: "Armature|jarjor \u0131\u015F\u015F\u0131\u011F\u0131.001Action"
+  - first:
+      74: 193644593243588229
+    second: "Armature|jarjor \u0131\u015F\u015F\u0131\u011F\u0131Action"
+  - first:
+      74: -2945796537112790620
+    second: Armature|jarjor.001Action
+  - first:
+      74: 3215208860636542195
+    second: Armature|jarjor.002Action
+  - first:
+      74: 5355055129388756463
+    second: Armature|jarjor.003Action
+  - first:
+      74: 3840300741550334683
+    second: Armature|jarjor.004Action
+  - first:
+      74: 8886468841510792366
+    second: Armature|jarjor.005Action
+  - first:
+      74: -3565813268211590975
+    second: Armature|jarjorAction
+  - first:
+      74: 1135059311344543725
+    second: Armature|jarjort tutAction
+  - first:
+      74: -1174117158556306532
+    second: Armature|kutucuk.001Action
+  - first:
+      74: 9202741237370614464
+    second: "Armature|kutucuk.002 \xFCstAction"
+  - first:
+      74: 5775060739147134985
+    second: Armature|kutucukAction
+  - first:
+      74: -5651223794677851256
+    second: Armature|Light|Light|Cube.001Action|Light|Cube.001Action
+  - first:
+      74: -6868389329557844191
+    second: Armature|Light|Light|CubeAction|Light|CubeAction
+  - first:
+      74: 4223605035588599095
+    second: Armature|Light|Light|CylinderAction|Light|CylinderAction
+  - first:
+      74: 3343132797433021133
+    second: "Armature|Light|Light|dipcik i\u015Fik.001Action|Light|dipcik i\u015Fik.001Action"
+  - first:
+      74: 8453586028772808406
+    second: "Armature|Light|Light|dipcik i\u015FikAction|Light|dipcik i\u015FikAction"
+  - first:
+      74: -9181939348191709883
+    second: Armature|Light|Light|LightAction|Light|LightAction
+  - first:
+      74: 8170873801888321353
+    second: "Armature|Light|Light|merkz daire i\u015Fik.001Action|Light|merkz daire
+      i\u015Fik"
+  - first:
+      74: 8908775664311157570
+    second: Armature|Light|Light|merkz.daiere tut.001Action|Light|merkz.daiere tut.0
+  - first:
+      74: -3034154695945025609
+    second: Armature|Light|Light|merkz.daire.001Action|Light|merkz.daire.001Action
+  - first:
+      74: -5748137550211196288
+    second: Armature|Light|Light|tutavakAction|Light|tutavakAction
+  - first:
+      74: -2189518383702783245
+    second: Armature|merkes azrka sokakAction
+  - first:
+      74: -1060313547130018418
+    second: Armature|merkez aly siyahAction
+  - first:
+      74: 6890871020467001582
+    second: "Armature|merkz daire i\u015Fik.001|merkz daire i\u015Fik.001|Cube.001Action|merk"
+  - first:
+      74: -2915133416884389759
+    second: "Armature|merkz daire i\u015Fik.001|merkz daire i\u015Fik.001|CubeAction|merkz
+      da"
+  - first:
+      74: -5880785636373772657
+    second: "Armature|merkz daire i\u015Fik.001|merkz daire i\u015Fik.001|CylinderAction|merk"
+  - first:
+      74: -6711503843129041231
+    second: "Armature|merkz daire i\u015Fik.001|merkz daire i\u015Fik.001|dipcik
+      i\u015Fik.001Act"
+  - first:
+      74: 2204461702221039196
+    second: "Armature|merkz daire i\u015Fik.001|merkz daire i\u015Fik.001|dipcik
+      i\u015FikAction|"
+  - first:
+      74: -5447114039212210169
+    second: "Armature|merkz daire i\u015Fik.001|merkz daire i\u015Fik.001|LightAction|merkz
+      d"
+  - first:
+      74: -7532032974671269697
+    second: "Armature|merkz daire i\u015Fik.001|merkz daire i\u015Fik.001|merkz daire
+      i\u015Fik.0"
+  - first:
+      74: 4735875199532639633
+    second: "Armature|merkz daire i\u015Fik.001|merkz daire i\u015Fik.001|merkz.daiere
+      tut.00"
+  - first:
+      74: -3642951052415887551
+    second: "Armature|merkz daire i\u015Fik.001|merkz daire i\u015Fik.001|merkz.daire.001Acti"
+  - first:
+      74: 5629654877261495605
+    second: "Armature|merkz daire i\u015Fik.001|merkz daire i\u015Fik.001|tutavakAction|merkz"
+  - first:
+      74: 2303493702763800933
+    second: "Armature|merkz daire i\u015FikAction"
+  - first:
+      74: 3240395329965626371
+    second: Armature|merkz.daiere tut.001|merkz.daiere tut.001|Cube.001Action|merkz.
+  - first:
+      74: 4691388407412796354
+    second: Armature|merkz.daiere tut.001|merkz.daiere tut.001|CubeAction|merkz.daie
+  - first:
+      74: -1537351860212898901
+    second: Armature|merkz.daiere tut.001|merkz.daiere tut.001|CylinderAction|merkz.
+  - first:
+      74: -4245722779505734727
+    second: "Armature|merkz.daiere tut.001|merkz.daiere tut.001|dipcik i\u015Fik.001Actio"
+  - first:
+      74: -8298973389434156618
+    second: "Armature|merkz.daiere tut.001|merkz.daiere tut.001|dipcik i\u015FikAction|me"
+  - first:
+      74: -405268496288306152
+    second: Armature|merkz.daiere tut.001|merkz.daiere tut.001|LightAction|merkz.dai
+  - first:
+      74: 6703094159152730534
+    second: "Armature|merkz.daiere tut.001|merkz.daiere tut.001|merkz daire i\u015Fik.001"
+  - first:
+      74: -4028121100704357067
+    second: Armature|merkz.daiere tut.001|merkz.daiere tut.001|merkz.daiere tut.001A
+  - first:
+      74: 9119682058991003459
+    second: Armature|merkz.daiere tut.001|merkz.daiere tut.001|merkz.daire.001Action
+  - first:
+      74: -930452544033409469
+    second: Armature|merkz.daiere tut.001|merkz.daiere tut.001|tutavakAction|merkz.d
+  - first:
+      74: -5354017233697457503
+    second: Armature|merkz.daiere tutAction
+  - first:
+      74: -145851252848357938
+    second: Armature|merkz.daire. u|merkz.daire. u|Cube.001Action|merkz.daire. u|Cub
+  - first:
+      74: 3362644594960200204
+    second: Armature|merkz.daire. u|merkz.daire. u|CubeAction|merkz.daire. u|CubeAct
+  - first:
+      74: -8106607403743275614
+    second: Armature|merkz.daire. u|merkz.daire. u|CylinderAction|merkz.daire. u|Cyl
+  - first:
+      74: -6548854320468118076
+    second: "Armature|merkz.daire. u|merkz.daire. u|dipcik i\u015Fik.001Action|merkz.dair"
+  - first:
+      74: 1810860851171544741
+    second: "Armature|merkz.daire. u|merkz.daire. u|dipcik i\u015FikAction|merkz.daire.
+      u"
+  - first:
+      74: 5843635793001381219
+    second: Armature|merkz.daire. u|merkz.daire. u|LightAction|merkz.daire. u|LightA
+  - first:
+      74: 4323109213865708927
+    second: "Armature|merkz.daire. u|merkz.daire. u|merkz daire i\u015Fik.001Action|merkz"
+  - first:
+      74: 6480709260284193307
+    second: Armature|merkz.daire. u|merkz.daire. u|merkz.daiere tut.001Action|merkz.
+  - first:
+      74: 3486636790849626928
+    second: Armature|merkz.daire. u|merkz.daire. u|merkz.daire.001Action|merkz.daire
+  - first:
+      74: -6220201488918375813
+    second: Armature|merkz.daire. u|merkz.daire. u|tutavakAction|merkz.daire. u|tuta
+  - first:
+      74: 2744421362913340431
+    second: Armature|merkz.daire.001|merkz.daire.001|Cube.001Action|merkz.daire.001|
+  - first:
+      74: -5107933602474323534
+    second: Armature|merkz.daire.001|merkz.daire.001|CubeAction|merkz.daire.001|Cube
+  - first:
+      74: -1677184073119336478
+    second: Armature|merkz.daire.001|merkz.daire.001|CylinderAction|merkz.daire.001|
+  - first:
+      74: 2062466490544371794
+    second: "Armature|merkz.daire.001|merkz.daire.001|dipcik i\u015Fik.001Action|merkz.da"
+  - first:
+      74: -5832719501733496154
+    second: "Armature|merkz.daire.001|merkz.daire.001|dipcik i\u015FikAction|merkz.daire."
+  - first:
+      74: 2957477028061943824
+    second: Armature|merkz.daire.001|merkz.daire.001|LightAction|merkz.daire.001|Lig
+  - first:
+      74: -7743225706673108182
+    second: "Armature|merkz.daire.001|merkz.daire.001|merkz daire i\u015Fik.001Action|mer"
+  - first:
+      74: -5071896096331214835
+    second: Armature|merkz.daire.001|merkz.daire.001|merkz.daiere tut.001Action|merk
+  - first:
+      74: -3859896987707610830
+    second: Armature|merkz.daire.001|merkz.daire.001|merkz.daire.001Action|merkz.dai
+  - first:
+      74: -6779913348370949423
+    second: Armature|merkz.daire.001|merkz.daire.001|tutavakAction|merkz.daire.001|t
+  - first:
+      74: -7205850483035529750
+    second: Armature|merkz.daire.u 2Action
+  - first:
+      74: -7841625978848086742
+    second: Armature|merkz.daireAction
+  - first:
+      74: -7013683487778104799
+    second: Armature|merkzAction
+  - first:
+      74: 8729802041803550443
+    second: Armature|namlu yeri|namlu yeri|Cube.001Action|namlu yeri|Cube.001Action
+  - first:
+      74: -4648952666299583561
+    second: Armature|namlu yeri|namlu yeri|CubeAction|namlu yeri|CubeAction
+  - first:
+      74: -5321868479666988320
+    second: Armature|namlu yeri|namlu yeri|CylinderAction|namlu yeri|CylinderAction
+  - first:
+      74: 911666733000949522
+    second: "Armature|namlu yeri|namlu yeri|dipcik i\u015Fik.001Action|namlu yeri|dipcik "
+  - first:
+      74: 1668403037394129814
+    second: "Armature|namlu yeri|namlu yeri|dipcik i\u015FikAction|namlu yeri|dipcik
+      i\u015Fi"
+  - first:
+      74: -382725364434292601
+    second: Armature|namlu yeri|namlu yeri|LightAction|namlu yeri|LightAction
+  - first:
+      74: -8924245695345764633
+    second: "Armature|namlu yeri|namlu yeri|merkz daire i\u015Fik.001Action|namlu
+      yeri|me"
+  - first:
+      74: -1943360528287694745
+    second: Armature|namlu yeri|namlu yeri|merkz.daiere tut.001Action|namlu yeri|mer
+  - first:
+      74: -1735511698071683977
+    second: Armature|namlu yeri|namlu yeri|merkz.daire.001Action|namlu yeri|merkz.da
+  - first:
+      74: 7541969430621200766
+    second: Armature|namlu yeri|namlu yeri|namlu yeriAction|namlu yeri|namlu yeriAct
+  - first:
+      74: 2931954505358867529
+    second: Armature|namlu yeri|namlu yeri|tutavakAction|namlu yeri|tutavakAction
+  - first:
+      74: 3916861141092931752
+    second: Armature|Status Bar Left|Status Bar Left|Shader NodetreeAction.015|Statu
+  - first:
+      74: -5589716453569908923
+    second: Armature|Status Bar Left|Status Bar Left|Shader NodetreeAction|Status
+      Ba
+  - first:
+      74: 5956206654121305807
+    second: Armature|Status Bar Right.001|Status Bar Right.001|Shader NodetreeAc
+  - first:
+      74: -4403753535280894262
+    second: Armature|Status Bar Right.001|Status Bar Right.001|Shader NodetreeAction
+  - first:
+      74: 6441687861030560887
+    second: Armature|Status Bar Right.002Action
+  - first:
+      74: 6975609863366851990
+    second: Armature|Status Bar RightAction
+  - first:
+      74: 6406805312697261162
+    second: Armature|Structure.001Action
+  - first:
+      74: 5448595579622011468
+    second: Armature|Structure.002Action
+  - first:
+      74: 4798532362883231954
+    second: Armature|Structure.003Action
+  - first:
+      74: 5913341826908897412
+    second: Armature|Structure.004Action
+  - first:
+      74: 5148203944168476898
+    second: Armature|Structure.005Action
+  - first:
+      74: -1599153680316335359
+    second: Armature|Structure.006Action
+  - first:
+      74: -7968709417428086533
+    second: Armature|Structure.007Action
+  - first:
+      74: -1442706819616932657
+    second: Armature|Structure.008Action
+  - first:
+      74: 8387338332485157062
+    second: Armature|Structure.009Action
+  - first:
+      74: 5935414956609235543
+    second: Armature|Structure.010Action
+  - first:
+      74: 5411204467650243301
+    second: Armature|Structure.011Action
+  - first:
+      74: 7015449466011105918
+    second: Armature|Structure.012Action
+  - first:
+      74: -5282898114589664390
+    second: Armature|Structure.013Action
+  - first:
+      74: -833946786576357187
+    second: Armature|Structure.014Action
+  - first:
+      74: 6307659102434211988
+    second: Armature|Structure.015Action
+  - first:
+      74: 2506290406803649046
+    second: Armature|Structure.016Action
+  - first:
+      74: 5866181515770044155
+    second: Armature|Structure.017Action
+  - first:
+      74: -5082060877307822138
+    second: Armature|Structure.018Action
+  - first:
+      74: 6818393995789850512
+    second: Armature|Structure.019Action
+  - first:
+      74: -2905292150914643710
+    second: Armature|Structure.020Action
+  - first:
+      74: -305171589121143736
+    second: Armature|Structure.021Action
+  - first:
+      74: -6125616803428535151
+    second: Armature|Structure.022Action
+  - first:
+      74: 6218752511344528392
+    second: Armature|Structure.023Action
+  - first:
+      74: 5399646028245167186
+    second: Armature|Structure.024Action
+  - first:
+      74: 1466561208981739939
+    second: Armature|Structure.025Action
+  - first:
+      74: -3785703167756881483
+    second: Armature|Structure.026Action
+  - first:
+      74: 4871651413606493554
+    second: Armature|Structure.027Action
+  - first:
+      74: 2319591358696630518
+    second: Armature|Structure.028Action
+  - first:
+      74: 6135533027421361601
+    second: Armature|Structure.029Action
+  - first:
+      74: -2840468248277627757
+    second: Armature|Structure.030Action
+  - first:
+      74: -2080899551074156044
+    second: Armature|Structure.031Action
+  - first:
+      74: 7053843598605881803
+    second: Armature|Structure.032Action
+  - first:
+      74: -8588036031546286259
+    second: Armature|Structure.033Action
+  - first:
+      74: 1753872587630413870
+    second: Armature|Structure.034Action
+  - first:
+      74: -1604049176007707838
+    second: Armature|Structure.035Action
+  - first:
+      74: 4712009716867057974
+    second: Armature|Structure.036Action
+  - first:
+      74: -1763088836094235440
+    second: Armature|Structure.037Action
+  - first:
+      74: 3313504065284252483
+    second: Armature|Structure.038Action
+  - first:
+      74: -4921421215386875982
+    second: Armature|Structure.039Action
+  - first:
+      74: -1911890689303563716
+    second: Armature|Structure.040Action
+  - first:
+      74: 8600294207669490680
+    second: Armature|Structure.041Action
+  - first:
+      74: 3866356022789164406
+    second: Armature|Structure.042Action
+  - first:
+      74: -5332282994369705927
+    second: Armature|Structure.043Action
+  - first:
+      74: -1567610355251523174
+    second: Armature|Structure.044Action
+  - first:
+      74: -1608445881404107075
+    second: Armature|Structure.045Action
+  - first:
+      74: 6842997582206183993
+    second: Armature|Structure.046Action
+  - first:
+      74: -281640384302741700
+    second: Armature|Structure.047Action
+  - first:
+      74: 9210145808876134953
+    second: Armature|Structure.048Action
+  - first:
+      74: -3550467192653528560
+    second: Armature|Structure.049Action
+  - first:
+      74: 6306359661738320021
+    second: Armature|Structure.050Action
+  - first:
+      74: 5782826327260096709
+    second: Armature|Structure.051Action
+  - first:
+      74: 6933093961443729583
+    second: Armature|Structure.052Action
+  - first:
+      74: 8687014637217330252
+    second: Armature|Structure.053Action
+  - first:
+      74: -4185462232564558902
+    second: Armature|Structure.054Action
+  - first:
+      74: -8017025234067139407
+    second: Armature|Structure.055Action
+  - first:
+      74: 2638587605846281860
+    second: Armature|Structure.056Action
+  - first:
+      74: 6084658439403202291
+    second: Armature|Structure.057Action
+  - first:
+      74: -3749105368219113528
+    second: Armature|Structure.058Action
+  - first:
+      74: -2964154801183210007
+    second: Armature|Structure.059Action
+  - first:
+      74: 2238206816865407079
+    second: Armature|Structure.060Action
+  - first:
+      74: -1846724085244429868
+    second: Armature|Structure.061Action
+  - first:
+      74: -631356741850548832
+    second: Armature|Structure.062Action
+  - first:
+      74: -5763963248750577505
+    second: "Armature|tutavak.\u0131\u015F\u0131k|tutavak.\u0131\u015F\u0131k|Cube.001Action|tutavak.\u0131\u015F\u0131k|"
+  - first:
+      74: 6203858967281099921
+    second: "Armature|tutavak.\u0131\u015F\u0131k|tutavak.\u0131\u015F\u0131k|CubeAction|tutavak.\u0131\u015F\u0131k|Cube"
+  - first:
+      74: -3680481086709795970
+    second: "Armature|tutavak.\u0131\u015F\u0131k|tutavak.\u0131\u015F\u0131k|CylinderAction|tutavak.\u0131\u015F\u0131k|"
+  - first:
+      74: 6302763310625961424
+    second: "Armature|tutavak.\u0131\u015F\u0131k|tutavak.\u0131\u015F\u0131k|dipcik
+      i\u015Fik.001Action|tutavak."
+  - first:
+      74: 9078347736377839369
+    second: "Armature|tutavak.\u0131\u015F\u0131k|tutavak.\u0131\u015F\u0131k|dipcik
+      i\u015FikAction|tutavak.\u0131\u015F"
+  - first:
+      74: 1790460507013401069
+    second: "Armature|tutavak.\u0131\u015F\u0131k|tutavak.\u0131\u015F\u0131k|LightAction|tutavak.\u0131\u015F\u0131k|Lig"
+  - first:
+      74: -831617269894385408
+    second: "Armature|tutavak.\u0131\u015F\u0131k|tutavak.\u0131\u015F\u0131k|merkz
+      daire i\u015Fik.001Action|tut"
+  - first:
+      74: 8051933512173799924
+    second: "Armature|tutavak.\u0131\u015F\u0131k|tutavak.\u0131\u015F\u0131k|merkz.daiere
+      tut.001Action|tuta"
+  - first:
+      74: -5028391866689149974
+    second: "Armature|tutavak.\u0131\u015F\u0131k|tutavak.\u0131\u015F\u0131k|merkz.daire.001Action|tutavak."
+  - first:
+      74: -916571434047298704
+    second: "Armature|tutavak.\u0131\u015F\u0131k|tutavak.\u0131\u015F\u0131k|namlu
+      yeriAction|tutavak.\u0131\u015F\u0131"
+  - first:
+      74: 3262227684041480925
+    second: "Armature|tutavak.\u0131\u015F\u0131k|tutavak.\u0131\u015F\u0131k|tutavakAction|tutavak.\u0131\u015F\u0131k|t"
+  - first:
+      74: -9040847169246921480
+    second: Armature|tutavak|tutavak|Cube.001Action|tutavak|Cube.001Action
+  - first:
+      74: 748995040591779422
+    second: Armature|tutavak|tutavak|CubeAction|tutavak|CubeAction
+  - first:
+      74: -8796162751903416596
+    second: Armature|tutavak|tutavak|CylinderAction|tutavak|CylinderAction
+  - first:
+      74: 6308348752598750481
+    second: "Armature|tutavak|tutavak|dipcik i\u015Fik.001Action|tutavak|dipcik i\u015Fik.001"
+  - first:
+      74: -27572825358331454
+    second: "Armature|tutavak|tutavak|dipcik i\u015FikAction|tutavak|dipcik i\u015FikAction"
+  - first:
+      74: -1928152440359794522
+    second: Armature|tutavak|tutavak|LightAction|tutavak|LightAction
+  - first:
+      74: 8560573223801435809
+    second: "Armature|tutavak|tutavak|merkz daire i\u015Fik.001Action|tutavak|merkz
+      daire"
+  - first:
+      74: -3702987013908478459
+    second: Armature|tutavak|tutavak|merkz.daiere tut.001Action|tutavak|merkz.daiere
+  - first:
+      74: 697226221760150912
+    second: Armature|tutavak|tutavak|merkz.daire.001Action|tutavak|merkz.daire.001Ac
+  - first:
+      74: -1023917427983155667
+    second: Armature|tutavak|tutavak|namlu yeriAction|tutavak|namlu yeriAction
+  - first:
+      74: -5000625974328989733
+    second: Armature|tutavak|tutavak|tutavakAction|tutavak|tutavakAction
+  - first:
+      74: 4526966281741670120
+    second: Armature|ultraAction
+  - first:
+      74: 337864081407078772
+    second: "Armature|\u0131\u015F\u0131klardan biriAction"
+  - first:
+      74: 3688802976486086526
+    second: Armature|5.Jump
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -58,6 +907,7 @@ ModelImporter:
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
@@ -67,6 +917,9 @@ ModelImporter:
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
@@ -100,6 +953,7 @@ ModelImporter:
   animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

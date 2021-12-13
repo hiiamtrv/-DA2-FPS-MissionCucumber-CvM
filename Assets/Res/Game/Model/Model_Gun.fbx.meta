@@ -1,11 +1,42 @@
 fileFormatVersion: 2
 guid: 014c612e9c5257e48b63d359d9b0f4ce
 ModelImporter:
-  serializedVersion: 19301
+  serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: 8403445404769980326
     second: Gun|GunAction
+  - first:
+      74: 8944643163255305377
+    second: Status Bar Left|Shader NodetreeAction
+  - first:
+      74: 6771472895632449898
+    second: Status Bar Left|Shader NodetreeAction.015
+  - first:
+      74: -8833400161342441528
+    second: Status Bar Right.001|Shader NodetreeAction
+  - first:
+      74: 5680667102387333527
+    second: Status Bar Right.001|Shader NodetreeAction.015
+  - first:
+      74: 7445743220360142316
+    second: Structure.005|GunAction
+  - first:
+      74: 2517636173621508073
+    second: Structure.005|Status Bar Left|Status Bar Left|Shader NodetreeAction.015|Statu
+  - first:
+      74: -2577621374030491855
+    second: Structure.005|Status Bar Left|Status Bar Left|Shader NodetreeAction|Status
+      Ba
+  - first:
+      74: 6402075556995368522
+    second: Structure.005|Status Bar Right.001|Status Bar Right.001|Shader NodetreeAc
+  - first:
+      74: 2888937887516318909
+    second: Structure.005|Status Bar Right.001|Status Bar Right.001|Shader NodetreeAction
+  - first:
+      74: 2460270084113747285
+    second: Structure.005|Structure.005Action
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -52,6 +83,7 @@ ModelImporter:
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
@@ -61,6 +93,9 @@ ModelImporter:
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
@@ -94,6 +129,7 @@ ModelImporter:
   animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 0c851e6e50af4bb48bf9af5ee564b958
 ModelImporter:
-  serializedVersion: 19301
+  serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: 1092196014823434448
@@ -30,6 +30,45 @@ ModelImporter:
   - first:
       74: -416838883796384650
     second: Cube.001|LightAction.001
+  - first:
+      74: -4449717305648701825
+    second: Armature|0TPose
+  - first:
+      74: 5265059509584228138
+    second: Armature|1Idle
+  - first:
+      74: 8414002853885880468
+    second: Armature|2Run
+  - first:
+      74: 6755636440131579798
+    second: Armature|CubeAction.002
+  - first:
+      74: 6059336001588132254
+    second: Armature|Die
+  - first:
+      74: 569611281860828342
+    second: Armature|Die.001
+  - first:
+      74: 8807448955579162661
+    second: Armature|fireball
+  - first:
+      74: 3070470142484463298
+    second: Armature|jumping
+  - first:
+      74: -1900132722527647994
+    second: Armature|LightAction
+  - first:
+      74: 8398469426210628447
+    second: Armature|LightAction.001
+  - first:
+      74: -6125167637391557854
+    second: Armature|3.attack
+  - first:
+      74: 9117864131988064298
+    second: Armature|4.Die
+  - first:
+      74: 3688802976486086526
+    second: Armature|5.Jump
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -76,6 +115,7 @@ ModelImporter:
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
@@ -85,6 +125,9 @@ ModelImporter:
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
@@ -118,6 +161,7 @@ ModelImporter:
   animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

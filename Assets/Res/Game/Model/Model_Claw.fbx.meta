@@ -51,6 +51,12 @@ ModelImporter:
   - first:
       74: 8398469426210628447
     second: Armature|LightAction.001
+  - first:
+      74: -6299476795703760702
+    second: Armature|0.Idle
+  - first:
+      74: -7613133742944954840
+    second: Armature|1.Attack
   externalObjects: {}
   materials:
     materialImportMode: 2
