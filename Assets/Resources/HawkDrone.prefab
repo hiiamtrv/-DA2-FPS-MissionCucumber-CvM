@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c19a7a75125f60e46afb25588b41222e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _remainTime: 999
+  _remainTime: 10
   _markBullet: {fileID: 4322030009869069155, guid: b7aa243d039456646bb59c0990c581fb,
     type: 3}
   _model: {fileID: 3713273557672846611}
@@ -270,7 +270,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 50
+  far clip plane: 100
   field of view: 30
   orthographic: 0
   orthographic size: 5

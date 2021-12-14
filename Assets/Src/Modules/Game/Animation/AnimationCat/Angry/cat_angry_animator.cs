@@ -19,26 +19,26 @@ public class cat_angry_animator : MonoBehaviour
     }
     void AnimatorInit()
     {
-        animator.SetBool("isIdling", true);
-        animator.SetBool("isAttacking", false);
-        animator.SetBool("isRunning", false);
-        animator.SetBool("isDeath", false);
-        animator.SetBool("isJumping", false);
+        animator.SetBool(AnimStates.Cat.IS_IDLING, true);
+        animator.SetBool(AnimStates.Cat.IS_ATTACKING, false);
+        animator.SetBool(AnimStates.Cat.IS_RUNNING, false);
+        animator.SetBool(AnimStates.Cat.IS_DEATH, false);
+        animator.SetBool(AnimStates.Cat.IS_JUMPING, false);
     }
     // Update is called once per frame
     void Update()
     {
         if (InputMgr.StartShoot(player_cat))
-            animator.SetBool("isAttacking", true);
+            animator.SetBool(AnimStates.Cat.IS_ATTACKING, true);
         else
-        if (InputMgr.Jump(player_cat))
-            animator.SetBool("isJumping", true);
+        if (InputMgr.ToggleJump(player_cat))
+            animator.SetBool(AnimStates.Cat.IS_JUMPING, true);
         else
         {
             bool didPosChange = AnimationUtils.DidChangePosition(player_cat);
 
-            if (didPosChange) animator.SetBool("isRunning", true);
-            else animator.SetBool("isRunning", false);
+            if (didPosChange) animator.SetBool(AnimStates.Cat.IS_RUNNING, true);
+            else animator.SetBool(AnimStates.Cat.IS_RUNNING, false);
         }
     }
 
@@ -52,7 +52,7 @@ public class cat_angry_animator : MonoBehaviour
         GameObject data = (GameObject)pubData;
         if (data == this.player_cat)
         {
-            animator.SetBool("isDeath", true);
+            animator.SetBool(AnimStates.Cat.IS_DEATH, true);
         }
     }
 }

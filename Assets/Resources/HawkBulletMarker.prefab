@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 620b23dd9e0d7ef48a5f0d874d7bf17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effectTime: 1000
+  _effectTime: 10
   _imageIndicator: {fileID: 4822605246197104723}
 --- !u!114 &6829183369064691653
 MonoBehaviour:

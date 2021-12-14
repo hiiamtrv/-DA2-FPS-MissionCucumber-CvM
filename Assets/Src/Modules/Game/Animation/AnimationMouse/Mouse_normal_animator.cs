@@ -20,27 +20,27 @@ public class Mouse_normal_animator : MonoBehaviour
     }
     void AnimatorInit()
     {
-        animator.SetBool("isIdling", true);
-        animator.SetBool("suriken", false);
-        animator.SetBool("isRunning", false);
-        animator.SetBool("die", false);
-        animator.SetBool("jumping", false);
-        animator.SetBool("fireball", false);
+        animator.SetBool(AnimStates.Mouse.IS_IDLING, true);
+        animator.SetBool(AnimStates.Mouse.SURIKEN, false);
+        animator.SetBool(AnimStates.Mouse.IS_RUNNING, false);
+        animator.SetBool(AnimStates.Mouse.DIE, false);
+        animator.SetBool(AnimStates.Mouse.JUMPING, false);
+        animator.SetBool(AnimStates.Mouse.FIREBALL, false);
     }
     // Update is called once per frame
     void Update()
     {
         if (InputMgr.StartShoot(player_mouse))
-            animator.SetBool("suriken", true);
+            animator.SetBool(AnimStates.Mouse.SURIKEN, true);
         else
-        if (InputMgr.Jump(player_mouse))
-            animator.SetBool("jumping", true);
+        if (InputMgr.ToggleJump(player_mouse))
+            animator.SetBool(AnimStates.Mouse.JUMPING, true);
         else
         {
             bool didChangePosition = AnimationUtils.DidChangePosition(player_mouse);
             
-            if (didChangePosition) animator.SetBool("isRunning", true);
-            else animator.SetBool("isRunning", false);
+            if (didChangePosition) animator.SetBool(AnimStates.Mouse.IS_RUNNING, true);
+            else animator.SetBool(AnimStates.Mouse.IS_RUNNING, false);
         }
     }
 
@@ -54,7 +54,7 @@ public class Mouse_normal_animator : MonoBehaviour
         GameObject data = (GameObject)pubData;
         if (data == this.player_mouse)
         {
-            animator.SetBool("die", true);
+            animator.SetBool(AnimStates.Mouse.DIE, true);
         }
     }
     void doFireball(object pubData)
@@ -62,7 +62,7 @@ public class Mouse_normal_animator : MonoBehaviour
         PubData.UtilityStartCooldown data = (PubData.UtilityStartCooldown)pubData;
         if (data.Dispatcher == this.player_mouse)
         {
-            animator.SetBool("fireball", true);
+            animator.SetBool(AnimStates.Mouse.FIREBALL, true);
         }
     }
     

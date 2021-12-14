@@ -50,6 +50,11 @@ namespace HawkDrone
             {
                 this._model.gameObject.SetActive(false);
             }
+
+            EventCenter.Subcribe(EventId.MATCH_END, (pubData) =>
+            {
+                this.Destroy();
+            });
         }
 
         protected override void Update()

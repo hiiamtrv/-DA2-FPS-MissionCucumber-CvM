@@ -3210,6 +3210,8 @@ GameObject:
   - component: {fileID: 980904595}
   - component: {fileID: 980904594}
   - component: {fileID: 980904593}
+  - component: {fileID: 980904602}
+  - component: {fileID: 980904604}
   m_Layer: 0
   m_Name: Mgr
   m_TagString: Untagged
@@ -3372,6 +3374,22 @@ MonoBehaviour:
   - {fileID: 1391516603}
   _mouseRetreatPoint: {fileID: 1021662940}
   _catRetreatPoint: {fileID: 687899479}
+--- !u!114 &980904602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980904592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc26ae1d49e57744aa12125dc9a79931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normalCorpse: {fileID: 3535256252131945874, guid: 350dccd7822d7bc459d827943a7f4a3b,
+    type: 3}
+  _rageCorpe: {fileID: 8186813426225090071, guid: 69cb7cf49b563904ba62a03406314b2b,
+    type: 3}
 --- !u!4 &980904603
 Transform:
   m_ObjectHideFlags: 0
@@ -3386,6 +3404,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &980904604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980904592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e5b629b6886864098417c13700c6fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normalCorpse: {fileID: 8040019861231438133, guid: fb60860ed0ce9564c8fc794c307d75a3,
+    type: 3}
 --- !u!1 &988510706
 GameObject:
   m_ObjectHideFlags: 0
