@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Cat_Claw_animator : MonoBehaviour
 {
+    const float ATTACK_DURATION = 1f;
+    bool _inAttackAnim = false;
+
     PhotonView view;
     Animator animator;
     [SerializeField] GameObject player_cat;
@@ -24,8 +27,17 @@ public class Cat_Claw_animator : MonoBehaviour
     void Update()
     {
         if (InputMgr.StartShoot(player_cat))
+        {
             animator.SetBool("isAttacking", true);
-        else animator.SetBool("isAttacking", false);
+            animator.speed = 2;
+            this._inAttackAnim = true;
+            LeanTween.delayedCall(ATTACK_DURATION, () =>
+            {
+                this._inAttackAnim = false;
+                animator.speed = 1;
+            });
+        }
+        else if (!this._inAttackAnim) animator.SetBool("isAttacking", false);
     }
-    
+
 }

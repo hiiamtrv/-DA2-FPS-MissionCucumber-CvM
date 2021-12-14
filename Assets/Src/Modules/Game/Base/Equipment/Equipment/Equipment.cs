@@ -48,6 +48,7 @@ namespace Equipments
                 this._drawUnix = Time.time;
                 this._equipmentObject.SetActive(true);
                 this.ActiveEquipment();
+                this.RunAnimEquip();
             }
         }
 
@@ -64,6 +65,13 @@ namespace Equipments
         protected virtual void ActiveEquipment()
         {
             this._isReady = true;
+        }
+
+        protected void RunAnimEquip(float time = 0.8f)
+        {
+            this.transform.localRotation = Quaternion.Euler(90, 0, 0);
+            LeanTween.rotateLocal(this.gameObject, Quaternion.Euler(0, 0, 0).eulerAngles, time)
+                .setEaseOutBack();
         }
     }
 }

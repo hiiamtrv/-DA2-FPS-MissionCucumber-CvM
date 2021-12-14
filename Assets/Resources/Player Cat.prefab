@@ -943,6 +943,11 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6455597641500222295, guid: 2970c667ae0c25142a8b3a0fef4ac025,
+        type: 3}
+      propertyPath: _attackSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8343360472851565187, guid: 2970c667ae0c25142a8b3a0fef4ac025,
         type: 3}
       propertyPath: _eye

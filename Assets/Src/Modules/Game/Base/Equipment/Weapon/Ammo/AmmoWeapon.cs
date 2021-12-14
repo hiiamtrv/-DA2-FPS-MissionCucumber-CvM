@@ -22,10 +22,8 @@ namespace Weapons
         protected GunState _gunState;
 
         [SerializeField] protected Camera _eye;
-        [SerializeField] protected AudioClip _soundGunShot;
-        [SerializeField] protected AudioClip _soundNoAmmo;
         [SerializeField] protected AudioClip _soundEquip;
-        AudioSource _audio = new AudioSource();
+        [SerializeField] protected AudioClip _soundReload;
 
         protected override void Start()
         {
@@ -55,7 +53,6 @@ namespace Weapons
         {
             this.Model.RemainAmmo--;
 
-            // this._audio.PlayOneShot(_soundEquip);
             var targets = this.Target;
             if (targets.Length > 0)
             {
@@ -72,12 +69,12 @@ namespace Weapons
 
         public override void OnEquiped()
         {
-            // this._audio.PlayOneShot(this._soundEquip);
             base.OnEquiped();
             LeanTween.delayedCall(Mathf.Max(this._equipTime, Time.fixedDeltaTime), () =>
             {
                 if (this != null)
                 {
+                    this.gameObject.PlaySound(_soundEquip);
                     this._gunState = GunState.READY_TO_FIRE;
                     EventCenter.Publish(
                         EventId.WEAPON_AMMO_EQUIP,
@@ -160,11 +157,15 @@ namespace Weapons
             this._gunState = GunState.RELOADING;
             int ammoInLastMag = this.Model.RemainAmmo;
             this._equipmentObject.SetActive(false);
+            this.gameObject.PlaySound(_soundReload);
 
             LeanTween.delayedCall(
                 Mathf.Max(Time.fixedDeltaTime, this.Model.ReloadTime),
                 () =>
                 {
+                    this.RunAnimEquip();
+                    this.gameObject.PlaySound(_soundEquip);
+
                     this._equipmentObject.SetActive(true);
                     int totalAmmo = this.Model.TotalAmmo + this.Model.RemainAmmo;
                     int nextMagazine = Math.Min(this.Model.MagazineSize, totalAmmo);

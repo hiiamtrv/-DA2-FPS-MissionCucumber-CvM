@@ -8,6 +8,9 @@ namespace Projectile
 {
     public class ProjectileEngine : StateMachine
     {
+        [SerializeField] AudioClip _soundShoot;
+        [SerializeField] AudioClip _soundHit;
+
         ProjectileStats _model;
         public ProjectileStats Model => this._model;
         public int NumBounce { get => Model.NumBounce; set => Model.NumBounce = value; }
@@ -39,6 +42,7 @@ namespace Projectile
             {
                 base.Start();
                 this._flyVector = Vector3.forward;
+                this.gameObject.PlaySound(_soundShoot);
             }
 
             LeanTween.delayedCall(this.Model.TimeDestroy, () =>
@@ -49,6 +53,7 @@ namespace Projectile
 
         public void HitObject()
         {
+            this.gameObject.PlaySound(_soundHit);
             if (_onHit != null) _onHit();
             this.gameObject.SetActive(false);
             Destroy(this.gameObject);

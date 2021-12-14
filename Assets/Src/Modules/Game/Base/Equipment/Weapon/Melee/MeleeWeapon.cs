@@ -15,8 +15,8 @@ namespace Weapons
 
         [SerializeField] Camera _eye;
         [SerializeField] AudioClip _soundAttack;
+        [SerializeField] AudioClip _soundHit;
         [SerializeField] AudioClip _soundEquip;
-        AudioSource _audio = new AudioSource();
 
         protected override void Start()
         {
@@ -32,11 +32,19 @@ namespace Weapons
             }
         }
 
+        public override void OnEquiped()
+        {
+            base.OnEquiped();
+            this.gameObject.PlaySound(_soundEquip);
+        }
+
         protected void Attack()
         {
             var targets = this.Target;
+            this.gameObject.PlaySound(_soundAttack);
             if (targets.Length > 0)
             {
+                this.gameObject.PlaySound(_soundHit);
                 foreach (GameObject target in targets)
                 {
                     this.DoHitEffect(target);
@@ -63,6 +71,7 @@ namespace Weapons
                 EventId.WEAPON_UNEQUIP,
                 new PubData.WeaponUnequip(this.Owner)
             );
+            this.gameObject.PlaySound(_soundEquip);
         }
 
         protected virtual void DoHitEffect(GameObject target)
