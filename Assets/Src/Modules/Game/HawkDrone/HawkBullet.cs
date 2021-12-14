@@ -9,18 +9,14 @@ public class HawkBullet : MonoBehaviour
 {
     [SerializeField] float _effectTime;
     [SerializeField] Image _imageIndicator;
+
     GameObject _target;
+    bool _isTargetSet = false;
     PhotonView view;
 
     void Start()
     {
         view = this.GetComponent<PhotonView>();
-        if (!view.IsMine)
-        {
-            Debug.Log("The bullet is disabled");
-            this.enabled = false;
-            return;
-        }
 
         float delay = Mathf.Max(Time.deltaTime, _effectTime);
         LeanTween.delayedCall(delay, () =>
@@ -35,23 +31,33 @@ public class HawkBullet : MonoBehaviour
     {
         GameObject player = GameVar.Ins.Player;
         Camera pEye = player.GetComponent<Eye>().MainCamera;
-        if (_target != null)
+        if (!view.IsMine || (_target != null && _target.activeInHierarchy))
         {
-            this.transform.position = _target.transform.position;
-            this.transform.Translate(Vector3.up, Space.Self);
+            this._imageIndicator.gameObject.SetActive(true);
 
-            this.gameObject.SetActive(true);
+            if (view.IsMine)
+            {
+                this.transform.position = _target.transform.position;
+                this.transform.Translate(Vector3.up, Space.Self);
+            }
+
             Vector3 posScreen = pEye.WorldToScreenPoint(this.transform.position);
             this._imageIndicator.transform.position = posScreen;
+            this._imageIndicator.gameObject.SetActive(this._imageIndicator.transform.position.x > 0);
         }
         else
         {
-            this.gameObject.SetActive(false);
+            this._imageIndicator.gameObject.SetActive(false);
+            if (this._isTargetSet)
+            {
+                Utils.DestroyGO(this.gameObject);
+            }
         }
     }
 
     public void SetTarget(GameObject target)
     {
+        this._isTargetSet = true;
         this._target = target;
     }
 

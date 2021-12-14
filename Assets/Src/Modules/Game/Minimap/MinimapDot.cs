@@ -31,6 +31,14 @@ public class MinimapDot : MonoBehaviour
             float playerZ = this._follower.transform.position.z;
             this.transform.position = new Vector3(playerX, 1, playerZ);
         }
+        else
+        {
+            if (this._follower != null && !this._follower.activeInHierarchy)
+            {
+                Destroy(this._sprite);
+                this.gameObject.SetActive(false);
+            }
+        }
     }
 
     public void SetVisible(bool isVisible)
