@@ -24,7 +24,7 @@ public class cat_normal_animator : MonoBehaviour
         animator.SetBool("isRunning", false);
         animator.SetBool("isDeath", false);
         animator.SetBool("isJumping", false);
-    }    
+    }
     // Update is called once per frame
     void Update()
     {
@@ -35,19 +35,24 @@ public class cat_normal_animator : MonoBehaviour
             animator.SetBool("isJumping", true);
         else
         {
-            float x = InputMgr.XMove(player_cat);
-            float z = InputMgr.ZMove(player_cat);
-            if (z != 0 || x != 0)
-                animator.SetBool("isRunning", true);
+            bool didChangePosition = AnimationUtils.DidChangePosition(player_cat);
+
+            if (didChangePosition) animator.SetBool("isRunning", true);
             else animator.SetBool("isRunning", false);
         }
     }
+
+    void LateUpdate()
+    {
+        AnimationUtils.RecordPosition(player_cat);
+    }
+
     void doDeath(object pubData)
     {
         GameObject data = (GameObject)pubData;
-        if (data==this.player_cat)
+        if (data == this.player_cat)
         {
             animator.SetBool("isDeath", true);
-        }    
-    }    
+        }
+    }
 }

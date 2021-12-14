@@ -42,16 +42,22 @@ namespace Character
                     camera.GetComponent<AudioListener>().enabled = false;
                 }
 
-                foreach (GameObject child in this.ArrCharModel)
+                if (this._charModel != null)
                 {
-                    Utils.ChangeLayerRecursively(child, LAYER_DEFAULT);
+                    foreach (GameObject child in this.ArrCharModel)
+                    {
+                        Utils.ChangeLayerRecursively(child, LAYER_DEFAULT);
+                    }
                 }
             }
             else
             {
-                foreach (GameObject child in this.ArrCharModel)
+                if (this._charModel != null)
                 {
-                    Utils.ChangeLayerRecursively(child, LAYER_SELF);
+                    foreach (GameObject child in this.ArrCharModel)
+                    {
+                        Utils.ChangeLayerRecursively(child, LAYER_SELF);
+                    }
                 }
             }
 

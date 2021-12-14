@@ -20,9 +20,6 @@ namespace GameHud
 
         void Awake()
         {
-            this._sliderCat.value = 0;
-            this._sliderMouse.value = 0;
-
             EventCenter.Subcribe(EventId.CREATE_PLAYER, (data) =>
             {
                 this._player = GameVar.Ins.Player;
@@ -60,6 +57,9 @@ namespace GameHud
             this._lbLastCucumber = uiHelper.ui[LB_LAST_CUCUMBER].GetComponent<Text>();
 
             this._lbLastCucumber.gameObject.SetActive(false);
+            
+            this._sliderCat.value = 0;
+            this._sliderMouse.value = 0;
         }
 
         const string SLIDER_MOUSE = "SliderMouse";

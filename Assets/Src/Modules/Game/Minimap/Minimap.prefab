@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb19b31e0d6f19468e01350a4b99868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _revealAll: 1
+  _revealAll: 0
   _catDot: {fileID: 2493363802776934812, guid: b62cf059e1b9d0e409d4bfc63ff5d1a0, type: 3}
   _miceDot: {fileID: 5240662692398646599, guid: 0aaa452e784c1ba4b8ae70a0b92c5272,
     type: 3}

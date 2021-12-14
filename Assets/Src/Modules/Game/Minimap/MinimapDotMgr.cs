@@ -57,11 +57,10 @@ public class MinimapDotMgr : MonoBehaviour
                     for (var j = 0; j < this._listPlayer.Count; j++)
                     {
                         GameObject otherPlayer = this._listPlayer[j];
-                        MeshRenderer renderer = otherPlayer.GetComponent<Eye>().CharModel().GetComponent<MeshRenderer>();
 
                         bool isSelf = otherPlayer == player;
                         bool isOnSameTeam = otherPlayer.GetComponent<CharacterStats>().CharacterSide == mainPlayerSide;
-                        bool isVisible = eye.IsObjectVisible(renderer);
+                        bool isVisible = eye.IsObjectVisible(otherPlayer.transform.position);
 
                         this._isVisible[j] = this._isVisible[j] || isSelf || isOnSameTeam || isVisible;
                     }

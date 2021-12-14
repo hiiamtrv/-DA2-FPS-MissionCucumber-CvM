@@ -35,13 +35,18 @@ public class cat_angry_animator : MonoBehaviour
             animator.SetBool("isJumping", true);
         else
         {
-            float x = InputMgr.XMove(player_cat);
-            float z = InputMgr.ZMove(player_cat);
-            if (z != 0 || x != 0)
-                animator.SetBool("isRunning", true);
+            bool didPosChange = AnimationUtils.DidChangePosition(player_cat);
+
+            if (didPosChange) animator.SetBool("isRunning", true);
             else animator.SetBool("isRunning", false);
         }
     }
+
+    void LateUpdate()
+    {
+        AnimationUtils.RecordPosition(player_cat);
+    }
+
     void doDeath(object pubData)
     {
         GameObject data = (GameObject)pubData;

@@ -216,7 +216,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
+  m_ObstacleAvoidanceType: 2
 --- !u!54 &3501372883973784529
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1147,6 +1147,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3054537234258718771, guid: f9209cfee930e374d82c66d1167163a9,
+        type: 3}
+      propertyPath: player_cat
+      value: 
+      objectReference: {fileID: 1325823361084006838}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9209cfee930e374d82c66d1167163a9, type: 3}
 --- !u!1 &6437425085796970634 stripped
@@ -1319,6 +1324,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6189378248158920586, guid: cbed18c6d59fd824192d9a11bffbcc17,
+        type: 3}
+      propertyPath: player_cat
+      value: 
+      objectReference: {fileID: 1325823361084006838}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbed18c6d59fd824192d9a11bffbcc17, type: 3}
 --- !u!4 &6617515204655209097 stripped

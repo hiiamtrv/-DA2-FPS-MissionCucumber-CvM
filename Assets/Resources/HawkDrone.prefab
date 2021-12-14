@@ -121,7 +121,7 @@ MonoBehaviour:
   _enableMouse: 1
   _cameras:
   - {fileID: 2057641727808117285}
-  _charModel: {fileID: 2057641726662986812}
+  _charModel: []
 --- !u!114 &2057641726662986813
 MonoBehaviour:
   m_ObjectHideFlags: 0

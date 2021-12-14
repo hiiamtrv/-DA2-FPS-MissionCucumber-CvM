@@ -37,13 +37,18 @@ public class Mouse_normal_animator : MonoBehaviour
             animator.SetBool("jumping", true);
         else
         {
-            float x = InputMgr.XMove(player_mouse);
-            float z = InputMgr.ZMove(player_mouse);
-            if (z != 0 || x != 0)
-                animator.SetBool("isRunning", true);
+            bool didChangePosition = AnimationUtils.DidChangePosition(player_mouse);
+            
+            if (didChangePosition) animator.SetBool("isRunning", true);
             else animator.SetBool("isRunning", false);
         }
     }
+
+    void LateUpdate()
+    {
+        AnimationUtils.RecordPosition(player_mouse);
+    }
+
     void doDeath(object pubData)
     {
         GameObject data = (GameObject)pubData;

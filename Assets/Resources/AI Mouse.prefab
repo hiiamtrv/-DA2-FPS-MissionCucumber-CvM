@@ -649,7 +649,7 @@ NavMeshAgent:
   m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
 --- !u!114 &8451511189589347782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1044,6 +1044,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5412648252141998492, guid: be36a359150c3eb48af4465f55925de9,
+        type: 3}
+      propertyPath: player_mouse
+      value: 
+      objectReference: {fileID: 5392248343267810828}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be36a359150c3eb48af4465f55925de9, type: 3}
 --- !u!1 &3158666708436600463 stripped
