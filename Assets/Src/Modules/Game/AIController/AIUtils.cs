@@ -73,11 +73,10 @@ public static class AIUtils
 
     public static bool CanSeeTarget(this AIBaseEngine engine, GameObject target)
     {
-        MeshRenderer renderer = target.GetComponent<Eye>().CharModel().GetComponent<MeshRenderer>();
         return (
             target.activeInHierarchy
             && (
-                engine.Eye.IsObjectVisible(renderer)
+                engine.Eye.IsObjectVisible(target.transform.position)
                 || engine.IsEnemyNoticable(target)
                 )
             );
