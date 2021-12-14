@@ -11,12 +11,14 @@ namespace HawkDrone
     {
         [SerializeField] float _remainTime;
         [SerializeField] GameObject _markBullet;
+        [SerializeField] GameObject _model;
 
         GameObject _owner = null;
 
         GameObject _eye;
         MoveModel _moveModel;
         CharacterController _charCtrl;
+        PhotonView _view;
 
         public override BaseState GetDefaultState() => new Fly(this);
 
@@ -24,6 +26,7 @@ namespace HawkDrone
         {
             base.Start();
 
+            _view = this.GetComponent<PhotonView>();
             _moveModel = this.GetComponent<CharacterStats>().MoveModel;
             _charCtrl = this.GetComponent<CharacterController>();
             _charCtrl.enabled = true;
@@ -35,8 +38,18 @@ namespace HawkDrone
             {
                 this.Destroy();
             });
-            
+
             this.transform.Translate(Vector3.forward + Vector3.up, Space.Self);
+
+            if (!this._view.IsMine)
+            {
+                this._eye.SetActive(false);
+                this.enabled = false;
+            }
+            else
+            {
+                this._model.gameObject.SetActive(false);
+            }
         }
 
         protected override void Update()
@@ -53,14 +66,17 @@ namespace HawkDrone
 
         protected override void FixedUpdate()
         {
-            base.FixedUpdate();
+            if (this._view.IsMine)
+            {
+                base.FixedUpdate();
 
-            Debug.Log("check enable", this._charCtrl.enabled);
-            float x = (this._currentState as Fly).X;
-            float z = (this._currentState as Fly).Z;
-            Vector3 localMove = (Vector3.forward * z + Vector3.right * x) * this._moveModel.Speed * Time.fixedDeltaTime;
-            Vector3 worldMove = this._eye.transform.TransformDirection(localMove);
-            this._charCtrl.Move(worldMove);
+                Debug.Log("check enable", this._charCtrl.enabled);
+                float x = (this._currentState as Fly).X;
+                float z = (this._currentState as Fly).Z;
+                Vector3 localMove = (Vector3.forward * z + Vector3.right * x) * this._moveModel.Speed * Time.fixedDeltaTime;
+                Vector3 worldMove = this._eye.transform.TransformDirection(localMove);
+                this._charCtrl.Move(worldMove);
+            }
         }
 
         public void SetOwner(GameObject owner)

@@ -110,8 +110,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5759760593785113238}
   - component: {fileID: 9098671633414266523}
-  - component: {fileID: 8516750366776593112}
-  - component: {fileID: -1860686923841130717}
+  - component: {fileID: 6829183369064691653}
+  - component: {fileID: 2850059352468570964}
   m_Layer: 0
   m_Name: HawkBulletMarker
   m_TagString: Untagged
@@ -146,9 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 620b23dd9e0d7ef48a5f0d874d7bf17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effectTime: 10
+  _effectTime: 1000
   _imageIndicator: {fileID: 4822605246197104723}
---- !u!114 &8516750366776593112
+--- !u!114 &6829183369064691653
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,11 +167,11 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: -1860686923841130717}
+  - {fileID: 2850059352468570964}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &-1860686923841130717
+--- !u!114 &2850059352468570964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -20,6 +20,9 @@ namespace GameHud
 
         void Awake()
         {
+            this._sliderCat.value = 0;
+            this._sliderMouse.value = 0;
+
             EventCenter.Subcribe(EventId.CREATE_PLAYER, (data) =>
             {
                 this._player = GameVar.Ins.Player;
