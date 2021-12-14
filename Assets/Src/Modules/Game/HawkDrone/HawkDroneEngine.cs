@@ -12,6 +12,7 @@ namespace HawkDrone
         [SerializeField] float _remainTime;
         [SerializeField] GameObject _markBullet;
         [SerializeField] GameObject _model;
+        [SerializeField] Canvas _hud;
 
         GameObject _owner = null;
 
@@ -19,6 +20,8 @@ namespace HawkDrone
         MoveModel _moveModel;
         CharacterController _charCtrl;
         PhotonView _view;
+
+        UtilityHawk _utility;
 
         public override BaseState GetDefaultState() => new Fly(this);
 
@@ -45,15 +48,43 @@ namespace HawkDrone
             {
                 this._eye.SetActive(false);
                 this.enabled = false;
+                this._hud.gameObject.SetActive(false);
             }
             else
             {
                 this._model.gameObject.SetActive(false);
+                Crosshair.Ins.Hide();
             }
 
             EventCenter.Subcribe(EventId.MATCH_END, (pubData) =>
             {
+                if (_view.IsMine)
+                {
+                    Crosshair.Ins.Show();
+                }
                 this.Destroy();
+            });
+
+            EventCenter.Subcribe(EventId.HEALTH_CHANGE, (pubData) =>
+            {
+                PubData.HealthChange data = pubData as PubData.HealthChange;
+                if (data.IsDamageEvent
+                    && (data.Dispatcher == this.gameObject || data.Dispatcher == this._owner)
+                )
+                {
+                    this.Destroy();
+                }
+            });
+
+            EventCenter.Subcribe(EventId.SHILED_CHANGE, (pubData) =>
+            {
+                PubData.ShieldChange data = pubData as PubData.ShieldChange;
+                if (data.Reason == ShieldReason.DAMAGE
+                    && (data.Dispatcher == this.gameObject || data.Dispatcher == this._owner)
+                )
+                {
+                    this.Destroy();
+                }
             });
         }
 
@@ -64,6 +95,10 @@ namespace HawkDrone
             {
                 if (this.MarkTarget())
                 {
+                    if (_view.IsMine)
+                    {
+                        Crosshair.Ins.Show();
+                    }
                     this.Destroy();
                 }
             }
@@ -71,13 +106,13 @@ namespace HawkDrone
 
         protected override void FixedUpdate()
         {
-            if (this._view.IsMine)
+            if (this._view.IsMine && this != null)
             {
                 base.FixedUpdate();
 
                 Debug.Log("check enable", this._charCtrl.enabled);
                 float x = (this._currentState as Fly).X;
-                float z = (this._currentState as Fly).Z;
+                float z = Mathf.Min(1.5f, (this._currentState as Fly).Z + 0.5f);
                 Vector3 localMove = (Vector3.forward * z + Vector3.right * x) * this._moveModel.Speed * Time.fixedDeltaTime;
                 Vector3 worldMove = this._eye.transform.TransformDirection(localMove);
                 this._charCtrl.Move(worldMove);
@@ -104,6 +139,8 @@ namespace HawkDrone
             this._owner.GetComponent<CharacterController>().enabled = true;
             this._owner.transform.Find("EyePoint").gameObject.SetActive(true);
 
+            this._utility.FinishUtilAction();
+
             base.Destroy();
         }
 
@@ -124,6 +161,11 @@ namespace HawkDrone
                 else return false;
             }
             else return false;
+        }
+
+        public void SetBindingUtility(UtilityHawk utility)
+        {
+            this._utility = utility;
         }
     }
 }

@@ -8,13 +8,14 @@ namespace Utilities
     public class UtilityStats : EquipmentStats
     {
         [SerializeField] protected float _cooldown;
+        [SerializeField] protected bool _enableCrosshair;
 
         UtilityModel _model;
         public UtilityModel Model => this._model;
 
         void Awake()
         {
-            this._model = new UtilityModel(_equipTime, _cooldown);
+            this._model = new UtilityModel(_equipTime, _cooldown, _enableCrosshair);
         }
     }
 }

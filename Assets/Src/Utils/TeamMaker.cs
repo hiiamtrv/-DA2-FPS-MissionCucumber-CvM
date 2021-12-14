@@ -10,7 +10,8 @@ public class TeamMaker
         Dictionary<string, int> teamResult = new Dictionary<string, int>();
 
         float mouseRatio = (float)(NetworkGame.NUM_MICE_SLOT) / (NetworkGame.NUM_CATS_SLOT + NetworkGame.NUM_MICE_SLOT);
-        int numPlayerMice = Mathf.CeilToInt((float)(cloneList.Count) * mouseRatio);
+        // int numPlayerMice = Mathf.CeilToInt((float)(cloneList.Count) * mouseRatio);
+        int numPlayerMice = 0;
         int numPlayerCat = cloneList.Count - numPlayerMice;
 
         //pick side mice

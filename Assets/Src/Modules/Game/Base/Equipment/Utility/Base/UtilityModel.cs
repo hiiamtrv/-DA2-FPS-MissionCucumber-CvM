@@ -10,15 +10,18 @@ namespace Utilities
         float _baseCooldown;
 
         float _cooldown;
+        bool _enableCrosshair;
 
-        public UtilityModel(float equipTime, float cooldown) : base(equipTime)
+        public UtilityModel(float equipTime, float cooldown, bool enableCrossHair) : base(equipTime)
         {
             this._baseCooldown = cooldown;
 
             this._cooldown = cooldown;
+            this._enableCrosshair = enableCrossHair;
         }
 
         public float Cooldown { get => this._cooldown; set => this._cooldown = value; }
+        public bool EnableCrosshair => this._enableCrosshair;
 
         public float CooldownPercent
         {

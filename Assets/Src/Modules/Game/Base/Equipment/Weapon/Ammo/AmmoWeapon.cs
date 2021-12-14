@@ -85,7 +85,7 @@ namespace Weapons
                     );
                 }
             });
-
+            Crosshair.Ins.Show();
         }
 
         public override void OnUnequiped()

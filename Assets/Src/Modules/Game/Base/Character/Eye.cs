@@ -63,6 +63,11 @@ namespace Character
 
             _model = this.GetComponent<CharacterStats>().RotateModel;
             Cursor.lockState = CursorLockMode.Locked;
+
+            EventCenter.Subcribe(EventId.MATCH_END, (pubData) =>
+            {
+                this._enableMouse = false;
+            });
         }
 
         void Update()
@@ -79,6 +84,20 @@ namespace Character
             this.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
             this._camRotation = Mathf.Clamp(this._camRotation, MIN_ROT_Y, MAX_ROT_Y);
             this._eyePoint.transform.localRotation = Quaternion.Euler(this._camRotation, 0, 0);
+
+            if (this._view.IsMine && !this._isAI && !MatchTimer.IsStopped && Input.GetKeyDown(KeyBind.CROUCH))
+            {
+                if (Cursor.lockState == CursorLockMode.Locked)
+                {
+                    this._enableMouse = false;
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                else
+                {
+                    this._enableMouse = true;
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+            }
         }
 
         public Camera MainCamera

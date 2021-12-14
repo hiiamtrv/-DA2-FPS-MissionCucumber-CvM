@@ -78,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _equipTime: 3
   _cooldown: 3
+  _enableCrosshair: 1
   _damage: 3
 --- !u!114 &9052027307985778915
 MonoBehaviour:
@@ -91,7 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d5a3cf8e5195d4cacbc18c3bc93c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fireBall: {fileID: 7781400165985174019, guid: df4c5e9746b80054b98742cceead10af, type: 3}
+  _fireBall: {fileID: 7781400165985174019, guid: df4c5e9746b80054b98742cceead10af,
+    type: 3}
   _eye: {fileID: 0}
 --- !u!1 &9052027307988786431
 GameObject:

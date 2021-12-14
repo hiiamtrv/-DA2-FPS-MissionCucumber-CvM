@@ -35,11 +35,13 @@ namespace Utilities
 
             //TODO: inherit if you want to do somewthing before equip the utility, remember this.IsOnCooldown
             this.EquipMgr.EquipUtility(this.HideGunWhenUse);
+            Crosshair.Ins.SetVisible(this.Model.EnableCrosshair);
         }
 
         protected virtual void UnequipUtil()
         {
             this.EquipMgr.EquipWeapon();
+            Crosshair.Ins.SetVisible(!this.Model.EnableCrosshair);
         }
 
         protected virtual void GetModel()
@@ -53,7 +55,7 @@ namespace Utilities
             this._curCooldown = this.Model.Cooldown;
             EventCenter.Publish(
                 EventId.UTILITY_START_COOLDOWN,
-                new UtilityStartCooldown(this._owner, this.Model.Cooldown)
+                new UtilityStartCooldown(this._owner, this._curCooldown)
             );
 
             //TODO: must inherit and do something else

@@ -43,7 +43,7 @@ public class HawkBullet : MonoBehaviour
 
             Vector3 posScreen = pEye.WorldToScreenPoint(this.transform.position);
             this._imageIndicator.transform.position = posScreen;
-            this._imageIndicator.gameObject.SetActive(this._imageIndicator.transform.position.x > 0);
+            this._imageIndicator.gameObject.SetActive(this._imageIndicator.transform.position.z > 0);
         }
         else
         {

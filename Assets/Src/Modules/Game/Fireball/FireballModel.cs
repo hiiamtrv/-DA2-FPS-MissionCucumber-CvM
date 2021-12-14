@@ -10,7 +10,7 @@ namespace FireBall
         float _baseDamage;
         float _damage;
 
-        public FireballModel(float equipTime, float cooldown, float damage) : base(equipTime, cooldown)
+        public FireballModel(float equipTime, float cooldown, bool enableCrosshair, float damage) : base(equipTime, cooldown, enableCrosshair)
         {
             this._baseDamage = damage;
             this._damage = this._baseDamage;
