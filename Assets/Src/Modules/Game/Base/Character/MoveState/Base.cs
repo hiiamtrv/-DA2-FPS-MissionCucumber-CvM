@@ -33,7 +33,7 @@ namespace Character
             protected void HandleGravity()
             {
                 float GRAVITY_DECREASE = 0.7f;
-                if (!Utils.IsTouchFoot(this._charCtrl))
+                if (!CharUtils.IsTouchFoot(this._charCtrl))
                 {
                     Vector3 vtGravity = Physics.gravity * Time.fixedDeltaTime * (this.MoveY > 0 ? GRAVITY_DECREASE : 1);
                     this.MoveX += vtGravity.x;
@@ -87,7 +87,7 @@ namespace Character
 
             void AdjustXZ()
             {
-                (float X, float Z) adjustment = Utils.AdjustXZ(this.MoveX, this.MoveZ);
+                (float X, float Z) adjustment = CharUtils.AdjustXZ(this.MoveX, this.MoveZ);
                 this.MoveX = adjustment.X;
                 this.MoveZ = adjustment.Z;
             }

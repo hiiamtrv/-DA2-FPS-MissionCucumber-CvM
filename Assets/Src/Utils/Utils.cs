@@ -73,4 +73,13 @@ public class Utils
         int dot = name.LastIndexOf('.');
         return name.Substring(0, dot);
     }
+
+    public static void ChangeLayerRecursively(GameObject gameObject, int layer)
+    {
+        gameObject.layer = layer;
+        foreach (Transform child in gameObject.transform)
+        {
+            Utils.ChangeLayerRecursively(child.gameObject, layer);
+        }
+    }
 }

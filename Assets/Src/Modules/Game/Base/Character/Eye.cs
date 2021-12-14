@@ -9,6 +9,8 @@ namespace Character
     {
         const float MIN_ROT_Y = -90f;
         const float MAX_ROT_Y = 90f;
+        const int LAYER_DEFAULT = 0;
+        const int LAYER_SELF = 6;
 
         float _camRotation = 0f;
         [SerializeField] GameObject _eyePoint;
@@ -21,8 +23,9 @@ namespace Character
         public bool EnableMouse => _enableMouse;
 
         [SerializeField] GameObject[] _cameras;
-        [SerializeField] GameObject _charModel;
-        public GameObject CharModel => _charModel;
+        [SerializeField] GameObject[] _charModel;
+        public GameObject[] ArrCharModel => _charModel;
+        public GameObject CharModel(int index = 0) => _charModel[index];
 
         RotateModel _model;
         PhotonView _view;
@@ -38,11 +41,18 @@ namespace Character
                     camera.GetComponent<Camera>().targetTexture = this._blindFold;
                     camera.GetComponent<AudioListener>().enabled = false;
                 }
-                _charModel.layer = 0;
+
+                foreach (GameObject child in this.ArrCharModel)
+                {
+                    Utils.ChangeLayerRecursively(child, LAYER_DEFAULT);
+                }
             }
             else
             {
-                _charModel.layer = 6;
+                foreach (GameObject child in this.ArrCharModel)
+                {
+                    Utils.ChangeLayerRecursively(child, LAYER_SELF);
+                }
             }
 
             _model = this.GetComponent<CharacterStats>().RotateModel;
@@ -77,7 +87,7 @@ namespace Character
 
         public void LookAt(GameObject target)
         {
-            Vector3 targetPos = target.GetComponent<Eye>().CharModel.transform.position;
+            Vector3 targetPos = target.GetComponent<Eye>().CharModel().transform.position;
 
             this.transform.LookAt(targetPos, Vector3.up);
             this.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);

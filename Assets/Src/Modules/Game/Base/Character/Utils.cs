@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character
 {
-    public class Utils
+    public class CharUtils
     {
         public static bool IsFloating(CharacterController controller)
             => controller.collisionFlags == CollisionFlags.None;

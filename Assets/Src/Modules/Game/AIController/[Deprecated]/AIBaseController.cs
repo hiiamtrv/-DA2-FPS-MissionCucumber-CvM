@@ -137,7 +137,7 @@ public class AIBaseController : MonoBehaviour
             while (enemies.Count > 0)
             {
                 GameObject enemy = Utils.PickFromList(enemies, true);
-                MeshRenderer renderer = enemy.GetComponent<Eye>().CharModel.GetComponent<MeshRenderer>();
+                MeshRenderer renderer = enemy.GetComponent<Eye>().CharModel().GetComponent<MeshRenderer>();
                 if (enemy.activeInHierarchy && (this._eye.IsObjectVisible(renderer) || this.IsPlayerIsNoticeable(enemy)))
                 {
                     this._target = enemy;
