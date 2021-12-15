@@ -5,4 +5,5 @@ public class SceneId
     public const int GAME = 2;
     public const int GAMEDEMO = 3;
     public const int LOADING = 4;
+    public const int CUTSCENE = 5;
 }

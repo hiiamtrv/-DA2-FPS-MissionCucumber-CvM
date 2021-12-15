@@ -80,9 +80,9 @@ namespace Weapons
                         EventId.WEAPON_AMMO_EQUIP,
                         new PubData.WeaponAmmoEquip(this.Owner, this.Model.RemainAmmo, this.Model.TotalAmmo)
                     );
+                    Crosshair.Ins.Show();
                 }
             });
-            Crosshair.Ins.Show();
         }
 
         public override void OnUnequiped()

@@ -28,36 +28,45 @@ public class Spawner : MonoBehaviour
     static Spawner _ins;
     public static Spawner Ins => _ins;
 
+    HashSet<int> _occupiedCatSpawn;
+    HashSet<int> _occupiedMouseSpawn;
+
     void Awake()
     {
         _ins = this;
+        _occupiedCatSpawn = new HashSet<int>();
+        _occupiedMouseSpawn = new HashSet<int>();
     }
 
-    public void DoSpawn(CharacterSide startSide)
+    public void DoSpawn(CharacterSide startSide, int spawnIndex)
     {
         switch (startSide)
         {
             case CharacterSide.MICE:
                 Debug.Log("Spawn character mouse");
-                GameVar.Ins.Player = SpawnCharacter(_prefabMouse, _mouseSpawns);
+                GameVar.Ins.Player = SpawnCharacter(_prefabMouse, _mouseSpawns, spawnIndex);
+                this._occupiedMouseSpawn.Add(_mouseSpawns[spawnIndex].GetHashCode());
                 break;
             case CharacterSide.CATS:
                 Debug.Log("Spawn character cat");
-                GameVar.Ins.Player = SpawnCharacter(_prefabCat, _catSpawns);
+                GameVar.Ins.Player = SpawnCharacter(_prefabCat, _catSpawns, spawnIndex);
+                this._occupiedCatSpawn.Add(_catSpawns[spawnIndex].GetHashCode());
                 break;
         }
         this.enabled = false;
     }
 
-    GameObject SpawnCharacter(GameObject character, List<GameObject> spawnPoints)
+    GameObject SpawnCharacter(GameObject character, List<GameObject> spawnPoints, int? spawnIndex = null)
     {
-        GameObject spawnPoint = Utils.PickFromList(spawnPoints, true);
+        GameObject spawnPoint;
+        if (spawnIndex == null) spawnPoint = Utils.PickFromList(spawnPoints, true);
+        else spawnPoint = spawnPoints[(int)spawnIndex];
 
         Vector3 spawnPosition = spawnPoint.transform.position;
-        Quaternion randomRotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+        Quaternion spawnRotation = spawnPoint.transform.rotation;
 
-        Debug.Log("Spawn character", character.name, spawnPosition, randomRotation);
-        return PhotonNetwork.Instantiate(character.name, spawnPosition, randomRotation);
+        Debug.Log("Spawn character", character.name, spawnPosition, spawnRotation);
+        return PhotonNetwork.Instantiate(character.name, spawnPosition, spawnRotation);
     }
 
     public void SpawnCucumbers(List<int> cucumberIndexes)
@@ -74,6 +83,11 @@ public class Spawner : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
+            List<GameObject> mouseSpawns = _mouseSpawns.FindAll(item => !_occupiedMouseSpawn.Contains(item.GetHashCode()));
+            List<GameObject> catSpawns = _catSpawns.FindAll(item => !_occupiedCatSpawn.Contains(item.GetHashCode()));
+
+            Debug.Log("Spawns remains", mouseSpawns, catSpawns);
+
             int numPMouse = 0;
             int numPCat = 0;
 
@@ -92,8 +106,8 @@ public class Spawner : MonoBehaviour
             Debug.Log("Cats team", numPCat, numBotCat);
             Debug.Log("Mice team", numPMouse, numBotMouse);
 
-            for (var i = 0; i < numBotMouse; i++) this.SpawnCharacter(_prefabAIMouse, _mouseSpawns);
-            for (var i = 0; i < numBotCat; i++) this.SpawnCharacter(_prefabAICat, _catSpawns);
+            for (var i = 0; i < numBotMouse; i++) this.SpawnCharacter(_prefabAIMouse, mouseSpawns);
+            for (var i = 0; i < numBotCat; i++) this.SpawnCharacter(_prefabAICat, catSpawns);
         }
     }
 }

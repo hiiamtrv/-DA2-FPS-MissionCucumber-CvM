@@ -9,7 +9,7 @@ using BayatGames.Serialization.Formatters.Json;
 
 public class NetworkLoading : BaseNetwork
 {
-    const long DELAY_BEFORE_START = 3;
+    const long DELAY_BEFORE_START = 7;
 
     static NetworkLoading _ins;
     public static NetworkLoading Ins => _ins;
@@ -28,6 +28,10 @@ public class NetworkLoading : BaseNetwork
 
     public void StartGame(long startTime)
     {
+        EventCenter.Renew();
+        Time.timeScale = 0.5f;
+        SceneManager.LoadScene(SceneId.CUTSCENE);
+
         long waitSecond = startTime - TimeUtils.NowButModded();
         LeanTween.delayedCall(waitSecond, () =>
         {
@@ -36,6 +40,7 @@ public class NetworkLoading : BaseNetwork
             {
                 int sceneId = SceneId.GAMEDEMO;
                 EventCenter.Renew();
+                Time.timeScale = 1;
                 SceneManager.LoadScene(sceneId);
             }
         });
@@ -47,10 +52,11 @@ public class NetworkLoading : BaseNetwork
         List<string> listUserId = listPlayer.ConvertAll(player => player.UserId);
 
         Dictionary<string, int> resultTeam = TeamMaker.GenerateTeams(listUserId);
+        Dictionary<string, int> spawnIndex = TeamMaker.GetSpawnIndex(resultTeam);
         long startTime = TimeUtils.NowButModded() + DELAY_BEFORE_START;
         List<int> cucumberIndex = CucumberSpawn.GetSpawnIndexes();
 
-        MakeTeamDataPack packData = new MakeTeamDataPack(resultTeam, startTime, cucumberIndex);
+        MakeTeamDataPack packData = new MakeTeamDataPack(resultTeam, spawnIndex, startTime, cucumberIndex);
         packData.WriteData();
         Network.Send(CMD.PREPARE_MATCH, packData.ForSend);
     }

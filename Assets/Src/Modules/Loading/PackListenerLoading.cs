@@ -18,8 +18,8 @@ public class PackListenerLoading : BasePackListener
         MakeTeamDataPack data = new MakeTeamDataPack();
         data.ReadData(pack as EventData);
 
-        Debug.Log("Log data: ", data.ToString(), JsonFormatter.SerializeObject(data.TeamResult));
         GameVar.Players = data.TeamResult;
+        GameVar.MySpawnIndex = data.SpawnIndex[NetworkLoading.Ins.MyUserId];
         GameVar.StartSide = (CharacterSide)data.TeamResult[NetworkLoading.Ins.MyUserId];
         GameVar.CucumberIndex = data.CucumberIndex;
         NetworkLoading.Ins.StartGame(data.StartTime);

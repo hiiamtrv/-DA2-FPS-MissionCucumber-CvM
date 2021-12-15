@@ -10,8 +10,8 @@ public class TeamMaker
         Dictionary<string, int> teamResult = new Dictionary<string, int>();
 
         float mouseRatio = (float)(NetworkGame.NUM_MICE_SLOT) / (NetworkGame.NUM_CATS_SLOT + NetworkGame.NUM_MICE_SLOT);
-        // int numPlayerMice = Mathf.CeilToInt((float)(cloneList.Count) * mouseRatio);
-        int numPlayerMice = 0;
+        int numPlayerMice = Mathf.CeilToInt((float)(cloneList.Count) * mouseRatio);
+        // int numPlayerMice = 0;
         int numPlayerCat = cloneList.Count - numPlayerMice;
 
         //pick side mice
@@ -29,5 +29,32 @@ public class TeamMaker
         }
 
         return teamResult;
+    }
+
+    public static Dictionary<string, int> GetSpawnIndex(Dictionary<string, int> teamResult)
+    {
+        Dictionary<string, int> indexes = new Dictionary<string, int>();
+        int countCats = 0;
+        int countMice = 0;
+
+        foreach (var item in teamResult)
+        {
+            string uid = item.Key;
+            CharacterSide side = (CharacterSide)item.Value;
+            switch (side)
+            {
+                case CharacterSide.CATS: 
+                    indexes.Add(uid, countCats);
+                    countCats++;
+                    break;
+                    
+                case CharacterSide.MICE: 
+                    indexes.Add(uid, countMice);
+                    countMice++;
+                    break;
+            }
+        }
+
+        return indexes;
     }
 }
