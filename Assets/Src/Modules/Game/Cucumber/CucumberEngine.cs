@@ -11,6 +11,10 @@ namespace Cucumbers
 {
     public class CucumberEngine : InteractEngine
     {
+        [SerializeField] AudioClip _mouseObtainedCatSide;
+        [SerializeField] AudioClip _mouseObtainedMouseSide;
+        [SerializeField] AudioClip _catObtained;
+
         public CucumberModel Model => this._model as CucumberModel;
         protected override BaseState InteractingState => new CucumberInteracting(this);
 
@@ -24,13 +28,24 @@ namespace Cucumbers
             CharacterStats stats = this._interactPlayer.GetComponent<CharacterStats>();
             if (stats)
             {
-                switch (stats.CharacterSide)
+                CharacterSide interactorSide = stats.CharacterSide;
+
+                switch (interactorSide)
                 {
                     case CharacterSide.CATS:
                         this.ActiveDyingState();
                         break;
                     case CharacterSide.MICE:
                         this.gameObject.SetActive(false);
+                        switch (GameVar.StartSide)
+                        {
+                            case CharacterSide.CATS:
+                                GameVar.Ins.Player.PlaySound(_mouseObtainedCatSide);
+                                break;
+                            case CharacterSide.MICE:
+                                GameVar.Ins.Player.PlaySound(_mouseObtainedMouseSide);
+                                break;
+                        }
                         break;
                 }
             }
@@ -41,6 +56,8 @@ namespace Cucumbers
             CatHealthEngine healthEngine = this._interactPlayer.GetComponent<CatHealthEngine>();
             CatDying stateDying = new CatDying(healthEngine);
             healthEngine.ChangeState(stateDying);
+
+            this._interactPlayer.PlaySound(this._catObtained);
         }
     }
 }

@@ -59,6 +59,7 @@ namespace Equipments
                 this._isReady = false;
                 this._drawUnix = -1;
                 this._equipmentObject.SetActive(false);
+                this.RunAnimUnequip();
             }
         }
 
@@ -72,6 +73,13 @@ namespace Equipments
             this.transform.localRotation = Quaternion.Euler(90, 0, 0);
             LeanTween.rotateLocal(this.gameObject, Quaternion.Euler(0, 0, 0).eulerAngles, time)
                 .setEaseOutBack();
+        }
+        
+        protected void RunAnimUnequip(float time = 0.4f)
+        {
+            this.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            LeanTween.rotateLocal(this.gameObject, Quaternion.Euler(90, 0, 0).eulerAngles, time)
+                .setEaseInBack();
         }
     }
 }

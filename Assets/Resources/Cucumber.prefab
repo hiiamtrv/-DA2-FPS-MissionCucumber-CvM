@@ -133,6 +133,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae169a03b11ba245af864e0c4c339d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mouseObtainedCatSide: {fileID: 8300000, guid: 8909eaa62688047409f10e458a752f8d,
+    type: 3}
+  _mouseObtainedMouseSide: {fileID: 8300000, guid: 7efa4f1d801e5cf478d4230f98907d38,
+    type: 3}
+  _catObtained: {fileID: 8300000, guid: af60060615307df488f33f768a30e2ae, type: 3}
 --- !u!114 &-6079918697501785211
 MonoBehaviour:
   m_ObjectHideFlags: 0

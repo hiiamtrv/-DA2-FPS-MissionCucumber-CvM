@@ -81,11 +81,11 @@ namespace LaserGun
         {
             var sequence = LeanTween.sequence();
             sequence.insert(
-                LeanTween.rotateX(this.gameObject, -10, time / 2)
+                LeanTween.rotateAroundLocal(this.gameObject, Vector3.right, -10, time / 2)
                     .setEaseInCubic()
             );
             sequence.insert(
-                       LeanTween.rotateX(this.gameObject, 0, time / 2)
+                       LeanTween.rotateAroundLocal(this.gameObject, Vector3.right, 10, time / 2)
             );
         }
     }

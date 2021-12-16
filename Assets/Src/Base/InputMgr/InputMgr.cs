@@ -62,6 +62,10 @@ public class InputMgr : MonoBehaviour
     void Awake()
     {
         this.useGUILayout = false;
+        EventCenter.Subcribe(EventId.MATCH_END, (e) =>
+        {
+            Destroy(this);
+        });
     }
 
     // Update is called once per frame

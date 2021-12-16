@@ -156,13 +156,15 @@ namespace Weapons
 
             this._gunState = GunState.RELOADING;
             int ammoInLastMag = this.Model.RemainAmmo;
-            this._equipmentObject.SetActive(false);
             this.gameObject.PlaySound(_soundReload);
+            this.RunAnimUnequip();
 
             LeanTween.delayedCall(
                 Mathf.Max(Time.fixedDeltaTime, this.Model.ReloadTime),
                 () =>
                 {
+                    if (!this.IsEquiped) return;
+
                     this.RunAnimEquip();
                     this.gameObject.PlaySound(_soundEquip);
 
