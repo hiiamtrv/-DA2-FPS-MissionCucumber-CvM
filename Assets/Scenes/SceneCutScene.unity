@@ -1133,6 +1133,7 @@ GameObject:
   - component: {fileID: 198608934}
   - component: {fileID: 198608933}
   - component: {fileID: 198608936}
+  - component: {fileID: 198608937}
   m_Layer: 0
   m_Name: CineCam
   m_TagString: Untagged
@@ -1161,7 +1162,7 @@ Camera:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 0
+  m_FOVAxisMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_FocalLength: 50
@@ -1173,10 +1174,10 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 35.977257
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 257
@@ -1198,13 +1199,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198608932}
-  m_LocalRotation: {x: -0.29984167, y: 0.05488679, z: -0.017282557, w: -0.952252}
-  m_LocalPosition: {x: 31.25, y: 37.94, z: 4.44}
+  m_LocalRotation: {x: -0.0006987713, y: 0.95105994, z: -0.14894192, w: 0.2707413}
+  m_LocalPosition: {x: -86.57962, y: 40, z: 90.77481}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
-  m_LocalEulerAnglesHint: {x: 34.956, y: 353.402, z: 0}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &198608936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1234,6 +1235,21 @@ MonoBehaviour:
   - {fileID: 1759724314}
   - {fileID: 1684912684}
   - {fileID: 337875598}
+--- !u!114 &198608937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198608932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ee1c62c905bb24ea7c9cf3d9d40b56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TraumaExponent: 1
+  MaximumAngularShake: {x: 5, y: 5, z: 5}
+  MaximumTranslationShake: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!1 &240782210
 GameObject:
   m_ObjectHideFlags: 0
@@ -1849,7 +1865,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 813286721}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 354, y: 0.00004042373, z: -0.000006153935}
+  m_LocalEulerAnglesHint: {x: 6.699699, y: 70.28285, z: 340.6877}
 --- !u!95 &339575690
 Animator:
   serializedVersion: 3
@@ -3170,6 +3186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 982980283}
   - component: {fileID: 982980284}
+  - component: {fileID: 982980285}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -3190,7 +3207,7 @@ Transform:
   m_Children:
   - {fileID: 1424819303}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &982980284
 Animator:
@@ -3211,6 +3228,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &982980285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982980282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b6b88d425f7234aae309cb9a973743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Delay: 1
+  MaximumStress: 0.6
+  Range: 200
 --- !u!1 &990704055
 GameObject:
   m_ObjectHideFlags: 0

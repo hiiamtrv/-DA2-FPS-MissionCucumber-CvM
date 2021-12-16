@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class cat_normal_animator : MonoBehaviour
 {
+    const float ANIM_DURATION = 0.18f;
+
+    bool _isJumping = false;
+    bool _isShooting = false;
+
     PhotonView view;
     Animator animator;
     [SerializeField] GameObject player_cat;
@@ -28,17 +33,27 @@ public class cat_normal_animator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InputMgr.StartShoot(player_cat))
-            animator.SetBool(AnimStates.Cat.IS_ATTACKING, true);
-        else
-        if (InputMgr.ToggleJump(player_cat))
-            animator.SetBool(AnimStates.Cat.IS_JUMPING, true);
-        else
+        if (!this._isJumping && !this._isShooting)
         {
-            bool didChangePosition = AnimationUtils.DidChangePosition(player_cat);
+            if (InputMgr.StartShoot(player_cat))
+            {
+                animator.SetBool(AnimStates.Cat.IS_ATTACKING, true);
+                this._isShooting = true;
+                LeanTween.delayedCall(ANIM_DURATION, () => this._isShooting = false);
+            }
+            else if (InputMgr.ToggleJump(player_cat))
+            {
+                animator.SetBool(AnimStates.Cat.IS_JUMPING, true);
+                this._isJumping = true;
+                LeanTween.delayedCall(ANIM_DURATION, () => this._isJumping = false);
+            }
+            else
+            {
+                bool didChangePosition = AnimationUtils.DidChangePosition(player_cat);
 
-            if (didChangePosition) animator.SetBool(AnimStates.Cat.IS_RUNNING, true);
-            else animator.SetBool(AnimStates.Cat.IS_RUNNING, false);
+                if (didChangePosition) animator.SetBool(AnimStates.Cat.IS_RUNNING, true);
+                else animator.SetBool(AnimStates.Cat.IS_RUNNING, false);
+            }
         }
     }
 

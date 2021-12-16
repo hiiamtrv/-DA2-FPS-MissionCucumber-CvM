@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Mouse_normal_animator : MonoBehaviour
 {
+    const float ANIM_DURATION = 0.18f;
+
+    bool _isJumping = false;
+    bool _isShooting = false;
+
     PhotonView view;
     Animator animator;
     [SerializeField] GameObject player_mouse;
@@ -30,17 +35,27 @@ public class Mouse_normal_animator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InputMgr.StartShoot(player_mouse))
-            animator.SetBool(AnimStates.Mouse.SURIKEN, true);
-        else
-        if (InputMgr.ToggleJump(player_mouse))
-            animator.SetBool(AnimStates.Mouse.JUMPING, true);
-        else
+        if (!this._isShooting && !this._isShooting)
         {
-            bool didChangePosition = AnimationUtils.DidChangePosition(player_mouse);
-            
-            if (didChangePosition) animator.SetBool(AnimStates.Mouse.IS_RUNNING, true);
-            else animator.SetBool(AnimStates.Mouse.IS_RUNNING, false);
+            if (InputMgr.StartShoot(player_mouse))
+            {
+                animator.SetBool(AnimStates.Mouse.SURIKEN, true);
+                this._isShooting = true;
+                LeanTween.delayedCall(ANIM_DURATION, () => this._isShooting = false);
+            }
+            else if (InputMgr.ToggleJump(player_mouse))
+            {
+                animator.SetBool(AnimStates.Mouse.JUMPING, true);
+                this._isJumping = true;
+                LeanTween.delayedCall(ANIM_DURATION, () => this._isJumping = false);
+            }
+            else
+            {
+                bool didChangePosition = AnimationUtils.DidChangePosition(player_mouse);
+
+                if (didChangePosition) animator.SetBool(AnimStates.Mouse.IS_RUNNING, true);
+                else animator.SetBool(AnimStates.Mouse.IS_RUNNING, false);
+            }
         }
     }
 
@@ -65,5 +80,5 @@ public class Mouse_normal_animator : MonoBehaviour
             animator.SetBool(AnimStates.Mouse.FIREBALL, true);
         }
     }
-    
+
 }

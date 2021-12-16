@@ -20,7 +20,8 @@ public class CinecamController : MonoBehaviour
         int spawnIndex = GameVar.MySpawnIndex;
         CharacterSide side = GameVar.StartSide;
 
-        switch (side) {
+        switch (side)
+        {
             case CharacterSide.CATS:
                 _follower = _catHead[spawnIndex];
                 Utils.ChangeLayerRecursively(_catChar[spawnIndex], LAYER_SELF);
@@ -34,6 +35,8 @@ public class CinecamController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("Player info", GameVar.StartSide, GameVar.MySpawnIndex);
+
         GameObject follower = (_follower.activeInHierarchy ? _follower : _planeAnchor);
         transform.position = follower.transform.position;
         transform.rotation = follower.transform.rotation;
