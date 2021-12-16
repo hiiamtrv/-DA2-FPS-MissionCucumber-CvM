@@ -31,17 +31,22 @@ namespace LaserGun
 
         protected override void Shoot()
         {
-            //create projectile
-            Vector3 muzzlePoint = _muzzle.transform.position;
-            Vector3 aimPoint = this.GetRayEndpoint();
+            this.RunAnimShoot();
 
-            GameObject newProjectile = PhotonNetwork.Instantiate(_projectile.name, muzzlePoint, Quaternion.identity);
-            // GameObject newProjectile = Instantiate(_projectile, muzzlePoint, Quaternion.identity);
-            newProjectile.transform.LookAt(aimPoint);
-            ProjectileEngine engine = newProjectile.GetComponent<ProjectileEngine>();
-            engine.Owner = _owner;
+            LeanTween.delayedCall(Time.deltaTime * 2, () =>
+            {
+                //create projectile
+                Vector3 muzzlePoint = _muzzle.transform.position;
+                Vector3 aimPoint = this.GetRayEndpoint();
 
-            base.Shoot();
+                GameObject newProjectile = PhotonNetwork.Instantiate(_projectile.name, muzzlePoint, Quaternion.identity);
+                // GameObject newProjectile = Instantiate(_projectile, muzzlePoint, Quaternion.identity);
+                newProjectile.transform.LookAt(aimPoint);
+                ProjectileEngine engine = newProjectile.GetComponent<ProjectileEngine>();
+                engine.Owner = _owner;
+
+                base.Shoot();
+            });
         }
 
         protected override void DoHitEffect(GameObject target)
@@ -70,6 +75,18 @@ namespace LaserGun
             {
                 return this._eye.transform.position + ray.direction * weaponRange;
             }
+        }
+
+        void RunAnimShoot(float time = 0.5f)
+        {
+            var sequence = LeanTween.sequence();
+            sequence.insert(
+                LeanTween.rotateX(this.gameObject, -10, time / 2)
+                    .setEaseInCubic()
+            );
+            sequence.insert(
+                       LeanTween.rotateX(this.gameObject, 0, time / 2)
+            );
         }
     }
 }
