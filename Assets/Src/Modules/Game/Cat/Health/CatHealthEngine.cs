@@ -18,18 +18,17 @@ namespace Cats
 
         protected override void Start()
         {
-            EventCenter.Subcribe(EventId.SHIELD_CENTER_DESTROYED,
-                (object pubData) =>
-                {
-                    UnityEngine.Debug.Log("Change Cat State to weakened !");
-                    this.ChangeState(this.CatWeakened);
-                });
+            EventCenter.Subcribe(EventId.SHIELD_CENTER_DESTROYED, (object pubData) =>
+            {
+                UnityEngine.Debug.Log("Change Cat State to weakened !");
+                this.ChangeState(this.CatWeakened);
+            });
 
-            EventCenter.Subcribe(EventId.CAT_DYING,
-                (object pubData) =>
-                {
-                    this._isDying = true;
-                });
+            EventCenter.Subcribe(EventId.CAT_DYING, (object pubData) =>
+            {
+                GameObject cat = pubData as GameObject;
+                if (cat == this.gameObject) this._isDying = true;
+            });
 
             base.Start();
         }
