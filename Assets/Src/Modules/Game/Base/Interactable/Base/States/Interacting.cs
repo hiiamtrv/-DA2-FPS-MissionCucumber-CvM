@@ -37,7 +37,7 @@ namespace Interactable
                 if (!this.Model.CanMoveWhileInteract)
                 {
                     Character.MoveEngine charMoveEngine = this.InteractPlayer.GetComponent<Character.MoveEngine>();
-                    if (charMoveEngine) charMoveEngine.ChangeState(new Character.MoveState.Immobilized(charMoveEngine));
+                    if (charMoveEngine != null) charMoveEngine.ChangeState(new Character.MoveState.Immobilized(charMoveEngine));
                 }
             }
 
@@ -55,8 +55,18 @@ namespace Interactable
 
             public override void LogicUpdate()
             {
-                if (!this.IsPlayerInRange || InputMgr.EndInteract(this.InteractPlayer)
-                    || !this.StateMachine.IsPlayerLooking(this.InteractPlayer))
+                Debug.Log("Logic update state interacting");
+                Debug.Log("Condition",
+                    !this.IsPlayerInRange,
+                    !this.StateMachine.IsPlayerAi,
+                    InputMgr.EndInteract(this.InteractPlayer),
+                    !this.StateMachine.IsPlayerLooking(this.InteractPlayer)
+                );
+
+                if (!this.IsPlayerInRange
+                    || (!this.StateMachine.IsPlayerAi && InputMgr.EndInteract(this.InteractPlayer))
+                    || (!this.StateMachine.IsPlayerAi && !this.StateMachine.IsPlayerLooking(this.InteractPlayer))
+                )
                 {
                     BaseState stateIdle = this.NextStateIdle;
                     this.SetNextState(stateIdle);

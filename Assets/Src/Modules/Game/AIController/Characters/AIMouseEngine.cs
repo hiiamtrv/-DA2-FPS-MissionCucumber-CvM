@@ -7,6 +7,11 @@ namespace AI
 {
     public class AIMouseEngine : AIBaseEngine
     {
+        protected override void Update()
+        {
+            base.Update();
+        }
+
         public override void OnEndAction()
         {
             base.OnEndAction();
@@ -52,16 +57,21 @@ namespace AI
         public override void OnTargetDead(GameObject target)
         {
             base.OnTargetDead(target);
+            this.GetComponent<Eye>().LookAt(target);
         }
 
-        public override void OnMeetInteractable(GameObject interactObject)
+        public override void OnMeetInteractable(List<IInteractable> interactables)
         {
-            base.OnMeetInteractable(interactObject);
+            if (this._currentState is Interact) return;
+            if ((this._currentState as IAIState).IsTargetLockMode()) return;
+
+            this.InteractingObject = Utils.PickFromList<IInteractable>(interactables, false);
+            this.ChangeState(new Interact(this));
         }
 
-        public override void OnDamaged()
+        public override void OnDamaged(GameObject attacker)
         {
-            base.OnDamaged();
+            base.OnDamaged(attacker);
         }
 
         public override void OnShieldOut()

@@ -16,5 +16,10 @@ namespace ShieldCenter
         {
             this._model = new ShieldCenterModel(_interactTime, _canMoveWhileInteract, _interactRadius, _checkPoints);
         }
+
+        protected override void Start()
+        {
+            //do nothing
+        }
     }
 }

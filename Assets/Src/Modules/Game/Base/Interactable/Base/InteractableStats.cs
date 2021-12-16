@@ -17,5 +17,15 @@ namespace Interactable
         {
             this._model = new InteractModel(_interactTime, _canMoveWhileInteract, _interactRadius);
         }
+
+        protected virtual void Start()
+        {
+            this.AssignToObjectiveTracker();
+        }
+
+        protected void AssignToObjectiveTracker()
+        {
+            ObjectiveTracker.Ins.AddObjective(this.gameObject);
+        }
     }
 }

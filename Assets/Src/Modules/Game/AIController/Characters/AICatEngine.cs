@@ -37,14 +37,14 @@ namespace AI
             base.OnTargetDead(target);
         }
 
-        public override void OnMeetInteractable(GameObject interactObject)
+        public override void OnMeetInteractable(List<IInteractable> interactables)
         {
-            base.OnMeetInteractable(interactObject);
+            base.OnMeetInteractable(interactables);
         }
 
-        public override void OnDamaged()
+        public override void OnDamaged(GameObject attacker)
         {
-            base.OnDamaged();
+            base.OnDamaged(attacker);
         }
 
         public override void OnShieldOut()

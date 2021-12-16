@@ -28,6 +28,8 @@ namespace AI
 
         protected PhotonView view;
 
+        public IInteractable InteractingObject;
+
         void Awake()
         {
             agent = this.GetComponent<NavMeshAgent>();
@@ -40,7 +42,8 @@ namespace AI
 
             EventCenter.Subcribe(EventId.MATCH_END, (data) => this.enabled = false);
 
-            if (!PhotonNetwork.IsMasterClient) {
+            if (!PhotonNetwork.IsMasterClient)
+            {
                 this.enabled = false;
             }
         }
@@ -66,7 +69,8 @@ namespace AI
                 if (spottedEnemies.Count > 0) this.OnSpotEnemy(spottedEnemies);
 
                 //Check for spotted interactable
-
+                List<IInteractable> interactables = this.GetNearInteractables();
+                if (interactables.Count > 0) this.OnMeetInteractable(interactables);
             }
 
             base.LateUpdate();
@@ -100,13 +104,13 @@ namespace AI
             this.OnEndAction();
         }
 
-        public virtual void OnMeetInteractable(GameObject interactObject)
+        public virtual void OnMeetInteractable(List<IInteractable> interactObject)
         {
             //TODO: with cat, no interract
             //TODO: with mouse, interract if cucumber
         }
 
-        public virtual void OnDamaged()
+        public virtual void OnDamaged(GameObject attacker)
         {
 
         }
@@ -119,6 +123,11 @@ namespace AI
         bool IsInTargetLockState()
         {
             return (this._currentState as IAIState).IsTargetLockMode();
+        }
+
+        public void AbortInteract()
+        {
+            this.InteractingObject.AbortInteract(this.gameObject);
         }
     }
 }

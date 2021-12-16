@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using PubData;
 
 namespace AI
 {
@@ -13,9 +14,9 @@ namespace AI
 
         public void OnTargetDead(GameObject target);
 
-        public void OnMeetInteractable(GameObject interactObject);
+        public void OnMeetInteractable(List<IInteractable> interactables);
 
-        public void OnDamaged();
+        public void OnDamaged(GameObject attacker);
 
         public void OnShieldOut();
     }

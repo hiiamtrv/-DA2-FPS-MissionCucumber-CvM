@@ -33,7 +33,6 @@ namespace Character
         void Start()
         {
             this._view = this.GetComponent<PhotonView>();
-            Debug.Log("Game object is mine? ", this.gameObject, _view.IsMine);
             if (!_view.IsMine || _isAI)
             {
                 foreach (var camera in _cameras)
@@ -112,7 +111,12 @@ namespace Character
 
         public void LookAt(GameObject target)
         {
-            Vector3 targetPos = target.GetComponent<Eye>().CharModel().transform.position;
+            GameObject targetObject = (target.TryGetComponent(typeof(Eye), out Component component)
+                ? target.GetComponent<Eye>().CharModel()
+                : target
+            );
+
+            Vector3 targetPos = targetObject.transform.position;
 
             this.transform.LookAt(targetPos, Vector3.up);
             this.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);

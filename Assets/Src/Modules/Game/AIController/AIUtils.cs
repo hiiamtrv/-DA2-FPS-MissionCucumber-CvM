@@ -54,7 +54,7 @@ public static class AIUtils
         }
     }
 
-    public static List<GameObject> GetNearInteractables(this AIBaseEngine engine)
+    public static List<IInteractable> GetNearInteractables(this AIBaseEngine engine)
     {
         List<GameObject> interactables = new List<GameObject>();
         interactables.AddRange(ObjectiveTracker.Ins.Cucumbers);
@@ -63,12 +63,17 @@ public static class AIUtils
         {
             if (interactable.activeInHierarchy)
             {
-                float range = interactable.GetComponent<InteractModel>().InteractRadius;
-                return Vector3.Distance(engine.transform.position, interactable.transform.position) <= range;
+                float range = interactable.GetComponent<InteractEngine>().Model.InteractRadius;
+                Vector3 direction = interactable.transform.position - engine.transform.position;
+                float distance = direction.magnitude;
+
+                bool canSeeTarget = engine.CanSeeTarget(interactable);
+
+                return (distance <= range) || canSeeTarget;
             }
             else return false;
         });
-        return interactables;
+        return interactables.ConvertAll(obj => obj.GetComponent<InteractEngine>() as IInteractable);
     }
 
     public static bool CanSeeTarget(this AIBaseEngine engine, GameObject target)

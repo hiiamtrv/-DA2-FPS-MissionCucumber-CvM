@@ -71,11 +71,11 @@ public class Spawner : MonoBehaviour
 
     public void SpawnCucumbers(List<int> cucumberIndexes)
     {
+        if (cucumberIndexes == null) return;
         cucumberIndexes.ForEach(index =>
         {
             Vector3 position = this._cucumberPoints[index].transform.position;
             GameObject cucumber = PhotonNetwork.Instantiate(_prefabCucumber.name, position, Quaternion.identity);
-            ObjectiveTracker.Ins.AddObjective(cucumber);
         });
     }
 
