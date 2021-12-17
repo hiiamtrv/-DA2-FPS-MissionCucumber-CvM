@@ -575,6 +575,7 @@ MonoBehaviour:
   - {fileID: 562195012019433151}
   _charModel:
   - {fileID: 3158666708436600463}
+  _height: 1
 --- !u!114 &5392248343267810826
 MonoBehaviour:
   m_ObjectHideFlags: 0

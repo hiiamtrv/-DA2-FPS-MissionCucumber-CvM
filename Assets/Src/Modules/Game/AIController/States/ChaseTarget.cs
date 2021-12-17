@@ -38,6 +38,7 @@ namespace AI
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            this.StateMachine.GetComponent<Eye>().LookAt(this.Target);
             if (!this.StateMachine.CanSeeTarget(this.Target))
             {
                 if (this.Target.activeInHierarchy) this.StateMachine.OnLostTarget(this.Target);
@@ -65,8 +66,6 @@ namespace AI
 
         public override void LateUpdate()
         {
-            this.StateMachine.GetComponent<Eye>().LookAt(this.Target);
-
             float distance = Vector3.Distance(this._gameObject.transform.position, this.Target.transform.position);
             if (distance <= DISTANCE)
             {

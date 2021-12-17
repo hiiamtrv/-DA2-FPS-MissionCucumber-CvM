@@ -27,6 +27,9 @@ namespace Character
         public GameObject[] ArrCharModel => _charModel;
         public GameObject CharModel(int index = 0) => _charModel[index];
 
+        [SerializeField] float _height;
+        public float Height => _height;
+
         RotateModel _model;
         PhotonView _view;
 
@@ -111,12 +114,17 @@ namespace Character
 
         public void LookAt(GameObject target)
         {
-            GameObject targetObject = (target.TryGetComponent(typeof(Eye), out Component component)
-                ? target.GetComponent<Eye>().CharModel()
-                : target
-            );
+            // GameObject targetObject = (target.TryGetComponent(typeof(Eye), out Component component)
+            //     ? target.GetComponent<Eye>().CharModel()
+            //     : target
+            // );
 
-            Vector3 targetPos = targetObject.transform.position;
+            Vector3 targetPos = target.transform.position;
+            // if (target.TryGetComponent(typeof(Eye), out Component component))
+            // {
+            //     targetPos += target.GetComponent<Eye>().Height * Vector3.up;
+            //     Debug.Log("Look at", targetPos);
+            // }
 
             this.transform.LookAt(targetPos, Vector3.up);
             this.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);

@@ -132,6 +132,7 @@ MonoBehaviour:
   _charModel:
   - {fileID: 5809067001142313011}
   - {fileID: 6437425085796970634}
+  _height: 2
 --- !u!114 &1325823361084006832
 MonoBehaviour:
   m_ObjectHideFlags: 0
