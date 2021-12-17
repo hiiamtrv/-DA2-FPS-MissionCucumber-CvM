@@ -8,6 +8,9 @@ namespace ShieldCenter
 {
     public class ShieldCenterEngine : InteractEngine
     {
+        [SerializeField] GameObject[] appearInEnabled;
+        [SerializeField] GameObject[] appearInDisabled;
+
         static ShieldCenterEngine _ins;
         public static ShieldCenterEngine Ins => _ins;
 
@@ -18,6 +21,7 @@ namespace ShieldCenter
         void Awake()
         {
             _ins = this;
+            foreach (GameObject go in appearInDisabled) go.SetActive(false);
         }
 
         protected override void GetModel()
@@ -54,7 +58,10 @@ namespace ShieldCenter
         public override void OnInteractSuccesful()
         {
             EventCenter.Publish(EventId.SHIELD_CENTER_DESTROYED);
-            this.gameObject.SetActive(false);
+            this.enabled = false;
+
+            foreach (GameObject go in appearInEnabled) go.SetActive(false);
+            foreach (GameObject go in appearInDisabled) go.SetActive(true);
         }
     }
 }
