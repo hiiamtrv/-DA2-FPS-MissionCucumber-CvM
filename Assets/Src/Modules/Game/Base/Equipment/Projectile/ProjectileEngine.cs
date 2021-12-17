@@ -51,7 +51,7 @@ namespace Projectile
             });
         }
 
-        public void HitObject()
+        public virtual void HitObject()
         {
             this.gameObject.PlaySound(_soundHit);
             if (_onHit != null) _onHit();
@@ -59,7 +59,7 @@ namespace Projectile
             Destroy(this.gameObject);
         }
 
-        void OnTriggerEnter(Collider collider)
+        protected void OnTriggerEnter(Collider collider)
         {
             if (this != null && collider.gameObject != _owner)
             {
