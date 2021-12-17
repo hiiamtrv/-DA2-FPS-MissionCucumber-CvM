@@ -8,7 +8,20 @@ public class CanvasMinimap : MonoBehaviour
     [SerializeField] RawImage _bigMap;
     [SerializeField] Image _miniMap;
 
-    // Update is called once per frame
+    bool _viewMiniMap = true;
+
+    void Awake()
+    {
+        EventCenter.Subcribe(EventId.CHARACTER_ELIMINATED, (e) =>
+        {
+            GameObject dieChar = e as GameObject;
+            if (dieChar == GameVar.Ins.Player)
+            {
+                _viewMiniMap = false;
+            }
+        });
+    }
+
     void Update()
     {
         if (InputMgr.ViewMap)
@@ -19,7 +32,7 @@ public class CanvasMinimap : MonoBehaviour
         else
         {
             this._bigMap.gameObject.SetActive(false);
-            this._miniMap.gameObject.SetActive(true);
+            this._miniMap.gameObject.SetActive(_viewMiniMap);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Cats
 
             public override void OnDamaged(float damage, DamageReason reason, GameObject sender)
             {
-                if (this.Model.Shield <= 0) base.OnDamaged(damage, reason, sender);
+                // if (this.Model.Shield <= 0) base.OnDamaged(damage, reason, sender);
             }
 
             protected override void OnShieldOut()

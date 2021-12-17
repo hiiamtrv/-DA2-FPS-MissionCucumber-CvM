@@ -11,6 +11,8 @@ public class MinimapDotMgr : MonoBehaviour
 
     [SerializeField] GameObject _selfDot;
 
+    bool _isMainCharDead = false;
+
     List<GameObject> _listDot = new List<GameObject>();
     List<GameObject> _listPlayer = new List<GameObject>();
     List<bool> _isVisible = new List<bool>();
@@ -27,7 +29,7 @@ public class MinimapDotMgr : MonoBehaviour
 
     void LateUpdate()
     {
-        if (GameVar.Ins.Player != null)
+        if (GameVar.Ins.Player != null && (!_isMainCharDead || _revealAll))
         {
             this._isVisible = new List<bool>();
             for (var i = 0; i < this._listPlayer.Count; i++) this._isVisible.Add(this._revealAll);
@@ -53,6 +55,15 @@ public class MinimapDotMgr : MonoBehaviour
             }
 
             for (var i = 0; i < this._isVisible.Count; i++)
+            {
+                GameObject dot = this._listDot[i];
+                bool isVisible = this._isVisible[i];
+                dot.GetComponent<MinimapDot>().SetVisible(isVisible);
+            }
+        }
+        else
+        {
+            this._isVisible.ForEach(item => item = false);for (var i = 0; i < this._isVisible.Count; i++)
             {
                 GameObject dot = this._listDot[i];
                 bool isVisible = this._isVisible[i];

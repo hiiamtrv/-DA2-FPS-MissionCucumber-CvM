@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class MinimapCamera : MonoBehaviour
 {
+    void Awake()
+    {
+        EventCenter.Subcribe(EventId.CHARACTER_ELIMINATED, (e) =>
+        {
+            GameObject dieObject = e as GameObject;
+            if (dieObject == GameVar.Ins.Player)
+            {
+                this.gameObject.SetActive(false);
+            }
+        });
+    }
+
     void LateUpdate()
     {
         GameObject player = CameraExtension.GetCurrentCamera().gameObject;

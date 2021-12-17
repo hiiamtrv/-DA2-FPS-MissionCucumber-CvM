@@ -40,7 +40,11 @@ namespace AI
             if (this._gun.GetComponent<MeleeWeapon>() != null) this.Weapon = this._gun.GetComponent<MeleeWeapon>();
             else if (this._gun.GetComponent<AmmoWeapon>() != null) this.Weapon = this._gun.GetComponent<AmmoWeapon>();
 
-            EventCenter.Subcribe(EventId.MATCH_END, (data) => this.enabled = false);
+            EventCenter.Subcribe(EventId.MATCH_END, (data) =>
+            {
+                this.agent.isStopped = true;
+                this.enabled = false;
+            });
 
             if (!PhotonNetwork.IsMasterClient)
             {
