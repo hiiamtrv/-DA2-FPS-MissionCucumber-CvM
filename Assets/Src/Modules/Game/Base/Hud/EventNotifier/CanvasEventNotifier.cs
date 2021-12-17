@@ -24,11 +24,6 @@ namespace GameHud
         const float NOTI_HEIGHT = 100;
         const float NOTI_WIDTH = 400;
 
-        void Awake()
-        {
-
-        }
-
         void Start()
         {
             this.uiHelper = new UiHelper(this.gameObject);
@@ -79,7 +74,7 @@ namespace GameHud
 
             string notiContent = "A cucumber has been @replace ! @numCucumber left !"
                 .Replace("@replace", replaceString)
-                .Replace("@numCucumber", this._cucumberObtained.ToString());
+                .Replace("@numCucumber", (NetworkGame.NUM_CUCUMBER_ON_FIELD - this._cucumberObtained).ToString());
 
             this.DisplayInfomation(notiContent);
         }

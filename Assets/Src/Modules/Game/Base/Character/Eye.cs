@@ -120,11 +120,10 @@ namespace Character
             // );
 
             Vector3 targetPos = target.transform.position;
-            // if (target.TryGetComponent(typeof(Eye), out Component component))
-            // {
-            //     targetPos += target.GetComponent<Eye>().Height * Vector3.up;
-            //     Debug.Log("Look at", targetPos);
-            // }
+            if (target.TryGetComponent(typeof(Eye), out Component component))
+            {
+                targetPos += target.GetComponent<Eye>().Height * Vector3.up * 0.5f;
+            }
 
             this.transform.LookAt(targetPos, Vector3.up);
             this.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);

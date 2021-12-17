@@ -26,6 +26,7 @@ public class ObjectiveTracker : MonoBehaviour
             if (stats.CharacterSide == CharacterSide.MICE)
             {
                 this._cucumbers.Remove(data.InteractObject);
+                EventCenter.Publish(EventId.CUCUMBER_OBTAINED);
                 //if there is no more cucumber, end game and mouse win
                 if (this._cucumbers.Count == 0)
                 {

@@ -18,6 +18,9 @@ namespace GameHud
 
         [SerializeField] List<GameObject> _hideHuds;
 
+        [SerializeField] AudioClip _winSound;
+        [SerializeField] AudioClip _loseSound;
+
         void Awake()
         {
             EventCenter.Subcribe(EventId.MATCH_END, this.DisplayMatchEnd);
@@ -52,6 +55,14 @@ namespace GameHud
             this._lbWinReason.text = data.WinReason;
 
             this._hideHuds.ForEach(hud => hud.gameObject.SetActive(false));
+
+            AudioClip endSound;
+            if (data.WinSide == GameVar.StartSide) endSound = _winSound;
+            else endSound = _loseSound;
+            
+            AudioSource audio = this.GetComponent<AudioSource>();
+            audio.clip = endSound;
+            audio.enabled = true;
         }
 
         void StayAtRoom()

@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class InputMgr : MonoBehaviour
 {
+    static bool _isGameContinue = true;
+
     public static float ZMove(GameObject gameObject)
         => IsPlayer(gameObject) ? Input.GetAxis("Vertical") : 0;
     public static float XMove(GameObject gameObject)
@@ -21,9 +23,9 @@ public class InputMgr : MonoBehaviour
         => IsPlayer(gameObject) && Input.GetKeyDown(KeyBind.RELOAD);
 
     public static bool Shoot(GameObject gameObject)
-        => IsPlayer(gameObject) && Input.GetMouseButton(KeyBind.FIRE);
+        => _isGameContinue && IsPlayer(gameObject) && Input.GetMouseButton(KeyBind.FIRE);
     public static bool StartShoot(GameObject gameObject)
-        => IsPlayer(gameObject) && Input.GetMouseButtonDown(KeyBind.FIRE);
+        => _isGameContinue && IsPlayer(gameObject) && Input.GetMouseButtonDown(KeyBind.FIRE);
     public static bool EndShoot(GameObject gameObject)
         => IsPlayer(gameObject) && Input.GetMouseButtonUp(KeyBind.FIRE);
 
@@ -62,9 +64,10 @@ public class InputMgr : MonoBehaviour
     void Awake()
     {
         this.useGUILayout = false;
+        _isGameContinue = true;
         EventCenter.Subcribe(EventId.MATCH_END, (e) =>
         {
-            Destroy(this);
+            _isGameContinue = false;
         });
     }
 

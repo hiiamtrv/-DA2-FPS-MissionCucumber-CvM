@@ -14,7 +14,7 @@ public class TeamMaker
         float catRatio = (float)(NetworkGame.NUM_CATS_SLOT) / (NetworkGame.NUM_CATS_SLOT + NetworkGame.NUM_MICE_SLOT);
         int numPlayerCat = Mathf.CeilToInt((float)(cloneList.Count) * catRatio);
         if (listPlayer.Count == 1) numPlayerCat = MathUtils.RandomInt(0, 1);
-        // if (listPlayer.Count == 1) numPlayerCat = 1;
+        // if (listPlayer.Count == 1) numPlayerCat = 0;
 
         int numPlayerMice = listPlayer.Count - numPlayerCat;
 
