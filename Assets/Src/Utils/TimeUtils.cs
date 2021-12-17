@@ -7,11 +7,11 @@ public class TimeUtils
 {
     public static long NowButModded()
     {
-        return DateTimeOffset.Now.ToUnixTimeSeconds() % long.MaxValue;
+        return DateTimeOffset.Now.ToUniversalTime().ToUnixTimeSeconds() % long.MaxValue;
     }
 
     public static long Now()
     {
-        return DateTimeOffset.Now.ToUnixTimeSeconds();
+        return DateTimeOffset.Now.ToUniversalTime().ToUnixTimeSeconds();
     }
 }

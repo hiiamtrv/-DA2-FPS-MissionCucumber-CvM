@@ -350,7 +350,6 @@ GameObject:
   - component: {fileID: 4561307076006646644}
   - component: {fileID: 5412648252141998492}
   - component: {fileID: 5458080927174347788}
-  - component: {fileID: 8994359496079856355}
   - component: {fileID: 9000570643869074238}
   m_Layer: 0
   m_Name: Model_Mouse_Anim
@@ -426,27 +425,10 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 8994359496079856355}
   - {fileID: 9000570643869074238}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &8994359496079856355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2591992860010848037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!114 &9000570643869074238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,8 +443,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: isIdling
+  - Type: 4
+    SynchronizeType: 2
+    Name: isRunning
+  - Type: 4
+    SynchronizeType: 1
+    Name: fireball
+  - Type: 4
+    SynchronizeType: 1
+    Name: jumping
+  - Type: 4
+    SynchronizeType: 1
+    Name: suriken
+  - Type: 4
+    SynchronizeType: 1
+    Name: die
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!1 &2625255398341562811
 GameObject:
   m_ObjectHideFlags: 0

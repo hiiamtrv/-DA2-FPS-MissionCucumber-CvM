@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 577687602489384485}
   - component: {fileID: 6274168772193618944}
   - component: {fileID: 3054537234258718771}
-  - component: {fileID: 3262727318816701096}
   - component: {fileID: 2098711220547822019}
   - component: {fileID: 919583541715289734}
   m_Layer: 0
@@ -69,22 +68,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_cat: {fileID: 0}
---- !u!114 &3262727318816701096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238562673375478943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!114 &2098711220547822019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,22 +84,22 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isIdling
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: isRunning
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isDeath
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isJumping
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isAttacking
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 0
 --- !u!114 &919583541715289734
 MonoBehaviour:
@@ -137,7 +120,6 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 3262727318816701096}
   - {fileID: 2098711220547822019}
   sceneViewId: 0
   InstantiationId: 0

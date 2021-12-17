@@ -24,7 +24,7 @@ public class MouseGenCorpe : MonoBehaviour
     {
         Vector3 curPos = dieObject.transform.position;
         Quaternion curRot = dieObject.transform.rotation;
-
+        curPos = new Vector3(curPos.x, 0, curPos.z);
         GameObject corpse = Instantiate(_normalCorpse, curPos, curRot);
     }
 }

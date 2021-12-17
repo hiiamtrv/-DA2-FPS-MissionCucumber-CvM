@@ -119,6 +119,11 @@ namespace Character
 
                 //TODO: Override
             }
+
+            public virtual void ForceDie()
+            {
+                this.OnHealthOut();
+            }
         }
     }
 }

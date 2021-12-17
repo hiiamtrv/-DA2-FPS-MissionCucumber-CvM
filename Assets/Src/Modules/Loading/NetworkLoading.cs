@@ -28,19 +28,19 @@ public class NetworkLoading : BaseNetwork
 
     public void StartGame(long startTime)
     {
-        EventCenter.Renew();
+    EventCenter.Renew();
         Time.timeScale = 0.5f;
         SceneManager.LoadScene(SceneId.CUTSCENE);
 
-        long waitSecond = startTime - TimeUtils.NowButModded();
+        long waitSecond = startTime - TimeUtils.Now();
         LeanTween.delayedCall(waitSecond, () =>
         {
             Debug.Log("Game starts in", waitSecond, "seconds");
-            if (SceneManager.GetActiveScene().buildIndex != SceneId.GAME)
+            if (SceneManager.GetActiveScene().buildIndex != SceneId.GAMEDEMO)
             {
+                Time.timeScale = 1;
                 int sceneId = SceneId.GAMEDEMO;
                 EventCenter.Renew();
-                Time.timeScale = 1;
                 SceneManager.LoadScene(sceneId);
             }
         });
@@ -53,7 +53,7 @@ public class NetworkLoading : BaseNetwork
 
         Dictionary<string, int> resultTeam = TeamMaker.GenerateTeams(listUserId);
         Dictionary<string, int> spawnIndex = TeamMaker.GetSpawnIndex(resultTeam);
-        long startTime = TimeUtils.NowButModded() + DELAY_BEFORE_START;
+        long startTime = TimeUtils.Now() + DELAY_BEFORE_START;
         List<int> cucumberIndex = CucumberSpawn.GetSpawnIndexes();
 
         MakeTeamDataPack packData = new MakeTeamDataPack(resultTeam, spawnIndex, startTime, cucumberIndex);

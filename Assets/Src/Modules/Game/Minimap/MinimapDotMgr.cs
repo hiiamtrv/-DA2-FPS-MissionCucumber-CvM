@@ -17,30 +17,11 @@ public class MinimapDotMgr : MonoBehaviour
 
     void Awake()
     {
-        EventCenter.Subcribe(EventId.MINIMAP_CREATE_DOT, (data) =>
-        {
-            GameObject player = data as GameObject;
-            CharacterSide side = player.GetComponent<CharacterStats>().CharacterSide;
-            Debug.Log("Create dot", player, side);
-            GameObject dot = null;
-            switch (side)
-            {
-                case CharacterSide.CATS:
-                    dot = Instantiate(_catDot, this.transform.position, Quaternion.identity, this.gameObject.transform);
-                    break;
-                case CharacterSide.MICE:
-                    dot = Instantiate(_miceDot, this.transform.position, Quaternion.identity, this.gameObject.transform);
-                    break;
-            }
+        EventCenter.Subcribe(EventId.MINIMAP_CREATE_DOT, this.AddDot);
+    }
 
-            if (dot != null)
-            {
-                dot.GetComponent<MinimapDot>().Follower = player;
-                this._listPlayer.Add(player);
-                this._listDot.Add(dot);
-            }
-        });
-
+    void Start()
+    {
         GameObject selfDot = Instantiate(_selfDot, this.transform.position, Quaternion.identity, this.gameObject.transform);
     }
 
@@ -77,6 +58,24 @@ public class MinimapDotMgr : MonoBehaviour
                 bool isVisible = this._isVisible[i];
                 dot.GetComponent<MinimapDot>().SetVisible(isVisible);
             }
+        }
+    }
+
+    void AddDot(object data)
+    {
+        GameObject player = data as GameObject;
+        CharacterSide side = player.GetComponent<CharacterStats>().CharacterSide;
+        Debug.Log("Create dot", player, side);
+        GameObject dot = null;
+
+        if (side == GameVar.StartSide) dot = Instantiate(_catDot, this.transform.position, Quaternion.identity, this.gameObject.transform);
+        else dot = Instantiate(_miceDot, this.transform.position, Quaternion.identity, this.gameObject.transform);
+
+        if (dot != null)
+        {
+            dot.GetComponent<MinimapDot>().Follower = player;
+            this._listPlayer.Add(player);
+            this._listDot.Add(dot);
         }
     }
 }

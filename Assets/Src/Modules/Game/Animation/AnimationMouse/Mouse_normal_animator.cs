@@ -37,6 +37,12 @@ public class Mouse_normal_animator : MonoBehaviour
     {
         if (!this._isShooting && !this._isShooting)
         {
+            animator.SetBool(AnimStates.Mouse.IS_IDLING, true);
+            animator.SetBool(AnimStates.Mouse.SURIKEN, false);
+            animator.SetBool(AnimStates.Mouse.IS_RUNNING, false);
+            animator.SetBool(AnimStates.Mouse.DIE, false);
+            animator.SetBool(AnimStates.Mouse.JUMPING, false);
+
             if (InputMgr.StartShoot(player_mouse))
             {
                 animator.SetBool(AnimStates.Mouse.SURIKEN, true);
@@ -70,6 +76,7 @@ public class Mouse_normal_animator : MonoBehaviour
         if (data == this.player_mouse)
         {
             animator.SetBool(AnimStates.Mouse.DIE, true);
+            this.enabled = false;
         }
     }
     void doFireball(object pubData)

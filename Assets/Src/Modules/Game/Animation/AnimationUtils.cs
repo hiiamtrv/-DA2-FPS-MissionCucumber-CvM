@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationUtils
 {
-    const float MIN_DISTANE_TO_TRIGGER_RUN = 3f;
+    const float MIN_DISTANE_TO_TRIGGER_RUN = 1f;
 
     static Dictionary<int, Vector3> _lastPosition = new Dictionary<int, Vector3>();
 
@@ -28,7 +28,11 @@ public class AnimationUtils
         else
         {
             Vector3 lastPos = _lastPosition[goHashCode];
-            float distance = Vector3.Distance(lastPos, curPos);
+
+            Vector3 pa = new Vector3(lastPos.x, 0, lastPos.z);
+            Vector3 pb = new Vector3(curPos.x, 0, curPos.z);
+
+            float distance = Vector3.Distance(pa, pb);
             return (distance >= MIN_DISTANE_TO_TRIGGER_RUN * Time.deltaTime);
         }
     }

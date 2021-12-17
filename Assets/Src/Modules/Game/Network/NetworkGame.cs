@@ -5,6 +5,8 @@ using Photon.Pun;
 using Photon.Realtime;
 using PubData;
 using UnityEngine.SceneManagement;
+using Character;
+using Character.HealthState;
 
 public class NetworkGame : BaseNetwork
 {
@@ -55,5 +57,14 @@ public class NetworkGame : BaseNetwork
         SceneManager.UnloadSceneAsync(SceneId.GAMEDEMO);
         EventCenter.Renew();
         SceneManager.LoadScene(SceneId.LOBBY);
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        base.OnDisconnected(cause);
+        GameObject character = GameVar.Ins.Player;
+
+        HealthEngine engine = character.GetComponent<HealthEngine>();
+        ((Base)engine.CurrentState).ForceDie();
     }
 }

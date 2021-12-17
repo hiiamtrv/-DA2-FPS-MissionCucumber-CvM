@@ -134,7 +134,7 @@ PrefabInstance:
     - target: {fileID: 577687602489384485, guid: f9209cfee930e374d82c66d1167163a9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 577687602489384485, guid: f9209cfee930e374d82c66d1167163a9,
         type: 3}
@@ -181,6 +181,41 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 919583541715289734, guid: f9209cfee930e374d82c66d1167163a9,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919583541715289734, guid: f9209cfee930e374d82c66d1167163a9,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[0]
+      value: 
+      objectReference: {fileID: 3413822062800275662}
+    - target: {fileID: 8409503096009199291, guid: f9209cfee930e374d82c66d1167163a9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409503096009199291, guid: f9209cfee930e374d82c66d1167163a9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409503096009199291, guid: f9209cfee930e374d82c66d1167163a9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409503096009199291, guid: f9209cfee930e374d82c66d1167163a9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409503096009199291, guid: f9209cfee930e374d82c66d1167163a9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9209cfee930e374d82c66d1167163a9, type: 3}
 --- !u!1 &3535256252131945874 stripped
@@ -189,3 +224,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3620977286967929101}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3413822062800275662 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2098711220547822019, guid: f9209cfee930e374d82c66d1167163a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3620977286967929101}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3535256252131945874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

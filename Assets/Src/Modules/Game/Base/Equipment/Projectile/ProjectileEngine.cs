@@ -56,7 +56,10 @@ namespace Projectile
             this.gameObject.PlaySound(_soundHit);
             if (_onHit != null) _onHit();
             this.gameObject.SetActive(false);
-            Destroy(this.gameObject);
+
+            LeanTween.delayedCall(5, () => {
+                Utils.DestroyGO(this.gameObject);
+            });
         }
 
         protected void OnTriggerEnter(Collider collider)

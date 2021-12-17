@@ -32,6 +32,8 @@ public class CharacterMgr : MonoBehaviour
         this._numMouseAlive = 0;
         this._characters.ForEach(character =>
         {
+            if (character == null) return;
+            
             CharacterStats stats = character.GetComponent<CharacterStats>();
             if (character.activeInHierarchy && stats != null)
             {

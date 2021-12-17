@@ -7,6 +7,7 @@ using UnityEngine;
 public class StateMachine : MonoBehaviour
 {
     protected BaseState _currentState = null;
+    public BaseState CurrentState => _currentState;
 
     bool _didLogicUpdate = false;
     bool _didPhysicUpdate = false;

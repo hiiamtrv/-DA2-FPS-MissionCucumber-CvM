@@ -35,6 +35,11 @@ public class cat_normal_animator : MonoBehaviour
     {
         if (!this._isJumping && !this._isShooting)
         {
+            animator.SetBool(AnimStates.Cat.IS_IDLING, true);
+            animator.SetBool(AnimStates.Cat.IS_ATTACKING, false);
+            animator.SetBool(AnimStates.Cat.IS_DEATH, false);
+            animator.SetBool(AnimStates.Cat.IS_JUMPING, false);
+
             if (InputMgr.StartShoot(player_cat))
             {
                 animator.SetBool(AnimStates.Cat.IS_ATTACKING, true);
@@ -68,6 +73,7 @@ public class cat_normal_animator : MonoBehaviour
         if (data == this.player_cat)
         {
             animator.SetBool(AnimStates.Cat.IS_DEATH, true);
+            this.enabled = false;
         }
     }
 }

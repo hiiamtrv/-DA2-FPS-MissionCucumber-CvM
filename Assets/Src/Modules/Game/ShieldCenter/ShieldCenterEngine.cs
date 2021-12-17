@@ -21,7 +21,16 @@ namespace ShieldCenter
         void Awake()
         {
             _ins = this;
+        }
+
+        protected override void Start()
+        {
+            base.Start();
             foreach (GameObject go in appearInDisabled) go.SetActive(false);
+            if (GameVar.StartSide == CharacterSide.CATS)
+            {
+                foreach (GameObject go in appearInEnabled) go.SetActive(false);
+            }
         }
 
         protected override void GetModel()

@@ -41,4 +41,14 @@ public class CinecamController : MonoBehaviour
         transform.position = follower.transform.position;
         transform.rotation = follower.transform.rotation;
     }
+
+    void OnDestroy()
+    {
+        Time.timeScale = 1;
+    }
+
+    void OnDisable()
+    {
+        Time.timeScale = 1;
+    }
 }
