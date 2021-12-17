@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Mouse_normal_animator : MonoBehaviour
 {
-    const float ANIM_DURATION = 0.18f;
+    const float ANIM_DURATION = 0.75f;
 
     bool _isJumping = false;
     bool _isShooting = false;

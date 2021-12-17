@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class cat_angry_animator : MonoBehaviour
 {
-    const float ANIM_DURATION = 0.18f;
+    const float ANIM_DURATION = 0.75f;
 
     bool _isJumping = false;
     bool _isShooting = false;
@@ -33,7 +33,7 @@ public class cat_angry_animator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!this._isJumping && this._isShooting)
+        if (!this._isJumping && !this._isShooting)
         {
             animator.SetBool(AnimStates.Cat.IS_IDLING, true);
             animator.SetBool(AnimStates.Cat.IS_ATTACKING, false);

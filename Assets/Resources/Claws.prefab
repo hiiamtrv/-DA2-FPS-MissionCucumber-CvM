@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _equipTime: 0.5
-  _attackSpeed: 1
+  _attackSpeed: 1.5
   _damage: 999
   _attackRange: 3
 --- !u!82 &2081508860523113692
