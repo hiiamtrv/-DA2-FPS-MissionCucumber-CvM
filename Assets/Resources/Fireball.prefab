@@ -128,8 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd0bd012d8daf5f4dae91be44e197fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundShoot: {fileID: 0}
-  _soundHit: {fileID: 0}
+  _soundShoot: {fileID: 8300000, guid: 41b621312476ba646a5d2997ccd7438d, type: 3}
+  _soundHit: {fileID: 8300000, guid: 0fb6a9fd17b1cc24fbca53f5bec9df7d, type: 3}
   _explosion: {fileID: 7942274230001271076, guid: df1296cd6651e56428c8fba611adb0c5,
     type: 3}
 --- !u!54 &3171584780793946440

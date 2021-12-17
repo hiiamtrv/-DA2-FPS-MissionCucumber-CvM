@@ -8,8 +8,8 @@ namespace Projectile
 {
     public class ProjectileEngine : StateMachine
     {
-        [SerializeField] AudioClip _soundShoot;
-        [SerializeField] AudioClip _soundHit;
+        [SerializeField] protected AudioClip _soundShoot;
+        [SerializeField] protected AudioClip _soundHit;
 
         ProjectileStats _model;
         public ProjectileStats Model => this._model;
