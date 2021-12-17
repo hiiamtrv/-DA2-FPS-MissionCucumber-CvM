@@ -212,6 +212,8 @@ MonoBehaviour:
   _catDot: {fileID: 2493363802776934812, guid: b62cf059e1b9d0e409d4bfc63ff5d1a0, type: 3}
   _miceDot: {fileID: 5240662692398646599, guid: 0aaa452e784c1ba4b8ae70a0b92c5272,
     type: 3}
+  _selfDot: {fileID: 5485453095985131357, guid: d63b68696b736cd4795fe9414fe88be8,
+    type: 3}
 --- !u!1 &2215199459424350235
 GameObject:
   m_ObjectHideFlags: 0

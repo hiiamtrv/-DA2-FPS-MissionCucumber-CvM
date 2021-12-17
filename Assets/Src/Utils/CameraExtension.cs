@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class CameraExtension
@@ -24,5 +26,17 @@ public static class CameraExtension
         float distance = direction.magnitude;
         bool isNotBlocked = !Physics.Raycast(camera.gameObject.transform.position, direction, distance, LayerMask.GetMask("Map"));
         return isInCameraBox && isNotBlocked;
+    }
+
+    public static Camera GetCurrentCamera()
+    {
+        List<Camera> cameras = Camera.allCameras.OfType<Camera>().ToList();
+
+        Camera curCam = null;
+        cameras.ForEach(cam =>
+        {
+            if (cam.isActiveAndEnabled && cam.targetTexture == null) curCam = cam;
+        });
+        return curCam;
     }
 }

@@ -26,7 +26,7 @@ namespace AI
                 float shieldRemain = enemy.GetComponent<HealthEngine>().Model.Shield;
 
                 //attack if the enemy has no shield
-                if (shieldRemain <= 1000)
+                if (shieldRemain <= 1)
                 {
                     ChaseTarget chaseState = new ChaseTarget(this);
                     chaseState.SetTarget(enemies);

@@ -9,6 +9,8 @@ public class MinimapDotMgr : MonoBehaviour
     [SerializeField] GameObject _catDot;
     [SerializeField] GameObject _miceDot;
 
+    [SerializeField] GameObject _selfDot;
+
     List<GameObject> _listDot = new List<GameObject>();
     List<GameObject> _listPlayer = new List<GameObject>();
     List<bool> _isVisible = new List<bool>();
@@ -38,6 +40,8 @@ public class MinimapDotMgr : MonoBehaviour
                 this._listDot.Add(dot);
             }
         });
+
+        GameObject selfDot = Instantiate(_selfDot, this.transform.position, Quaternion.identity, this.gameObject.transform);
     }
 
     void LateUpdate()

@@ -5,6 +5,7 @@ using UnityEngine;
 public class MinimapDot : MonoBehaviour
 {
     [SerializeField] GameObject _sprite;
+    [SerializeField] bool _isMainPlayer;
 
     GameObject _follower;
     public GameObject Follower { get => _follower; set => _follower = value; }
@@ -22,9 +23,10 @@ public class MinimapDot : MonoBehaviour
         });
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (this._isMainPlayer) this._follower = CameraExtension.GetCurrentCamera().gameObject;
+
         if (this._follower != null && this._follower.activeInHierarchy)
         {
             float playerX = this._follower.transform.position.x;
