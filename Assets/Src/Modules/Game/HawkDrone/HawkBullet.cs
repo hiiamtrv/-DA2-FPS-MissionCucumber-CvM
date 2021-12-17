@@ -29,8 +29,7 @@ public class HawkBullet : MonoBehaviour
 
     void Update()
     {
-        GameObject player = GameVar.Ins.Player;
-        Camera pEye = player.GetComponent<Eye>().MainCamera;
+        Camera pEye = CameraExtension.GetCurrentCamera();
         if (!view.IsMine || (_target != null && _target.activeInHierarchy))
         {
             this._imageIndicator.gameObject.SetActive(true);

@@ -286,7 +286,8 @@ PrefabInstance:
       propertyPath: m_SynchronizeParameters.Array.data[5].Type
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5412648252141998492, guid: be36a359150c3eb48af4465f55925de9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: be36a359150c3eb48af4465f55925de9, type: 3}
 --- !u!1 &8040019861231438133 stripped
 GameObject:
