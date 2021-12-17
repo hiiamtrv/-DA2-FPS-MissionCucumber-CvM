@@ -8,6 +8,8 @@ namespace Utilities
 {
     public class BaseUtility : Equipment
     {
+        [SerializeField] protected AudioClip _equipSound;
+
         //TODO: Override utility name to name another name
         protected UtilityModel _model;
         public UtilityModel Model => _model;
@@ -33,6 +35,7 @@ namespace Utilities
         {
             if (this.IsOnCooldown) return;
 
+            this.gameObject.PlaySound(_equipSound);
             //TODO: inherit if you want to do somewthing before equip the utility, remember this.IsOnCooldown
             this.EquipMgr.EquipUtility(this.HideGunWhenUse);
             Crosshair.Ins.SetVisible(this.Model.EnableCrosshair);

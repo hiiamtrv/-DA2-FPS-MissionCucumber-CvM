@@ -7,6 +7,8 @@ namespace Character
 {
     public class HealthEngine : StateMachine
     {
+        [SerializeField] protected AudioClip _hitSound;
+
         HealthModel _model;
         public HealthModel Model { get => this._model; private set => this._model = value; }
 
@@ -27,6 +29,7 @@ namespace Character
 
         public void InflictDamage(float damage, DamageReason reason = DamageReason.DEFAULT, float penetration = 0, GameObject sender = null)
         {
+            this.gameObject.PlaySound(_hitSound);
             float shieldDamage = Mathf.Min(damage * (1 - penetration), this.Model.Shield);
             float trueDamage = damage - shieldDamage;
             if (this.Model.Shield > 0)

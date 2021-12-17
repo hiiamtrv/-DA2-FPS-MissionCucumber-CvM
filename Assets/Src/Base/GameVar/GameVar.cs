@@ -10,7 +10,7 @@ public class GameVar : MonoBehaviour
 
     static Dictionary<string, int> _players;
     public static Dictionary<string, int> Players { get => _players; set => _players = value; }
-    
+
     static Dictionary<string, int> _spawnIndexes;
     public static Dictionary<string, int> SpawnIndexes { get => _spawnIndexes; set => _spawnIndexes = value; }
 
@@ -64,7 +64,7 @@ public class GameVar : MonoBehaviour
         });
 
         this.GetComponent<Spawner>().SpawnBots();
-
         this.GetComponent<Spawner>().SpawnCucumbers(_cucumberIndex);
+        this.GetComponent<Spawner>().CreateShieldCenter();
     }
 }

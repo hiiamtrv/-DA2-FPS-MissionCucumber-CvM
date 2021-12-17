@@ -10,6 +10,9 @@ namespace Cats
     {
         [SerializeField] GameObject _catNormalModel;
         [SerializeField] GameObject _catRageModel;
+
+        [SerializeField] GameObject _catDownSoundObject;
+
         bool _isDying = false;
         public bool IsDying => _isDying;
 
@@ -28,6 +31,19 @@ namespace Cats
             {
                 GameObject cat = pubData as GameObject;
                 if (cat == this.gameObject) this._isDying = true;
+            });
+
+            EventCenter.Subcribe(EventId.CAT_DOWN, (e) =>
+            {
+                PubData.CatDown data = e as PubData.CatDown;
+                if (data.Dispatcher == this.gameObject)
+                {
+                    GameObject catDownSoundObj = Instantiate(_catDownSoundObject, Vector3.zero, Quaternion.identity, transform);
+                    LeanTween.delayedCall(data.DownTime, () =>
+                    {
+                        Destroy(catDownSoundObj);
+                    });
+                }
             });
 
             base.Start();

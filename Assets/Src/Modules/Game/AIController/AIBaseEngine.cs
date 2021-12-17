@@ -51,7 +51,7 @@ namespace AI
         protected override void Update()
         {
             base.Update();
-            agent.speed = this.GetComponent<CharacterStats>().Speed * this._powerScale;
+            agent.speed = this.GetComponent<CharacterStats>().MoveModel.Speed * this._powerScale;
         }
 
         protected override void LateUpdate()

@@ -25,6 +25,9 @@ public class Spawner : MonoBehaviour
     [SerializeField] GameObject _catRetreatPoint;
     public GameObject CatRetreatPoint => _catRetreatPoint;
 
+    [SerializeField] GameObject _prefabShieldCenter;
+    [SerializeField] GameObject _shieldPoint;
+
     static Spawner _ins;
     public static Spawner Ins => _ins;
 
@@ -108,6 +111,15 @@ public class Spawner : MonoBehaviour
 
             for (var i = 0; i < numBotMouse; i++) this.SpawnCharacter(_prefabAIMouse, mouseSpawns);
             for (var i = 0; i < numBotCat; i++) this.SpawnCharacter(_prefabAICat, catSpawns);
+        }
+    }
+
+    public void CreateShieldCenter()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Vector3 point = this._shieldPoint.transform.position;
+            PhotonNetwork.Instantiate(_prefabShieldCenter.name, point, Quaternion.identity);
         }
     }
 }

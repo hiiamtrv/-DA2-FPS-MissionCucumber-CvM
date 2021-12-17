@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61378f74a11f4140b893a8678e6f6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _equipSound: {fileID: 8300000, guid: 54664ac99cc713a4b8b99915eff138ae, type: 3}
   _drone: {fileID: 2057641726662986812, guid: 45877e77bf4fc354290a95daa6dc8370, type: 3}
 --- !u!1 &8808257324913558281
 GameObject:

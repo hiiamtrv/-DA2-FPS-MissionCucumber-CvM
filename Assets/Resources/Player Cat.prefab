@@ -181,8 +181,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553cd0a1e196fd447b7e50cc27fafdc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hitSound: {fileID: 8300000, guid: 4341d7adbdc0c4648a7bd75f0163904c, type: 3}
   _catNormalModel: {fileID: 4233820229875313955}
   _catRageModel: {fileID: 265642719828001045}
+  _catDownSoundObject: {fileID: 5626798344128870935, guid: 8fb35a15ef498574aa1ac73cefa4a0b7,
+    type: 3}
 --- !u!114 &-4585299832808171242
 MonoBehaviour:
   m_ObjectHideFlags: 0

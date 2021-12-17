@@ -24,10 +24,10 @@ namespace Cats
                 this._downTime = model.TimeDown;
                 this._receivedShield = model.ShieldReceived;
 
-                MoveEngine moveEngine = this._gameObject.GetComponent<MoveEngine>();
-                if (moveEngine != null)
+                CharacterStats moveStats = this._gameObject.GetComponent<CharacterStats>();
+                if (moveStats != null)
                 {
-                    this._playerMoveModel = this._gameObject.GetComponent<MoveEngine>().Model;
+                    this._playerMoveModel = this._gameObject.GetComponent<CharacterStats>().MoveModel;
                     this._playerMoveModel.SpeedPercent -= this._slow;
                     this._playerMoveModel.JumpHeightPercent -= this._slow;
                 }
