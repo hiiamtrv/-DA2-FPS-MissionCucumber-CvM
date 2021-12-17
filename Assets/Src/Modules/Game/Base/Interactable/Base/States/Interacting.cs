@@ -29,16 +29,17 @@ namespace Interactable
 
             public override void OnEnter()
             {
-                EventCenter.Publish(
-                    EventId.INTERACT_START,
-                    new PubData.IneractStart(this.InteractPlayer, this._interactTime, this._gameObject, this.Model)
-                );
+                PubData.IneractStart pubData = new PubData.IneractStart(this.InteractPlayer, this._interactTime, this._gameObject, this.Model.InteractTime);
+                EventCenter.Publish(EventId.INTERACT_START, pubData);
+                NetworkGame.Publish(EventId.INTERACT_START, pubData.Serialize());
 
                 if (!this.Model.CanMoveWhileInteract)
                 {
                     Character.MoveEngine charMoveEngine = this.InteractPlayer.GetComponent<Character.MoveEngine>();
                     if (charMoveEngine != null) charMoveEngine.ChangeState(new Character.MoveState.Immobilized(charMoveEngine));
                 }
+
+                EventCenter.Subcribe(EventId.INTERACT_END, this.OnReceiveEndSyncEvent);
             }
 
             public override void OnExit()
@@ -71,10 +72,9 @@ namespace Interactable
                     BaseState stateIdle = this.NextStateIdle;
                     this.SetNextState(stateIdle);
 
-                    EventCenter.Publish(
-                        EventId.INTERACT_END,
-                        new PubData.InteractEnd(this.InteractPlayer, this._gameObject, false)
-                    );
+                    PubData.InteractEnd pubData = new PubData.InteractEnd(this.InteractPlayer, this._gameObject, false);
+                    EventCenter.Publish(EventId.INTERACT_END, pubData);
+                    NetworkGame.Publish(EventId.INTERACT_END, pubData.Serialize());
                 }
                 else
                 {
@@ -99,6 +99,23 @@ namespace Interactable
             protected virtual float GetInteractTime()
             {
                 return 0;
+            }
+
+            protected void OnReceiveEndSyncEvent(object pubData)
+            {
+                PubData.InteractEnd data = pubData as PubData.InteractEnd;
+                if (data.InteractObject == this._gameObject)
+                {
+                    if (data.IsSuccessful)
+                    {
+                        this._interactTime = float.MaxValue;
+                    }
+                    else
+                    {
+                        BaseState stateIdle = this.NextStateIdle;
+                        this.SetNextState(stateIdle);
+                    }
+                }
             }
         }
     }

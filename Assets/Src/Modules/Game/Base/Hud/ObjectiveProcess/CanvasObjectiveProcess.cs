@@ -31,20 +31,14 @@ namespace GameHud
                 this._cucumberObtained = 0;
             });
 
-            EventCenter.Subcribe(EventId.INTERACT_END, (pubData) =>
+            EventCenter.Subcribe(EventId.CUCUMBER_OBTAINED, (pubData) =>
             {
-                InteractEnd data = pubData as InteractEnd;
-                Debug.Log("Interact end", data.IsSuccessful, data.InteractObject, ObjectiveTracker.Ins.IsCucumber(data.InteractObject));
-                if (data.IsSuccessful && ObjectiveTracker.Ins.IsCucumber(data.InteractObject))
+                this._cucumberObtained++;
+                this._sliderCat.value = (float)this._cucumberObtained / NetworkGame.NUM_CUCUMBER_ON_FIELD;
+                this._sliderMouse.value = (float)this._cucumberObtained / NetworkGame.NUM_CUCUMBER_ON_FIELD;
+                if (this._cucumberObtained == NetworkGame.NUM_CUCUMBER_ON_FIELD - 1)
                 {
-                    this._cucumberObtained++;
-                    this._sliderCat.value = (float)this._cucumberObtained / NetworkGame.NUM_CUCUMBER_ON_FIELD;
-                    this._sliderMouse.value = (float)this._cucumberObtained / NetworkGame.NUM_CUCUMBER_ON_FIELD;
-                    if (this._cucumberObtained == NetworkGame.NUM_CUCUMBER_ON_FIELD - 1)
-                    {
-                        this._lbLastCucumber.gameObject.SetActive(true);
-                    }
-                    Debug.Log("Cucumber obtained", this._cucumberObtained, this._sliderMouse.value, this._sliderCat.value);
+                    this._lbLastCucumber.gameObject.SetActive(true);
                 }
             });
         }
@@ -57,7 +51,7 @@ namespace GameHud
             this._lbLastCucumber = uiHelper.ui[LB_LAST_CUCUMBER].GetComponent<Text>();
 
             this._lbLastCucumber.gameObject.SetActive(false);
-            
+
             this._sliderCat.value = 0;
             this._sliderMouse.value = 0;
         }

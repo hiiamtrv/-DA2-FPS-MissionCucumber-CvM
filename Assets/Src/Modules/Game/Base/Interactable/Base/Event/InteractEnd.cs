@@ -19,5 +19,28 @@ namespace PubData
             this._interactObject = interactObject;
             this._isSuccessful = isSuccessful;
         }
+
+        public object Serialize()
+        {
+            return new object[]{
+                this._dispatcher.GetComponent<PhotonView>().ViewID,
+                this._interactObject.GetComponent<PhotonView>().ViewID,
+                this._isSuccessful,
+            };
+        }
+
+        public static object Deserialize(object[] data)
+        {
+            GameObject dispatcher = PhotonView.Find((int)data[0]).gameObject;
+            GameObject interactObject = PhotonView.Find((int)data[1]).gameObject;
+            bool isSuccessful = (bool)data[2];
+
+            InteractEnd deserializedObj = new InteractEnd(dispatcher, interactObject, isSuccessful);
+            if (dispatcher == null || interactObject == null)
+            {
+                NetworkGame.AddFalseData(deserializedObj);
+            }
+            return deserializedObj;
+        }
     }
 }

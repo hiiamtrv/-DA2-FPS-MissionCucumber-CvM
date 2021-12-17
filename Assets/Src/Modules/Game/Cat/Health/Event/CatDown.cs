@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using Weapons;
 
@@ -17,6 +18,21 @@ namespace PubData
         {
             this._dispatcher = dispatcher;
             this._downtime = downTime;
+        }
+
+        public object Serialize()
+        {
+            return new object[]{
+                this._dispatcher.GetComponent<PhotonView>().ViewID,
+                this._downtime
+            };
+        }
+
+        public static object Deserialize(object[] data)
+        {
+            GameObject dispatcher = PhotonView.Find((int)data[0]).gameObject;
+            float downTime = (float)data[1];
+            return new CatDown(dispatcher, downTime);
         }
     }
 }

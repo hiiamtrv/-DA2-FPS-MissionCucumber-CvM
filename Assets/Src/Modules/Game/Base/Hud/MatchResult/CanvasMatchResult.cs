@@ -59,10 +59,12 @@ namespace GameHud
             AudioClip endSound;
             if (data.WinSide == GameVar.StartSide) endSound = _winSound;
             else endSound = _loseSound;
-            
+
             AudioSource audio = this.GetComponent<AudioSource>();
             audio.clip = endSound;
             audio.enabled = true;
+
+            EventCenter.Unsubcribe(EventId.MATCH_END, this.DisplayMatchEnd);
         }
 
         void StayAtRoom()

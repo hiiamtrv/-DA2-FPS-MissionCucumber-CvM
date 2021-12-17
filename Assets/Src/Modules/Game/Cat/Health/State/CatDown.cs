@@ -38,10 +38,9 @@ namespace Cats
                     this.SetNextState(new CatNormal(this._stateMachine));
                 });
 
-                EventCenter.Publish(
-                    EventId.CAT_DOWN,
-                    new PubData.CatDown(this._stateMachine.gameObject, this._downTime)
-                );
+                PubData.CatDown pubData = new PubData.CatDown(this._gameObject, this._downTime);
+                EventCenter.Publish(EventId.CAT_DOWN, pubData);
+                NetworkGame.Publish(EventId.CAT_DOWN, pubData.Serialize());
                 base.OnEnter();
             }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PubData;
+using Photon.Pun;
 
 namespace Character
 {
@@ -123,6 +124,9 @@ namespace Character
             public virtual void ForceDie()
             {
                 this.OnHealthOut();
+                NetworkGame.Publish(EventId.CHARACTER_ELIMINATED, new object[]{
+                    this._gameObject.GetComponent<PhotonView>().ViewID
+                });
             }
         }
     }

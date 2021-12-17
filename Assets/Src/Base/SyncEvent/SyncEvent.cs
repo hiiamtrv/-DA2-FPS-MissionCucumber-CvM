@@ -4,7 +4,9 @@ using UnityEngine;
 using Photon.Pun;
 using BayatGames.Serialization.Formatters.Json;
 using PubData;
+using System;
 
+[Obsolete("SyncEvent is deprecated, please use NetworkGame (if in game) instead.")]
 public class SyncEvent : MonoBehaviour
 {
     static SyncEvent _ins;
@@ -38,6 +40,7 @@ public class SyncEvent : MonoBehaviour
             case EventId.HEALTH_CHANGE: return HealthChange.Deserialize(data as object[]);
             case EventId.SHILED_CHANGE: return ShieldChange.Deserialize(data as object[]);
             case EventId.INTERACT_REQUEST: return InteractRequest.Deserialize(data as object[]);
+            case EventId.CAT_DOWN: return CatDown.Deserialize(data as object[]);
             default: return data;
         }
     }

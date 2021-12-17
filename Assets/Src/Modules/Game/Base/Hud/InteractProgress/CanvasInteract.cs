@@ -57,7 +57,7 @@ namespace GameHud
                     if (data.Dispatcher == this._player)
                     {
                         float startTime = data.StartTime;
-                        float endTime = data.InteractModel.InteractTime;
+                        float endTime = data.InteractTime;
                         this.ShowInteractTimer(startTime, endTime);
                     }
                 }

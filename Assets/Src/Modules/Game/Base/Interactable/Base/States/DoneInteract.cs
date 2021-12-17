@@ -15,10 +15,9 @@ namespace Interactable
             public override void OnEnter()
             {
                 // this._stateMachine.Destroy();
-                EventCenter.Publish(
-                        EventId.INTERACT_END,
-                        new PubData.InteractEnd(this.InteractPlayer, this._gameObject, true)
-                    );
+                PubData.InteractEnd pubData = new PubData.InteractEnd(this.InteractPlayer, this._gameObject, true);
+                EventCenter.Publish(EventId.INTERACT_END, pubData);
+                NetworkGame.Publish(EventId.INTERACT_END, pubData.Serialize());
 
                 (this._stateMachine as InteractEngine).OnInteractSuccesful();
                 this.SetNextState(new Idle(this._stateMachine));

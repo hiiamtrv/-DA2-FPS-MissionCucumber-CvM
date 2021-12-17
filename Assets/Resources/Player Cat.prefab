@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 4336914849359247742}
   - component: {fileID: -4585299832808171242}
   - component: {fileID: 1926077781601073301}
+  - component: {fileID: 2576674093725770642}
   m_Layer: 0
   m_Name: Player Cat
   m_TagString: Untagged
@@ -203,7 +204,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 1926077781601073301}
@@ -226,6 +227,21 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 1
   m_UseLocal: 1
+--- !u!114 &2576674093725770642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366613112299131968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177bddf229f8d8445a70c0652f03b7df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DisconnectAfterKeepAlive: 1
+  KeepAliveInBackground: 60000
+  ApplyDontDestroyOnLoad: 1
 --- !u!1 &1366613112505594974
 GameObject:
   m_ObjectHideFlags: 0
