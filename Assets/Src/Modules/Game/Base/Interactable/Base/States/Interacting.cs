@@ -108,7 +108,9 @@ namespace Interactable
                 {
                     if (data.IsSuccessful)
                     {
-                        this._interactTime = float.MaxValue;
+                        this._isSuccessful = true;
+                        BaseState stateObtained = this.NextStateDoneInteract;
+                        this.SetNextState(stateObtained);
                     }
                     else
                     {

@@ -71,6 +71,15 @@ namespace GameHud
             this._pnlUtility.gameObject.SetActive(false);
         }
 
+        void Update()
+        {
+            if (this._player == null && GameVar.Ins.Player != null)
+            {
+                this._player = GameVar.Ins.Player;
+                this.GetPlayerInfo();
+            }
+        }
+
         void GetPlayerInfo()
         {
             CharacterStats stats = this._player.GetComponent<CharacterStats>();

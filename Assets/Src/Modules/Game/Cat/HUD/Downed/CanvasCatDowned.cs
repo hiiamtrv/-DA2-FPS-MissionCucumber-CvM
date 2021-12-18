@@ -49,6 +49,12 @@ namespace Cats
 
         void Update()
         {
+            if (this._player == null && GameVar.Ins.Player != null)
+            {
+                this._player = GameVar.Ins.Player;
+                this.EnableIfPlayerIsCat();
+            }
+
             if (this._timeRemain > 0)
             {
                 this._timeRemain = Mathf.Max(0, this._timeRemain - Time.deltaTime);

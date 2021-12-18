@@ -56,6 +56,19 @@ namespace GameHud
             this._sliderMouse.value = 0;
         }
 
+        void Update()
+        {
+            if (this._player == null && GameVar.Ins.Player != null)
+            {
+                this._player = GameVar.Ins.Player; 
+                CharacterSide side = this._player.GetComponent<CharacterStats>().CharacterSide;
+
+                this._sliderCat.gameObject.SetActive(side == CharacterSide.CATS);
+                this._sliderMouse.gameObject.SetActive(side == CharacterSide.MICE);
+                this._cucumberObtained = 0;
+            }
+        }
+
         const string SLIDER_MOUSE = "SliderMouse";
         const string SLIDER_CAT = "SliderCat";
         const string LB_LAST_CUCUMBER = "LbLastCucumber";

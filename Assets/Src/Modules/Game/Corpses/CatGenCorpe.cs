@@ -27,7 +27,6 @@ public class CatGenCorpe : MonoBehaviour
         bool isWeakened = dieObject.GetComponent<CatHealthEngine>().IsDying;
         Vector3 curPos = dieObject.transform.position;
         Quaternion curRot = dieObject.transform.rotation;
-        curPos = new Vector3(curPos.x, 0.4f, curPos.z);
         GameObject corpse;
         if (!isWeakened) corpse = Instantiate(_normalCorpse, curPos, curRot);
         else corpse = Instantiate(_rageCorpe, curPos, curRot);

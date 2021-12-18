@@ -37,6 +37,8 @@ namespace GameHud
 
         void Update()
         {
+            if (this._player == null && GameVar.Ins.Player != null) this._player = GameVar.Ins.Player;
+
             if (this._isShowing)
             {
                 this._curTime += Time.deltaTime;

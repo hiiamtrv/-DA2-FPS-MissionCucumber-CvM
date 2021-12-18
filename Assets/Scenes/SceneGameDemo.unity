@@ -3581,9 +3581,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc26ae1d49e57744aa12125dc9a79931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _normalCorpse: {fileID: 3535256252131945874, guid: 350dccd7822d7bc459d827943a7f4a3b,
+  _normalCorpse: {fileID: 6407569004704818396, guid: 350dccd7822d7bc459d827943a7f4a3b,
     type: 3}
-  _rageCorpe: {fileID: 8186813426225090071, guid: 69cb7cf49b563904ba62a03406314b2b,
+  _rageCorpe: {fileID: 7930713165871007009, guid: 69cb7cf49b563904ba62a03406314b2b,
     type: 3}
 --- !u!4 &980904603
 Transform:
@@ -3611,7 +3611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e5b629b6886864098417c13700c6fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _normalCorpse: {fileID: 8040019861231438133, guid: fb60860ed0ce9564c8fc794c307d75a3,
+  _normalCorpse: {fileID: 6051073435642560786, guid: fb60860ed0ce9564c8fc794c307d75a3,
     type: 3}
 --- !u!1 &988510706
 GameObject:

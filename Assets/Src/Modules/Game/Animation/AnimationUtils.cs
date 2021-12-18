@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationUtils
 {
-    const float MIN_DISTANE_TO_TRIGGER_RUN = 1f;
+    const float MIN_DISTANE_TO_TRIGGER_RUN = 0.5f;
 
     static Dictionary<int, Vector3> _lastPosition = new Dictionary<int, Vector3>();
 

@@ -77,6 +77,9 @@ namespace Character
                 // this.StateMachine.Destroy();
                 this._gameObject.SetActive(false);
                 EventCenter.Publish(EventId.CHARACTER_ELIMINATED, this._gameObject);
+                NetworkGame.Publish(EventId.CHARACTER_ELIMINATED, new object[]{
+                    this._gameObject.GetComponent<PhotonView>().ViewID
+                });
             }
 
             protected virtual void OnShieldOut()
@@ -124,9 +127,6 @@ namespace Character
             public virtual void ForceDie()
             {
                 this.OnHealthOut();
-                NetworkGame.Publish(EventId.CHARACTER_ELIMINATED, new object[]{
-                    this._gameObject.GetComponent<PhotonView>().ViewID
-                });
             }
         }
     }

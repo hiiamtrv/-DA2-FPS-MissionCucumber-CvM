@@ -10,14 +10,20 @@ public class CorpseBehaviour : MonoBehaviour
     void Start()
     {
         _animator = this.GetComponent<Animator>();
-        
-        switch (_side) {
-            case CharacterSide.CATS: 
+
+        switch (_side)
+        {
+            case CharacterSide.CATS:
                 _animator.SetBool(AnimStates.Cat.IS_DEATH, true);
                 break;
-            case CharacterSide.MICE: 
+            case CharacterSide.MICE:
                 _animator.SetBool(AnimStates.Mouse.DIE, true);
                 break;
         }
+    }
+
+    public void StopAnimator()
+    {
+        _animator.enabled = false;
     }
 }

@@ -20,6 +20,15 @@ namespace Character
         {
             this.Model = this.GetComponent<CharacterStats>().HealthModel;
             base.Start();
+
+            EventCenter.Subcribe(EventId.CHARACTER_ELIMINATED, (e) =>
+            {
+                GameObject dieObject = e as GameObject;
+                if (dieObject == this.gameObject && this.gameObject.activeInHierarchy)
+                {
+                    ((Base)this._currentState).ForceDie();
+                }
+            });
         }
 
         public void GainShield(float amount, ShieldReason reason = ShieldReason.DEFAULT, GameObject sender = null)
