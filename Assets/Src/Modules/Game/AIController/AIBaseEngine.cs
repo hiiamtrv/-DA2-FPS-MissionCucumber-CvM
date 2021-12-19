@@ -42,7 +42,7 @@ namespace AI
 
             EventCenter.Subcribe(EventId.MATCH_END, (data) =>
             {
-                this.agent.isStopped = true;
+                // this.agent.isStopped = true;
                 this.enabled = false;
             });
 

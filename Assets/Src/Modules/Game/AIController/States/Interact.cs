@@ -30,7 +30,7 @@ namespace AI
             EventCenter.Subcribe(EventId.INTERACT_END, (pubData) =>
             {
                 PubData.InteractEnd data = pubData as PubData.InteractEnd;
-                if (data.Dispatcher == this._gameObject)
+                if (data.Dispatcher == this._gameObject || data.InteractObject == this._interactable)
                 {
                     this.CancelInteractState();
                 }
@@ -60,7 +60,7 @@ namespace AI
 
                 if (distance <= radius * SAFE_INTERACT)
                 {
-                    this._gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+                    this._gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().destination = this._gameObject.transform.position;
                     bool interactSuccess = this.StateMachine.InteractingObject.TriggerInteract(this._gameObject, true);
                     this._isReachTarget = true;
 
@@ -73,7 +73,7 @@ namespace AI
         {
             base.OnExit();
             float speed = this._gameObject.GetComponent<CharacterStats>().Speed;
-            this._gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+            // this._gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
             this.StateMachine.InteractingObject.AbortInteract(this._gameObject);
         }
 

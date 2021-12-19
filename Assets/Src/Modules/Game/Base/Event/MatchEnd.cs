@@ -15,5 +15,7 @@ namespace PubData
             this._winSide = winSide;
             this._winReason = winReason;
         }   
+
+        
     }
 }
