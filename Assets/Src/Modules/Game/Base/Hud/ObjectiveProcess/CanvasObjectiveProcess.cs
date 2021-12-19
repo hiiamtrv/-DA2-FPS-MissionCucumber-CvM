@@ -74,7 +74,7 @@ namespace GameHud
             this._lbEnemy = uiHelper.ui[LB_ENEMY].GetComponent<Text>();
             this._lbNumAlly = uiHelper.ui[LB_NUM_ALLY].GetComponent<Text>();
             this._lbNumEnemy = uiHelper.ui[LB_NUM_ENEMY].GetComponent<Text>();
-            
+
             this._lbLastCucumber.gameObject.SetActive(false);
 
             this._sliderCat.value = 0;
@@ -98,17 +98,16 @@ namespace GameHud
                         this._numAlly = NetworkGame.NUM_CATS_SLOT;
                         this._numEnemy = NetworkGame.NUM_MICE_SLOT;
                         this._lbAlly.text = "Cats";
-                        this._lbEnemy.text = "Mouse";
-                        this.UpdateCharNumber();
+                        this._lbEnemy.text = "Mice";
                         break;
                     case CharacterSide.MICE:
-                        this._numEnemy = NetworkGame.NUM_CATS_SLOT;
                         this._numAlly = NetworkGame.NUM_MICE_SLOT;
+                        this._numEnemy = NetworkGame.NUM_CATS_SLOT;
+                        this._lbAlly.text = "Mice";
                         this._lbEnemy.text = "Cats";
-                        this._lbAlly.text = "Mouse";
-                        this.UpdateCharNumber();
                         break;
                 }
+                this.UpdateCharNumber();
             }
         }
 
@@ -123,7 +122,7 @@ namespace GameHud
         const string LB_LAST_CUCUMBER = "LbLastCucumber";
         const string LB_NUM_ALLY = "LbNumAlly";
         const string LB_NUM_ENEMY = "LbNumEnemy";
-        const string LB_ALLY = "LbEnemy";
-        const string LB_ENEMY = "LbAlly";
+        const string LB_ALLY = "LbAlly";
+        const string LB_ENEMY = "LbEnemy";
     }
 }
