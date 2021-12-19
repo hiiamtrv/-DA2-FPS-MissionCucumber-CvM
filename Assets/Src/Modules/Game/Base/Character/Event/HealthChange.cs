@@ -18,8 +18,8 @@ namespace PubData
         public DamageReason DamageReason => this._damageReason;
         public HealReason HealReason => this._healReason;
 
-        public bool IsHealEvent => this.HealReason == HealReason.NULL;
-        public bool IsDamageEvent => this.DamageReason == DamageReason.NULL;
+        public bool IsHealEvent => this.HealReason != HealReason.NULL;
+        public bool IsDamageEvent => this.DamageReason != DamageReason.NULL;
 
         public HealthChange() { }
 
