@@ -1742,7 +1742,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   m_UseGeometry: 1
-  m_DefaultArea: 2
+  m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
@@ -1950,7 +1950,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   m_UseGeometry: 1
-  m_DefaultArea: 2
+  m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
