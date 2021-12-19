@@ -11,6 +11,8 @@ namespace GameHud
 {
     public class CanvasPlayerHud : MonoBehaviour
     {
+        const float ANIM_DAMAGE_DURATION = 0.5f;
+
         const string PNL_HEALTH = "PnlHealth";
         const string PNL_WEAPON = "PnlWeapon";
         const string LB_HEALTH = "LbHealth";
@@ -20,6 +22,7 @@ namespace GameHud
         const string PNL_UTILITY = "PnlUtilty";
         const string IMG_UTIL = "ImgUtil";
         const string LB_COOLDOWN = "LbCooldown";
+        const string IMG_DAMAGED = "ImgDamaged";
 
         const string ENABLED = "Enabled";
 
@@ -35,6 +38,7 @@ namespace GameHud
         RectTransform _pnlUtility = null;
         Image _imgUtil = null;
         Text _lbCooldown = null;
+        Image _imgDamaged = null;
 
         float _cooldown = 0;
 
@@ -59,6 +63,7 @@ namespace GameHud
             this._pnlUtility = uiHelper.ui[PNL_UTILITY].GetComponent<RectTransform>();
             this._imgUtil = uiHelper.ui[IMG_UTIL].GetComponent<Image>();
             this._lbCooldown = uiHelper.ui[LB_COOLDOWN].GetComponent<Text>();
+            this._imgDamaged = uiHelper.ui[IMG_DAMAGED].GetComponent<Image>();
 
             EventCenter.Subcribe(EventId.WEAPON_AMMO_EQUIP, this.LoadWeaponInfo);
             EventCenter.Subcribe(EventId.WEAPON_AMMO_CHANGE, this.UpdateRemainAmmo);
@@ -69,6 +74,7 @@ namespace GameHud
             EventCenter.Subcribe(EventId.UTILITY_START_COOLDOWN, this.UpdateUtilityCooldown);
 
             this._pnlUtility.gameObject.SetActive(false);
+            this._imgDamaged.gameObject.SetActive(false);
         }
 
         void Update()
@@ -141,6 +147,15 @@ namespace GameHud
             {
                 int displayAmount = Mathf.RoundToInt(data.NewHealth);
                 this._lbHealth.text = displayAmount.ToString();
+
+                this._imgDamaged.gameObject.SetActive(true);
+                LeanTween.delayedCall(ANIM_DAMAGE_DURATION, () =>
+                {
+                    if (this._imgDamaged.gameObject.activeInHierarchy)
+                    {
+                        this._imgDamaged.gameObject.SetActive(false);
+                    }
+                });
             }
         }
 
