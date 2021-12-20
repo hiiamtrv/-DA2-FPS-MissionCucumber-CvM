@@ -63,7 +63,7 @@ public class GameVar : MonoBehaviour
             EventCenter.Publish(EventId.CREATE_PLAYER);
         });
 
-        this.GetComponent<Spawner>().SpawnBots();
+        // this.GetComponent<Spawner>().SpawnBots();
         this.GetComponent<Spawner>().SpawnCucumbers(_cucumberIndex);
         this.GetComponent<Spawner>().CreateShieldCenter();
     }
