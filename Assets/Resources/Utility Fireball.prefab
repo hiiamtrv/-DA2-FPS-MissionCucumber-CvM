@@ -77,8 +77,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _equipTime: 3
-  _cooldown: 3
-  _enableCrosshair: 1
+  _cooldown: 30
+  _enableCrosshair: 0
   _damage: 3
 --- !u!114 &9052027307985778915
 MonoBehaviour:
